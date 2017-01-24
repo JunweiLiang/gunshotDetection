@@ -7,7 +7,7 @@ try:
 	from liblinear import *
 	from liblinearutil import save_model
 except Exception as e:
-	sys.path.append("/home/junweil/Tools/liblinear-2.1/python/")
+	sys.path.append("/home/junweil/Tools/liblinear-2.1/python/") # change this
 	from liblinear import *
 	from liblinearutil import save_model
 
