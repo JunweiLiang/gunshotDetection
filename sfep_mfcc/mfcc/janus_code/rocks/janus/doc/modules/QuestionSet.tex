@@ -1,0 +1,98 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{QuestionSet}}
+
+This section describes the '\Jgloss{QuestionSet}': \textsl{A 'QuestionSet' object is a set of characteristic function definitions and a set of questionSet.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{QuestionSet  $<$name$>$ $<$phones$>$ $<$phonesSet$>$ $<$tags$>$ \Jsb{-padPhone padphone}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of the question set  \\
+ \texttt{\textbf{phones}} &     set of phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{phonesSet}} &  set of phone set (\Jref{module}{PhonesSet}) \\
+ \texttt{\textbf{tags}} &       set of tags (\Jref{module}{Tags}) \\
+ \texttt{\textbf{padphone}} &    padding phone index  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{questionset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{QuestionSet}{-blkSize} & = 50 \\
+      \Jlabel{QuestionSet}{-commentChar} & = ; \\
+      \Jlabel{QuestionSet}{-itemN} & = 0 \\
+      \Jlabel{QuestionSet}{-padPhone} & = -1 \\
+      \Jlabel{QuestionSet}{-phones} & = PHONES \\
+      \Jlabel{QuestionSet}{-phonesSet} & = phonesSetISLci \\
+      \Jlabel{QuestionSet}{-tagOperation} & = 1 \\
+      \Jlabel{QuestionSet}{-tags} & = tagsISLci \\
+      \Jlabel{QuestionSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{questionset}
+
+    \begin{description}
+      \Jitem{\Jlabel{QuestionSet}{add}} \texttt{ $<$question$>$} \
+
+        add a new question to a questionSet object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{question}} &  question string  \\
+      \end{tabular}
+      \Jitem{\Jlabel{QuestionSet}{delete}} \texttt{ $<$item$>$} \
+
+        remove a question from a questionSet object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{QuestionSet}{index}} \texttt{ $<$names*$>$} \
+
+        return the index of a named question
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{QuestionSet}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of an indexed question
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{QuestionSet}{puts}} \texttt{} \
+
+        displays the contents of a questionSet object
+
+      \Jitem{\Jlabel{QuestionSet}{read}} \texttt{ $<$filename$>$} \
+
+        read questionSet from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of question set file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{QuestionSet}{write}} \texttt{ $<$filename$>$} \
+
+        write questionSet into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of questionSet file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{phones}} & (\Jref{module}{Phones}) \\
+      \texttt{\textbf{phonesSet}} & (\Jref{module}{PhonesSet}) \\
+      \texttt{\textbf{tags}} & (\Jref{module}{Tags}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

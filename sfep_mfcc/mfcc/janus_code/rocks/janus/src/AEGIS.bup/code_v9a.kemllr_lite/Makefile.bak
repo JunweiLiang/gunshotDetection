@@ -1,0 +1,385 @@
+#############################################################
+# Sample Makefile format
+#############################################################
+LIBRARY = libaegis.a
+MAIN    = aegis
+CC	= gcc -c
+CFLAGS  = -O3 -fomit-frame-pointer -fopenmp -lstdc++
+# -static-libgcc -static-intel
+CFLAGS  += -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX
+# -I/people/yct/Software/lda-0.9
+
+SRCS	= *.cpp
+IDIR    = /afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include
+IDIR2   = /afs/cs.cmu.edu/user/fmetze/tools/ATLAS/islr0s14/include
+#IDIR    = /people/wrhsiao1/ATLAS/include
+IDIR3   = /afs/cs.cmu.edu/user/fmetze/tools/CLAPACK/CLAPACK-3.2.1/INCLUDE
+LDIR    = .
+LDIR    = /afs/cs.cmu.edu/user/fmetze/tools/ATLAS/lib/islr0s14
+#LDIR2   = /people/wrhsiao1/ATLAS/lib/Linux_XEONSSE3_4
+#LDIR3   = /people/wrhsiao1/CLAPACK/lib/Linux_XEONSSE3_4
+#LDIR2   = /people/wrhsiao/ATLAS/lib/Linux_PIIISSE1_2
+#LDIR3   = /people/wrhsiao/CLAPACK/lib/Linux_PIIISSE1_2
+LIB	= nrc
+OBJECT  = edge.o gaussian.o ahmm.o HTKparser.o main.o memmgr.o multimix.o pdf.o relation_info.o state.o readHTKformat.o computebelldelta.o computebell_fe_preprocess.o recognizer.o linear_algebra.o cluster_engine.o str_util.o math_engine.o token.o cache.o transcription.o mlf.o network.o reg_tree.o mllr.o adictionary.o kernel.o comp_kernel.o hmmset.o accumulator.o util_new.o janus_aegis.o aegis.o ev.o ei_kev.o rsw_ext.o svm.o mpe.o g-mmie.o gdlr.o gdfsa.o
+
+.SUFFIXES : .o .cpp .c 
+
+#############################################################
+
+
+#############################################################
+# Dependencies 
+#############################################################
+
+$(LIBRARY) : $(OBJECT)
+	ar -rv $@ $(OBJECT)
+
+#$(MAIN) : $(OBJECT) 
+#	$(CC) -L$(LDIR) -L$(LDIR2) -L$(LDIR3) $(CFLAGS) -I$(IDIR) -I$(IDIR2) -o $@ $^ -l$(LIB) -llapack_Linux_P4SSE2 -lcblaswr -llapack -lcblas -latlas -lg2c 
+
+#all : $(MAIN)  
+
+#t : t.o
+#	$(CC) -o $@ t.o $(OBJECT)
+
+#useConfig : useConfig.o
+#	$(CC) -o $@ useConfig.o $(OBJECT)
+#############################################################
+
+depend :
+	makedepend -Y -- $(CFLAGS) -- $(SRCS)
+
+
+clean :
+	\rm -f *.o core $(MAIN)
+
+backup :
+	tar cvf - *.h *.cpp Makefile | gzip > /35Ga/SpeechTools/wav2mfcc_`date '+%d%m%y'`.tgz
+
+install :
+	cp -f $(LIBRARY) ../lib
+
+.c.o :
+	$(CC) $(CFLAGS) -I$(DIR) -c $<
+
+.cpp.o :
+	$(CC) $(CFLAGS) -I$(IDIR) -I$(IDIR2) -I$(IDIR3) -c $< 
+
+# DO NOT DELETE
+
+accumulator.o: accumulator.h network.h ahmm.h cluster_engine.h memmgr.h pdf.h
+accumulator.o: gaussian.h linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h
+accumulator.o: math_engine.h multimix.h util_new.h global.h state.h edge.h
+accumulator.o: relation_info.h str_util.h hmmset.h ../../hmm/hmm.h
+accumulator.o: ../../base/list.h ../../base/common.h ../../itf/error.h
+accumulator.o: ../../itf/itf.h ../../base/array.h ../../models/dictionary.h
+accumulator.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+accumulator.o: ../../models/amodel.h ../../models/tree.h
+accumulator.o: ../../models/questions.h ../../models/ptree.h
+accumulator.o: ../../models/modelSet.h ../../models/topo.h
+accumulator.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+accumulator.o: ../../base/matrix.h ../../features/feature.h
+accumulator.o: ../../models/stream.h ../../models/codebook.h
+accumulator.o: ../../models/rewrite.h ../../models/covar.h
+accumulator.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+accumulator.o: ../../models/duration.h ../../models/context.h cache.h
+adictionary.o: adictionary.h transcription.h str_util.h
+aegis.o: aegis.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+aegis.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h global.h
+aegis.o: state.h edge.h ahmm.h cluster_engine.h relation_info.h str_util.h
+aegis.o: recognizer.h readHTKformat.h network.h hmmset.h ../../hmm/hmm.h
+aegis.o: ../../base/list.h ../../base/common.h ../../itf/error.h
+aegis.o: ../../itf/itf.h ../../base/array.h ../../models/dictionary.h
+aegis.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+aegis.o: ../../models/amodel.h ../../models/tree.h ../../models/questions.h
+aegis.o: ../../models/ptree.h ../../models/modelSet.h ../../models/topo.h
+aegis.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+aegis.o: ../../base/matrix.h ../../features/feature.h ../../models/stream.h
+aegis.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+aegis.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+aegis.o: ../../models/duration.h ../../models/context.h token.h
+aegis.o: transcription.h cache.h accumulator.h HTKparser.h adictionary.h
+aegis.o: reg_tree.h mlf.h ei_kev.h mllr.h kernel.h comp_kernel.h ev.h
+aegis.o: rsw_ext.h ../../models/distrib.h ../../models/lh.h
+aegis.o: ../../models/modalities.h mpe.h ../../ibis/glat.h
+aegis.o: ../../ibis/sglobal.h ../../ibis/svmap.h ../../ibis/ngramLM.h
+aegis.o: ../../ibis/svocab.h ../../models/distribStream.h
+aegis.o: ../../models/score.h ../../ibis/scoreA.h g-mmie.h gdlr.h
+ahmm.o: ahmm.h cluster_engine.h memmgr.h pdf.h gaussian.h linear_algebra.h
+ahmm.o: cppblas.h cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+ahmm.o: global.h state.h edge.h relation_info.h str_util.h
+cache.o: cache.h
+cluster_engine.o: cluster_engine.h memmgr.h pdf.h gaussian.h linear_algebra.h
+cluster_engine.o: cppblas.h cpplapack.h nrutil_ex.h math_engine.h multimix.h
+cluster_engine.o: util_new.h global.h state.h edge.h ahmm.h relation_info.h
+cluster_engine.o: str_util.h
+comp_kernel.o: comp_kernel.h memmgr.h pdf.h gaussian.h linear_algebra.h
+comp_kernel.o: cppblas.h cpplapack.h nrutil_ex.h math_engine.h multimix.h
+comp_kernel.o: util_new.h global.h state.h edge.h ahmm.h cluster_engine.h
+comp_kernel.o: relation_info.h str_util.h recognizer.h readHTKformat.h
+comp_kernel.o: network.h hmmset.h ../../hmm/hmm.h ../../base/list.h
+comp_kernel.o: ../../base/common.h ../../itf/error.h ../../itf/itf.h
+comp_kernel.o: ../../base/array.h ../../models/dictionary.h
+comp_kernel.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+comp_kernel.o: ../../models/amodel.h ../../models/tree.h
+comp_kernel.o: ../../models/questions.h ../../models/ptree.h
+comp_kernel.o: ../../models/modelSet.h ../../models/topo.h
+comp_kernel.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+comp_kernel.o: ../../base/matrix.h ../../features/feature.h
+comp_kernel.o: ../../models/stream.h ../../models/codebook.h
+comp_kernel.o: ../../models/rewrite.h ../../models/covar.h
+comp_kernel.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+comp_kernel.o: ../../models/duration.h ../../models/context.h token.h
+comp_kernel.o: transcription.h cache.h accumulator.h kernel.h
+computebelldelta.o: util_new.h global.h computebelldelta.h
+computebell_fe_preprocess.o: util_new.h global.h
+edge.o: edge.h state.h pdf.h
+ei_kev.o: ei_kev.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+ei_kev.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+ei_kev.o: global.h state.h edge.h ahmm.h cluster_engine.h relation_info.h
+ei_kev.o: str_util.h recognizer.h readHTKformat.h network.h hmmset.h
+ei_kev.o: ../../hmm/hmm.h ../../base/list.h ../../base/common.h
+ei_kev.o: ../../itf/error.h ../../itf/itf.h ../../base/array.h
+ei_kev.o: ../../models/dictionary.h ../../models/word.h ../../models/phones.h
+ei_kev.o: ../../models/tags.h ../../models/amodel.h ../../models/tree.h
+ei_kev.o: ../../models/questions.h ../../models/ptree.h
+ei_kev.o: ../../models/modelSet.h ../../models/topo.h ../../models/trans.h
+ei_kev.o: ../../models/senones.h ../../hmm/path.h ../../base/matrix.h
+ei_kev.o: ../../features/feature.h ../../models/stream.h
+ei_kev.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+ei_kev.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+ei_kev.o: ../../models/duration.h ../../models/context.h token.h
+ei_kev.o: transcription.h cache.h accumulator.h mllr.h kernel.h comp_kernel.h
+ev.o: ev.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h cpplapack.h
+ev.o: nrutil_ex.h math_engine.h multimix.h util_new.h global.h state.h edge.h
+ev.o: ahmm.h cluster_engine.h relation_info.h str_util.h recognizer.h
+ev.o: readHTKformat.h network.h hmmset.h ../../hmm/hmm.h ../../base/list.h
+ev.o: ../../base/common.h ../../itf/error.h ../../itf/itf.h
+ev.o: ../../base/array.h ../../models/dictionary.h ../../models/word.h
+ev.o: ../../models/phones.h ../../models/tags.h ../../models/amodel.h
+ev.o: ../../models/tree.h ../../models/questions.h ../../models/ptree.h
+ev.o: ../../models/modelSet.h ../../models/topo.h ../../models/trans.h
+ev.o: ../../models/senones.h ../../hmm/path.h ../../base/matrix.h
+ev.o: ../../features/feature.h ../../models/stream.h ../../models/codebook.h
+ev.o: ../../models/rewrite.h ../../models/covar.h ../../models/cbmap.h
+ev.o: ../../ibis/bmem.h ../../ibis/slimits.h ../../models/duration.h
+ev.o: ../../models/context.h token.h transcription.h cache.h accumulator.h
+ev.o: HTKparser.h adictionary.h reg_tree.h mllr.h kernel.h comp_kernel.h
+gaussian.o: gaussian.h pdf.h linear_algebra.h cppblas.h cpplapack.h
+gaussian.o: nrutil_ex.h math_engine.h
+gdlr.o: gdlr.h ../../ibis/glat.h ../../ibis/slimits.h ../../ibis/sglobal.h
+gdlr.o: ../../ibis/svmap.h ../../base/list.h ../../base/common.h
+gdlr.o: ../../itf/error.h ../../itf/itf.h ../../models/dictionary.h
+gdlr.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+gdlr.o: ../../ibis/ngramLM.h ../../base/array.h ../../ibis/bmem.h
+gdlr.o: ../../base/matrix.h ../../ibis/svocab.h ../../hmm/path.h
+gdlr.o: ../../models/senones.h ../../features/feature.h ../../models/stream.h
+gdlr.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+gdlr.o: ../../models/cbmap.h ../../models/distrib.h ../../models/lh.h
+gdlr.o: ../../models/modalities.h ../../models/tree.h
+gdlr.o: ../../models/questions.h ../../models/ptree.h ../../models/modelSet.h
+gdlr.o: ../../models/distribStream.h ../../models/score.h ../../hmm/hmm.h
+gdlr.o: ../../models/amodel.h ../../models/topo.h ../../models/trans.h
+gdlr.o: ../../models/duration.h ../../models/context.h ../../ibis/scoreA.h
+gdlr.o: relation_info.h linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h
+gdlr.o: math_engine.h util_new.h global.h str_util.h cache.h
+g-mmie.o: g-mmie.h ../../ibis/glat.h ../../ibis/slimits.h
+g-mmie.o: ../../ibis/sglobal.h ../../ibis/svmap.h ../../base/list.h
+g-mmie.o: ../../base/common.h ../../itf/error.h ../../itf/itf.h
+g-mmie.o: ../../models/dictionary.h ../../models/word.h ../../models/phones.h
+g-mmie.o: ../../models/tags.h ../../ibis/ngramLM.h ../../base/array.h
+g-mmie.o: ../../ibis/bmem.h ../../base/matrix.h ../../ibis/svocab.h
+g-mmie.o: ../../hmm/path.h ../../models/senones.h ../../features/feature.h
+g-mmie.o: ../../models/stream.h ../../models/codebook.h
+g-mmie.o: ../../models/rewrite.h ../../models/covar.h ../../models/cbmap.h
+g-mmie.o: ../../models/distrib.h ../../models/lh.h ../../models/modalities.h
+g-mmie.o: ../../models/tree.h ../../models/questions.h ../../models/ptree.h
+g-mmie.o: ../../models/modelSet.h ../../models/distribStream.h
+g-mmie.o: ../../models/score.h ../../hmm/hmm.h ../../models/amodel.h
+g-mmie.o: ../../models/topo.h ../../models/trans.h ../../models/duration.h
+g-mmie.o: ../../models/context.h ../../ibis/scoreA.h relation_info.h
+g-mmie.o: linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h math_engine.h
+g-mmie.o: util_new.h global.h str_util.h cache.h
+hmmset.o: hmmset.h network.h ahmm.h cluster_engine.h memmgr.h pdf.h
+hmmset.o: gaussian.h linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h
+hmmset.o: math_engine.h multimix.h util_new.h global.h state.h edge.h
+hmmset.o: relation_info.h str_util.h ../../hmm/hmm.h ../../base/list.h
+hmmset.o: ../../base/common.h ../../itf/error.h ../../itf/itf.h
+hmmset.o: ../../base/array.h ../../models/dictionary.h ../../models/word.h
+hmmset.o: ../../models/phones.h ../../models/tags.h ../../models/amodel.h
+hmmset.o: ../../models/tree.h ../../models/questions.h ../../models/ptree.h
+hmmset.o: ../../models/modelSet.h ../../models/topo.h ../../models/trans.h
+hmmset.o: ../../models/senones.h ../../hmm/path.h ../../base/matrix.h
+hmmset.o: ../../features/feature.h ../../models/stream.h
+hmmset.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+hmmset.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+hmmset.o: ../../models/duration.h ../../models/context.h
+HTKparser.o: HTKparser.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+HTKparser.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+HTKparser.o: global.h state.h edge.h ahmm.h cluster_engine.h relation_info.h
+HTKparser.o: str_util.h network.h adictionary.h transcription.h hmmset.h
+HTKparser.o: ../../hmm/hmm.h ../../base/list.h ../../base/common.h
+HTKparser.o: ../../itf/error.h ../../itf/itf.h ../../base/array.h
+HTKparser.o: ../../models/dictionary.h ../../models/word.h
+HTKparser.o: ../../models/phones.h ../../models/tags.h ../../models/amodel.h
+HTKparser.o: ../../models/tree.h ../../models/questions.h
+HTKparser.o: ../../models/ptree.h ../../models/modelSet.h ../../models/topo.h
+HTKparser.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+HTKparser.o: ../../base/matrix.h ../../features/feature.h
+HTKparser.o: ../../models/stream.h ../../models/codebook.h
+HTKparser.o: ../../models/rewrite.h ../../models/covar.h ../../models/cbmap.h
+HTKparser.o: ../../ibis/bmem.h ../../ibis/slimits.h ../../models/duration.h
+HTKparser.o: ../../models/context.h reg_tree.h
+janus_aegis.o: janus_aegis.h ../../ibis/slimits.h ../../ibis/lks.h
+janus_aegis.o: ../../ibis/sglobal.h ../../ibis/bmem.h ../../base/matrix.h
+janus_aegis.o: ../../base/common.h ../../itf/error.h ../../itf/itf.h
+janus_aegis.o: ../../ibis/lmla.h ../../ibis/stree.h ../../ibis/phmm.h
+janus_aegis.o: ../../base/list.h ../../models/senones.h ../../hmm/path.h
+janus_aegis.o: ../../features/feature.h ../../models/stream.h
+janus_aegis.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+janus_aegis.o: ../../models/codebook.h ../../models/rewrite.h
+janus_aegis.o: ../../models/covar.h ../../models/cbmap.h ../../models/tree.h
+janus_aegis.o: ../../models/questions.h ../../models/ptree.h
+janus_aegis.o: ../../models/modelSet.h ../../models/trans.h
+janus_aegis.o: ../../models/topo.h ../../base/array.h ../../models/duration.h
+janus_aegis.o: ../../ibis/xhmm.h ../../ibis/svocab.h
+janus_aegis.o: ../../models/dictionary.h ../../ibis/ngramLM.h
+janus_aegis.o: ../../ibis/svmap.h ../../ibis/strace.h ../../ibis/smem.h
+janus_aegis.o: ../../ibis/phraseLM.h ../../ibis/metaLM.h ../../ibis/cfg.h
+janus_aegis.o: ../../base/mach_ind_io.h ../../ibis/cfgTypes.h
+janus_aegis.o: ../../ibis/glat.h ../../models/distrib.h ../../models/lh.h
+janus_aegis.o: ../../models/modalities.h ../../models/distribStream.h
+janus_aegis.o: ../../models/amodel.h ../../models/context.h ../../hmm/hmm.h
+janus_aegis.o: aegis.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+janus_aegis.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+janus_aegis.o: global.h state.h edge.h ahmm.h cluster_engine.h
+janus_aegis.o: relation_info.h str_util.h recognizer.h readHTKformat.h
+janus_aegis.o: network.h hmmset.h token.h transcription.h cache.h
+janus_aegis.o: accumulator.h HTKparser.h adictionary.h reg_tree.h mlf.h
+janus_aegis.o: ei_kev.h mllr.h kernel.h comp_kernel.h ev.h rsw_ext.h mpe.h
+janus_aegis.o: ../../models/score.h ../../ibis/scoreA.h g-mmie.h gdlr.h
+kernel.o: kernel.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+kernel.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+kernel.o: global.h state.h edge.h ahmm.h cluster_engine.h relation_info.h
+kernel.o: str_util.h recognizer.h readHTKformat.h network.h hmmset.h
+kernel.o: ../../hmm/hmm.h ../../base/list.h ../../base/common.h
+kernel.o: ../../itf/error.h ../../itf/itf.h ../../base/array.h
+kernel.o: ../../models/dictionary.h ../../models/word.h ../../models/phones.h
+kernel.o: ../../models/tags.h ../../models/amodel.h ../../models/tree.h
+kernel.o: ../../models/questions.h ../../models/ptree.h
+kernel.o: ../../models/modelSet.h ../../models/topo.h ../../models/trans.h
+kernel.o: ../../models/senones.h ../../hmm/path.h ../../base/matrix.h
+kernel.o: ../../features/feature.h ../../models/stream.h
+kernel.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+kernel.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+kernel.o: ../../models/duration.h ../../models/context.h token.h
+kernel.o: transcription.h cache.h accumulator.h
+linear_algebra.o: linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h
+linear_algebra.o: math_engine.h
+main.o: memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h cpplapack.h
+main.o: nrutil_ex.h math_engine.h multimix.h util_new.h global.h state.h
+main.o: edge.h ahmm.h cluster_engine.h relation_info.h str_util.h
+main.o: recognizer.h readHTKformat.h network.h hmmset.h ../../hmm/hmm.h
+main.o: ../../base/list.h ../../base/common.h ../../itf/error.h
+main.o: ../../itf/itf.h ../../base/array.h ../../models/dictionary.h
+main.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+main.o: ../../models/amodel.h ../../models/tree.h ../../models/questions.h
+main.o: ../../models/ptree.h ../../models/modelSet.h ../../models/topo.h
+main.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+main.o: ../../base/matrix.h ../../features/feature.h ../../models/stream.h
+main.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+main.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+main.o: ../../models/duration.h ../../models/context.h token.h
+main.o: transcription.h cache.h accumulator.h HTKparser.h adictionary.h
+main.o: reg_tree.h mlf.h
+math_engine.o: math_engine.h linear_algebra.h cppblas.h cpplapack.h
+math_engine.o: nrutil_ex.h
+memmgr.o: memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h cpplapack.h
+memmgr.o: nrutil_ex.h math_engine.h multimix.h util_new.h global.h state.h
+memmgr.o: edge.h ahmm.h cluster_engine.h relation_info.h str_util.h
+mlf.o: mlf.h transcription.h str_util.h
+mllr.o: mllr.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+mllr.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h global.h
+mllr.o: state.h edge.h ahmm.h cluster_engine.h relation_info.h str_util.h
+mllr.o: recognizer.h readHTKformat.h network.h hmmset.h ../../hmm/hmm.h
+mllr.o: ../../base/list.h ../../base/common.h ../../itf/error.h
+mllr.o: ../../itf/itf.h ../../base/array.h ../../models/dictionary.h
+mllr.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+mllr.o: ../../models/amodel.h ../../models/tree.h ../../models/questions.h
+mllr.o: ../../models/ptree.h ../../models/modelSet.h ../../models/topo.h
+mllr.o: ../../models/trans.h ../../models/senones.h ../../hmm/path.h
+mllr.o: ../../base/matrix.h ../../features/feature.h ../../models/stream.h
+mllr.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+mllr.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+mllr.o: ../../models/duration.h ../../models/context.h token.h
+mllr.o: transcription.h cache.h accumulator.h
+mpe.o: mpe.h ../../ibis/slimits.h ../../ibis/glat.h ../../ibis/sglobal.h
+mpe.o: ../../ibis/svmap.h ../../base/list.h ../../base/common.h
+mpe.o: ../../itf/error.h ../../itf/itf.h ../../models/dictionary.h
+mpe.o: ../../models/word.h ../../models/phones.h ../../models/tags.h
+mpe.o: ../../ibis/ngramLM.h ../../base/array.h ../../ibis/bmem.h
+mpe.o: ../../base/matrix.h ../../ibis/svocab.h ../../hmm/path.h
+mpe.o: ../../models/senones.h ../../features/feature.h ../../models/stream.h
+mpe.o: ../../models/codebook.h ../../models/rewrite.h ../../models/covar.h
+mpe.o: ../../models/cbmap.h ../../models/distrib.h ../../models/lh.h
+mpe.o: ../../models/modalities.h ../../models/tree.h ../../models/questions.h
+mpe.o: ../../models/ptree.h ../../models/modelSet.h
+mpe.o: ../../models/distribStream.h ../../models/score.h ../../hmm/hmm.h
+mpe.o: ../../models/amodel.h ../../models/topo.h ../../models/trans.h
+mpe.o: ../../models/duration.h ../../models/context.h ../../ibis/scoreA.h
+mpe.o: util_new.h global.h str_util.h
+multimix.o: multimix.h pdf.h gaussian.h linear_algebra.h cppblas.h
+multimix.o: cpplapack.h nrutil_ex.h math_engine.h util_new.h global.h
+network.o: network.h ahmm.h cluster_engine.h memmgr.h pdf.h gaussian.h
+network.o: linear_algebra.h cppblas.h cpplapack.h nrutil_ex.h math_engine.h
+network.o: multimix.h util_new.h global.h state.h edge.h relation_info.h
+network.o: str_util.h
+pdf.o: pdf.h
+readHTKformat.o: readHTKformat.h util_new.h global.h computebelldelta.h
+readHTKformat.o: computebell_fe_preprocess.h
+recognizer.o: recognizer.h memmgr.h pdf.h gaussian.h linear_algebra.h
+recognizer.o: cppblas.h cpplapack.h nrutil_ex.h math_engine.h multimix.h
+recognizer.o: util_new.h global.h state.h edge.h ahmm.h cluster_engine.h
+recognizer.o: relation_info.h str_util.h readHTKformat.h network.h hmmset.h
+recognizer.o: ../../hmm/hmm.h ../../base/list.h ../../base/common.h
+recognizer.o: ../../itf/error.h ../../itf/itf.h ../../base/array.h
+recognizer.o: ../../models/dictionary.h ../../models/word.h
+recognizer.o: ../../models/phones.h ../../models/tags.h ../../models/amodel.h
+recognizer.o: ../../models/tree.h ../../models/questions.h
+recognizer.o: ../../models/ptree.h ../../models/modelSet.h
+recognizer.o: ../../models/topo.h ../../models/trans.h ../../models/senones.h
+recognizer.o: ../../hmm/path.h ../../base/matrix.h ../../features/feature.h
+recognizer.o: ../../models/stream.h ../../models/codebook.h
+recognizer.o: ../../models/rewrite.h ../../models/covar.h
+recognizer.o: ../../models/cbmap.h ../../ibis/bmem.h ../../ibis/slimits.h
+recognizer.o: ../../models/duration.h ../../models/context.h token.h
+recognizer.o: transcription.h cache.h accumulator.h
+reg_tree.o: reg_tree.h
+relation_info.o: relation_info.h
+rsw_ext.o: rsw_ext.h memmgr.h pdf.h gaussian.h linear_algebra.h cppblas.h
+rsw_ext.o: cpplapack.h nrutil_ex.h math_engine.h multimix.h util_new.h
+rsw_ext.o: global.h state.h edge.h ahmm.h cluster_engine.h relation_info.h
+rsw_ext.o: str_util.h recognizer.h readHTKformat.h network.h hmmset.h
+rsw_ext.o: ../../hmm/hmm.h ../../base/list.h ../../base/common.h
+rsw_ext.o: ../../itf/error.h ../../itf/itf.h ../../base/array.h
+rsw_ext.o: ../../models/dictionary.h ../../models/word.h
+rsw_ext.o: ../../models/phones.h ../../models/tags.h ../../models/amodel.h
+rsw_ext.o: ../../models/tree.h ../../models/questions.h ../../models/ptree.h
+rsw_ext.o: ../../models/modelSet.h ../../models/topo.h ../../models/trans.h
+rsw_ext.o: ../../models/senones.h ../../hmm/path.h ../../base/matrix.h
+rsw_ext.o: ../../features/feature.h ../../models/stream.h
+rsw_ext.o: ../../models/codebook.h ../../models/rewrite.h
+rsw_ext.o: ../../models/covar.h ../../models/cbmap.h ../../ibis/bmem.h
+rsw_ext.o: ../../ibis/slimits.h ../../models/duration.h
+rsw_ext.o: ../../models/context.h token.h transcription.h cache.h
+rsw_ext.o: accumulator.h HTKparser.h adictionary.h reg_tree.h mllr.h kernel.h
+rsw_ext.o: comp_kernel.h
+state.o: state.h pdf.h
+str_util.o: str_util.h
+svm.o: svm.h
+token.o: token.h state.h pdf.h util_new.h global.h
+transcription.o: transcription.h
+util_new.o: util_new.h global.h
+whitener.o: whitener.h readHTKformat.h util_new.h global.h linear_algebra.h
+whitener.o: cppblas.h cpplapack.h nrutil_ex.h math_engine.h

@@ -1,0 +1,86 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PTreeSet}}
+
+This section describes the '\Jgloss{PTreeSet}': \textsl{A 'PTreeSet' object is a set of polyphone context trees.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{PTreeSet  $<$name$>$ $<$phones$>$ $<$tags$>$ $<$modelSet$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{phones}} &    set of phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{tags}} &      set of tags (\Jref{module}{Tags}) \\
+ \texttt{\textbf{modelSet}} &  set of models \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{ptreeset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{PTreeSet}{-blkSize} & = 100 \\
+      \Jlabel{PTreeSet}{-commentChar} & = ; \\
+      \Jlabel{PTreeSet}{-itemN} & = 0 \\
+      \Jlabel{PTreeSet}{-name} & = ptreeSet \\
+      \Jlabel{PTreeSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{ptreeset}
+
+    \begin{description}
+      \Jitem{\Jlabel{PTreeSet}{add}} \texttt{ $<$name$>$ $<$polyphone$>$} \
+
+        adds another polyphonic tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of polyphonic tree  \\
+ \texttt{\textbf{polyphone}} &  polyphone description \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTreeSet}{index}} \texttt{ $<$names*$>$} \
+
+        find index of a polyphone tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTreeSet}{name}} \texttt{ $<$idx*$>$} \
+
+        find name of a polyphone tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTreeSet}{puts}} \texttt{} \
+
+        displays the contents of a PTreeSet object
+
+      \Jitem{\Jlabel{PTreeSet}{read}} \texttt{ $<$filename$>$} \
+
+        reads polyphone tree from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of PTreeSet file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTreeSet}{write}} \texttt{ $<$filename$>$ \Jsb{-minCount mincount}} \
+
+        writes polyphone tree to a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of tree file  \\
+ \texttt{\textbf{mincount}} &   minimum count  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{modelSet}} & (\Jref{module}{DistribSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

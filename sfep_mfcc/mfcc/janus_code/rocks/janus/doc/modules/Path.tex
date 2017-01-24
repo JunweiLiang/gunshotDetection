@@ -1,0 +1,247 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Path}}
+
+This section describes the '\Jgloss{Path}': \textsl{A 'Path' object is filled by a forced alignment function and is used by training functions}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Path  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{path configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Path}{-firstFrame} & = 0 \\
+      \Jlabel{Path}{-lastFrame} & = 0 \\
+      \Jlabel{Path}{-name} & = pathISLci \\
+      \Jlabel{Path}{-phoneMissPen} & = 0.000000 \\
+      \Jlabel{Path}{-senoneMissPen} & = 0.000000 \\
+      \Jlabel{Path}{-useN} & = 1 \\
+      \Jlabel{Path}{-wordMissPen} & = 0.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{path}
+
+    \begin{description}
+      \Jitem{\Jlabel{Path}{:=}} \texttt{ $<$path$>$} \
+
+        copy path objects
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} & source path object (\Jref{module}{Path}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{alignGlat}} \texttt{ $<$hmm$>$ $<$glat$>$ $<$pathTmp$>$ \Jsb{-variants variants} \Jsb{-modtags modtags} \Jsb{-thresh thresh} \Jsb{-mode mode} \Jsb{-verbose verbose}} \
+
+        compute forced alignment by Lattice constraint
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &      Hidden Markov Model (\Jref{module}{HMM}) \\
+ \texttt{\textbf{glat}} &     IBIS Lattice object (\Jref{module}{GLat}) \\
+ \texttt{\textbf{pathTmp}} &  Temporary path variable (\Jref{module}{Path}) \\
+ \texttt{\textbf{variants}} &  pronunciation variants  \\
+ \texttt{\textbf{modtags}} &   modality tags  \\
+ \texttt{\textbf{thresh}} &    minimum posteriori threshold  \\
+ \texttt{\textbf{mode}} &      alignment mode, 0=viterbi, 1=fwdbwd  \\
+ \texttt{\textbf{verbose}} &   verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{bload}} \texttt{ $<$file$>$ \Jsb{-hmm hmm}} \
+
+        binary load of path items
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &  filename  \\
+ \texttt{\textbf{hmm}} &    HMM object used for mapping (\Jref{module}{HMM}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{bsave}} \texttt{ $<$file$>$} \
+
+        binary save of path items
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &  filename  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{durentropy}} \texttt{ $<$hmm$>$} \
+
+        Compute durational entropy of a path
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} & the underlying HMM (\Jref{module}{HMM}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{fwdBwd}} \texttt{ $<$hmm$>$ \Jsb{-eval eval} \Jsb{-from from} \Jsb{-to to} \Jsb{-skipl skipl} \Jsb{-skipt skipt} \Jsb{-topN topn} \Jsb{-width width} \Jsb{-label label}} \
+
+        compute a forward backward path for a HMM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &   name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{eval}} &   feature set eval string  \\
+ \texttt{\textbf{from}} &   frame where to start alignment  \\
+ \texttt{\textbf{to}} &     frame where to end alignment  \\
+ \texttt{\textbf{skipl}} &  leading frames to skip  \\
+ \texttt{\textbf{skipt}} &  trailing frames to skip  \\
+ \texttt{\textbf{topn}} &   topN pruning  \\
+ \texttt{\textbf{width}} &  maximal width of the path  \\
+ \texttt{\textbf{label}} &  viterbi follows labels in paht  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{labels}} \texttt{ $<$hmm$>$ \Jsb{-what what}} \
+
+        displays the contents of a path as labels
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} & the underlying HMM (\Jref{module}{HMM}) \\
+ \texttt{\textbf{what}} &  list of what to display  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{lscore}} \texttt{ $<$hmm$>$ \Jsb{-eval eval} \Jsb{-from from} \Jsb{-to to} \Jsb{-gamma gamma}} \
+
+        compute the local scores
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &   name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{eval}} &   feature set eval string  \\
+ \texttt{\textbf{from}} &   start frame  \\
+ \texttt{\textbf{to}} &     end frame  \\
+ \texttt{\textbf{gamma}} &  use gamma values  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{make}} \texttt{ $<$senoneSet$>$ \Jsb{-eval eval} \Jsb{-from from} \Jsb{-to to} \Jsb{-skipl skipl} \Jsb{-skipt skipt}} \
+
+        creates a path
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senoneSet}} &  name of the SenoneSet object (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{eval}} &        feature set eval string  \\
+ \texttt{\textbf{from}} &        frame where to start alignment  \\
+ \texttt{\textbf{to}} &          frame where to end alignment  \\
+ \texttt{\textbf{skipl}} &       leading  frames to skip  \\
+ \texttt{\textbf{skipt}} &       trailing frames to skip  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{map}} \texttt{ $<$hmm$>$ \Jsb{-senoneSet senoneset} \Jsb{-stream stream} \Jsb{-codebookX codebookx}} \
+
+        map senone indices
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &       name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{senoneset}} &  name of the SenoneSet object (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{stream}} &     index of stream  \\
+ \texttt{\textbf{codebookx}} &  want codebook instead of distrib indices (0/1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{phoneMatrix}} \texttt{ $<$FMatrix$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-first first} \Jsb{-last last}} \
+
+        matrix of cum. phone gamma scores
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &  float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{from}} &      first frame of matrix  \\
+ \texttt{\textbf{to}} &        last frame to include in matrix  \\
+ \texttt{\textbf{first}} &     first phone index to include  \\
+ \texttt{\textbf{last}} &      last phone index to include  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{phones}} \texttt{ $<$hmm$>$ \Jsb{-from from} \Jsb{-to to}} \
+
+        displays the phones labels
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &  name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{from}} &  start frame  \\
+ \texttt{\textbf{to}} &    end frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{pjkdmc}} \texttt{ $<$hmm$>$ $<$sns$>$ $<$wghts$>$ $<$pjks$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-idx idx} \Jsb{-zero zero}} \
+
+        compute pjk-dmc for AFs
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &    name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{sns}} &    name of the SenoneSet object (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{wghts}} &  name of the wghts FMatrix object (in) (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{pjks}} &   name of the pjks FMatrix object (out) (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{from}} &    start frame  \\
+ \texttt{\textbf{to}} &      end frame  \\
+ \texttt{\textbf{idx}} &     use entry in pjks matrix  \\
+ \texttt{\textbf{zero}} &    train streams with 0 prob  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{puts}} \texttt{ \Jsb{-from from} \Jsb{-to to}} \
+
+        displays the contents of a path
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{from}} &  frame where to start output  \\
+ \texttt{\textbf{to}} &    frame where to end output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{reset}} \texttt{} \
+
+        remove all items from a path
+
+      \Jitem{\Jlabel{Path}{senoneMatrix}} \texttt{ $<$FMatrix$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-first first} \Jsb{-last last}} \
+
+        matrix of senone gamma scores
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &  float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{from}} &      first frame of matrix  \\
+ \texttt{\textbf{to}} &        last frame to include in matrix  \\
+ \texttt{\textbf{first}} &     first senone index to include  \\
+ \texttt{\textbf{last}} &      last senone index to include  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{stateMatrix}} \texttt{ $<$FMatrix$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-first first} \Jsb{-last last}} \
+
+        matrix of state gamma scores
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &  float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{from}} &      first frame of matrix  \\
+ \texttt{\textbf{to}} &        last frame to include in matrix  \\
+ \texttt{\textbf{first}} &     first state index to include  \\
+ \texttt{\textbf{last}} &      last state index to include  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{viterbi}} \texttt{ $<$hmm$>$ \Jsb{-eval eval} \Jsb{-from from} \Jsb{-to to} \Jsb{-skipl skipl} \Jsb{-skipt skipt} \Jsb{-beam beam} \Jsb{-topN topn} \Jsb{-label label} \Jsb{-bpMod bpmod} \Jsb{-bpMul bpmul}} \
+
+        compute a Viterbi path for a given HMM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &   name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{eval}} &   feature set eval string  \\
+ \texttt{\textbf{from}} &   frame where to start alignment  \\
+ \texttt{\textbf{to}} &     frame where to end alignment  \\
+ \texttt{\textbf{skipl}} &  leading frames to skip  \\
+ \texttt{\textbf{skipt}} &  trailing frames to skip  \\
+ \texttt{\textbf{beam}} &   constant beam size  \\
+ \texttt{\textbf{topn}} &   topN pruning  \\
+ \texttt{\textbf{label}} &  viterbi follows labels in path  \\
+ \texttt{\textbf{bpmod}} &  after every X frames clean up bpTable ($<$0 never)  \\
+ \texttt{\textbf{bpmul}} &  go Y * X frames back during cleanup ($<$1 start at first frame)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{wordMatrix}} \texttt{ $<$FMatrix$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-first first} \Jsb{-last last}} \
+
+        matrix of cum. word gamma scores
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &  float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{from}} &      first frame of matrix  \\
+ \texttt{\textbf{to}} &        last frame to include in matrix  \\
+ \texttt{\textbf{first}} &     first word index to include  \\
+ \texttt{\textbf{last}} &      last word index to include  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Path}{words}} \texttt{ $<$hmm$>$ \Jsb{-from from} \Jsb{-to to}} \
+
+        displays the word/variant labels
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &  name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{from}} &  start frame  \\
+ \texttt{\textbf{to}} &    end frame  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{itemList(0..0)}} & (\Jref{module}{}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

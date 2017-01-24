@@ -1,0 +1,15 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef JANUS_AEGIS_H
+#define JANUS_AEGIS_H
+                                                                                                                                                                
+extern int Aegis_Init();
+ 
+#endif
+                                                                                                                                                                
+#ifdef __cplusplus
+}
+
+#endif

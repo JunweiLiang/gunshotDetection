@@ -1,0 +1,5 @@
+sfepdir=/home/junweil/Tools/sfep_mfcc
+outputdir=/home/junweil/test_sfep
+videopaths=/home/junweil/videos.lst
+machine=rocks
+python27=python

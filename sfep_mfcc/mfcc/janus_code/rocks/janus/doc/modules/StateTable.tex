@@ -1,0 +1,124 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{StateTable}}
+
+This section describes the '\Jgloss{StateTable}': \textsl{A 'StateTable' object is a matrix for looking up distribution indices.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{StateTable  $<$name$>$ $<$modalitySet$>$ \Jsb{-compress compress}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of the state table  \\
+ \texttt{\textbf{modalitySet}} &  modality set (\Jref{module}{ModalitySet}) \\
+ \texttt{\textbf{compress}} &      compress stateTable  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{statetable configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{StateTable}{-commentChar} & = 59 \\
+      \Jlabel{StateTable}{-compress} & = 0 \\
+      \Jlabel{StateTable}{-dummyStart} & = -1 \\
+      \Jlabel{StateTable}{-endFrameX} & = -1 \\
+      \Jlabel{StateTable}{-modXN} & = 0 \\
+      \Jlabel{StateTable}{-name} & = stateTableISLci \\
+      \Jlabel{StateTable}{-startFrameX} & = -1 \\
+      \Jlabel{StateTable}{-timeInfo} & = 0 \\
+      \Jlabel{StateTable}{-treeXN} & = 0 \\
+      \Jlabel{StateTable}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{statetable}
+
+    \begin{description}
+      \Jitem{\Jlabel{StateTable}{copy}} \texttt{} \
+
+        copy state table
+
+      \Jitem{\Jlabel{StateTable}{create}} \texttt{} \
+
+        create new matrix
+
+      \Jitem{\Jlabel{StateTable}{get}} \texttt{ $<$treeX$>$ $<$modalityX$>$} \
+
+        get a single entry of the state table
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{treeX}} &      index of subtree  \\
+ \texttt{\textbf{modalityX}} &  index of modality combination  \\
+      \end{tabular}
+      \Jitem{\Jlabel{StateTable}{lookup}} \texttt{ $<$dsX$>$ $<$frameX$>$} \
+
+        make a table lookup
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{dsX}} &     index of distribution  \\
+ \texttt{\textbf{frameX}} &  index of frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{StateTable}{puts}} \texttt{} \
+
+        displays the contents of the state table
+
+      \Jitem{\Jlabel{StateTable}{read}} \texttt{ $<$fileName$>$} \
+
+        read state table from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  Name of file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{StateTable}{reset}} \texttt{} \
+
+        reset state table and modalitySet
+
+      \Jitem{\Jlabel{StateTable}{resize}} \texttt{} \
+
+        resize state table
+
+      \Jitem{\Jlabel{StateTable}{set}} \texttt{ $<$treeX$>$ $<$modalityX$>$ $<$dsX$>$} \
+
+        set a single entry in the state table
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{treeX}} &      index of subtree  \\
+ \texttt{\textbf{modalityX}} &  index of modality combination  \\
+ \texttt{\textbf{dsX}} &        index of distribution  \\
+      \end{tabular}
+      \Jitem{\Jlabel{StateTable}{update}} \texttt{ $<$startFrameX$>$ $<$endFrameX$>$} \
+
+        update state-table
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startFrameX}} &  start frame for answer  \\
+ \texttt{\textbf{endFrameX}} &    end frame for answer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{StateTable}{updateUnsupervised}} \texttt{} \
+
+        update stateTable and modalities for the whole utterance (unsupervised) (stateTableUpdateUnsupervised)
+
+      \Jitem{\Jlabel{StateTable}{updateUtterance}} \texttt{} \
+
+        update stateTable and modalities for the whole utterance (stateTableUpdateUtterance)
+
+      \Jitem{\Jlabel{StateTable}{write}} \texttt{ $<$fileName$>$} \
+
+        write state table to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  Name of file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{matrix}} & (\Jref{module}{IMatrix}) \\
+      \texttt{\textbf{modalitySet}} & (\Jref{module}{ModalitySet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

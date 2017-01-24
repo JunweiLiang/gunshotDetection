@@ -1,0 +1,209 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CBNewSet}}
+
+This section describes the '\Jgloss{CBNewSet}': \textsl{Set of CBNew codebooks}
+
+\begin{description}
+
+  \item[Creation:] \texttt{CBNewSet  $<$name$>$ $<$parmatSet$>$ $<$featureSet$>$ $<$par2$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the set  \\
+ \texttt{\textbf{parmatSet}} &   parameter matrix set (\Jref{module}{CBNewParMatrixSet}) \\
+ \texttt{\textbf{featureSet}} &  feature set (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{par2}} &        feature space dimensions $<$dimN$>$ OR @$<$fname$>$: name of structure file to load \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{cbnewset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CBNewSet}{-blkSize} & = 50000 \\
+      \Jlabel{CBNewSet}{-dimN} & = 1 \\
+      \Jlabel{CBNewSet}{-featureSet} & = featureSetISLci \\
+      \Jlabel{CBNewSet}{-itemN} & = 0 \\
+      \Jlabel{CBNewSet}{-name} & = cbnewset \\
+      \Jlabel{CBNewSet}{-parmatSet} & = cbnewparmatrixset \\
+      \Jlabel{CBNewSet}{-phase} & = cons \\
+      \Jlabel{CBNewSet}{-trainParmats} & = 1 \\
+      \Jlabel{CBNewSet}{-useN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cbnewset}
+
+    \begin{description}
+      \Jitem{\Jlabel{CBNewSet}{accu}} \texttt{} \
+
+        accumulate data
+
+      \Jitem{\Jlabel{CBNewSet}{accuMatrix}} \texttt{} \
+
+        accumulate sample matrix
+
+      \Jitem{\Jlabel{CBNewSet}{add}} \texttt{ $<$cbName$>$ $<$featName$>$ $<$refN$>$} \
+
+        add new codebook
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{cbName}} &    name for codebook  \\
+ \texttt{\textbf{featName}} &  name of feature to use  \\
+ \texttt{\textbf{refN}} &      number of densities  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{clearAccus}} \texttt{} \
+
+        clear accumulators
+
+      \Jitem{\Jlabel{CBNewSet}{clearTrainParmats}} \texttt{} \
+
+        switch off parmat training
+
+      \Jitem{\Jlabel{CBNewSet}{closeProt}} \texttt{ $<$cbIndex$>$ $<$protNum$>$} \
+
+        INTERNAL! Use CBNewSetCloseProt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{cbIndex}} &  codebook index  \\
+ \texttt{\textbf{protNum}} &  protocol number  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{compare}} \texttt{ $<$CBNewSet$>$} \
+
+        compare two codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{CBNewSet}} &  CBNewSet to compare (\Jref{module}{CBNewSet}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{convert}} \texttt{ $<$CodebookSet$>$ $<$DistribSet$>$} \
+
+        convert new codebook style to old style
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{CodebookSet}} &  name of the codebook set (\Jref{module}{CodebookSet}) \\
+ \texttt{\textbf{DistribSet}} &   name of the distrib  set (\Jref{module}{DistribSet}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{dataPlot}} \texttt{} \
+
+        scatter plot of most relev. dimensions
+
+      \Jitem{\Jlabel{CBNewSet}{evalKL}} \texttt{} \
+
+        evaluate KL criterion
+
+      \Jitem{\Jlabel{CBNewSet}{evalProt}} \texttt{} \
+
+        INTERNAL! Use CBNewSetEvalProt
+
+      \Jitem{\Jlabel{CBNewSet}{genSamples}} \texttt{ $<$cbIndex$>$ $<$sampN$>$ $<$sampMat$>$ \Jsb{-seed seed}} \
+
+        generate samples using codebook model
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{cbIndex}} &  index of codebook  \\
+ \texttt{\textbf{sampN}} &    number of samples to create  \\
+ \texttt{\textbf{sampMat}} &  sample matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{seed}} &      seed to use for PRNG  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{index}} \texttt{ $<$names*$>$} \
+
+        get index of list element
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{link}} \texttt{ $<$parmatName$>$ $<$cbIndex$>$ $<$refIndex$>$} \
+
+        link parameter matrix to gaussian(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{parmatName}} &  name of parameter matrix  \\
+ \texttt{\textbf{cbIndex}} &     index of codebook  \\
+ \texttt{\textbf{refIndex}} &    reference index (or 'allFree' / 'all')  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{loadAccus}} \texttt{} \
+
+        load accumulators incrementally
+
+      \Jitem{\Jlabel{CBNewSet}{loadAccusDep}} \texttt{} \
+
+        load accumulators incrementally
+
+      \Jitem{\Jlabel{CBNewSet}{loadWeights}} \texttt{ $<$fName$>$} \
+
+        load codebook weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of weight file to load  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{name}} \texttt{ $<$idx*$>$} \
+
+        get name of list element
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{openProt}} \texttt{ $<$cbIndex$>$ $<$dataMat$>$ \Jsb{-critFunc critfunc} \Jsb{-begin begin} \Jsb{-end end}} \
+
+        INTERNAL! Use CBNewSetOpenProt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{cbIndex}} &  codebook index  \\
+ \texttt{\textbf{dataMat}} &  evaluation data matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{critfunc}} &  criterion function  \\
+ \texttt{\textbf{begin}} &     first row of eval. epoch in data matrix  \\
+ \texttt{\textbf{end}} &       last row of eval. epoch in data matrix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{phase}} \texttt{ $<$phaseName$>$} \
+
+        change object phase
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{phaseName}} &  new phase ('work','test')  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{reset}} \texttt{} \
+
+        reset active flags
+
+      \Jitem{\Jlabel{CBNewSet}{save}} \texttt{ $<$fName$>$} \
+
+        save object structure
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of structure file to create  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{saveAccus}} \texttt{} \
+
+        save accumulators
+
+      \Jitem{\Jlabel{CBNewSet}{saveAccusDep}} \texttt{} \
+
+        save accumulators
+
+      \Jitem{\Jlabel{CBNewSet}{saveWeights}} \texttt{ $<$fName$>$} \
+
+        save codebook weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of weight file to create  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{setTrainParmats}} \texttt{} \
+
+        switch on parmat training
+
+      \Jitem{\Jlabel{CBNewSet}{unlink}} \texttt{ $<$cbIndex$>$ \Jsb{-refIndex refindex}} \
+
+        unlink gaussian(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{cbIndex}} &  index of codebook  \\
+ \texttt{\textbf{refindex}} &  index of gaussian to unlink   \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewSet}{update}} \texttt{} \
+
+        update parameters based on accus
+
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

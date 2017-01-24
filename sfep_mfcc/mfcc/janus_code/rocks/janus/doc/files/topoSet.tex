@@ -1,0 +1,45 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of topoSet
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  topoSet.tex
+%%  Date    :  $Id: topoSet.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:19:02  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:13  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/07/30 13:57:40  metze
+%%   *** empty log message ***
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{topoSet}}
+
+The description file for a \Jref{module}{TopoSet}:
+
+An example looks like this:
+
+\begin{verbatim}
+6state  { ROOT-b ROOT-b ROOT-m ROOT-m ROOT-e ROOT-e } { 3 3 3 3 3 3 }
+3state  { ROOT-b ROOT-m ROOT-e } { 1 1 1 }
+SIL     { ROOT-m ROOT-m ROOT-m ROOT-m } { 1 1 1 1 }
+\end{verbatim}
+
+The second colum defines the root-node for the model tree, while the
+second column defines the transition to use from the \Jref{module}{TmSet}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

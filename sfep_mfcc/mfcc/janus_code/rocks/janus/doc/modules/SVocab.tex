@@ -1,0 +1,103 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SVocab}}
+
+This section describes the '\Jgloss{SVocab}': \textsl{Search Vocabulary}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SVocab  $<$name$>$ $<$Dictionary$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the vocabulary  \\
+ \texttt{\textbf{Dictionary}} &  Dictionary (\Jref{module}{Dictionary}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{svocab configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SVocab}{-blkSize} & = 500 \\
+      \Jlabel{SVocab}{-endString} & = ) \\
+      \Jlabel{SVocab}{-itemN} & = 4 \\
+      \Jlabel{SVocab}{-name} & = svocabISLci \\
+      \Jlabel{SVocab}{-nilString} & = IamtheNILword \\
+      \Jlabel{SVocab}{-startString} & = ( \\
+      \Jlabel{SVocab}{-svxMax} & = -1 \\
+      \Jlabel{SVocab}{-useN} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{svocab}
+
+    \begin{description}
+      \Jitem{\Jlabel{SVocab}{add}} \texttt{ $<$word$>$ \Jsb{-ftag ftag} \Jsb{-fTag ftag} \Jsb{-pron pron}} \
+
+        add a word to the vocabulary
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  name  \\
+ \texttt{\textbf{ftag}} &   filler tag  \\
+ \texttt{\textbf{ftag}} &   filler tag (too)  \\
+ \texttt{\textbf{pron}} &   pronunciation  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVocab}{delete}} \texttt{ $<$word$>$} \
+
+        delete a word from the vocabulary
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word to delete  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVocab}{index}} \texttt{} \
+
+        return the internal index of a search vocab word
+
+      \Jitem{\Jlabel{SVocab}{load}} \texttt{ $<$filename$>$} \
+
+        load Vocabulary from binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVocab}{puts}} \texttt{} \
+
+        displays the contents of a search vocabulary
+
+      \Jitem{\Jlabel{SVocab}{read}} \texttt{ $<$filename$>$} \
+
+        read Vocabulary from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVocab}{save}} \texttt{ $<$filename$>$} \
+
+        save Vocabulary to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVocab}{sync}} \texttt{ \Jsb{-f f} \Jsb{-v v}} \
+
+        synchronize vocabulary with dictionary
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{f}} &    force update for word candidates  \\
+ \texttt{\textbf{v}} &    verbose output  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{dict}} & (\Jref{module}{Dictionary}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{SWord}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

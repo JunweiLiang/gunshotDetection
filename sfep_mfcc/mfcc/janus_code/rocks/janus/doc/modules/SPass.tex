@@ -1,0 +1,111 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SPass}}
+
+This section describes the '\Jgloss{SPass}': \textsl{Single Pass Decoder}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SPass  $<$name$>$ $<$STree$>$ $<$LTree$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &   name of the search pass objects  \\
+ \texttt{\textbf{STree}} &  Search Tree (\Jref{module}{STree}) \\
+ \texttt{\textbf{LTree}} &  LM Tree (\Jref{module}{LTree}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{spass configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SPass}{-fastMatch} & = 0.000000 \\
+      \Jlabel{SPass}{-frameX} & = 0 \\
+      \Jlabel{SPass}{-morphBeam} & = 80.000000 \\
+      \Jlabel{SPass}{-morphN} & = 8 \\
+      \Jlabel{SPass}{-name} & = spassISLci \\
+      \Jlabel{SPass}{-stateBeam} & = 130.000000 \\
+      \Jlabel{SPass}{-transN} & = 35 \\
+      \Jlabel{SPass}{-useN} & = 1 \\
+      \Jlabel{SPass}{-wordBeam} & = 90.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{spass}
+
+    \begin{description}
+      \Jitem{\Jlabel{SPass}{fmatch}} \texttt{ $<$senoneSet$>$ \Jsb{-frameN framen} \Jsb{-factor factor} \Jsb{-snTag sntag}} \
+
+        initialize fast match module
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senoneSet}} &  set of senones (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{framen}} &      nr. of fast match frames  \\
+ \texttt{\textbf{factor}} &      weighting factor for fast match models  \\
+ \texttt{\textbf{sntag}} &       sequence of senone tags  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SPass}{pathSub}} \texttt{ $<$val$>$} \
+
+        subtract a constant score value from all active paths
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{val}} &  value subtracted from all active paths  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SPass}{puts}} \texttt{} \
+
+        puts information
+
+      \Jitem{\Jlabel{SPass}{reinit}} \texttt{ \Jsb{-start start}} \
+
+        reinit decoder after changes in search network
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{start}} &  frameX for restart  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SPass}{run}} \texttt{ \Jsb{-to to} \Jsb{-init init}} \
+
+        run decoder using the underlying search network
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{to}} &    frameN  \\
+ \texttt{\textbf{init}} &  initialize search tree  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SPass}{traceStable}} \texttt{ \Jsb{-fromX fromx} \Jsb{-toX tox} \Jsb{-bpL bpl} \Jsb{-v v}} \
+
+        trace back stable hypothesis
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fromx}} &  start frame for trace back  \\
+ \texttt{\textbf{tox}} &    final frame for trace back  \\
+ \texttt{\textbf{bpl}} &    list of backpointers to end trace back  \\
+ \texttt{\textbf{v}} &      verbose output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SPass}{writeCTM}} \texttt{ $<$speaker$>$ $<$uttID$>$ \Jsb{-field field} \Jsb{-conv conv} \Jsb{-channel channel} \Jsb{-from from} \Jsb{-file file} \Jsb{-rate rate} \Jsb{-silsmb silsmb} \Jsb{-warpA warpa}} \
+
+        write hypo in CTM format (spassWriteHypo)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{speaker}} &    speaker   ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+ \texttt{\textbf{field}} &       conversation field in DB  \\
+ \texttt{\textbf{conv}} &        conversation or episode  \\
+ \texttt{\textbf{channel}} &     channel  \\
+ \texttt{\textbf{from}} &        start point  \\
+ \texttt{\textbf{file}} &        filename  \\
+ \texttt{\textbf{rate}} &        rate  \\
+ \texttt{\textbf{silsmb}} &      symbol for opt sil  \\
+ \texttt{\textbf{warpa}} &       warpA  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{glat}} & (\Jref{module}{GLat}) \\
+      \texttt{\textbf{stab}} & (\Jref{module}{STab}) \\
+      \texttt{\textbf{stree}} & (\Jref{module}{STree}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

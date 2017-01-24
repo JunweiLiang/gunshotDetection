@@ -1,0 +1,134 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{LDA}}
+
+This section describes the '\Jgloss{LDA}': \textsl{LDA}
+
+\begin{description}
+
+  \item[Creation:] \texttt{LDA  $<$name$>$ $<$featureSet$>$ $<$feature$>$ $<$dimN$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the LDA object  \\
+ \texttt{\textbf{featureSet}} &  name of the feature set (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{feature}} &     feature name  \\
+ \texttt{\textbf{dimN}} &        input dimension  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{lda configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{LDA}{-blkSize} & = 100 \\
+      \Jlabel{LDA}{-dimN} & = 4 \\
+      \Jlabel{LDA}{-featX} & = 0 \\
+      \Jlabel{LDA}{-featureSet} & = featureSetISLci \\
+      \Jlabel{LDA}{-indexN} & = 0 \\
+      \Jlabel{LDA}{-itemN} & = 0 \\
+      \Jlabel{LDA}{-name} & = ldaISLci \\
+      \Jlabel{LDA}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{lda}
+
+    \begin{description}
+      \Jitem{\Jlabel{LDA}{accu}} \texttt{ $<$path$>$ \Jsb{-factor factor} \Jsb{-from from} \Jsb{-to to}} \
+
+        accumulate samples from a path object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{factor}} &  training factor  \\
+ \texttt{\textbf{from}} &    from frameX  \\
+ \texttt{\textbf{to}} &      to   frameX  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{add}} \texttt{ $<$name$>$} \
+
+        add a new LDA class to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of the class  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{clear}} \texttt{} \
+
+        clear means
+
+      \Jitem{\Jlabel{LDA}{delete}} \texttt{ $<$item$>$} \
+
+        remove LDA class from the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named LDA classes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{loadMeans}} \texttt{ $<$filename$>$} \
+
+        load means from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{loadScatter}} \texttt{ $<$filename$>$} \
+
+        load scatter matrix from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{map}} \texttt{ $<$index$>$ \Jsb{-class class}} \
+
+        add/get index to class mapping information
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &  index to map  \\
+ \texttt{\textbf{class}} &   name of the class \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed LDA classes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{saveMeans}} \texttt{ $<$filename$>$} \
+
+        save means to a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename for means  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{saveScatter}} \texttt{ $<$filename$>$} \
+
+        save scatter matrix to a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LDA}{update}} \texttt{} \
+
+        update the scatter matrices
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{featureSet}} & (\Jref{module}{FeatureSet}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{matrixS}} & (\Jref{module}{DMatrix}) \\
+      \texttt{\textbf{matrixT}} & (\Jref{module}{DMatrix}) \\
+      \texttt{\textbf{matrixW}} & (\Jref{module}{DMatrix}) \\
+      \texttt{\textbf{mean}} & (\Jref{module}{DVector}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

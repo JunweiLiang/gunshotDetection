@@ -1,0 +1,43 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of tmSet
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  tmSet.tex
+%%  Date    :  $Id: tmSet.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:19:01  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:13  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/07/30 13:57:39  metze
+%%   *** empty log message ***
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{tmSet}}
+
+The transition set description file. An example looks like:
+
+\begin{verbatim}
+SIL  { { 0  0.01 } { 1  0.0 } }
+1    { { 0  0.01 } { 1  0.0 } }
+3    { { 0  0.01 } { 1  0.0 } { 2  0.015 } }
+\end{verbatim}
+
+The Tcl-list contains the distance to transition (so ``0'' is a
+self-loop) and the score for this transition.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

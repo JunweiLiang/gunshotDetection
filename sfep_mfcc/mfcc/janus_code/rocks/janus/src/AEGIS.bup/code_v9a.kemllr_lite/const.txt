@@ -1,0 +1,3 @@
+/home/cs_hwhaa/fileserver/Aurora/filelist/train_multi_mfcc_D_A_E_Z_man_1.scp
+/home/cs_hwhaa/fileserver/Aurora/filelist/train_multi_mfcc_D_A_E_Z_woman_1.scp
+/home/cs_hwhaa/fileserver/Aurora/filelist/train_multi_mfcc_D_A_E_Z_woman_10.scp

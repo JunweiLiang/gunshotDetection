@@ -1,0 +1,7 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM31/iyu/MED14_adhoc/
+videopaths=/data/MM31/MED/raw_videos/MED14_adhoc/MED14AH/vid_list
+video_info=/data/MM31/iyu/MED14_adhoc/features/video_info
+video_info_resized=/data/MM31/iyu/MED14_adhoc/features/video_info_resized
+machine=rocks
+python27=/opt/python27/bin/python

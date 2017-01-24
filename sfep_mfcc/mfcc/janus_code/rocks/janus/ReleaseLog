@@ -1,0 +1,361 @@
+
+			JANUS Recognition Toolkit 
+                                Release Log
+
+ibis-v5_1_1
+-----------
+
+- removed small memory leak in itfMain in combination with libreadline
+- removed annoying bug in itfMain that lead to a huge lag in processing X events
+- when writing out lattices in SLF word penalty, language model weight, and filler 
+  penalty are writte out separately (e.g. for proper processing with SRI LM Toolkit
+
+
+ibis-v5_1
+---------
+
+acoustic model training
+- MMIE training
+- improved support when using multiple streams for AFs
+- discriminative model combination for stream weights
+- support for mixture of inverse covariances
+
+search
+- SSE support
+- bugfixes for glat connect and alpha/beta computation
+  To be still compatible with old scripts a factor of 4.5 is applied to the
+  alpha lattice beam during connect and prune (-factor).
+- added additional Gaussian Selection method
+- support for endless decoding and returning partial (stable) hypotheses
+- bugfix for decoding with very large vocabularies (e.g. 800k)
+
+acoustic front-end
+- W2MVDR
+- support for the portaudio interface
+- Early Feature Vector Reduction (EFVR)
+- support for discrete wavelet transformation
+- other changes in feature.c in fesMeansub, fesReplace, fesConcat
+- added feature warping functions for speaker identification
+
+context free grammars
+- support for reading SRILMs WLAT format (sausages) into CFGs
+- support for other grammar definition file formats: AT&T's FSM, SRI's PFSG
+- support for reading probabilities specified in JSGF grammars
+- support for gerenating terminal (word) sequences out of a grammar
+
+miscellaneous
+- improved Windows compatibility
+- added readline support to the NX janus version without TK
+- support for ICC 9.1 on i686 and x86_64
+- many other bugfixes over P015
+  see log messages obtainable by 'cvs log -N -ribis-015:ibis-v5_1'
+
+ibis-015
+--------
+
+- bugfixes over P014
+- bugfixes (glat connect and alpha/beta computation, hmm)
+- some more x86-64 code cleaning with support for the intel compiler
+- added code from Hua Yu to combine 2 successive MLLT transforms
+- support for multichanel SPHERE-Files
+- support for MVDR and gaussianization
+- support of mixtures of inverse covariances (MICV)
+- extended support for multi stream architectures e.g. for
+  incorporating articulatory features
+
+
+ibis-014
+--------
+
+- bugfixes over P013
+- incorporates all code written for the RT04S Meeting eval
+- added the description of adaptation methods to documentation
+- some code for array (pre-)processing integrated
+- changes in CFG implementation: support of additional grammar
+    file formats (FSM, PFSG), support of weight definitions through
+    JSGF, support for generating random terminal sequences
+- support for reading LMs with unsorted n-gram sections, e.g.
+    produced by the SRILM-Toolkit
+- x86-64 code cleaning
+
+
+ibis-013
+--------
+
+- support for training on Windows (bugfixes in IslSystem)
+- cleaner interface to NGets
+- incorporates all code written for the RT03 CTS eval
+- major changes in grammar implementation
+- discriminative training (MMIE)
+- bugfixes (splitting of trees, interpolated LMs)
+
+
+jtk-01-01-15
+------------
+
+Added necessary changes for running Janus under WINDOWS.
+
+Actually I've not yet integrated a Makefile in our Environment,
+so if somebody wants to compile a Windows Janus version, he/she
+can get an extra Makefile or the MS-VC++ working place environment
+directly from me (fuegen@ira.uka.de).
+
+Also made some more changes to permit a *relatively* clean
+compilation. (fuegen)
+
+
+jtk-01-01-11
+------------
+
+Integrated Multivar (Training from Sample Sets), step-diagonal
+covariances and ability to read WAV-Files (from Florian).
+Multithreading is included, but currently not working at UKA.
+Link vs. Tcl8.3.2
+
+
+jtk-00-12-03
+------------
+
+Fixed small problems with build system, as well as a problem
+introduced with Wall changes.
+
+
+jtk-00-11-14
+------------
+
+The Janus Build System now supports a profiling target `prf' in
+addition to `opt' and `dbg' (ie, optimized and debugging targets,
+respectively). `prf' works in `janus/src' and all of its
+sub-directories. Also, if you have created a directory
+
+	$(JanusBin)/bin.$(CPU)
+
+then the targets
+
+	gmake install install_dbg install_prf
+
+will build and install optimized, debugging and profiling versions of
+Janus. (Be sure to add $(JanusBin)/bin.$(CPU) to your path). The
+install targets are available from `janus/src' and
+`janus/src/JanusTool'.
+
+Also made extensive, albeit trivial, changes to permit *relatively*
+clean compilation under Linux with "gcc -Wall" and under Solaris with
+"cc -v". I hope that this will provide a good place to start for the
+new students who are now beginning to work on Janus, as well as for
+those interested in porting Janus to WindowsNT. It may even prove
+useful to long-time Janus developers.
+
+There are still a few problem files that need to be cleaned up
+further; here is a non-exhaustive list:
+
+	itf.c:
+	should include both `unistd.h' and `utime.h'. When
+	these files are included, however, the compilation breaks
+	on Solaris. The reason is unclear.
+
+	janusInit.c
+	should include both `bbi.h' and `sample.h'. However, these
+	break the compilation under linux. Again, the reason is
+	not clear.
+
+	treeTransform.c
+	should have the order of its subroutines re-arranged.
+	Currently, Wall complains about many functions being
+	implicitly declared, first declared `static' and later
+	`extern', etc. These warnings do not indicate an actual
+	problem, but are very annoying.
+
+	itfReadLine.{c,h}
+	This is very old code adapted from the GNU readline
+	library. It should really be ANSI-fied, but I just didn't
+	have the time.
+
+	count.c
+	Various and sundry minor problems here. Once more, didn't
+	have the time to fix them all.
+
+	senones.c
+	Minor problems, no time ...
+
+	cbn_parmat.c
+	contains the function `cbnewparmatUpdate' which is mostly
+	dead or debugging code. This should really be cleaned
+	up, as it is currently hard to read.
+
+If someone is doing new development on these files, it would be a
+nice contribution to the programming community to clean these
+problems up. (jmcd)
+ 
+
+jtk-00-11-02
+------------
+
+Added sample function from LModelLong also to LModel (tschaaf)
+
+
+jtk-00-10-27
+------------
+
+Made the use of SIMD instructions configurable at run
+time. Compressing a codebook set automatically sets the `inlineScore'
+member of `CodebookSet' to the function `snsInlineScoreSIMDArray',
+which is invoked during score computation.
+
+
+jtk-00-10-24
+------------
+
+Removed some functioncals in assert instructions.  Moved NDEBUG
+definition to optimized flags.  Removed a segfault from matrix.c that
+occures showing SVectors using featshow under Linux. (tschaaf)
+
+
+jtk-00-10-12
+------------
+
+Incorporated initial implementation of SIMD instructions for Sun
+architecture (metze, roth, soltau).
+
+
+jtk-00-10-09
+------------
+
+Modified the makefile system to perform native architecture
+compilation on Solaris and Alpha platforms. No other changes. (jmcd)
+
+
+jtk-00-10-05
+------------
+
+This release contains an improved handling of byte swapped ADC files.
+For both kinds of swapping possibilities a score is computed and the
+mode with the better score is taken. (tschaaf) 
+
+
+jtk-00-09-20
+------------
+
+This release contains bug fixes to the acoustic lattice rescoring
+capability in release 'jtk-00-09-15'. (hyu & soltau)
+
+
+jtk-00-09-15
+------------
+
+This release incorporates the changes on branches
+'jtk-00-09-10-tschaaf', 'jtk-00-09-12-hyu' and 'jtk-00-09-12-metze'.
+(jmcd)
+
+added a dead backpointer (garbage) collection to reduce the memory
+requierement during viterbi for very large utterances.
+
+in Janus there are two new parameters bpMod and bpMul.
+
+-bpMod X ; call cleanup every X Frame
+         ; a negativ number means don't call it
+         ; default is -1 (don't call it)
+-bpMul Y ; clean up backpointer from current frame back Y * X Frames
+         ; a negativ number means always up to the start frame
+         ; default is 3
+
+for example
+% path$SID viterbi hmm$SID -topN 4000 -beam 300 -bpMod 500 -bpMul 3
+cleans up every 500 frames and go back 1500 frames.
+
+This code was developed because I had some viterbi runs growing from 200MB
+up to 800MB during running on a 5 minute utterance. With the changes the
+recognicer need around 200MB. (tschaaf)
+
+Fixed bug causing segmentation fault in guided viterbi alignment.
+Fixed bug in lattice.clear method.  Speeded up language model loading
+time. (hyu)
+
+Added catches to lmodelMap.c to prevent astar.c from getting spurious 
+information, adapted astar.c. Cleaned up lattice.c, to avoid output of 
+extra information on hidden states if these are not really in use. (metze)
+
+
+jtk-00-09-14
+------------
+
+Merge branch 'jtk-00-09-11-fuegen-2'. What follows is a short description
+of the relevant changes.
+
+- Added Martin Westphals extensions for signal adaption
+	- MAM
+	- NR filters
+- update the modality dependent source code files
+- added JRTK-Net (from Juergen Fritsch) files to the 'gui-tcl' library
+(fuegen)
+
+
+jtk-00-09-12
+------------
+
+Added acoustic lattice rescoring functionality from Michael Finke.
+- "lattice clear" clears a lattice;
+- "search wordListLAT" fills search.wordlist from search.lattice;
+- "search flatFwd -eval $uttInfo -wordList search.wordList"
+  does a flatFwd search pass through the wordlist provided.
+Also fixed a bug in amodelEvalInit(). (hyu)
+
+
+jtk-00-09-11
+------------
+
+Added some 'tclIndex' files to 'janus/library' and 'janus/tcl-lib'.
+
+
+jtk-00-09-10
+------------
+
+Added some tcl files to 'janus/tcl-lib' that had not previously been
+checked. Complete system now compiles and runs at CMU on three
+architectures: Alpha, (Intel) Linux, and Solaris. (jmcd)
+
+
+jtk-00-09-08
+------------
+
+Merged branch 'jtk-00-08-27-hyu'. This branch contains some small changes
+to the make file system to enable compilation at CMU. It also contains the
+last of Hagen's bug fixes, as discovered with 'purify'.
+
+
+jtk-00-08-27
+------------
+
+Merged branch 'jtk-00-08-24-jmcd'. What follows is a short description
+of the relevant changes.
+
+     1. Improved the Makefile system to accommodate multiple libraries
+	and multiple source directories.
+
+     2. Added 'extern "C"' declarations to all Janus '.h' files, so that
+	they can be included in 'THELib' source files.
+
+     3. Created a 'JanusTool' directory, and moved 'janus.cc', which
+	contains 'main()', into it. Compiling 'main()' from C++ should
+	ensure proper initialization of any necessary C++ libraries.
+
+     4. Temporarily disabled compilation of 'THELib', until the pertinent
+	HTK data structures can be mapped to their Janus counterparts.
+	With luck, this mapping should appear in the next release.
+
+
+Also of interest, the CVS repository now runs across IP in true/client
+server mode; the server is currently 'i13s1.ira.uka.de'; the client
+can be any machine with Internet access to the server. However, should
+convert from 'rsh' to 'ssh' and add password authentication, to keep
+Janus out of the hands of the unworthy! (jmcd)
+
+
+jtk-00-08-24
+------------
+
+Initial incorporation of Janus under CVS revision control and minor
+bug fixes. Began with H. Soltau's "Janus4.0" version. (jmcd)
+
+
+

@@ -1,0 +1,79 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{FBMatrix}}
+
+This section describes the '\Jgloss{FBMatrix}': \textsl{Band matrix of float values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{FBMatrix  $<$name$>$ $<$matrix$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{matrix}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{fbmatrix}
+
+    \begin{description}
+      \Jitem{\Jlabel{FBMatrix}{display}} \texttt{ $<$canvas$>$ \Jsb{-width width} \Jsb{-height height} \Jsb{-x x} \Jsb{-y y} \Jsb{-min min} \Jsb{-max max} \Jsb{-tag tag}} \
+
+        display fbmatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{canvas}} &  \\
+ \texttt{\textbf{width}} &     \\
+ \texttt{\textbf{height}} &    \\
+ \texttt{\textbf{x}} &         \\
+ \texttt{\textbf{y}} &         \\
+ \texttt{\textbf{min}} &       \\
+ \texttt{\textbf{max}} &       \\
+ \texttt{\textbf{tag}} &       \\
+      \end{tabular}
+      \Jitem{\Jlabel{FBMatrix}{linear}} \texttt{ \Jsb{-N n} \Jsb{-p p} \Jsb{-rate rate} \Jsb{-low low} \Jsb{-up up}} \
+
+        linear filterbank
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &     number of filters  \\
+ \texttt{\textbf{p}} &     number of (power) points  \\
+ \texttt{\textbf{rate}} &  sampling rate in Hz  \\
+ \texttt{\textbf{low}} &   lowest frequency in Hz  \\
+ \texttt{\textbf{up}} &    highest frequency in Hz, 0 means rate/2  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FBMatrix}{mel}} \texttt{ \Jsb{-N n} \Jsb{-p p} \Jsb{-rate rate} \Jsb{-low low} \Jsb{-up up}} \
+
+        melscale filterbank
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &     number of filters  \\
+ \texttt{\textbf{p}} &     number of (power) points  \\
+ \texttt{\textbf{rate}} &  sampling rate in Hz  \\
+ \texttt{\textbf{low}} &   lowest frequency in Hz  \\
+ \texttt{\textbf{up}} &    highest frequency in Hz, 0 means rate/2  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FBMatrix}{meltra}} \texttt{ \Jsb{-rate rate} \Jsb{-p p}} \
+
+        trapezoid shaped melscale filterbank
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rate}} &  sampling rate in Hz  \\
+ \texttt{\textbf{p}} &     number of (power) points  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FBMatrix}{meltri}} \texttt{} \
+
+        triangular shaped melscale filterbank
+
+      \Jitem{\Jlabel{FBMatrix}{puts}} \texttt{ } \
+
+        print matrix contents as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{}} &  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,114 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Dictionary}}
+
+This section describes the '\Jgloss{Dictionary}': \textsl{Set of words}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Dictionary  $<$name$>$ $<$Phones$>$ $<$Tags$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the dictionary  \\
+ \texttt{\textbf{Phones}} &  phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{Tags}} &    tags (\Jref{module}{Tags}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{dictionary configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Dictionary}{-blkSize} & = 5000 \\
+      \Jlabel{Dictionary}{-commentChar} & = ; \\
+      \Jlabel{Dictionary}{-itemN} & = 3 \\
+      \Jlabel{Dictionary}{-phones} & = PHONES \\
+      \Jlabel{Dictionary}{-tags} & = tagsISLci \\
+      \Jlabel{Dictionary}{-useN} & = 4 \\
+      \Jlabel{Dictionary}{-wbTags} & =  WB \\
+      \Jlabel{Dictionary}{-weTags} & =  WB \\
+      \Jlabel{Dictionary}{-xwTags} & =  \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{dictionary}
+
+    \begin{description}
+      \Jitem{\Jlabel{Dictionary}{add}} \texttt{ $<$name$>$ $<$pronunciation$>$} \
+
+        add a new word to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &           name (spelling) of the word  \\
+ \texttt{\textbf{pronunciation}} &  pronunciation of the word \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{delete}} \texttt{ $<$item$>$} \
+
+        remove word from the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{index}} \texttt{ $<$names*$>$} \
+
+        return the internal index of a word
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{load}} \texttt{ $<$filename$>$} \
+
+        load a dictionary from a binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{name}} \texttt{ $<$idx*$>$} \
+
+        return the spelled word given the index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{puts}} \texttt{} \
+
+        display the contents of a dictionary
+
+      \Jitem{\Jlabel{Dictionary}{read}} \texttt{ $<$filename$>$} \
+
+        reads a dictionary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{save}} \texttt{ $<$filename$>$} \
+
+        save a dictionary file into a binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write into  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Dictionary}{write}} \texttt{ $<$filename$>$ \Jsb{-format format}} \
+
+        writes a dictionary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write to  \\
+ \texttt{\textbf{format}} &     file format (janus or htk)  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{phones}} & (\Jref{module}{Phones}) \\
+      \texttt{\textbf{tags}} & (\Jref{module}{Phones}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{DictWord}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

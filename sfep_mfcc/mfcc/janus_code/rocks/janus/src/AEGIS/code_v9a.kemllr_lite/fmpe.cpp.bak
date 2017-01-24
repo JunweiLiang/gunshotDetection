@@ -1,0 +1,753 @@
+#include "fmpe.h"
+#include "omp.h"
+
+FMPE::FMPE(SenoneSet* sns, CodebookSet* cbs, DistribSet* dss, FeatureSet* fs, SVMap* svmap, float E, float scale, int dim, int num_classes){
+  this->sns = sns;
+  this->cbs = cbs;
+  this->dss = dss;
+  this->fs = fs;
+  this->svmap = svmap;
+  this->E = E;
+  this->scale = scale;
+  this->dim = dim;
+  this->turn = 1;
+  this->num_classes = 0;
+  this->is_enabled = false;
+  this->num_classes = num_classes;
+  this->num_idx = 1;
+  this->den_idx = 2;
+
+  getClusterCBS();
+}
+
+void FMPE::setCBAIdx(int num_idx, int den_idx){
+  this->num_idx = num_idx;
+  this->den_idx = den_idx;
+}
+
+void FMPE::setStatus(bool is_enabled){
+  this->is_enabled = is_enabled;
+}
+
+void FMPE::getClusterCBS(){
+  int num_clusters = 0;
+
+  if(cluster.size()!=0){
+    for(int i=0;i<cluster.size();i++){
+      if(cluster[i]!=NULL)
+        delete cluster[i];
+    }
+    cluster.clear();
+  }
+
+  cluster.resize(num_classes);
+  for(int r=0;r<num_classes;r++){
+    Gaussian* g = new DiagGaussian("", dim);
+    Matrix mean(1, dim), cov(1, dim);
+    mean.zero();
+    cov.zero();
+    int count = 0;
+    for(int i=cbs->list.itemN/num_classes*r;i<cbs->list.itemN/num_classes*(r+1);i++){
+      Codebook* cb = cbs->list.itemA + i;
+      for(int m=0;m<cb->refN;m++){
+        for(int d=0;d<dim;d++){
+          mean[0][d] += cb->rv->matPA[m][d];
+          count++;
+        }
+      }
+    }
+    for(int d=0;d<dim;d++){
+      mean[0][d] /= (float) count;
+      cov[0][d] = 1.0;
+    }
+    g->setMeanVec(mean);
+    g->setCovMat(cov);
+    cluster[r] = g;
+  }
+
+  fprintf(stderr, "no clusters: %d\n", cluster.size());
+
+  sqrt_cov_inv = Matrix(cluster.size(), dim);
+  for(int i=0;i<cluster.size();i++){
+    for(int d=0;d<dim;d++){
+      sqrt_cov_inv[i][d] = sqrt(cluster[i]->getCovAt(d, d));
+    }
+  }
+
+  num_classes = cluster.size();
+
+  initTransformation();
+  clearAccu();
+}
+/*
+Matrix FMPE::computePosterior(float** x, int t_max){
+  Matrix post_mat(t_max, cluster.size());
+  int offset = 6;
+  float beam = 60;
+  float imp_thresh=5.0;
+  int num_classes = cluster.size();
+  Matrix likelihood1(1, num_classes), likelihood2(1, num_classes);
+  Matrix& prev_like = likelihood1;
+  Matrix& cur_like = likelihood2;
+  Matrix a_vec(1, dim), b_vec(1, dim);
+  int max_idx = -1;
+  float max_score = 0.0;
+  float risk_factor = 0.1;
+
+  for(int r=0;r<num_classes;r++){
+    prev_like[0][r] = LZERO;
+  }
+  for(int t=0;t<t_max;t++){
+    if(t%offset==0){
+      max_idx = -1;
+      max_score = 0.0;
+      float norm = LZERO;
+      for(int r=0;r<num_classes;r++){
+        cur_like[0][r] = cluster[r]->logBj(x[t]) = cluster_weight[0][r];
+        norm = LogAdd(norm, cur_like[0][r]);
+        if(max_idx==-1 || max_score < cur_like[0][r]){
+          max_idx = r;
+          max_score = cur_like[0][r];
+        }
+      }
+      for(int r=0;r<num_classes;r++){
+        post_mat[t][r] = exp(cur_like[0][r] - norm);
+      }
+    } else {
+      float upper_bound = 0.0;
+      float u_d=0.0;
+      vector<int> non_p;
+      vector<int> selected_gau;
+      for(int d=0;d<dim;d++){
+        a_vec[0][d] = 0.5*(x[t-1][d]*x[t-1][d] - x[t][d]*x[t][d]);
+        b_vec[0][d] = x[t][d] - x[t-1][d];
+        if(b_vec[0][d] >= 0.0){
+          u_d = (a_vec[0][d] + b_vec[0][d]*cluster_mean_max)*cluster_cov_max;
+        } else {
+          u_d = (a_vec[0][d] + b_vec[0][d]*cluster_mean_min)*cluster_cov_max;
+        }
+        if(u_d <= imp_thresh){
+          upper_bound += u_d;
+        } else {
+          non_p.push_back(d);
+        }
+      }
+      float norm = LZERO;
+      for(int r=0;r<num_classes;r++){
+        float p_bound = 0.0;
+        if(prev_like[0][r]<LSMALL){
+          cur_like[0][r] = LZERO;
+          continue;
+        }
+        for(int i=0;i<non_p.size();i++){
+          int d = non_p[i];
+          float pr_change = (a_vec[0][d] + b_vec[0][d]*cluster_mean[r][d])*cluster_cov[r][d];
+          p_bound += pr_change;
+        }
+        if(prev_like[0][r] + upper_bound*(((float)dim-non_p.size())/dim)*risk_factor + p_bound < prev_like[0][max_idx] - beam){
+          cur_like[0][r] = LZERO;
+          continue;
+        }
+        cur_like[0][r] = cluster[r]->logBj(x[t]);
+        norm = LogAdd(norm, cur_like[0][r]);
+        selected_gau.push_back(r);
+      }
+      max_idx = -1;
+      max_score = 0.0;
+      for(int i=0;i<selected_gau.size();i++){
+        int r = selected_gau[i];
+        post_mat[t][r] = exp(cur_like[0][r] - norm);
+        if(max_idx==-1 || max_score < cur_like[0][r]){
+          max_idx = r;
+          max_score = cur_like[0][r];
+        }
+      }
+    }
+    swap(prev_like, cur_like);
+  }
+  return post_mat;
+}
+*/
+
+Matrix FMPE::computePosterior(float** x, int t_max){
+  Matrix post_mat(t_max, cluster.size());
+  vector<float> likelihood;
+
+  likelihood.resize(cluster.size());
+
+  for(int t=0;t<t_max;t++){
+    float norm = LZERO;
+    for(int i=0;i<cluster.size();i++){
+      float score = cluster[i]->logBj(x[t]) + cluster_weight[0][i];
+      if(!isnormal(score) || score <= LSMALL){
+        likelihood[i] = LZERO;
+        continue;
+      }
+      likelihood[i] = score;
+      norm = LogAdd(norm, score);
+    }
+
+    for(int i=0;i<cluster.size();i++){
+      if(likelihood[i] <= LSMALL){
+        post_mat[t][i] = 0.0;
+        continue;
+      }
+      post_mat[t][i] = exp(likelihood[i] - norm);
+    }
+  }
+
+  likelihood.clear();
+
+  return post_mat;
+}
+
+void FMPE::loadAccu(char* header){
+  char filename[STRMAX];
+  FILE* fp;
+  Matrix m1_tmp, m2_tmp;
+  Matrix m1_pos_tmp, m1_neg_tmp, m2_pos_tmp, m2_neg_tmp;
+
+  sprintf(filename, "%s.accu.mat", header);
+  fp = fopen(filename, "rb");
+
+  m1_tmp.bload(fp);
+  m2_tmp.bload(fp);
+  m1_pos_tmp.bload(fp);
+  m1_neg_tmp.bload(fp);
+  m2_pos_tmp.bload(fp);
+  m2_neg_tmp.bload(fp);
+
+  fclose(fp);
+
+  m1_accu += m1_tmp;
+  m2_accu += m2_tmp;
+
+  m1_pos_count += m1_pos_tmp;
+  m1_neg_count += m1_neg_tmp;
+  m2_pos_count += m2_pos_tmp;
+  m2_neg_count += m2_neg_tmp;
+}
+
+void FMPE::saveAccu(char* header){
+  char filename[STRMAX];
+  FILE* fp;
+
+  sprintf(filename, "%s.accu.mat", header);
+  fp = fopen(filename, "wb");
+
+  m1_accu.bsave(fp);
+  m2_accu.bsave(fp);
+  m1_pos_count.bsave(fp);
+  m1_neg_count.bsave(fp);
+  m2_pos_count.bsave(fp);
+  m2_neg_count.bsave(fp);
+
+  fclose(fp);
+}
+
+void FMPE::loadTransforms(char* header){
+  char filename[STRMAX];
+  FILE* fp;
+
+  fprintf(stderr, "Loading transformations...\n");
+  sprintf(filename, "%s.fmpe.mat", header);
+  fp = fopen(filename, "rb");
+  m1_transform.bload(fp);
+  m2_transform.bload(fp);
+
+  fclose(fp);
+}
+
+void FMPE::saveTransforms(char* header){
+  char filename[STRMAX];
+  FILE* fp;
+
+  fprintf(stderr, "Saving transformations...\n");
+  sprintf(filename, "%s.fmpe.mat", header);
+  fp = fopen(filename, "wb");
+  m1_transform.bsave(fp);
+  m2_transform.bsave(fp);
+
+  fclose(fp);
+}
+
+void FMPE::saveCluster(char* filename){
+  FILE* fp = fopen(filename, "wb");
+  for(int r=0;r<num_classes;r++){
+    cluster[r]->getMeanVec().bsave(fp);
+    cluster[r]->getCovMat().bsave(fp);
+  }
+  cluster_weight.bsave(fp);
+  fclose(fp);
+}
+
+void FMPE::loadCluster(char* filename){
+  FILE* fp = fopen(filename, "rb");
+  Matrix tmp;
+  bool flag = false;
+
+  for(int r=0;r<num_classes;r++){
+    tmp.bload(fp);
+    if(feof(fp)){
+      flag = true;
+      break;
+    }
+    cluster[r]->setMeanVec(tmp);
+    tmp.bload(fp);
+    cluster[r]->setCovMat(tmp);
+    cluster[r]->calculateGConst();
+  }
+
+  if(flag){
+    fprintf(stderr, "WARNING: %s does not have %d clusters\n", filename, num_classes);
+  }
+
+  cluster_weight.bload(fp);
+  sqrt_cov_inv = Matrix(cluster.size(), dim);
+
+  for(int i=0;i<cluster.size();i++){
+    for(int d=0;d<dim;d++){
+      sqrt_cov_inv[i][d] = sqrt(cluster[i]->getCovAt(d, d));
+    }
+  }
+
+  fclose(fp);
+}
+
+Matrix FMPE::fmpeMul(Matrix& m2_transform, Matrix& v_mat, int t){
+  Matrix result(1, 9*dim);
+  int t_max = v_mat.getNumRow();
+  
+  for(int d=0;d<9*dim;d++){
+    for(int f=-8;f<=8;f++){
+      if(t+f<0 || t+f>=t_max)
+        continue;
+      result[0][d] += m2_transform[d][f+8] * v_mat[t+f][d];
+    }
+  }
+
+  return result;
+}
+
+void FMPE::initTransformation(){
+  initM1();
+  initM2();
+}
+
+void FMPE::clearAccu(){
+  fprintf(stderr, "FMPE: clearing accus...\n");
+  m1_accu = Matrix(9*dim, (dim+1)*cluster.size());
+  m2_accu = Matrix(9*dim, 2*8+1);
+  m1_pos_count = Matrix(9*dim, (dim+1)*cluster.size());
+  m2_pos_count = Matrix(9*dim, 2*8+1);
+  m1_neg_count = Matrix(9*dim, (dim+1)*cluster.size());
+  m2_neg_count = Matrix(9*dim, 2*8+1);
+}
+
+void FMPE::initM1(){
+  //m1_transform = Matrix(9*dim, (dim+1)*cluster.size());
+  m1_transform = Matrix((dim+1)*cluster.size(), 9*dim);
+}
+
+void FMPE::initM2(){
+  int idx = 0;
+  
+  m2_transform = Matrix(9*dim, 2*8+1);
+/*
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][0] = 1.0/3.0;
+    m2_transform[idx][1] = 1.0/3.0;
+    m2_transform[idx++][2] = 1.0/3.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][3] = 0.5;
+    m2_transform[idx++][4] = 0.5;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][5] = 0.5;
+    m2_transform[idx++][6] = 0.5;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][7] = 1.0;
+  }
+
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][8] = 1.0;
+  }
+
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][9] = 1.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][10] = 0.5;
+    m2_transform[idx++][11] = 0.5;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][12] = 0.5;
+    m2_transform[idx++][13] = 0.5;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][14] = 1.0/3.0;
+    m2_transform[idx][15] = 1.0/3.0;
+    m2_transform[idx++][16] = 1.0/3.0;
+  }
+*/
+/*
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][0] = 0.0/3.0;
+    m2_transform[idx][1] = 0.0/3.0;
+    m2_transform[idx++][2] = 0.0/3.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][3] = 0.0;
+    m2_transform[idx++][4] = 0.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][5] = 0.0;
+    m2_transform[idx++][6] = 0.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][7] = 0.0;
+  }
+
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][8] = 1.0;
+  }
+
+  for(int i=0;i<dim;i++){
+    m2_transform[idx++][9] = 0.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][10] = 0.0;
+    m2_transform[idx++][11] = 0.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][12] = 0.0;
+    m2_transform[idx++][13] = 0.0;
+  }
+  for(int i=0;i<dim;i++){
+    m2_transform[idx][14] = 0.0/3.0;
+    m2_transform[idx][15] = 0.0/3.0;
+    m2_transform[idx++][16] = 0.0/3.0;
+  }
+*/
+}
+
+void FMPE::storeFeatures(){
+  Codebook* cb = cbs->list.itemA + 0;
+  Feature* feature = &fs->featA[cb->featX];
+  float** obs = feature->data.fmat->matPA;
+  int t_max = feature->data.fmat->m;
+
+  orig_obs = Matrix(t_max, dim);
+  for(int t=0;t<t_max;t++){
+    for(int d=0;d<dim;d++){
+      orig_obs[t][d] = obs[t][d];
+    }
+  }
+}
+
+void FMPE::transformFeatures(){
+  Codebook* cb = cbs->list.itemA + 0;
+  Feature* feature = &fs->featA[cb->featX];
+  float** obs = feature->data.fmat->matPA;
+  int t_max = feature->data.fmat->m;
+
+  if(!is_enabled)
+    return;
+  fprintf(stderr, "computing fMPE features...\n");
+
+  Matrix fmpe_obs = computeFeatures(orig_obs, t_max);
+
+  for(int t=0;t<t_max;t++){
+    for(int d=0;d<dim;d++){
+      obs[t][d] = fmpe_obs[t][d];
+    }
+  }
+}
+
+void FMPE::update(){
+  for(int i=0;i<dim;i++){
+    float sigma = 0.0;
+    float learning_rate = 0.0;
+    for(int r=0;r<cluster.size();r++){
+      sigma += sqrt(1.0/cluster[r]->getCovAt(i, i));
+    }
+    sigma = sigma/cluster.size();
+    for(int j=0;j<9;j++){
+   /* 
+      for(int f=-8;f<=8;f++){
+        if(E*(m2_pos_count[j*dim+i][f+8]+fabs(m2_neg_count[j*dim+i][f+8])) > 10.0)
+          learning_rate = 1.0/(E*(m2_pos_count[j*dim+i][f+8]+fabs(m2_neg_count[j*dim+i][f+8])));
+        else
+          learning_rate = 0.0;
+        m2_transform[j*dim+i][f+8] += learning_rate * m2_accu[j*dim+i][f+8];
+      }
+    */
+      for(int k=0;k<(dim+1)*cluster.size();k++){
+//        if(E*(m1_pos_count[j*dim+i][k]+fabs(m1_neg_count[j*dim+i][k])) > 10.0)
+          learning_rate = sigma/(E*(m1_pos_count[j*dim+i][k]+fabs(m1_neg_count[j*dim+i][k])));
+//        else
+//          learning_rate = 0.0;
+        m1_transform[k][j*dim+i] += learning_rate * m1_accu[j*dim+i][k];
+      }
+    
+    }
+  }
+  //m1_pos_count.printFP(stderr);
+  //m1_neg_count.printFP(stderr);
+  //m1_transform.printFP(stderr);
+}
+
+
+void FMPE::accu(GLat* glatP, int* refNodeLst, int refNodeN){
+  int frameS = glatP->startP->frameS;
+  int frameE = glatP->end.frameX;
+  int t_max = frameE - frameS + 1;
+
+  float** obs = orig_obs.getMap();
+/*
+  Matrix gamma = computePosterior(&obs[frameS], t_max);
+  Matrix h_raw = spliceRaw(&obs[frameS], t_max, gamma);
+  Matrix v_mat = h_raw*m1_transform;
+  */
+  Matrix adjustment = spliceContext(v_mat);
+
+  vector<vector<int> > h_raw_active;
+  h_raw_active.resize(t_max);
+  for(int t=0;t<t_max;t++){
+    for(int k=0;k<(dim+1)*cluster.size();k++){
+      if(fabs(gamma[t][k/(dim+1)])>=2.0/cluster.size()){
+        h_raw_active[t].push_back(k);
+      }
+    }
+    //fprintf(stderr, "ckpt t: %d, size: %d\n", t, h_raw_active[t].size());
+  }
+
+//  fprintf(stderr, "ckpt 1 %d %d %d\n", frameS, frameE, t_max);
+  Matrix fmpe_obs(t_max, dim);
+  for(int t=0;t<t_max;t++){
+    for(int d=0;d<dim;d++){
+      fmpe_obs[t][d] = obs[t][d] + adjustment[t][d];
+    }
+  }
+
+  vector<bool> is_ref;
+  int ref_phone_count=0;
+  is_ref.resize(glatP->nodeN);
+  for(int nodeX=0;nodeX<glatP->nodeN;nodeX++){
+    GNode* nodeP = glatP->mapping.x2n[nodeX];
+    GLatMPEComp* MPECompP = nodeP->addon.MPEComp;
+    for(int i=0;i<refNodeN;i++){
+      if(refNodeLst[i]==nodeX){
+        is_ref[nodeX] = true;
+        ref_phone_count += MPECompP->monoPhoneN;
+        break;
+      }
+    }
+  }
+
+  Matrix direct(t_max, dim), indirect(t_max, dim);
+  direct.zero();
+  indirect.zero();
+  #pragma omp parallel if(glatP->nodeN > 1000)
+  {
+  #pragma omp for nowait
+  for(int nodeX=0;nodeX<glatP->nodeN;nodeX++){
+    GNode* nodeP = glatP->mapping.x2n[nodeX];
+    GLatMPEComp* MPECompP = nodeP->addon.MPEComp;
+    GLatMPECDStats*** MPECDStats = nodeP->addon.MPECDStats;
+
+    for(int parentX=0;parentX<nodeP->addon.parentCtxN;parentX++){
+      for(int childX=0;childX<nodeP->addon.childCtxN;childX++){
+        Path* path = MPECDStats[parentX][childX]->path;
+        if(path==NULL)
+          continue;
+
+        float node_occ = exp(-nodeP->addon.gamma[parentX][childX]);
+        for(int phoneX=0;phoneX<MPECompP->monoPhoneN;phoneX++){
+          float mpe_scale = 0.0;
+          if(is_ref[nodeX]){
+            //mpe_scale = scale*(1.0 - node_occ);
+            mpe_scale = scale;
+          } else {
+//            mpe_scale = -scale*node_occ*exp(-0.5*MPECompP->approxPhoneAcc[phoneX]);
+            mpe_scale = -scale*node_occ;
+          }
+//          mpe_scale = scale*MPECDStats[parentX][childX]->MPEGamma[phoneX];
+          for(int frameX=MPECompP->startFrame[phoneX];frameX<=MPECompP->endFrame[phoneX];frameX++){
+            PathItem* itemP = path->pitemListA[frameX - nodeP->frameS].itemA;
+            int itemN = path->pitemListA[frameX - nodeP->frameS].itemN;
+              
+            for(int j=0;j<itemN;j++){
+              int snX = itemP[j].senoneX;
+              float factor = itemP[j].gamma*mpe_scale;
+
+              if(fabs(factor)<0.0001)
+                continue;
+
+              Senone* snP = sns->list.itemA + snX;
+              if(snP->streamN!=1){
+                fprintf(stderr, "GMMIE: not supporting multiple streams, quitting...\n");
+                exit(-1);
+              }
+              int idx = snP->classXA[0];
+              if(idx<0)
+                continue;
+              Distrib* ds = dss->list.itemA + idx;
+              Codebook* cb = cbs->list.itemA + ds->cbX;
+              for(int m=0;m<cb->refN;m++){
+                float num_occ = cb->accu->count[num_idx][m];
+                float den_occ = cb->accu->count[den_idx][m];
+                float norm = 1.0/cb->accu->count[num_idx][m];
+                if(num_occ<10.0 || den_occ<10.0)
+                  continue;
+                for(int i=0;i<dim;i++){
+                  float num = cb->accu->rv[num_idx]->matPA[m][i];
+                  float den = cb->accu->rv[den_idx]->matPA[m][i];
+                  float s_num = (cb->accu->sumOsq[num_idx][m].m.d[i] - 2*num*cb->rv->matPA[m][i] + num_occ*cb->rv->matPA[m][i]*cb->rv->matPA[m][i])/num_occ;
+                  float s_den = (cb->accu->sumOsq[den_idx][m].m.d[i] - 2*den*cb->rv->matPA[m][i] + den_occ*cb->rv->matPA[m][i]*cb->rv->matPA[m][i])/den_occ;
+                  float partial_f_mean = scale*cb->cv[m]->m.d[i]*(num - den - cb->rv->matPA[m][i]*(num_occ - den_occ));
+                  float partial_f_cov = scale*num_occ*0.5*(s_num*cb->cv[m]->m.d[i]*cb->cv[m]->m.d[i] - cb->cv[m]->m.d[i]) - den_occ*scale*0.5*(s_den*cb->cv[m]->m.d[i]*cb->cv[m]->m.d[i] - cb->cv[m]->m.d[i]);
+                  #pragma omp atomic
+                  direct[frameX][i] += factor*(cb->rv->matPA[m][i] - fmpe_obs[frameX][i])*cb->cv[m]->m.d[i];
+                  #pragma omp atomic
+                  indirect[frameX][i] += node_occ*itemP[j].gamma*norm*(partial_f_mean + 2*partial_f_cov*(fmpe_obs[frameX][i] - cb->rv->matPA[m][i]));
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #pragma omp barrier
+
+  #pragma omp for nowait
+  for(int t=0;t<t_max;t++){
+    for(int i=0;i<dim;i++){
+      //float partial_f_yti = direct[t][i] + indirect[t][i];
+      float partial_f_yti = direct[t][i];
+      if(fabs(partial_f_yti)<0.0001)
+        continue;
+      for(int j=0;j<9;j++){
+        for(int f=-8;f<=8;f++){
+          if(t+f < 0 || t+f >= t_max)
+            continue;
+         
+          if(turn == 0){
+            float m2_grad = partial_f_yti*v_mat[t+f][j*dim+i];
+            #pragma omp atomic
+            m2_accu[j*dim+i][f+8] += m2_grad;
+            if(m2_grad>=0.0){
+              #pragma omp atomic
+              m2_pos_count[j*dim+i][f+8] += m2_grad;
+            }
+            else{
+              #pragma omp atomic
+              m2_neg_count[j*dim+i][f+8] -= m2_grad;
+            }
+            continue;
+          }
+            
+          if(fabs(m2_transform[j*dim+i][f+8])<0.0001)
+            continue;
+
+          for(int k=0;k<h_raw_active[t+f].size();k++){
+            int idx = h_raw_active[t+f][k];
+            //float m1_grad = partial_f_yti*m2_transform[j*dim+i][f+8]*h_raw[t+f][idx];
+            float m1_grad = direct[t+f][i]*m2_transform[j*dim+i][f+8]*h_raw[t+f][idx];
+            #pragma omp atomic
+            m1_accu[j*dim+i][idx] += m1_grad;
+            if(m1_grad>=0.0){
+              #pragma omp atomic
+              m1_pos_count[j*dim+i][idx] += m1_grad;
+            } else {
+              #pragma omp atomic
+              m1_neg_count[j*dim+i][idx] -= m1_grad;
+            }
+          }
+        }
+      }
+    }
+  }
+  }
+  turn++;
+  if(turn > 9)
+    turn = 0;
+}
+
+Matrix FMPE::computeFeatures(Matrix& x, int t_max){
+
+  gamma = computePosterior(x.getMap(), t_max);
+
+//  gamma.getRowVec(0).printFP(stderr);
+
+  v_mat = spliceRaw(x.getMap(), t_max, gamma);
+  //v_mat = h_raw * m1_transform;
+  adjustment = spliceContext(v_mat);
+
+  Matrix fmpe_obs = x + adjustment;
+
+  return fmpe_obs;
+}
+
+Matrix FMPE::spliceRaw(float** x, int t_max, Matrix& post_mat){
+  Matrix result(t_max, 9*dim);
+
+  h_raw = Matrix(t_max, (dim+1)*cluster.size());
+
+  #pragma omp parallel if(t_max > 800)
+  {
+  #pragma omp for nowait
+  for(int t=0;t<t_max;t++){
+    int idx = 0;
+    for(int i=0;i<cluster.size();i++){
+      if(post_mat[t][i] < 2.0 / cluster.size()){
+        idx += dim+1;
+        continue;
+      }
+      h_raw[t][idx] = 5.0*post_mat[t][i];
+      for(int d=0;d<dim;d++){
+        if(isnormal(sqrt_cov_inv[i][d]))
+          h_raw[t][idx+d+1] = post_mat[t][i]*(x[t][d] - cluster[i]->getMeanAt(d))* sqrt_cov_inv[i][d];
+        if(!isnormal(h_raw[t][idx+d+1]))
+          h_raw[t][idx+d+1] = 0.0;
+      }
+      for(int k=0;k<9*dim;k++){
+        for(int d=0;d<dim+1;d++){
+          result[t][k] += h_raw[t][idx+d] * m1_transform[idx+d][k];
+        }
+      }
+      idx += dim+1;
+    }
+  }
+  }
+
+  return result;
+}
+
+   
+Matrix FMPE::spliceContext(Matrix& v_mat){
+  int t_max = v_mat.getNumRow();
+  int sdim = v_mat.getNumCol();
+  Matrix h_context(t_max, dim);
+
+  #pragma omp parallel if(t_max > 800)
+  {
+  #pragma omp for nowait
+  for(int t=0;t<t_max;t++){
+    int idx = 0;
+    Matrix w_t = fmpeMul(m2_transform, v_mat, t);
+    for(int i=0;i<9;i++){
+      for(int d=0;d<dim;d++){
+        h_context[t][d] += w_t[0][d+i*dim];
+      }
+    }
+  }
+  }
+
+  return h_context;
+}
+

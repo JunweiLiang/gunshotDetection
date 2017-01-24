@@ -1,0 +1,445 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of basic training
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  basic.tex
+%%  Date    :  $Id: basic.tex 2857 2008-12-09 10:02:33Z wolfel $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.4  2004/09/11 12:45:45  metze
+%%   P014 - final?
+%%
+%%   Revision 1.3  2004/08/16 16:12:02  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.2  2003/08/14 11:19:03  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.8  2003/04/30 15:44:00  metze
+%%   Changes before the new repository
+%%
+%%   Revision 1.1.2.7  2002/11/21 16:16:40  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.6  2002/11/05 12:32:09  metze
+%%   Cosmetic changes
+%%
+%%   Revision 1.1.2.5  2002/11/05 12:21:10  metze
+%%   Reorganization of basic and advanced training
+%%
+%%   Revision 1.1.2.4  2002/07/31 13:10:45  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.3  2002/07/30 13:10:38  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.2  2002/07/12 11:08:33  metze
+%%   First version
+%%
+%%   Revision 1.1.2.1  2002/05/28 14:12:31  metze
+%%   Initial version of the Janus/ Ibis documentation
+%%
+%%
+%% ========================================================================
+
+\section{Basic Training} \label{janus:basic}
+
+``Basic  training'' refers   to the \Jindex{Training}   of  a complete
+context-dependent   (CD) system.    The  Tcl-scripts   residing in the
+\texttt{scripts} subdirectory of the  JRTk distribution, the so-called
+``Janus Scripts Collection'', can be  studied and used  as a basis for
+experiments. In this section, whenever a Tcl-script is referred to, it
+can be  found in this directory.   You can copy  these scripts to your
+systems directory  and use them  on their own,  or  you can  call them
+through   the  script  \Jref{janus}{master.tcl}.   The   Janus Scripts
+Collection  in  turn uses the procedures  defined   in the Tcl-library
+(\texttt{janus/tcl-lib}    and \texttt{janus/gui-tcl}), which      are
+described in section \ref{sec:lib}.  Using \Jref{janus}{master.tcl} it
+is possible  to easily train  different  systems. Other,  more complex
+training schemes are however possible, see \ref{janus:advanced}.
+
+The basic training scheme (possible using \Jref{janus}{master.tcl}),
+looks as follows:
+
+\begin{enumerate}
+
+\item Create various description files.
+
+  This is usually done by manually changing existing files
+  (``desc.tcl'') to your needs. Additionally, you can use the scripts 
+
+  \begin{description}
+  \item[genDBase.tcl] to create a new database from free-format
+    information. A Janus database holds all the information related
+    to a specific task, i.e. the transcriptions for an utterance,
+    the appropriate audio file, the utterances for a speaker ...
+  \item[makeCI.tcl] to create the codebook and distribution
+    descriptions for a CI system from information supplied 
+  \item[makePT.tcl] to create the description files for the polyphone
+    training (PT) 
+  \end{description}
+
+  If you want to use pre-compute cepstral means during your
+  pre-processing, look at ``means.tcl''.
+
+\item Build and train a context-independent system.
+
+  This  is done by calling lda.tcl, samples.tcl, kmeans.tcl, and
+  train.tcl in that order.
+
+\item Cluster a context-independent system, i.e. do ``polyphone-training''.
+
+  Use makePT.tcl, train.tcl, cluster.tcl
+
+\item Build and train a context-dependent system using the
+  results form the polyphone-training
+
+  Using split.tcl you can create new description files (for codebooks
+  and distributions) using the results from a polyphone training. The
+  remaining steps are the same as for CI training: lda.tcl,
+  samples.tcl, kmeans.tcl, and train.tcl
+
+\item More: build a BBI, write labels or test a system.
+
+  BBI (Bucket-Box-Intersection)   is  a speed-up  algorithm.   Look at
+  \texttt{createBBI.tcl} to see  how  a BBI  tree is  computed for  an
+  existing codebook. However, you do not  need this step, if you don't
+  want to speed  up your system,  but \texttt{test.tcl} can read a bbi
+  tree during  testing.  \texttt{score.tcl} demonstrates how  to score
+  the results of  a test run.  Labels can be  written with the example
+  \texttt{labels.tcl} file.
+
+\end{enumerate}
+
+This section will first focus on the training scheme, and the concepts
+behind  the JRTk training  environment. Step-by-step  instructions for
+training a new system follow  in sub-section \ref{janus:ci},  although
+the exact  arguments to   use   for \Jref{janus}{master.tcl} and   the
+example system are described in the documentation for IslSystem.
+
+If you want to write labels with an existing system in order to
+bootstrap a new system, go to sub-section \ref{janus:labels}.
+
+\subsection{Description Files}
+
+No matter whether you train a context independent or dependent system,
+you need a  few description files to define  your  front-end, size and
+number of  acoustic  models and  so  on.  The system  description file
+\texttt{desc.tcl},  which is usually created  by hand, plays a central
+role here.   The  file  \texttt{desc.tcl}   from the  example   system
+''ISLci'' or  the   \texttt{scripts/desc.tcl} file might  serve   as a
+template for you.    This  file provides pointers  to  the description
+files  for  each module. Typically  you need  to provide the following
+information:
+
+\begin{enumerate}
+
+\item Phonology : \Jref{file}{phonesSet}, \Jref{file}{tags}\\
+  defines a set of phones, phone-classes, tags (e.g. word boundaries)
+
+\item Front-End : \Jref{file}{featDesc}, \Jref{file}{featAccess}\\
+  access to the audio data, definition of the preprocessing steps
+
+\item Codebooks : \Jref{file}{codebookSet}\\
+  defines a set of Gaussian mixture densities, link to the underlying feature space
+
+\item Distributions : \Jref{file}{distribSet}\
+  defines a set of mixture weights, link to the underlying codebooks\\
+  The mixture weights together with the codebooks define probability
+  density functions (pdf). A  fully continuous system is obtained by 
+  a one by one mapping of codebooks to distributions.
+
+\item Polyphone Tree : \Jref{file}{distribTree}\\
+ context decision tree, attach pdfs to HMM states with a given
+ phonetic or dynamic context (modalities). Even for context independent systems,
+ you will need to define such a tree.
+
+\item HMM : \Jref{file}{topoSet}, \Jref{file}{topoTree}, \Jref{file}{tmSet}\\
+  defines HMM topologies and transition models
+
+\item Pronunciation Dictionary \Jref{file}{dictionary}
+
+\item Database\\
+  Typically   2-level,  provides    speaker-   and  utterance-specific
+  information; \texttt{scripts/genDBase.tcl}      is an example script
+  which creates  a  DBase  from    information  available in     other
+  formats. Usually, a ``speaker database'' contains at least a list of
+  all  utterances pertaining   to   this speaker.   The    ``utterance
+  database'' then  contains,  for  every utterance, the   speaker, the
+  transcription,  the gender, ... It's  easy to build a database using
+  the provided methods and then save it in the Janus DBase file format.
+
+\end{enumerate}
+
+\subsection{Module Initialization}
+
+To run a training, you first have  to initialize all modules needed to
+create a training environment.    Given  some inital acoustic   models
+(e.g. created by  the k-means algorithm),  a database, and  a suitable
+system description,    the  following lines    will create a  training
+environment under  the  system ID   'X3'.  The  module  initialization
+functions will read   all    relevant  parameters  from  the    system
+description, read  from  \texttt{../desc/desc.tcl}. Optional arguments
+might be used to overwrite these variables.
+
+\begin{verbatim}
+source ../desc/desc.tcl
+
+phonesSetInit   X3
+tagsInit        X3
+featureSetInit  X3 -lda ldaX3.bmat
+codebookSetInit X3 -param Weights/0.cbs.gz
+distribSetInit  X3 -param Weights/0.dss.gz
+distribTreeInit X3 
+senoneSetInit   X3  distribStreamX3
+topoSetInit     X3
+ttreeInit       X3
+dictInit        X3 
+trainInit       X3
+dbaseInit       X3 dbaseSWB
+\end{verbatim}
+
+Have a look at the scripts in the \texttt{scripts} directory, to see how
+this initialization is done.
+
+\subsection{General Training Procedure }
+
+Now,  if  all   modules are  initialized,  we   can start   a training
+experiment.    There    are basically  two phases.    In  phase 1, the
+statistics for all  training speaker will be  accumulated. In phase 2,
+the acccumulated  statistics will be used  to find  a ML estimation of
+the model  parameters.  Phase 1 can be  parallelized, so you can use a
+number of machines  to speed up the   training. Each client job  dumps
+partial accumulators which will be  read by the server process,  which
+will then estimate new models. The process can be repeated for several
+iterations.
+
+The following procedures are used frequently during standard training:
+
+\begin{itemize}
+\item {\em doParallel}\\
+  create semaphore files and synchronize the client jobs
+\item {\em fgets} and {\em foreachSegment}\\
+  loop over all training data, fgets uses a file locking mechanism
+  to read the speaker from the conversation list
+\item {\em viterbiUtterance} and {\em senoneSet accu path} \\
+  do the preprocessing (evaluate \Jref{module}{FeatureSet}), build a \Jref{module}{HMM} 
+  using the training transcription from the \Jref{module}{DBase}, computes a forced 
+  alignment (stored in \Jref{module}{Path}), and accumulate the statistics 
+  in \Jref{module}{SenoneSet} using the state probabilities
+\item {\em senoneSet update}\\
+  read the statistics from the clients and do the parameter update in \Jref{module}{SenoneSet}, 
+  the default configuration is to do a Maximum-Likelihood update.
+\end{itemize}
+
+\begin{verbatim}
+codebookSetX3 createAccus
+distribSetX3  createAccus
+doParallel {
+  while {[fgets $convLst spk] >= 0} {
+    foreachSegment utt uttDB $spk { 
+      viterbiUtterance X3 $spk $utt 
+      senoneSetX3 accu pathX3
+    }
+  }
+  codebookSetX3 saveAccus Accus/clientID.cba
+  distribSetX3  saveAccus Accus/clientID.dsa
+} {
+  codebookSetX3 clearAccus
+  distribSetX3  clearAccus
+  foreach file [glob Accus/*cba] {codebookSetX3 readAccus $file}
+  foreach file [glob Accus/*dsa] {distribSetX3  readAccus $file}
+  senoneSetX3 update
+  codebookSetX3 save Weights/new.cbs.gz
+  distribSetX3  save Weights/new.dss.gz 
+} {} {} {}
+
+\end{verbatim}
+
+\subsection{Forced Alignments}
+
+Besides the viterbi  algorithm,  the  full forward-backward  algorithm
+might  be used to accumulate the  training  statistics. JANUS provides
+the  \Jref{module}{Path}   object   to compute   and   maintain  state
+alignments.  By   using precomputed  alignments   (called labels), the
+training procedure can be  speed up drastically, since the  viterbi or
+forward-backward  based alignments are  computed  only once and not in
+each training iteration.
+
+\begin{enumerate}
+\item \Jref{proc}{labelUtterance} \\
+training using precomputed aligments
+\item \Jref{proc}{viterbiUtterance} \\
+compute alignment using the Viterbi algorithm
+\item \Jref{proc}{fwdBwdUtterance} \\
+compute alignment using the forward-backward algorithm
+\end{enumerate}
+
+The Tcl-Library provides functions  to generate forced aligments which
+might  be  used  in   a later   training  experiment   using the  {\em
+labelUtterance} scheme.  Addionally, you can  also use a method called
+``label-boosting'' to generate speaker  dependent alignments by  using
+MLLR  transformed acoustic models.   This  method can  be  seen as  an
+efficient variant of speaker adaptive training.
+
+\begin{enumerate}
+\item \Jref{proc}{labelsWrite} \\
+  compute speaker independent viterbi aligments for a list of speakers
+\item \Jref{proc}{labelsMLAdaptWrite} \\
+  compute speaker dependent viterbi aligments for a list of speakers; this needs
+  a \Jref{module}{MLAdapt} object and allocated accumulators for the codebooks to
+  compute MLLR transforms.
+\end{enumerate}
+
+If you want to  bootstrap a new  system, you usually write labels with
+an existing system (for example with one in a different language, with
+different acoustic  conditions  but  the same topology),  at  least to
+create initial codebooks using samples.tcl   and kmeans.tcl.  You  can
+then   replace  \Jref{proc}{labelUtterance}    in  ``train.tcl''  with
+\Jref{proc}{viterbiUtterance}  and train  your system without  labels,
+because these will be of poor quality.
+
+\subsection{Train a context-independent system} \label{janus:ci}
+
+This is the first step in training a new system. We assume you have
+the following ready:
+
+\begin{itemize}
+\item Dictionary and PhonesSet
+\item Labels (even if they stem from a bad system)
+\item Database, speaker list
+\item FeatureSet description and access files
+\item Tags, Transition Models, Topology Set, Topology Tree
+\end{itemize}
+
+You can   now create a  new directory,  where you want  to  create the
+system in, let's assume it's   called {\tt M1}. Create a  subdirectory
+{\tt  desc} and    copy the  template  file  \Jref{file}{desc.tcl}  in
+it. Edit it according to your needs, the  {\tt desc} directory usually
+also holds the  files {\tt devTrain, featAccess, featDesc*, phonesSet,
+tags, tmSet, topoSet,} and {\tt ttree}.
+
+If you  don't  yet     have  description  files  for  codebooks    and
+distributions, you can create them with ``makeCI.tcl''. If you need to
+pre-compute vectors for cepstral  mean subtraction,  ``means.tcl'' can
+do that for  you. If you  want to write labels  (time-alignments) with
+another existing system, look at \ref{janus:labels} first.
+
+The first real step during acoustic training is  the computation of an
+LDA matrix using lda.tcl. Although not  strictly necessary, most Janus
+systems  use  an LDA during  preprocessing.  Also, calling ``lda.tcl''
+extracts  the  number of occurences for  every   codebook in  the file
+``lda\$SID.counts''. This file is read by  ``samples.tcl'' in the next
+steps  to extract  an  evenly distributed  number of example  vectors,
+which    are   then     combined  into   an    initial  codebook    by
+``kmeans.tcl''.  The  actual   EM  training   is  then  performed   by
+``train.tcl''.  Typically,    the  size of    the  (gzipped) codebooks
+increases with every iteration (a factor of 2  between 0i and 1i, less
+afterwards)  and  the counts  you  can find   with  ``dss:ds configure
+-count'' should  be equivalent to  those  you find in  the counts file
+produced by lda.tcl.
+
+\subsection{Polyphone training} \label{janus:pt}
+
+You'll need a  completed CI training for this  step.  In the  standard
+setup,  we suggest  that you  run the  polyphone training in  the same
+system  directory  as the CI-training,  but in   a ``pt'' subdirectory
+(instead of ``train'').
+
+The  first  step, makePT,  creates the necessary  description file for
+polyphone training:  keeping the  CI codebookSet,  we  create separate
+distributions     for   every   polyphone   context   (distribTree.PT,
+distribSet.PT). Usually, there will be several millions of them. Then,
+a few iterations of EM training will be performed. The thus trained CD
+distributions   will   then  be   clustered according    to an entropy
+criterion.  Finally, you  can  create a  codebook  of a given  size by
+taking  the   ``N''  most important   contexts   and creating separate
+codebooks and distributions for them (split.tcl).
+
+\subsection{Train a context-dependent system} \label{janus:cd}
+
+Using   the  output  from the polyphone    training,  e.g.  the  files
+codebookSet.N.gz, distribSet.Np.gz,  and distribTree.Np.gz which  were
+created by split.tcl\footnote{``N'' refers to  the desired size of the
+CD-codebook, e.g.  4000.},  you can  train a   full  context-dependent
+system.   You can call  the  same scripts as  in the  CI  case, but we
+suggest you create a new directory for the CD training.
+
+\subsection{Write labels} \label{janus:labels}
+
+You can write labels with any existing system. Usually you set up your
+system description  files so that  they match  the system you  want to
+build (database, dictionary, topology,  ...). The only information you
+take    from    an  ``old''   system     are    the  acoustic   models
+(codebooks). Therefore, the featDesc (feature description file), which
+describes   how to  preprocess   the  input data    (ADCs) to  make it
+compatible with the   codebook, has to be  adapted  to match  the  old
+codebook and the new data, on which you write labels on. If the phones
+and codebooks don't match between the old and new system, you can load
+both codebooks and copy them as we do here:
+
+\begin{verbatim}
+# We hope it's ok to load these (old) codebooks/ distribs
+printDo [CodebookSet cbs featureSet$SID] read otherCodebookSet.desc
+printDo [DistribSet  dss cbs]            read otherDistribSet.desc
+printDo cbs load otherCodebookSet.param
+printDo dss load otherDistribSet.param
+
+# Create the new codebooks/ distribs
+codebookSetInit $SID
+distribSetInit  $SID
+
+# Read the set, copy the codebooks/ distribs
+set fp [open rewriteRules r]
+while {[gets $fp line] != -1} {
+    if {[regexp "^;" $line]} { continue }
+    set from [lindex $line 0]; set to [lindex $line 1]
+    puts stderr "    ReWriting $from -> $to"
+    catch { codebookSet$SID:$to := cbs:$from }
+    catch { distribSet$SID:$to  := dss:$from }
+}
+close $fp
+\end{verbatim}
+
+The file ``rewriteRules'' might look like that:
+
+\begin{verbatim}
+; -------------------------------------------------------
+;  Name            : rewriteSet
+;  Type            : RewriteSet
+;  Number of Items : n
+;  Date            : Thu Jul 11 14:59:49 2002
+; -------------------------------------------------------
+AA-b    A-b
+AA-e    A-e
+AA-m    A-m
+AE-b    AEH-b
+AE-e    AEH-e
+AE-m    AEH-m
+AH-b    AH-b
+AH-e    AH-e
+AH-m    AH-m
+AY-b    AI-b
+AY-e    AI-e
+AY-m    AI-m
+AX-b    AU-b
+AX-e    AU-e
+AX-m    AU-m
+...
+\end{verbatim}
+
+This means that, e.g. the codebook ``AX-m'' of the new system (this is a
+context-independent system) is to be modeled by the old ``AU-m''.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-master: t
+%%% End: 

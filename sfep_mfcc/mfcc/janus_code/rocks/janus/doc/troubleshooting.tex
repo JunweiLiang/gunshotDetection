@@ -1,0 +1,692 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Trouble-shooting part of documentation
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  troubleshooting.tex
+%%  Date    :  $Id: troubleshooting.tex 2537 2004-09-24 11:39:26Z metze $
+%%
+%%  Remarks :
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.6  2004/09/24 11:38:56  metze
+%%   added -expT info
+%%
+%%   Revision 1.5  2004/09/23 15:35:59  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.4  2004/09/11 12:41:28  metze
+%%   P014 - final?
+%%
+%%   Revision 1.3  2003/11/17 13:08:28  metze
+%%   Version 5.0P013 fixed
+%%
+%%   Revision 1.2  2003/08/14 11:18:57  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.5  2003/08/13 15:49:10  metze
+%%   Fixes for Hagen's taste
+%%
+%%   Revision 1.1.2.4  2003/08/07 13:01:25  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.3  2003/07/14 15:30:04  metze
+%%   More complete version for V5.0 P013
+%%
+%%   Revision 1.1.2.2  2003/07/14 13:01:08  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2003/07/14 11:16:02  metze
+%%   *** empty log message ***
+%%
+%%
+%% ========================================================================
+%%
+%%   COPYRIGHT BY
+%%
+%%   Interactive Systems Laboratories at
+%%
+%%        University of Karlsruhe       and     Carnegie Mellon University
+%%        Dept. of Informatics                  Dept. of Computer Science
+%%        Interactive Systems Labs              Interactive Systems Labs
+%%        Lehrstuhl Prof.Waibel                 Alex Waibel's NN & Speech Group
+%%        Am Fasanengarten 5                    5000 Forbes Ave
+%%        D-76131 Karlsruhe                     Pittsburgh, PA 15213
+%%        - West Germany -                      - USA -
+%%
+%%   Copyright (C) 1990-1995.   All rights reserved.
+%%
+%%   This software is part of the JANUS Speech- to Speech Translation Project
+%%
+%%   USAGE PERMITTED ONLY FOR MEMBERS OF THE JANUS PROJECT
+%%   AT CARNEGIE MELLON UNIVERSITY OR AT UNIVERSITAET KARLSRUHE
+%%   AND FOR THIRD PARTIES ONLY UNDER SEPARATE WRITTEN PERMISSION
+%%   BY THE JANUS PROJECT
+%%
+%%   It may be copied  only  to members of the JANUS project
+%%   in accordance with the explicit permission to do so
+%%   and  with the  inclusion  of  the  copyright  notices.
+%%
+%%   This software  or  any  other duplicates thereof may
+%%   not be copied or otherwise made available to any other person.
+%%
+%%   No title to and ownership of the software is hereby transferred.
+%%
+%% =================================================================================
+
+\section{General} \label{trouble:general}
+
+If  you don't  find the  information  you need in this  documentation,
+there might       be  more    information   available      on-line  at
+\htmladdnormallink{\texttt{http://isl.ira.uka.de/\~{
+}jrtk/janus-doku.html}}{http://isl.ira.uka.de/~jrtk/janus-doku.html}. A
+recent addition to the  JRTk  documentation is the \Jindex{Wiki}  page
+available                                                           at
+\htmladdnormallink{\texttt{http://www.is.cs.cmu.edu/janus/moin.cgi}}{http://www.is.cs.cmu.edu/janus/moin.cgi}.\footnote{Currently,
+this                  is                       accessible           at
+\htmladdnormallink{\texttt{http://penance.is.cs.cmu.edu/janus/moin.cgi}}{http://penance.is.cs.cmu.edu/janus/moin.cgi}.} 
+As  this is meant to be  a ``discussion  white-board'', you might also
+find help for your problem there. If you do not find an answer to your
+problem    there,           please         send     e-mail          to
+\htmladdnormallink{\texttt{jrtk@ira.uka.de}}{mailto:jrtk@ira.uka.de}
+or directly  to one of the maintainers,  but be sure to add sufficient
+debugging  information, so  that others have  a  chance  to trace  the
+problem. The more (useful) information  you provide and the better you
+can describe the problem, the more people will be able to help you ;-)
+
+
+\section{Installation} \label{trouble:installation}
+
+On Unix boxes,  first make sure the \texttt{janus}  binary is in  your
+search  \texttt{PATH}.  If   you can't   run Janus  by   simply typing
+\texttt{janus} at the shell prompt, try:
+
+\begin{verbatim}
+(i13pc33:/home/metze) setenv PATH /home/metze/janus/scr/Linux.gcc/janus:${PATH}
+\end{verbatim}
+% $
+
+If you do  not use \texttt{tcsh} or  your  Janus binary is not  in the
+above  directory,  you'll have    to    change nomenclature   or  path
+accordingly. Janus can be compiled with or without support for X11, so
+in some  cases you may  need to  set the  \texttt{DISPLAY} environment
+variable:
+
+\begin{verbatim}
+(i13pc33:/home/metze) setenv DISPLAY i13pc33:0.0
+\end{verbatim}
+
+Note that e.g. \texttt{ssh -XC  i13pc33}  does not work properly  when
+you redefine the \texttt{DISPLAY} environment variable, for example in
+your  \texttt{.tcshrc},  if you're using this  it  is  usually best to
+leave \texttt{DISPLAY} as it is.
+
+This is the output of an interactive example trouble-shooting session
+under Linux fixing several common installation difficulties:
+
+\begin{verbatim}
+i13pc33 /home/data> janus
+application-specific initialization failed: no display name and no
+$DISPLAY environment variable
+% exit
+i13pc33 /home/data> setenv DISPLAY i13pc33:0.0
+i13pc33 /home/data> janus
+# ======================================================================
+#  ____  ____  _____ _
+# |__  ||  _ \|_   _| | _     V5.1 P001 [Apr  9 2003 11:21:47]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA
+#   _| | JANUS Recognition
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs
+#
+# ======================================================================
+application-specific initialization failed: Can't find a usable init.tcl in the
+following directories:
+    /home/data/janus/src/../../library /home/data/janus/src/../../../library
+This probably means that JanusRTk wasn't installed properly.
+% exit
+i13pc33 /home/data> setenv JANUS_LIBRARY /home/data/janus/library
+i13pc33 /home/data> setenv   TCL_LIBRARY /usr/lib/tcl8.3
+i13pc33 /home/data> setenv    TK_LIBRARY /usr/lib/tk8.3
+i13pc33 /home/data> janus
+# ======================================================================
+#  ____  ____  _____ _
+# |__  ||  _ \|_   _| | _     V5.1 P001 [Apr  9 2003 11:21:47]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA
+#   _| | JANUS Recognition
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs
+#
+# ======================================================================
+% puts $auto_path
+/home/data/janus/library /home/data/janus/tcl-lib
+/home/data/janus/gui-tcl /usr/lib/tcl8.3 /usr/lib
+/home/data/janus/src/lib /usr/lib/tk8.3 /home/data/janus/library
+% 
+\end{verbatim}
+
+If    you encounter one    of the   above  errors,   you can   add the
+problem-solving   line to your  start-up   scripts.   The Tcl-variable
+\texttt{auto\_path} can also be changed  in \texttt{.tcshrc}. As Janus
+is a Tcl/Tk application,  you might also need  to install the relevant
+libraries in the correct version and set  up the environment variables
+\texttt{TCL\_PATH} and  \texttt{TK\_PATH}  accordingly (in  the  above
+example,  the  first   of  the three    ``setenv''   lines will  often
+suffice).  Some versions  of Janus  might also   be dynamically linked
+against \texttt{libreadline, libtermcap,} and \texttt{libcurses}.
+
+
+\section{Tcl-library problems} \label{trouble:tcllib}
+
+Normally,   Tcl/Tk   will  automatically  source   the   files  in the
+``tcl-lib'' and   ``gui-tcl'' directories,  when  functions  which are
+defined in those scripts are called. If  you define new functions, you
+have to  add them to  the index  file  \texttt{tclIndex}, which you'll
+find in both directories. The standard way to recreate this file is to
+issue  the following commands to an  instance of  janus started in the
+``tcl-lib'' or the ``gui-tcl'' directory:
+
+\begin{verbatim}
+file delete tclIndex
+auto_mkindex $JANUSLIB *.tcl
+\end{verbatim}
+
+%% $
+
+
+\section{Object problems} \label{trouble:dbase}
+
+Janus (more  exactly:  the Tcl/  Tk interface) uses  ``\texttt{:}'' to
+access list elements  and  ``\texttt{.}'' to access  sub-objects.  For
+example,  the dictionary  word    \texttt{HAS}  can be   accessed   as
+\texttt{dict\$SID:HAS}    and \texttt{dict\$SID.item(100)}.  Now it is
+perfectly   legal  to  have    subobjects,   whose name    contains  a
+``\texttt{.}'',  although you  won't   be  able  to  access    it  via
+``\texttt{:}'' now, because the ``\texttt{.}''   in the list item name
+will be  interpreted  as a subobject.   The  solution is to avoid  the
+``\texttt{.}''   altogether  or  to   access   your  list  item     as
+\texttt{dict\$SID.item([dict\$SID.list index HAS])}.
+
+
+\section{The fgets-problem} \label{trouble:fgets}
+
+If Janus blocks (hangs) as soon  as it tries to lock  access to a file
+via \texttt{fgets}, the best solution is to set  up an NGets-server by
+editing the following lines in your \texttt{.janusrc} (see the example
+in \texttt{\~{ }/janus/scripts/janusrc})
+
+\begin{verbatim}
+set NGETS(HOST)         ""
+set NGETS(PORT)         63060
+\end{verbatim}
+
+to look somewhat like this:
+
+\begin{verbatim}
+set NGETS(HOST)         i13s8
+set NGETS(PORT)         63050
+\end{verbatim}
+
+You can choose any combination of HOST and PORT you like, but the HOST
+should be a reliable machine (SUNs are  great) and the PORT should not
+be  used  for system services  or  somebody  else's  NGets-server. You
+should now start the server on the reliable machine using
+
+\begin{verbatim}
+(i13s8:/home/metze) janus janus/tcl-lib/ngetsGUI.tcl -server
+# ======================================================================
+#  ____  ____  _____ _                                                  
+# |__  ||  _ \|_   _| | _     V5.0 P011 [Nov 13 2002 17:17:29]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany            
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA            
+#   _| | JANUS Recognition                                              
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs   
+#                                                                       
+# ======================================================================
+Server accepting connection on 63060 ...
+CurrentSock: sock5
+\end{verbatim}
+
+or, if you don't want the graphical interface,
+
+\begin{verbatim}
+(i13s8:/home/metze) janus
+# ======================================================================
+#  ____  ____  _____ _                                                  
+# |__  ||  _ \|_   _| | _     V5.0 P012 [Nov 27 2002 14:43:58]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany            
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA            
+#   _| | JANUS Recognition                                              
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs   
+#                                                                       
+# ======================================================================
+% ngetsServerStart
+Server accepting connection on 63060 ...
+CurrentSock: sock5
+0
+%
+\end{verbatim}
+
+This NGets-server process will now  handle all calls to \texttt{fgets}
+and \texttt{glob} for all other processes.  You can test this setup by
+generating a simple file \texttt{/home/metze/x} containing a few lines
+of text in  your home directory and  then executing Janus in your home
+directory (assuming you started a server as above):
+
+\begin{verbatim}
+(i13pc33:/home/metze) echo "Line" >> x
+(i13pc33:/home/metze) echo "Line two" >> x
+(i13pc33:/home/metze) janus
+# ======================================================================
+#  ____  ____  _____ _
+# |__  ||  _ \|_   _| | _     V5.0 P012 [Nov 27 2002 14:40:14]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA
+#   _| | JANUS Recognition
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs
+#
+# ======================================================================
+INFO: Using NGETS on i13s10:63060!
+% fgets x line
+4
+% puts $line
+Line
+% fgets x line
+10
+% puts $line
+{Line two}
+% fgets x line
+-1
+%
+\end{verbatim}
+
+Be aware that this server variant reads the file in memory once and
+will only write it back when all the entries have been processed by
+client processes. If your jobs die and you want to restart the jobs,
+you can simply select the file and click on ``Clear'' in the
+\texttt{ngetsGUI.tcl} interface window. You can check if a process is
+using an NGets server by looking for the line 
+
+\begin{verbatim}
+INFO: Using NGETS on i13s10:63060!
+\end{verbatim}
+
+at startup.
+
+
+\subsection*{Background} \label{trouble:fgetsbackground}
+
+``fgets'' is an important Tcl-function, which is used in most parts of
+Janus  to parallelize  jobs  on different machines.  The Janus Library
+(described  in chapter \Jref{sec}{lib})  makes extensive use of it, as
+do our standard testing scripts.
+
+``fgets'' is implemented  in C (\texttt{\~{ }/janus/src/itf/itf.c}  in
+case you want to have a look).  If you run  JANUS on a single machine,
+using
+
+\begin{verbatim}
+while {[fgets spkList spk] != -1} {
+    puts $spk
+}
+\end{verbatim}
+
+is equivalent to 
+
+\begin{verbatim}
+set fp [open spkList r]
+while {[gets $fp line] != -1} {
+    puts $spk
+}
+close $fp
+\end{verbatim}
+
+Both   scripts will  print    out    the   contents  of  the      file
+\texttt{spkList}.   If, however you run   the same script on different
+machines on  the same file  and at the same  time, you will notice the
+difference:  The first version   will ``divide'' the list between  the
+different machines, while the second version will print the whole list
+on every machine. Also, if you  have a look at the  file after you ran
+the first  script, you will notice that  the  first character of every
+line is no ``\#''.  Running this script on such a file will produce no
+output, because it ``believes'' that all ``keys'' (lines) have already
+been  processed  (output) by another machine.  It  is therefore a good
+idea to keep backup copies of speaker lists etc. around.
+
+On some  machines or operating  systems  (e.g. Linux  with certain nfs
+implementations),  this  mechanism  does not    work reliably, because
+exclusive file  locking  cannot be guaranteed,  e.g.  two machines can
+read and write to one file at the same time.   The easiest solution to
+this problem   is to re-define  ``fgets''  in   Tcl  and replace  this
+mechanism  by  something  else,  i.e. a server   that reads  files and
+listens   on ports.  Such an  approach   is implemented in 
+\texttt{\~{ }/janus/tcl-lib/ngets.tcl},                and             
+\texttt{\~{ }/janus/tcl-lib/ngetsGUI.tcl}.
+
+
+\section{Catching aborts} \label{trouble:abort}
+
+Janus  is implemented  in C.   Some program  faults will  therefore be
+caused by segmentation violations. C has handlers to catch a seg-fault
+signal and  execute specific code.  The   relevant procedure is called
+\texttt{\~{ }/janus/src/itf/itc.c:janusSignalHandler} and can be used
+to send  mail  or do   something  else if    you  define a   procedure
+``janusErrorHandler'' at Tcl-level.
+
+Code like   this (in combination with  other  approaches)  can be very
+useful in  maximising CPU load  during evaluation times, while it will
+not improve the quality of  the code. If  you get  aborts, it will  be
+best to debug the code .
+
+An example procedure that will send e-mail if Janus crashes inexpectedly
+looks like this:
+
+\begin{verbatim}
+proc janusErrorHandler { sig } {
+    global errorInfo errorCode argv argv0 env
+
+    set sigN [lindex "NONE SIGHUP SIGINT SIGQUIT SIGILL 5 SIGABRT 7 \
+                      SIGFPE SIGKILL 10 SIGSEGV 12 SIGPIPE SIGALRM SIGTERM" $sig]
+    regsub   "\\..*" [info hostname] "" host
+    set exe  [info nameofexecutable]
+    set cmd  "$argv0 $argv"
+    set pwd  $env(PWD)
+    set mail $env(USER)@ira.uka.de
+
+    switch $sigN {
+        SIGABRT -
+        SIGFPE  -
+        SIGSEGV {
+            janusSendMail $mail \
+                "$sigN $host $pwd: $argv0" \
+                "$host.[pid] $pwd:\n$exe $cmd\n[string repeat - 72]\n$errorInfo"
+        }
+        default {
+            puts stderr "\nReceived signal $sig ([lindex $sigL $sig]).\n"
+        }
+    }
+}
+
+proc janusSendMail { address subject body } {
+    exec echo $body | mailx -s $subject $address
+}
+\end{verbatim}
+%% $
+
+Define these procedures in your \texttt{.janusrc} and you'll receive
+e-mails when janus seg-faults. A system to notify the user of all
+possible errors is however difficult to realise :-(.
+
+
+\section{Filesystem issues} \label{trouble:filesys}
+
+Janus can   read compressed files  transparently.   In some cases  the
+piping  mechanism  used however  causes  problems,  so  if you see  an
+I/O-related problem on compressed files, try working with uncompressed
+(or local) files first.
+
+Accumulating and particularly combining   ML accumulators can pose   a
+heavy burden on distributed filesystems. If you  want to guarantee the
+execution of the  server part of the doParallel  loop  on a particular
+machine (i13pc44 in this case), for example because this machine holds
+the data  locally  or has   a very  fast network connection,   you can
+include the following code in your \texttt{.janusrc}:
+
+\begin{verbatim}
+proc doParallelServer { } {
+    set SERVER [lindex [glob -nocomplain "i13pc44.*.INIT"] 0]
+    if {$SERVER == ""} {
+        set SERVER [lindex [glob -nocomplain "i13pc4\[0-6\].*.INIT"] 0]
+    }
+    if {$SERVER == ""} {
+        set SERVER [lindex [lsort -decreasing [glob -nocomplain "i13pc3*.*.INIT"]] 0]
+    }
+    if {$SERVER == ""} {
+        set SERVER [lindex [glob -nocomplain "i13pc5\[0-1\].*.INIT"] 0]
+    }
+    if {$SERVER == ""} {
+        set SERVER [lindex [glob -nocomplain "i13pc2*.*.INIT"] 0]
+    }
+    if {$SERVER == ""} {
+        set SERVER [lindex [lsort [glob "*.INIT"]] end]
+    }
+    return [string range $SERVER 0 [expr [string length $SERVER]-6]]
+}
+\end{verbatim}
+% $
+
+If i13pc44 is not available,  this procedure will choose the next-best
+machine and so on.
+
+
+\section{featAccess and featDesc} \label{trouble:feat}
+
+The  \Jref{file}{featAccess}  and \Jref{file}{featDesc}  file serve to
+define where to find acoustic data and how to  process it. They are in
+fact Tcl scripts  evaluated in a separate  interpreter.  The reason to
+hold them separately is to  allow for greater flexibility when porting
+systems between tasks, architectures, or sites.
+
+The fact that these scripts are evaluated as Tcl-scripts in a separate
+interpreter limits the   scope  of variables;  if you're  experiencing
+error messages stemming from  featAccess or featDesc, debugging can be
+a bit tedious, because you   cannot run the scripts interactively  and
+determine which variables are visible  or which commands fail (and for
+what reason).
+
+\begin{verbatim}
+% featureSet$SID eval $uttInfo
+  warp /project/MT/data/ESST/cd28/e044a/e044ach2_039.16.shn with factor 
+1.000
+ERROR   matrix.c(2080)     expected 'float' type elements.
+ERROR   itf.c(0359) <ITF,FCO>  Failed to create 'dummyS' object.
+ERROR   itf.c(0720)        featureSetEval<featureSetQ4g> featureSetQ4g 
+{{spk MBB_e044ach2} {utt e044ach2_039_MBB} MBB_e044ach2 {EDUCATION 
+graduate} {PROFESSION student} {NATIVE_LANG e} {SEX m} {ID MBB} {KEY 
+MBB_e044ach2} {DIALECT American English} {DATE_OF_BIRTH 710808} 
+{PRIMARY_SCHOOL Louisville, KY} {SEGS e044ach2_001_MBB e044ach2_003_MBB 
+e044ach2_150_MBB e044ach2_152_MBB} e044ach2_039_MBB {ADC e044ach2_039.16} 
+{ID MBB} {LM yeah #NIB_H## #NIB_H## though it is #NIB_GE# what #NIB_UM# 
+seven hours #NIB_GE#} {TEXT yeah #NIB_H## #NIB_H## though it is #NIB_GE# 
+what #NIB_UM# seven hours #NIB_GE#} {CHANNEL e044ach2} {PATH cd28/e044a} 
+{KEY e044ach2_039_MBB} {TIME 4.181} {SPEAKER MBB_e044ach2}}:
+\end{verbatim}
+
+In this  example, you can determine that  the error occured during the
+evaluation       of   featDesc  (\texttt{featureSetEval<featureSetQ4g>
+featureSetQ4g}); the    exact kind and   location  of  the  error (the
+subtraction  of  spectral means failed  because  none  were loaded) is
+usually determined by the insertion of  several \texttt{puts ``Now I'm
+here    ...''}  and    \texttt{puts  ``WARPFACTOR=\$WARP''} lines   in
+\Jref{file}{featDesc}.
+
+
+\section{Score functions} \label{trouble:scoreA}
+
+Janus spends most of its time doing score computations. This is
+usually done in a highly optimized routine called \texttt{ssa\_opt}.
+This routine makes a few assumptions makes a few assumptions on
+the underlying acoustic models, namely:
+
+\begin{itemize}
+\item They are fully continuous
+\item All codebooks share the same feature
+\end{itemize}
+
+So, if you use multiple STC classes or you're building a semi-continuous
+system, be sure to add the following line to your decoding script:
+
+\begin{quote}
+\texttt{senoneSet\$SID} \Jref{SenoneSet}{setScoreFct} \texttt{base}
+\end{quote}
+
+Also, if your acoustic scores look really bad, you might try this
+line, too.
+
+
+\section{Labels and Dictionaries} \label{trouble:labeldict}
+
+Labels store  pre-computed time-alignments as  computed by the Viterbi
+or Forward-Backward  algorithm.  If you're  using labels  and  you get
+error messages stating
+
+\begin{verbatim}
+Couldn't map 234 of 1234 path items.
+\end{verbatim}
+
+or  the  results     from training  are   unreasonable,   usually your
+\Jref{module}{Path}    (labels)   and your  current \Jref{module}{HMM}
+construction don't  match. Labels store  state indices, i.e. ``frame X
+occupies the  HMM state(s) Y (and  Z)''. If the HMM  object associated
+with the Path  object when  reading the  labels was  built differently
+from the one used during label writing, the indexing will be different
+(i.e. skewed in time) and the  labels are essentially useless. Typical
+culprits changed during HMM construction are:
+
+\begin{itemize}
+\item A modified \Jref{module}{Dictionary}
+\item The \texttt{-optWord} and \texttt{-variants} flags to HMM \Jref{HMM}{make}
+\item Different transcriptions (filtered differently, more pauses, etc.)
+\end{itemize}
+
+If you want  to  change any of the   above, your time alignments  will
+change anyway, so you'll need to write new labels. In some cases it is
+possible to  re-use old (Viterbi) labels by  creating  the old and new
+HMMs side by side  and re-configuring the path items' \texttt{-stateX}
+by hand  (you'll have to  create  them by \Jref{Path}{bload}  or  some
+other method),  but you better know exactly  what you're doing or your
+results will be bogus.
+
+
+\section{Language Models} \label{trouble:lm}
+
+Janus can read in ARPABO-format language models. However, depending on
+the sorting order  of  n-grams, this can  take  a long time or  simply
+fail. In this case,  try to re-sort the file  so that the first column
+is sorted  first and/ or try   to load the  uncompressed  file. If you
+experience  trouble reading a compressed  LM file (as  in dump files),
+read on with section \ref{trouble:dumps}.
+
+
+\section{Defines and Dump Files} \label{trouble:dumps}
+
+The  Ibis decoder  stores  files in  a   compressed binary format  for
+reasons of I/O speed and memory consumption on disk. Particularly, the
+STree    \Jref{STree}{dump} contains   a    \Jref{module}{Dictionary},
+\Jref{module}{SenoneSet},                       \Jref{module}{SVocab},
+\Jref{module}{PHMMSet},  \Jref{module}{LCMSet}, \Jref{module}{RCMSet},
+and      possibly  an    \Jref{module}{XCMSet}      as  well  as    an
+\Jref{module}{LingKS}/ \Jref{module}{SVMap}.
+
+If  you're trying to   read a dump file  and  you're getting  an error
+message, chances are the  system the  dump was  written with  a system
+which differs from  the system you're reading  the  dump with  in some
+aspect. Favourites are:
+
+\begin{description}
+
+\item[Objects:] used  in one system, but   not the other, particularly
+the  \Jref{module}{XCMSet}. Also,  when  loading  a dump,  the  object
+reading the dump has  to be empty, i.e. it   has to exist, but  cannot
+contain data.
+
+\item[Configuration:]  some objects   are  configured differently   or
+contain a different number of items.
+
+\item[Language Models:]   the  \Jref{module}{MetaLM} relies  on other,
+lower-level models and  only  stores the top-level information  in its
+dump file; therefore the  lower LMs  have  to be  initialized properly
+before reading a dump into a \Jref{module}{MetaLM}.
+
+\item[Executable:]  Janus and    the Ibis decoder  depend  on    a few
+compile-time   \texttt{\#define}s  and    \texttt{typedef}s   set   in
+\texttt{src/ibis/slimits.h}.  See section \ref{basic:compiling}    for
+information on how to compile Janus and the meaning of these flags. If
+you have  two executables compiled  with different settings,  you will
+most likely  not be   able to exchange  dump-files between    the two,
+because the internal representation of data is different.
+
+\end{description}
+
+
+\section{Speed} \label{trouble:speed}
+
+If you find your training or decoding  is taking too long, chances are
+you're  working  on an ill-conditioned problem,    e.g. you'll have to
+think about a more intelligent setup.
+
+The first step  in  finding out why your    jobs run so slowly  is  to
+pinpoint the     part of  the   code   which takes   up   most  of the
+time. Frequently, your job  is just to big (takes  up too much memory)
+and the machine  starts ``swapping''. If this is  the case, try moving
+to another machine or look at section \ref{trouble:memory}. If this is
+not the case, usual suspects are:
+
+\begin{description}
+
+\item[I/O:] it can take a long time to  load data into memory, if it's
+stored on network disks or  is distributed over  many small files. Try
+to move the  data to a local disk  or reduce the  number of individual
+files by  using  a differently organized  \Jref{module}{DBase}, a more
+intelligent \Jref{file}{featDesc}  and \Jref{file}{featAccess}  or  by
+using a \Jref{module}{Labelbox} (c.f.  sections \ref{trouble:feat} and
+\ref{trouble:filesys}).
+
+\item[Decoding:] Try  reducing the  beams used in \Jref{module}{SPass}
+or    use     a     different     scoring    function    by      using
+\Jref{SenoneSet}{setScoreFct}. Popular speed-up techniques include the
+use of a  \Jref{module}{BBITree}  and \Jref{SPass}{fmatch}.  Sometimes
+it is necessary  to  use profiling to  see  where exactly the  time is
+spent.
+
+If      you're   using    the      ``base''     scoring       function
+(\Jref{SenoneSet}{setScoreFct}),  try      to configure   the Gaussian
+evaluation threshold  differently,  i.e. set \Jref{Cbcfg}{-expT} to  a
+higher cutoff such as in
+
+\begin{quote}
+\texttt{codebookSet\$SID:SIL-m.cfg configure -expT -10.0}.
+\end{quote}
+
+This  should  speed up your  decoding by  up  to 20\%  without loss in
+accuracy. Also see section \ref{trouble:scoreA} on scoring functions.
+
+\item[Language Models:] Complicated  language  models can take a  long
+time to evaluate, try using a simpler language model for decoding, use
+a  simple  n-gram  \Jref{module}{LingKS} as  look-ahead  by using  the
+\texttt{-map} option when  creating  an \Jref{module}{LTree},  and/ or
+play  with   the \texttt{-cache}    and \texttt{-mode}   settings   in
+\Jref{module}{LTree}.
+
+\end{description}
+
+You can also check the compile-time settings  of Janus. You might find
+a setting which optimizes speed for your particular hardware.
+
+
+\section{Memory Consumption} \label{trouble:memory}
+
+If you find  your training or  decoding uses too much  memory, chances
+are you're working on an  ill-conditioned problem, e.g. you'll have to
+think about a more intelligent setup.
+
+You  can reduce the memory   footprint of the executable by  compiling
+Janus as ``Ibis''   only (c.f.  section \ref{basic:compiling}) or   by
+using different   \texttt{\#define}s   and \texttt{typeset}s   for the
+\texttt{LVX} and \texttt{SVX} types used in  the decoder (see sections
+\ref{basic:compiling} and \ref{trouble:dumps}).
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

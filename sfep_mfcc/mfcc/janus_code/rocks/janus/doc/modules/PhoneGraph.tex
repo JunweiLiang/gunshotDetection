@@ -1,0 +1,54 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PhoneGraph}}
+
+This section describes the '\Jgloss{PhoneGraph}': \textsl{PhoneGraph}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{PhoneGraph} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{HMM}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{phonegraph configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{PhoneGraph}{-modTags} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{phonegraph}
+
+    \begin{description}
+      \Jitem{\Jlabel{PhoneGraph}{build}} \texttt{ $<$wordGraph$>$ \Jsb{-logPen logpen} \Jsb{-full full} \Jsb{-xwmodels xwmodels} \Jsb{-rcmSdp rcmsdp}} \
+
+        create PhoneGraph from WordGraph
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{wordGraph}} &  word graph (\Jref{module}{WordGraph}) \\
+ \texttt{\textbf{logpen}} &      log penalties  \\
+ \texttt{\textbf{full}} &        full PGhraph to PGraph transitions  \\
+ \texttt{\textbf{xwmodels}} &    xword models  \\
+ \texttt{\textbf{rcmsdp}} &      right context models for single phone words  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PhoneGraph}{make}} \texttt{ $<$phones$>$ \Jsb{-trans trans} \Jsb{-init init}} \
+
+        create PhoneGraph
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{phones}} &  list of phone nodes \\
+ \texttt{\textbf{trans}} &    transition model  \\
+ \texttt{\textbf{init}} &     initial states \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{amodel(0..2)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{stateGraph(0..2)}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

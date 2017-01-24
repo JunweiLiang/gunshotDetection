@@ -1,0 +1,73 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DBaseIdx}}
+
+This section describes the '\Jgloss{DBaseIdx}': \textsl{DBase Index Object}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{DBaseIdx} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{DBase}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{dbaseidx configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DBaseIdx}{-hashSizeX} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{dbaseidx}
+
+    \begin{description}
+      \Jitem{\Jlabel{DBaseIdx}{add}} \texttt{ $<$key$>$ $<$offset$>$ $<$size$>$} \
+
+        add record to index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &     key  \\
+ \texttt{\textbf{offset}} &  offset  \\
+ \texttt{\textbf{size}} &    size  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBaseIdx}{close}} \texttt{} \
+
+        close index database
+
+      \Jitem{\Jlabel{DBaseIdx}{delete}} \texttt{ $<$key$>$} \
+
+        delete record from index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &  key  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBaseIdx}{first}} \texttt{} \
+
+        get first key in index file
+
+      \Jitem{\Jlabel{DBaseIdx}{get}} \texttt{ $<$key$>$} \
+
+        get record from index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &  key  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBaseIdx}{list}} \texttt{} \
+
+        list all keys in index file
+
+      \Jitem{\Jlabel{DBaseIdx}{next}} \texttt{} \
+
+        get next key in index file
+
+      \Jitem{\Jlabel{DBaseIdx}{open}} \texttt{ $<$filename$>$ \Jsb{-mode mode}} \
+
+        open index file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of index file  \\
+ \texttt{\textbf{mode}} &       r | rw | rwc  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

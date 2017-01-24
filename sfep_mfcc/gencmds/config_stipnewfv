@@ -1,0 +1,6 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM22/iyu/missing_stipnewfv
+videopaths=/home/iyu/sfep/gencmds/stip_new_fv.missing.paths
+machine=rocks
+video_info=/data/MM22/iyu/missing_stipnewfv/features/video_info
+video_info_resized=/data/MM22/iyu/missing_stipnewfv/features/video_info_resized

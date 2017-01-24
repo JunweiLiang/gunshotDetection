@@ -1,0 +1,194 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of featDesc
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  featDesc.tex
+%%  Date    :  $Id: featDesc.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:18:59  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.4  2002/11/19 13:23:30  metze
+%%   Beautification
+%%
+%%   Revision 1.1.2.3  2002/11/19 09:17:44  fuegen
+%%   minor changes for overfull hboxes
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:12  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/07/30 13:57:39  metze
+%%   *** empty log message ***
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{featDesc}}
+
+The feature description file, read by the
+\Jref{module}{FeatureSet}. An example looks like this:
+
+\begin{verbatim}
+# =======================================================
+#  JanusRTk     Janus Recognition Toolkit
+#               -----------------------------------------
+#               Object: Feature Description
+#               -----------------------------------------
+#
+#  Author    :  Hagen Soltau
+#  Module    :  featDesc
+#  Remarks   :  based on Hua's new frontend, 40 dimensions
+#
+#  $Log$
+#  Revision 1.2  2003/08/14 11:18:59  fuegen
+#  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+#
+#  Revision 1.1.2.4  2002/11/19 13:23:30  metze
+#  Beautification
+#
+#  Revision 1.1.2.3  2002/11/19 09:17:44  fuegen
+#  minor changes for overfull hboxes
+#
+#  Revision 1.1.2.2  2002/07/31 13:10:12  metze
+#  *** empty log message ***
+#
+#  Revision 1.1.2.1  2002/07/30 13:57:39  metze
+#  *** empty log message ***
+#
+#  Revision 1.1  2002/03/04 16:10:49  soltau
+#  Initial revision
+#
+# =======================================================
+
+global WARPSCALE warpScales meanPath
+global WAVFILE OLDSPK sas pms
+
+
+# -------------------------------------------------------
+#  Load Mean Vectors
+# -------------------------------------------------------
+
+if {![info exist OLDSPK] || $OLDSPK != $arg(spk) } {
+
+  if {[llength [info command ${fes}Mean]]} { 
+    ${fes}Mean  destroy
+    ${fes}SMean destroy
+  }
+
+  if {[file exist $meanPath/$arg(spk).mean]} {
+    FVector ${fes}Mean  13
+    FVector ${fes}SMean 13
+    writeLog stderr "$fes Loading $meanPath/$arg(spk).mean"
+    ${fes}Mean  bload $meanPath/$arg(spk).mean
+    ${fes}SMean bload $meanPath/$arg(spk).smean
+    set OLDSPK $arg(spk)
+  } else {
+    writeLog stderr "$fes Loading $meanPath/$arg(spk).mean FAILED"
+  }
+}
+
+
+# -------------------------------------------------------
+#  Load ADC segment...
+# -------------------------------------------------------
+
+if {![info exist WAVFILE] || $WAVFILE != $arg(ADCFILE)} {
+
+  set WAVFILE $arg(ADCFILE)
+
+  if {[file exist $arg(ADCFILE).shn]} {
+    $fes    readADC         ADC             $arg(ADCFILE).shn \
+      -h 0 -v 0 -offset mean -bm shorten
+  } else {
+    $fes    readADC         ADC             $arg(ADCFILE)     \
+      -h 0 -v 0 -offset mean -bm auto
+  }
+
+  $fes spectrum FFT     ADC 20ms
+}
+
+
+# -------------------------------------------------------
+#  Get warp
+# -------------------------------------------------------
+
+if {![info exist WARPSCALE]} { 
+  if [info exist warpScales($arg(spk))] { 
+     set WARP $warpScales($arg(spk))
+  }  else {
+     set WARP 1.00
+  } 
+} else { set WARP $WARPSCALE } 
+
+writeLog stderr "$fes ADCfile $arg(utt) WARP $WARP"
+
+
+# -------------------------------------------------------
+#  Vocal Tract Length Normalization + MCEP
+# -------------------------------------------------------
+
+$fes VTLN     WFFT      FFT  $WARP -mod lin -edge 0.8
+
+if { [llength [objects FBMatrix matrixMEL]] != 1} {
+   set melN 30
+   set points [$fes:FFT configure -coeffN]
+   set rate   [expr 1000 * [$fes:FFT configure -samplingRate]]
+   [FBMatrix matrixMEL] mel -N $melN -p $points -rate $rate
+}
+
+$fes   filterbank       MEL             WFFT           matrixMEL
+$fes   log              lMEL            MEL            1.0 1.0
+
+set cepN 13
+
+if { [llength [objects FMatrix matrixCOS]] != 1} {
+   set n [$fes:lMEL configure -coeffN]
+   [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+
+$fes   matmul           MCEP            lMEL            matrixCOS
+
+
+# -------------------------------------------------------
+#  Mean Subtraction, Delta, Delta-Delta and LDA
+# -------------------------------------------------------
+
+$fes meansub  FEAT    MCEP  -a 2 -mean ${fes}Mean -smean ${fes}SMean
+$fes adjacent FEAT+   FEAT  -delta 5
+
+if { [$fes index LDAMatrix] > -1} {
+    $fes matmul   LDA     FEAT+ $fes:LDAMatrix.data -cut 32
+}
+
+if [info exists pms] {
+    foreach p [$pms] {
+        $fes matmul OFS-$p LDA $pms:$p.item(0)
+        if [info exists sas] {
+            $sas adapt $fes:OFS-$p.data $fes:OFS-$p.data 0
+        }
+    }
+} else {
+    if [info exists sas] {
+        $sas adapt $fes:LDA.data $fes:LDA.data 0
+    }
+}
+
+\end{verbatim}
+
+Errors in the featDesc are not always easy to track. A much-used
+strategy to debug errors in the featDesc is to plaster it with
+\texttt{puts ``I am here''} commands, to find out where exactly in the
+code the offending operation occurs.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

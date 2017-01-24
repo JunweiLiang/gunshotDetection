@@ -1,0 +1,586 @@
+#  ========================================================================
+#   JANUS      Speech- to Speech Translation
+#              ------------------------------------------------------------
+#              Object: Makefile
+#              ------------------------------------------------------------
+#
+#   Author  :  Christian Fuegen (fuegen@ira.uka.de)
+#   Module  :  Makefile
+#   Date    :  $Id: Makefile 3313 2010-10-05 02:20:31Z metze $
+#
+#   Remarks :  Main Makefile
+#
+#  ========================================================================
+#
+#   This software was developed by
+#
+#   the  University of Karlsruhe       and  Carnegie Mellon University
+#        Dept. of Informatics               Dept. of Computer Science
+#        ILKD, Lehrstuhl Prof.Waibel        Alex Waibel's NN & Speech Group
+#        Am Fasanengarten 5                 5000 Forbes Ave
+#        D-76131 Karlsruhe                  Pittsburgh, PA 15213
+#        - West Germany -                   - USA -
+#
+#   This software is part of the JANUS Speech- to Speech Translation Project
+#
+#   USAGE PERMITTED ONLY FOR MEMBERS OF THE JANUS PROJECT
+#   AT CARNEGIE MELLON UNIVERSITY OR AT UNIVERSITAET KARLSRUHE
+#   AND FOR THIRD PARTIES ONLY UNDER SEPARATE WRITTEN PERMISSION
+#   BY THE JANUS PROJECT
+#
+#   It may be copied  only  to members of the JANUS project
+#   in accordance with the explicit permission to do so
+#   and  with the  inclusion  of  the  copyright  notices.
+#
+#   This software  or  any  other duplicates thereof may
+#   not be copied or otherwise made available to any other person.
+#
+#   No title to and ownership of the software is hereby transferred.
+#
+#  ========================================================================
+#
+#  $Log$
+#  Revision 1.31  2008/11/24 14:40:47  wolfel
+#  added PF directory
+#
+#  Revision 1.30  2007/03/22 17:02:47  fuegen
+#  cleaning
+#
+#  Revision 1.29  2007/03/19 23:32:17  fuegen
+#  made LDOpts flags icc 9.1 compatible
+#
+#  Revision 1.28  2007/03/02 16:54:13  fuegen
+#  removed bug when linking
+#
+#  Revision 1.27  2007/03/02 14:55:53  fuegen
+#  - introduced new targets ibis_sse/ janus_sse to compile with
+#    SIMD Streaming Extensions
+#  - removed building of janusLib, instead linking is done directly with all
+#    object files
+#
+#  Revision 1.26  2007/02/22 16:25:29  fuegen
+#  moved -pedantic to LOCALFLAGS
+#  added -Wno-long-long
+#
+#  Revision 1.25  2007/02/15 13:08:33  stueker
+#  added -pedantic flag in order to detect non ANSI-C compatible code
+#
+#  Revision 1.24  2006/10/24 15:57:02  stueker
+#  changed -mcpu to -march for non 64 bit architecture case
+#
+#  Revision 1.23  2006/10/24 09:30:22  fuegen
+#  tuned compiler flags for the intel compiler
+#
+#  Revision 1.22  2005/02/28 14:27:09  fuegen
+#  Added system support error message
+#
+#  Revision 1.21  2004/10/27 15:21:05  fuegen
+#  several more changes
+#   - compiling under RedHat
+#   - added some compiling instructions
+#   - bug-fixes for SunOS
+#   - changed/tested icc-flags for icc80, icc81
+#
+#  Revision 1.20  2004/10/27 09:43:23  fuegen
+#  bug fix
+#
+#  Revision 1.19  2004/10/26 14:15:19  fuegen
+#  made it compile under x86-64
+#
+#  Revision 1.18  2004/10/26 14:06:56  fuegen
+#  every target got it's own object directory
+#
+#  Revision 1.17  2004/10/08 03:27:45  fuegen
+#  Libs changed to LOCALLIBS
+#
+#  Revision 1.16  2004/09/23 11:16:27  fuegen
+#  added x86-64 flags
+#
+#  Revision 1.15  2003/08/14 11:19:47  fuegen
+#  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+#
+#  Revision 1.14.52.13  2003/05/12 08:56:01  fuegen
+#  commented _MAKEFLAGS out, for emacs compiling support
+#
+#  Revision 1.14.52.12  2003/05/08 16:41:49  soltau
+#  Purified!
+#
+#  Revision 1.14.52.10  2003/03/08 17:56:49  soltau
+#  Revert to previuos version
+#
+#  Revision 1.14.52.9  2002/09/12 13:50:23  metze
+#  Spelling ...
+#
+#  Revision 1.14.52.8  2002/08/30 14:20:14  metze
+#  define SOLARIS -> SUN
+#
+#  Revision 1.14.52.7  2002/07/18 14:46:39  metze
+#  'net' no longer compiles hme*, which produces errors
+#
+#  Revision 1.14.52.6  2002/07/03 10:52:36  fuegen
+#  added documentation on how targets are specified
+#
+#  Revision 1.14.52.5  2002/06/28 12:08:43  fuegen
+#  added optional compile flages for SIMD, multithreading, ...
+#  remove janusInit before starting compilation (date update)
+#  added clean-ibis_[opt,dbg,prf], to clean only ibis files (hagens desire)
+#
+#  Revision 1.14.52.4  2002/06/28 10:06:36  fuegen
+#  added again local definition of SYSTEM variable
+#
+#  Revision 1.14.52.3  2002/06/28 09:51:58  fuegen
+#  new Makefiles are now working also on SUN
+#
+#  Revision 1.14.52.1  2002/06/26 10:09:29  fuegen
+#  new Makefiles for JANUS
+#
+#
+#
+#  ========================================================================
+
+# ======================================================================
+#                  Compiling Instructions/ Examples
+# ======================================================================
+#
+#  - 'make ibis'     to compile with X and Tcl/Tk support
+#  - 'make ibisNX'   to compile without X but with Tcl/Tk support
+#  - 'make ibis_sse' for a 'ibis' version using the SIMD Streaming Extensions
+#  - 'make ibis_dbg' for a 'ibis' version with debugging information
+#  - 'make ibis_prf' for a 'ibis' version with profiling support
+#
+#  - to compile against a different Tcl/Tk library version as 8.4
+#    'make TCLLIB=-ltcl8.3 TKLIB=-ltk8.3 ibis'
+#
+#  - if you need to specify further include paths or libraries
+#  - 'make Incs=-I<path> Libs=-l<lib> ibis'
+#
+#  - to use icc instead of the default gcc
+#    'make CC=icc ibis'
+#
+#  - to compile with SPHERE support
+#    'make CFlags=-DSPHERE Libs="-lsp -lutil   -L/home/metze/tools/nist/lib" Incs=-I/home/metze/tools/nist/include ibis'
+#    or on x86_64
+#    'make CFlags=-DSPHERE Libs="-lsp -lsputil -L/home/metze/tools/nist/lib" Incs=-I/home/metze/tools/nist/include ibis'
+#
+#  - to compile with PORTAUDIO support
+#    (Linux usually comes with precompiled libraries)
+#    'make CFlags=-DPORTAUDIO Libs="-lportaudio" ibis'
+#
+#  - Special comment on compling Janus under DEBIAN - Linux
+#    Janus is working fine when using Tcl/Tk 8.3 instead of 8.4
+#    'make TCLLIB=-ltcl8.3 TKLIB=-ltk8.3 Incs=-I/usr/include/tcl8.3 ibis'
+#
+#  - see below for more information about the available targets
+#
+# ======================================================================
+
+# ======================================================================
+# Global Definitions
+# ======================================================================
+#_MAKEFLAGS = --no-print-directory
+
+# do not print executed commands in following targets
+.SILENT: makedir deldir _clean _cleanP _rmInit
+
+export SOURCES
+export OBJDIR
+export DEPARG
+
+
+# ======================================================================
+# Definitions
+# ======================================================================
+
+# OBJDIR and SRCDIR will be defined later!!
+SYSTEM		   = $(shell uname)
+MACH		   = $(shell uname -m)
+X11LIB		   = -lX11
+TCLLIB		   = -ltcl8.4
+TKLIB		   = -ltk8.4
+LOCALLIBS	   = -lm -ldl
+INCS		   = $(foreach dir,$(sort $(dir $(SOURCES))),-I../$(dir))
+JANUSLIB	   = $(OBJDIR)/libjanus.a
+OUTPUT		   = $(OBJDIR)/janus
+JANUS_SVN_VERSION := $(shell svnversion -n .)
+
+
+# ======================================================================
+# machine dependent part
+# ======================================================================
+
+# ----------------------------------------
+# Mac OSX (Darwin) Options
+# ----------------------------------------
+ifeq ($(SYSTEM), Darwin)
+    CC	 = gcc-4.2
+
+    JANUS_SVN_VERSION := $(shell /opt/subversion/bin/svnversion -n .)
+
+    X11LIB	 =
+
+    LOCALCFLAGS  = -D__USE_GNU -DDARWIN -DUSE_COMPAT_CONST -DPORTAUDIO -DSSE_OPT -DBLAS
+    LDOpts       = -framework Accelerate
+    LDOpts      += -L$(HOME)/Work/portaudio/lib/.libs
+    LOCALLIBS   += -lportaudio -lreadline -ltermcap -lgomp
+    LOCALINCS    = -I/sw/include
+    LOCALINCS   += -I$(HOME)/Work/portaudio/include 
+
+    DEPARG	 = -MM
+    LOCALCFLAGS	+= -Wall -Wstrict-aliasing=0
+
+    OptFlags     = -O3 -march=core2 -msse3 -fomit-frame-pointer -ffast-math -funsafe-math-optimizations -funroll-loops -ftree-vectorize -fopenmp -g
+    LDOptFlags	 =
+
+    DbgFlags	 = -g
+    LDDbgFlags	 = -g
+
+    PrfFlags	 = -O3 -march=core2 -msse3 -ffast-math -funsafe-math-optimizations -funroll-loops -ftree-vectorize -pg
+    LDPrfFlags	 = -pg
+
+    ObjDir	 = $(SYSTEM).$(MACH)-$(CC)$(TCLLIB)
+
+    SSEFlags	 = $(OptFlags)   -DSSE_OPT
+    LDSSEFlags	 = $(LDOptFlags) -DSSE_OPT
+endif
+
+# ----------------------------------------
+# Linux Options
+# ----------------------------------------
+ifeq ($(SYSTEM), Linux)
+    ifeq ($(origin CC), default)
+	CC	 = gcc
+    endif
+
+    LOCALCFLAGS	 = -D__USE_GNU -DLINUX -DUSE_COMPAT_CONST -DBLAS -DSSE_OPT -DSPHERE -DPORTAUDIO -DFFMPEG -DCMUJRTK
+# -DLIBSNDFILE
+# -DMTHREAD
+    ifeq ($(MACH), x86_64)
+	LDOpts	 = -L/usr/X11R6/lib64
+	LDOpts  += -L$(HOME)/tools/Sphere/lib -L$(HOME)/tools/portaudio/lib/.libs
+	LDOpts  += -L$(HOME)/tools/libsndfile-1.0.20/src/.libs -L$(HOME)/tools/ffmpeg-0.6.1/libs
+	LDOpts  += -L$(HOME)/tools/ATLAS/islr0s14/lib
+	LDOpts  += -L$(HOME)/tools/CLAPACK-3.2.1 -L$(HOME)/janus/src/AEGIS/lib
+#	LDOpts  += -L/afs/cs.cmu.edu/user/wrhsiao/CLAPACK/lib/Linux_XEONSSE3_4 -L$(HOME)/janus/src/AEGIS/lib
+# 	LDOpts  += -L$(HOME)/janus/src/cplusplus -L$(HOME)/janus/src/LSA -L/data/ASR2/Mandarin/Wilson.Wiki/Software/srilm/lib/x86_64
+    else
+	LDOpts	 = -L/usr/X11R6/lib -L$(HOME)/tools/Sphere/lib
+    endif
+
+    LOCALLIBS	+= -lreadline
+    LOCALLIBS   += -lsp -lsputil -lportaudio -lavformat -lavcodec -lavutil -lz -lbz2
+# -lsndfile
+    LOCALLIBS   += -lcblas -latlas -lgomp
+    LOCALLIBS   += -laegis -llapack_LINUX -llapack -lf2c -lcblas -latlas -lstdc++ -lm -lpthread
+# -laegis -llapack_Linux_XEONSSE3_4 -lcblaswr -lF77 -llapack
+# -lpthread
+# -lsp -l(sp)util -lsndfile
+    LOCALINCS	 = -I$(HOME)/tools/Sphere/include -I$(HOME)/tools/ffmpeg-0.6.1
+    LOCALINCS   += -I$(HOME)/tools/portaudio/include -I$(HOME)/tools/libsndfile-1.0.20/src
+    LOCALINCS   += -I$(HOME)/tools/ATLAS/include
+    LOCALINCS   += -I$(HOME)/janus/src/AEGIS
+#    LOCALINCS   += -I$(HOME)/janus/src/LSA -I$(HOME)/janus/src/cplusplus
+
+# -------------------- options for GCC
+    ifeq ($(CC), gcc)
+	DEPARG		 = -MM
+	LOCALCFLAGS	+= -Wall -Wstrict-aliasing=0
+
+	ifeq ($(MACH), x86_64)
+	    OptFlags     = -O3 -ffast-math -fomit-frame-pointer -fno-strict-aliasing -march=x86-64 -msse3 -funroll-loops -ftree-vectorize -fopenmp
+# -ftree-vectorizer-verbose=5
+	    LDOptFlags   =
+	else
+	    OptFlags     = -O3 -ffast-math -fomit-frame-pointer -fno-strict-aliasing
+	    LDOptFlags	 =
+	endif
+
+	DbgFlags	 = -ggdb
+	LDDbgFlags	 = -ggdb
+
+	PrfFlags	 = -pg
+	LDPrfFlags	 = -pg
+    endif
+
+# -------------------- options for ICC
+    ifeq ($(CC), icc)
+	DEPARG		 = -M
+
+        ifeq ($(MACH), x86_64)
+	       OptFlags	 = -O3 -axWT -ip -restrict -parallel -wd1572
+	     LDOptFlags	 = -O3 -axWT -ip -restrict -parallel
+	        DbgFlags = $(OptFlags)   -xW -g
+	      LDDbgFlags = $(LDOptFlags) -xW -g
+	else
+	       OptFlags	 = -O3 -axWNT -ip -restrict -parallel -wd1572
+	     LDOptFlags	 = -O3 -axWNT -ip -restrict -parallel
+	        DbgFlags = $(OptFlags)   -xN -g
+	      LDDbgFlags = $(LDOptFlags) -xN -g
+	endif
+
+	PrfFlags	 = $(OptFlags)   -qp
+	LDPrfFlags	 = $(LDOptFlags) -qp
+
+	LDOpts		+= -i-static
+    endif
+
+    ObjDir	= $(SYSTEM).$(MACH)-$(CC)$(TCLLIB)
+
+    SSEFlags	= $(OptFlags)   -DSSE_OPT
+    LDSSEFlags	= $(LDOptFlags) -DSSE_OPT
+endif
+
+# Add the revision number of the checked out version to the source code
+ifdef JANUS_SVN_VERSION
+    LOCALCFLAGS += -D'JANUS_SVN_REVISION=\"$(JANUS_SVN_VERSION)\"'
+else
+    $(warning No svn revision number available!)
+    LOCALCFLAGS += -D'JANUS_SVN_REVISION=\"n/a\"'
+endif
+
+ifndef ObjDir
+    ERROR	= $(error System $(SYSTEM) not supported by that Makefile.)
+else
+    ERROR	=
+endif
+
+# ======================================================================
+# Source files definition
+# ======================================================================
+
+# to define your own set of *.c files you can use the following construct
+# Set = $(foreach file,elem1.c elem2.c elem3.c,set/$(file))
+
+Base     = $(wildcard base/*.c)
+Features = $(wildcard features/*.c)
+Hmm      = $(wildcard hmm/*.c)
+Ibis     = $(wildcard ibis/*.c)
+Itf      = $(foreach  file,error.c itf.c itfMain.c,itf/$(file))
+ItfNTCL  = $(foreach  file,itfWrapper.c,itf/$(file))
+Keyspot  = $(wildcard keyspot/*.c)
+Main     = $(wildcard main/*.c)
+Micv     = $(wildcard micv/*.c)
+Models   = $(wildcard models/*.c)
+Net      = $(foreach  file,ffnet.c,net/$(file))
+PF       = $(wildcard partikelfilter/*.c)
+Search   = $(wildcard search/*.c)
+Stc      = $(wildcard stc/*.c)
+
+CORE     = $(Base) $(Features) $(Hmm) $(Ibis) $(Main) $(Models) $(PF) $(Stc)
+SRCDIRS  = $(subst /,.srcdir,$(sort $(dir $(SOURCES))))
+OBJECTS  = $(foreach file,$(notdir $(SOURCES:%.c=%.o)),$(OBJDIR)/$(file))
+TARGET   = janus
+
+# ======================================================================
+# targets
+#
+# A target specifier consists of two parts:
+#    - the janus type, you want to build
+#         - janus, for janus including the old janus search and ibis
+#         - ibis,  for janus including only the new ibis decoder
+#    - the compile type, you want to build
+#         - opt, for optimized code
+#         - sse, for optimized code using the SIMD Streaming Extensions
+#         - dbg, for code with debugging information
+#         - prf, for code with profiling information
+# They are divided by a single _
+#
+# The janus type itself can have some special identifiers for the
+# global types:
+#    - NX, for a version without X support
+#    - NTCL, for a version without X and TCL support
+# They are appended directly to the janus type, and not all of these
+# combinations are currently supported.
+#
+# Example:
+# You want to build an optimized janus without the old search (=ibis)
+# and without TCL. Therefore you have to do a
+#         make ibisNTCL_opt
+#
+# Shortcuts:
+# For several targets there exists a shortcut. You will find them in
+# the list below. If you want you can also specifiy your own targets.
+#
+# Cleaning:
+# A clean target specifier consists of fixed part (clean) together
+# with a special identifier (NX/NTCL) and the compile type, e.g.
+# clean_opt for cleaning an optimizied version or cleanNX_opt.
+#
+# Target Directories:
+# To keep conflicts between different compilations on different
+# machines as low as possible, a target directory consists of
+# the following parts:
+#  - the system             (SunOS, Linux, ...)
+#  - the machine type       (sun4u, i686, x86_64, ...)
+#  - the compiler used      (cc, gcc, icc, ...)
+#  - the Tcl/Tk library     (ltcl8.3, ltcl8.4, ...)
+#  - the compile type       (dbg, prf and nothing for opt)
+#  - the special identifier (NX, NTCL or nothing for default)
+# The target 'ibis' and 'janus' are still going into the same
+# directory!
+# ======================================================================
+
+# ----------------------------------------
+# short cuts
+# ----------------------------------------
+
+all:        ibis_opt
+janus:      janus_opt
+ibis:       ibis_opt
+ibisNX:     ibisNX_opt
+ibisNTCL:   ibisNTCL_opt
+clean:      clean_opt
+clean-all:  clean_opt clean_dbg clean_prf
+clean-ibis: clean-ibis_opt
+
+# ----------------------------------------
+# entry rules for opt, dbg and prf versions
+# ----------------------------------------
+%_opt: CFLAGS  ?= $(OptFlags)
+%_opt: LDFLAGS ?= $(LDOptFlags)
+%_opt: OBJDR   := $(ObjDir)
+%_opt: check _%
+	@echo "optimized version"
+
+%_sse: CFLAGS  ?= $(SSEFlags)
+%_sse: LDFLAGS ?= $(LDSSEFlags)
+%_sse: OBJDR   := $(ObjDir).sse
+%_sse: check _%
+	@echo "sse optimized version"
+
+%_dbg: CFLAGS  ?= $(DbgFlags)
+%_dbg: LDFLAGS ?= $(LDDbgFlags)
+%_dbg: OBJDR   := $(ObjDir).dbg
+%_dbg: check _%
+	@echo "debug version"
+
+%_prf: CFLAGS  ?= $(PrfFlags)
+%_prf: LDFLAGS ?= $(LDPrfFlags)
+%_prf: OBJDR   := $(ObjDir).prf
+%_prf: check _%
+	@echo "profiling version"
+
+# ----------------------------------------
+# JANUS
+# ----------------------------------------
+_janus: SOURCES     := $(CORE) $(Itf) $(Net) $(Search) $(Micv) $(Keyspot)
+_janus: ALL_CFLAGS   = $(INCS) $(LOCALINCS) $(Incs) $(LOCALCFLAGS) $(CFlags) $(CFLAGS)
+_janus: ALL_LDFLAGS  = $(LDOpts) $(LDFLAGS) $(LDFlags)
+_janus: ALL_LIBS     = $(TKLIB) $(TCLLIB) $(X11LIB) $(LOCALLIBS) $(Libs)
+_janus: OBJDIR       = $(OBJDR)
+_janus: makedir _janusMain
+	@echo "made janus"
+
+# ----------------------------------------
+# JANUS NoX
+# ----------------------------------------
+_janusNX: SOURCES     := $(CORE) $(Itf) $(Net) $(Search) $(Micv) $(Keyspot)
+_janusNX: ALL_CFLAGS   = $(INCS) $(LOCALINCS) $(Incs) $(LOCALCFLAGS) $(CFlags) $(CFLAGS) -DDISABLE_TK
+_janusNX: ALL_LDFLAGS  = $(LDOpts) $(LDFLAGS) $(LDFlags)
+_janusNX: ALL_LIBS     = $(TCLLIB) $(LOCALLIBS) $(Libs)
+_janusNX: OBJDIR       = $(OBJDR)-NX
+_janusNX: makedir _janusMain
+	@echo "made janusNX"
+
+# ----------------------------------------
+# IBIS
+# ----------------------------------------
+_ibis: SOURCES     := $(CORE) $(Itf)
+_ibis: ALL_CFLAGS   = $(INCS) $(LOCALINCS) $(Incs) $(LOCALCFLAGS) $(CFlags) $(CFLAGS) -DIBIS
+_ibis: ALL_LDFLAGS  = $(LDOpts) $(LDFLAGS) $(LDFlags)
+_ibis: ALL_LIBS     = $(TKLIB) $(TCLLIB) $(X11LIB) $(LOCALLIBS) $(Libs)
+_ibis: OBJDIR       = $(OBJDR)
+_ibis: makedir _janusMain
+	@echo "made ibis"
+
+# ----------------------------------------
+# IBIS NoX
+# ----------------------------------------
+_ibisNX: SOURCES     := $(CORE) $(Itf)
+_ibisNX: ALL_CFLAGS   = $(INCS) $(LOCALINCS) $(Incs) $(LOCALCFLAGS) $(CFlags) $(CFLAGS) -DIBIS -DDISABLE_TK
+_ibisNX: ALL_LDFLAGS  = $(LDOpts) $(LDFLAGS) $(LDFlags)
+_ibisNX: ALL_LIBS     = $(TCLLIB) $(LOCALLIBS) $(Libs)
+_ibisNX: OBJDIR       = $(OBJDR)-NX
+_ibisNX: makedir _janusMain
+	@echo "made ibisNX"
+
+# ----------------------------------------
+# IBIS NoTCL
+# ----------------------------------------
+_ibisNTCL: SOURCES     := $(CORE) $(ItfNTCL)
+_ibisNTCL: ALL_CFLAGS   = $(INCS) $(LOCALINCS) $(Incs) $(LOCALCFLAGS) $(CFlags) $(CFLAGS) -DIBIS -DDISABLE_TCLTK
+_ibisNTCL: ALL_LDFLAGS  = $(LDOpts) $(LDFLAGS) $(LDFlags)
+_ibisNTCL: ALL_LIBS     = $(LOCALLIBS) $(Libs)
+_ibisNTCL: OBJDIR       = $(OBJDR)-NTCL
+_ibisNTCL: makedir _janusMain
+	@echo "made ibisTCL"
+
+# ----------------------------------------
+# cleaning
+# ----------------------------------------
+
+_clean-ibis: OBJDIR    = $(OBJDR)
+_clean-ibis: CLEANOBJS = $(foreach file,$(notdir $(Ibis:%.c=%.o)),$(OBJDIR)/$(file))
+_clean-ibis: _cleanP
+
+# partial cleaning of files
+_cleanP:
+	-rm -f $(CLEANOBJS)
+	-rm -f $(CLEANOBJS:%.o=%.d)
+	-rm -f $(CLEANOBJS:%.o=%.il)
+
+# cleaning object directories
+_cleanNX:   OBJDIR  = $(OBJDR)-NX
+_cleanNX:   _rmFiles
+
+_cleanNTCL: OBJDIR  = $(OBJDR)-NTCL
+_cleanNTCL: _rmFiles
+
+_clean:     OBJDIR  = $(OBJDR)
+_clean:     _rmFiles
+
+# remove files
+_rmFiles:
+	-rm -f $(OBJDIR)/*
+
+# ======================================================================
+# other internal rules
+# ======================================================================
+
+# ----- OLD ---------
+# rule for making the janus executable
+#_janusMain: _janusLib
+#	@[ -f $(OUTPUT) ] && mv -f $(OUTPUT) $(OUTPUT).old || true
+#	$(CC) $(ALL_LDFLAGS) $(OBJDIR)/janusMain.o $(JANUSLIB) $(ALL_LIBS) -o $(OUTPUT)
+#
+# rule for making the janus library
+#_janusLib: _rmInit
+#	$(MAKE) $(_MAKEFLAGS) ALL_CFLAGS="$(ALL_CFLAGS)" OBJDIR="$(OBJDIR)" $(SRCDIRS)
+#	@[ -f $(OUTPUT) ] && mv -f $(JANUSLIB) $(JANUSLIB).old || true
+#	ar r $(JANUSLIB) $(filter-out %janusMain.o, $(OBJECTS))
+#	ranlib $(JANUSLIB)
+# ----- END OLD -----
+
+# rule for making the janus executable
+_janusMain: _janusLib
+	@[ -f $(OUTPUT) ] && mv -f $(OUTPUT) $(OUTPUT).old || true
+	$(CC) $(ALL_LDFLAGS) $(OBJECTS) $(ALL_LIBS) -o $(OUTPUT)
+
+# rule for making the janus library
+_janusLib: _rmInit
+	$(MAKE) $(_MAKEFLAGS) ALL_CFLAGS="$(ALL_CFLAGS)" OBJDIR="$(OBJDIR)" $(SRCDIRS)
+
+_rmInit:
+	-rm -f $(OBJDIR)/janusInit.o
+
+# this rule is called when explicitly remaking this make file in _janusLib
+%.srcdir:
+	@cd $*; $(MAKE) -f ../Makefile.sd CC="$(CC)" SRCDIR="$*" $(TARGET)
+
+# rule for making directories
+makedir:
+	[ -d $(OBJDIR) ] || mkdir -p $(OBJDIR)
+
+deldir:
+	[ -d $(OBJDIR) ] && rm -Rf $(OBJDIR)
+
+check: ; $(ERROR)

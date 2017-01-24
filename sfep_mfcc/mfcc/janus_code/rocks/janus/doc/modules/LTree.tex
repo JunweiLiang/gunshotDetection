@@ -1,0 +1,85 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{LTree}}
+
+This section describes the '\Jgloss{LTree}': \textsl{Language-Model Look-Ahead object (Lexical tree)}
+
+\begin{description}
+
+  \item[Creation:] \texttt{LTree  $<$name$>$ $<$SearchTree$>$ \Jsb{-map map} \Jsb{-depth depth} \Jsb{-reduced reduced}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the LTree  \\
+ \texttt{\textbf{SearchTree}} &  Search tree (\Jref{module}{STree}) \\
+ \texttt{\textbf{map}} &          Vocabulary mapper to use for LookAhead only (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{depth}} &        Maximum depth of LookAhead tree  \\
+ \texttt{\textbf{reduced}} &      Set 'reduce' flag for LookAhead nodes  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{ltree configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{LTree}{-cacheN} & = 100 \\
+      \Jlabel{LTree}{-cachehits} & = 0 \\
+      \Jlabel{LTree}{-depth} & = 5 \\
+      \Jlabel{LTree}{-expert} & = 0 \\
+      \Jlabel{LTree}{-lctMax} & = 100000 \\
+      \Jlabel{LTree}{-lm(leafs)} & = lmISLci \\
+      \Jlabel{LTree}{-lm(nodes)} & = lmISLci \\
+      \Jlabel{LTree}{-map(leafs)} & = svmapISLci \\
+      \Jlabel{LTree}{-map(nodes)} & = svmapISLci \\
+      \Jlabel{LTree}{-mode} & = array \\
+      \Jlabel{LTree}{-name} & = ltreeISLci \\
+      \Jlabel{LTree}{-ncacheN} & = 10 \\
+      \Jlabel{LTree}{-nodecachehits} & = 0 \\
+      \Jlabel{LTree}{-pcacheN} & = 0 \\
+      \Jlabel{LTree}{-queries} & = 0 \\
+      \Jlabel{LTree}{-reduced} & = 0 \\
+      \Jlabel{LTree}{-svxHash} & = 1 \\
+      \Jlabel{LTree}{-svxMax} & = 100000 \\
+      \Jlabel{LTree}{-useN} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{ltree}
+
+    \begin{description}
+      \Jitem{\Jlabel{LTree}{constrain}} \texttt{ $<$GLat$>$ \Jsb{-mode mode} \Jsb{-type type} \Jsb{-padX padx}} \
+
+        create GLat constraint for LTree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{GLat}} &  GLat (or NULL to deactivate constraint)  \\
+ \texttt{\textbf{mode}} &   flat|weak|exact|time  \\
+ \texttt{\textbf{type}} &   SVX|LVX  \\
+ \texttt{\textbf{padx}} &   padding for time based constraints  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LTree}{fillCtx}} \texttt{ $<$w1$>$ $<$w2$>$} \
+
+        fills a LTree object with scores for a specific lct
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{w1}} & w1 context  \\
+ \texttt{\textbf{w2}} & w2 context  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LTree}{puts}} \texttt{} \
+
+        displays the contents of a LTree
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cachehits}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{latlmM}} & (\Jref{module}{BMem}) \\
+      \texttt{\textbf{latlmN}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{nodecachehits}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{queries}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,162 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFG}}
+
+This section describes the '\Jgloss{CFG}': \textsl{A 'CFG' object is a context free grammar.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{CFG  $<$name$>$ \Jsb{-cfgSet cfgset} \Jsb{-lks lks} \Jsb{-tag tag}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{cfgset}} &  context free grammar set (\Jref{module}{CFGSet}) \\
+ \texttt{\textbf{lks}} &     linguistic knowledge source (\Jref{module}{LingKS}) \\
+ \texttt{\textbf{tag}} &     tag of grammar  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfg configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFG}{-allPublic} & = 0 \\
+      \Jlabel{CFG}{-arcN} & = 5 \\
+      \Jlabel{CFG}{-buildMode} & = fixed \\
+      \Jlabel{CFG}{-built} & = 1 \\
+      \Jlabel{CFG}{-name} & = cfg \\
+      \Jlabel{CFG}{-nodeN} & = 8 \\
+      \Jlabel{CFG}{-ruleN} & = 3 \\
+      \Jlabel{CFG}{-startover} & = -1.000000 \\
+      \Jlabel{CFG}{-status} & = Active \\
+      \Jlabel{CFG}{-tag} & = cfg \\
+      \Jlabel{CFG}{-weight} & = 0.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfg}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFG}{addPath}} \texttt{ $<$rule$>$ $<$line$>$ \Jsb{-format format}} \
+
+        adds a path to a CFG
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rule}} &   rule to add path  \\
+ \texttt{\textbf{line}} &   path to add  \\
+ \texttt{\textbf{format}} &  grammar format  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{build}} \texttt{ \Jsb{-mode mode} \Jsb{-overwrite overwrite} \Jsb{-verbose verbose}} \
+
+        builds a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mode}} &       score definition mode (null|fixed|equal|default=use stored build mode)  \\
+ \texttt{\textbf{overwrite}} &  overwrite predefined scores from grammar file  \\
+ \texttt{\textbf{verbose}} &    verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{clear}} \texttt{ \Jsb{-free free}} \
+
+        clears a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{free}} &  free items instead of clearing  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{compress}} \texttt{ \Jsb{-level level} \Jsb{-unfold unfold} \Jsb{-matchFile matchfile} \Jsb{-verbose verbose}} \
+
+        compress a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{level}} &      compress level  \\
+ \texttt{\textbf{unfold}} &     unfold grammar in new top level rule  \\
+ \texttt{\textbf{matchfile}} &  file with matching terminals  \\
+ \texttt{\textbf{verbose}} &    verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{fsm}} \texttt{ $<$rule$>$ $<$fsm$>$} \
+
+        write a FSM for a given rule (cfgSetWriteFSM)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rule}} &       rule to print as FSM  \\
+ \texttt{\textbf{fsm}} &        fsm file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{generate}} \texttt{ $<$seqN$>$ \Jsb{-mode mode} \Jsb{-recurse recurse} \Jsb{-file file}} \
+
+        generate terminal sequences (cfgGenerate)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{seqN}} &       number of terminal sequences  \\
+ \texttt{\textbf{mode}} &        generation mode (random|fixed)  \\
+ \texttt{\textbf{recurse}} &     follow recursions  \\
+ \texttt{\textbf{file}} &        file name to write output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{load}} \texttt{ $<$fileName$>$ \Jsb{-format format} \Jsb{-verbose verbose}} \
+
+        loads a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+ \texttt{\textbf{format}} &     grammar format (soup|jsgf|fsm|pfsg|dump)  \\
+ \texttt{\textbf{verbose}} &    verbosity level  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{parse}} \texttt{ $<$text$>$ \Jsb{-verbose verbose}} \
+
+        parse a sentence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{text}} &    text to path  \\
+ \texttt{\textbf{verbose}} &  verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{parseTree}} \texttt{ $<$text$>$ \Jsb{-svmap svmap} \Jsb{-format format} \Jsb{-auxNT auxnt}} \
+
+        returns the parse tree of a given text string (cfgGetParseTree)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{text}} &       text string to parse  \\
+ \texttt{\textbf{svmap}} &       use SVMap to map SVX$<$-$>$LVX (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{format}} &      output format (soup|jsgf)  \\
+ \texttt{\textbf{auxnt}} &       print also auxilliary NTs  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of CFG
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (short, long)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{reduce}} \texttt{ $<$matchFile$>$ \Jsb{-verbose verbose}} \
+
+        reduces a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matchFile}} &  file with matching terminals  \\
+ \texttt{\textbf{verbose}} &     verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFG}{save}} \texttt{ $<$fileName$>$ \Jsb{-pt pt} \Jsb{-format format}} \
+
+        saves a context free grammar
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+ \texttt{\textbf{pt}} &         dump also parse tree and rule stack  \\
+ \texttt{\textbf{format}} &     grammar format  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{arc(0..4)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{bos}} & (\Jref{module}{CFGNode}) \\
+      \texttt{\textbf{lex}} & (\Jref{module}{CFGLexicon}) \\
+      \texttt{\textbf{node(0..7)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{pt}} & (\Jref{module}{CFGParseTree}) \\
+      \texttt{\textbf{root}} & (\Jref{module}{CFGRule}) \\
+      \texttt{\textbf{rs}} & (\Jref{module}{CFGRuleStack}) \\
+      \texttt{\textbf{rule(0..2)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{set}} & (\Jref{module}{CFGSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

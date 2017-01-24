@@ -1,0 +1,112 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{HMM}}
+
+This section describes the '\Jgloss{HMM}': \textsl{An 'HMM' object contains states, transitions and acoustic references}
+
+\begin{description}
+
+  \item[Creation:] \texttt{HMM  $<$name$>$ $<$dictionary$>$ $<$amodelset$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the HMM  \\
+ \texttt{\textbf{dictionary}} &  name of the Dictionary object (\Jref{module}{Dictionary}) \\
+ \texttt{\textbf{amodelset}} &   name of the AmodelSet object (\Jref{module}{AModelSet}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{hmm configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{HMM}{-full} & = 1 \\
+      \Jlabel{HMM}{-logPen} & = 1 \\
+      \Jlabel{HMM}{-rcmSdp} & = 0 \\
+      \Jlabel{HMM}{-xwmodels} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{hmm}
+
+    \begin{description}
+      \Jitem{\Jlabel{HMM}{convert}} \texttt{ $<$GLat$>$} \
+
+        convert GLat into HMM object (hmmConvertGLat)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{GLat}} &        (\Jref{module}{GLat}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{HMM}{lattice}} \texttt{ $<$lattice$>$} \
+
+        create full detail HMM from a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lattice}} &  Verbmobil style lattice  \\
+      \end{tabular}
+      \Jitem{\Jlabel{HMM}{make}} \texttt{ $<$words$>$ \Jsb{-trans trans} \Jsb{-init init} \Jsb{-optWord optword} \Jsb{-variants variants}} \
+
+        create full detail HMM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{words}} &    list of word nodes \\
+ \texttt{\textbf{trans}} &     transition model  \\
+ \texttt{\textbf{init}} &      initial states \\
+ \texttt{\textbf{optword}} &   optional word \\
+ \texttt{\textbf{variants}} &  pronunciation variants  \\
+      \end{tabular}
+      \Jitem{\Jlabel{HMM}{makeUtterance}} \texttt{ $<$text$>$ \Jsb{-optWord optword} \Jsb{-variants variants}} \
+
+        create utterance HMM (hmmMakeUtterance)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{text}} &       transcription  \\
+ \texttt{\textbf{optword}} &     optional word  \\
+ \texttt{\textbf{variants}} &    variants 0/1  \\
+      \end{tabular}
+      \Jitem{\Jlabel{HMM}{modMakeUtterance}} \texttt{ $<$speaker$>$ $<$uttID$>$ \Jsb{-text text} \Jsb{-modalitySet modalityset} \Jsb{-distribTree distribtree} \Jsb{-amodelSet amodelset} \Jsb{-senoneSet senoneset} \Jsb{-textTag texttag} \Jsb{-frameN framen} \Jsb{-optWord optword} \Jsb{-variants variants}} \
+
+        create utterance HMM with modalities (hmmModMakeUtterance)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{speaker}} &    speaker   ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+ \texttt{\textbf{text}} &        text to align  \\
+ \texttt{\textbf{modalityset}} & name of ModalitySet  \\
+ \texttt{\textbf{distribtree}} & name of DistribTree  \\
+ \texttt{\textbf{amodelset}} &   name of AmodelSet  \\
+ \texttt{\textbf{senoneset}} &   name of SenoneSet  \\
+ \texttt{\textbf{texttag}} &     text tag in uttInfo  \\
+ \texttt{\textbf{framen}} &      number of frames  \\
+ \texttt{\textbf{optword}} &     optional word  \\
+ \texttt{\textbf{variants}} &    variants 0/1  \\
+      \end{tabular}
+      \Jitem{\Jlabel{HMM}{puts}} \texttt{} \
+
+        displays the contents of an HMM
+
+      \Jitem{\Jlabel{HMM}{resetModTags}} \texttt{} \
+
+        reset modality Tags for hmm
+
+      \Jitem{\Jlabel{HMM}{setModTags}} \texttt{ $<$path$>$ $<$modalitySet$>$} \
+
+        set modality Tags for hmm
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &         name of reference path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{modalitySet}} &  set of modalities (\Jref{module}{ModalitySet}) \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{dict}} & (\Jref{module}{Dictionary}) \\
+      \texttt{\textbf{phoneGraph}} & (\Jref{module}{PhoneGraph}) \\
+      \texttt{\textbf{stateGraph}} & (\Jref{module}{StateGraph}) \\
+      \texttt{\textbf{wordGraph}} & (\Jref{module}{WordGraph}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

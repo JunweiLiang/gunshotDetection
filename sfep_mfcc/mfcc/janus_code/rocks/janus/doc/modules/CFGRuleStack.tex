@@ -1,0 +1,43 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFGRuleStack}}
+
+This section describes the '\Jgloss{CFGRuleStack}': \textsl{A 'CFGRuleStack' object is a stack of CFG rules.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CFGRuleStack} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{CFG}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfgrulestack configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFGRuleStack}{-itemN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfgrulestack}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFGRuleStack}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of CFG rule stack
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (SHORT, LONG)  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{root}} & (\Jref{module}{CFGRSItem}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{CFGRSItem}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

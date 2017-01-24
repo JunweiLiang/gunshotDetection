@@ -1,0 +1,257 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CodebookSet}}
+
+This section describes the '\Jgloss{CodebookSet}': \textsl{Set of codebooks}
+
+\begin{description}
+
+  \item[Creation:] \texttt{CodebookSet  $<$name$>$ $<$featureset$>$ \Jsb{-bmem bmem}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the codebook set  \\
+ \texttt{\textbf{featureset}} &  name of the feature set (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{bmem}} &         bmem option  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{codebookset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CodebookSet}{-blkSize} & = 1000 \\
+      \Jlabel{CodebookSet}{-commentChar} & = ; \\
+      \Jlabel{CodebookSet}{-defaultBbiOn} & = 1 \\
+      \Jlabel{CodebookSet}{-defaultExpT} & = 0 \\
+      \Jlabel{CodebookSet}{-defaultRdimN} & = 0 \\
+      \Jlabel{CodebookSet}{-defaultTopN} & = 0 \\
+      \Jlabel{CodebookSet}{-featureSet} & = featureSetISLci \\
+      \Jlabel{CodebookSet}{-itemN} & = 1 \\
+      \Jlabel{CodebookSet}{-name} & = codebookSetISLci \\
+      \Jlabel{CodebookSet}{-offset} & = 0.000000 \\
+      \Jlabel{CodebookSet}{-rewriteSet} & = (null) \\
+      \Jlabel{CodebookSet}{-scaleCV} & = 1.000000 \\
+      \Jlabel{CodebookSet}{-scaleRV} & = 1.000000 \\
+      \Jlabel{CodebookSet}{-subX} & = -1 \\
+      \Jlabel{CodebookSet}{-swc-hits} & = 0 \\
+      \Jlabel{CodebookSet}{-swc-queries} & = 0 \\
+      \Jlabel{CodebookSet}{-swc-width} & = 8 \\
+      \Jlabel{CodebookSet}{-useN} & = 3 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{codebookset}
+
+    \begin{description}
+      \Jitem{\Jlabel{CodebookSet}{add}} \texttt{ $<$name$>$ $<$feat$>$ $<$refN$>$ $<$dimN$>$ $<$type$>$} \
+
+        add a new codebook to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of the codebook  \\
+ \texttt{\textbf{feat}} &  name of the feature space  \\
+ \texttt{\textbf{refN}} &  number of reference vectors  \\
+ \texttt{\textbf{dimN}} &  dimension of feature space  \\
+ \texttt{\textbf{type}} &  type of covariance matrix {NO,RADIAL,DIAGONAL,FULL} \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{addBBI}} \texttt{ $<$codebook$>$ $<$bbiTree$>$} \
+
+        add new (or link to existing) BBI tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  name of codebook  \\
+ \texttt{\textbf{bbiTree}} &   name of BBI tree  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{clearAccus}} \texttt{ \Jsb{-subX subx}} \
+
+        clear accumulators for all codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subx}} &  sub-accumulator, -1 to clear all  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{compress}} \texttt{ \Jsb{-underflowRV underflowrv} \Jsb{-overflowRV overflowrv} \Jsb{-overflowCV overflowcv} \Jsb{-classRV classrv} \Jsb{-classCV classcv} \Jsb{-compressCV compresscv} \Jsb{-resortFeat resortfeat} \Jsb{-deallocCB dealloccb} \Jsb{-trainMode trainmode}} \
+
+        compress means/covars to 8bit values
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{underflowrv}} &  underflow threshold  \\
+ \texttt{\textbf{overflowrv}} &   overflow  threshold  \\
+ \texttt{\textbf{overflowcv}} &   overflow  threshold  \\
+ \texttt{\textbf{classrv}} &      number of quantization classes (max 255)  \\
+ \texttt{\textbf{classcv}} &      number of quantization classes (max 255)  \\
+ \texttt{\textbf{compresscv}} &   covariance compression mode  1,2  \\
+ \texttt{\textbf{resortfeat}} &   resort feature dimensions  \\
+ \texttt{\textbf{dealloccb}} &    deallocate orginal codebooks  \\
+ \texttt{\textbf{trainmode}} &    store compressed values in orginal codebooks  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{createAccus}} \texttt{ \Jsb{-subN subn}} \
+
+        creates accumulators for all codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subn}} &  number of subaccumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{createMaps}} \texttt{ $<$n$>$} \
+
+        creates maps for all codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &   size of maps  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{delete}} \texttt{ $<$item$>$} \
+
+        remove codebook from the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{freeAccus}} \texttt{} \
+
+        removes accumulators of all codebooks
+
+      \Jitem{\Jlabel{CodebookSet}{freeBBI}} \texttt{} \
+
+        free all BBI trees
+
+      \Jitem{\Jlabel{CodebookSet}{freeMaps}} \texttt{} \
+
+        removes maps of all codebooks
+
+      \Jitem{\Jlabel{CodebookSet}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{load}} \texttt{ $<$filename$>$} \
+
+        load codebook weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{loadAccus}} \texttt{ $<$filename$>$ \Jsb{-factor factor}} \
+
+        loads codebook accumulators from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+ \texttt{\textbf{factor}} &     multiplicator before adding  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{loadBBI}} \texttt{ $<$filename$>$} \
+
+        load BBI tree parameters
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of param file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{makeBBI}} \texttt{ \Jsb{-depth depth} \Jsb{-gamma gamma} \Jsb{-verbose verbose}} \
+
+        make new BBI trees
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{depth}} &    depth of trees  \\
+ \texttt{\textbf{gamma}} &    Gaussian box threshold  \\
+ \texttt{\textbf{verbose}} &  verbose level  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{map}} \texttt{} \
+
+        map all codebooks to new codebooks
+
+      \Jitem{\Jlabel{CodebookSet}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{pruneBBI}} \texttt{ $<$levelN$>$} \
+
+        prune BBI trees
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{levelN}} &  number of levels  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{read}} \texttt{ $<$filename$>$} \
+
+        read codebook definitions from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{readBBI}} \texttt{ $<$filename$>$} \
+
+        read BBI description file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of desc file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{save}} \texttt{ $<$filename$>$ \Jsb{-mode mode}} \
+
+        save codebook weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write to  \\
+ \texttt{\textbf{mode}} &       compression mode (-1,1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{saveAccus}} \texttt{ $<$filename$>$} \
+
+        saves codebook accumulators into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{saveBBI}} \texttt{ $<$filename$>$} \
+
+        save BBI tree parameters
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of param file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{set}} \texttt{ \Jsb{-topN topn} \Jsb{-rdimN rdimn} \Jsb{-bbiOn bbion} \Jsb{-expT expt}} \
+
+        set and propagate defaultTopN or defaultRdimN
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{topn}} &   set topN scoring  \\
+ \texttt{\textbf{rdimn}} &  reduce dimensionality  \\
+ \texttt{\textbf{bbion}} &  enable/disable BBI scoring  \\
+ \texttt{\textbf{expt}} &   threshold for evaluating exp()  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{split}} \texttt{ \Jsb{-beam beam} \Jsb{-max max}} \
+
+        split all codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{beam}} &  splitting beam  \\
+ \texttt{\textbf{max}} &   max. number of splits  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookSet}{update}} \texttt{} \
+
+        update all codebooks
+
+      \Jitem{\Jlabel{CodebookSet}{write}} \texttt{ $<$filename$>$} \
+
+        write codebook definitions to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write to  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{featureSet}} & (\Jref{module}{FeatureSet}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{swCache}} & (\Jref{module}{FMatrix}) \\
+      \texttt{\textbf{swIndex}} & (\Jref{module}{IMatrix}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Codebook}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

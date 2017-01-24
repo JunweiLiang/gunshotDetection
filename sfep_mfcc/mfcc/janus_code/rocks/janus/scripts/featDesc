@@ -1,0 +1,98 @@
+# ========================================================================
+#  JanusRTk     Janus Recognition Toolkit
+#               ----------------------------------------------------------
+#               Object: Feature Description
+#               ----------------------------------------------------------
+#
+#  Author    :  Hagen Soltau
+#  Module    :  featDesc
+#  Remarks   :  based on Hua's new frontend, 40 dimensions
+#
+#  $Log$
+#  Revision 1.2  2003/12/17 13:04:53  metze
+#  P013
+#
+#  Revision 1.1  2002/03/04 16:10:49  soltau
+#  Initial revision
+#
+# ========================================================================
+
+global meanPath
+global OLDSPK sas pms
+
+
+# ------------------------------------------------------------------------
+#  Load Mean Vectors
+# ------------------------------------------------------------------------
+
+if {![info exist OLDSPK] || $OLDSPK != $arg(spk) } {
+    
+    if {[llength [info command ${fes}Mean]]} { 
+	${fes}Mean  destroy
+	${fes}SMean destroy
+    }
+    
+    if {[file exist $meanPath/$arg(spk).mean]} {
+	FVector ${fes}Mean  13
+	FVector ${fes}SMean 13
+	writeLog stderr "$fes Loading $meanPath/$arg(spk).mean"
+	${fes}Mean  bload $meanPath/$arg(spk).mean
+	${fes}SMean bload $meanPath/$arg(spk).smean
+	set OLDSPK $arg(spk)
+
+    } else {
+	writeLog stderr "$fes Loading $meanPath/$arg(spk).mean FAILED"
+	return
+    }
+}
+
+
+# ------------------------------------------------------------------------
+#  Vocal Tract Length Normalization + MCEP
+# ------------------------------------------------------------------------
+
+$fes VTLN     WFFT      FFT  $arg(WARP) -mod lin -edge 0.8
+
+if {[llength [objects FBMatrix matrixMEL]] != 1} {
+    set melN 30
+    set points [$fes:FFT configure -coeffN]
+    set rate   [expr 1000 * [$fes:FFT configure -samplingRate]]
+    [FBMatrix matrixMEL] mel -N $melN -p $points -rate $rate
+}
+
+$fes   filterbank       MEL             WFFT           matrixMEL
+$fes   log              lMEL            MEL            1.0 1.0
+
+set cepN 13
+
+if {[llength [objects FMatrix matrixCOS]] != 1} {
+    set n [$fes:lMEL configure -coeffN]
+    [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+
+$fes   matmul           MCEP            lMEL            matrixCOS
+
+
+# ------------------------------------------------------------------------
+#  Mean Subtraction, Delta, Delta-Delta and LDA
+# ------------------------------------------------------------------------
+
+$fes meansub  FEAT    MCEP  -a 2 -mean ${fes}Mean -smean ${fes}SMean
+$fes adjacent FEAT+   FEAT  -delta 5
+
+if {[$fes index LDAMatrix] > -1} {
+    $fes matmul   LDA     FEAT+ $fes:LDAMatrix.data -cut 32
+}
+
+if {[info exists pms]} {
+    foreach p [$pms] {
+	$fes matmul OFS-$p LDA $pms:$p.item(0)
+	if {[info exists sas]} {
+	    $sas adapt $fes:OFS-$p.data $fes:OFS-$p.data 0
+	}
+    }
+} else {
+    if {[info exists sas]} {
+	$sas adapt $fes:LDA.data $fes:LDA.data 0
+    }
+}

@@ -1,0 +1,127 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SVector}}
+
+This section describes the '\Jgloss{SVector}': \textsl{Vector of short values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SVector  $<$name$>$ $<$vector$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{vector}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{svector}
+
+    \begin{description}
+      \Jitem{\Jlabel{SVector}{:=}} \texttt{ $<$svector$>$} \
+
+        assign vector (equiv. to 'copy')
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{svector}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{add}} \texttt{ $<$a$>$ $<$svectorA$>$ $<$b$>$ $<$svectorB$>$ \Jsb{-mode mode}} \
+
+        a * vectorA + b * vectorB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{a}} &           \\
+ \texttt{\textbf{svectorA}} &  \\
+ \texttt{\textbf{b}} &           \\
+ \texttt{\textbf{svectorB}} &  \\
+ \texttt{\textbf{mode}} &       mode 0, 1 or -1 for dimension(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{append}} \texttt{ $<$SVector$>$ $<$SVector$>$} \
+
+        appends two svector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{SVector}} &  SVector A \\
+ \texttt{\textbf{SVector}} &  SVector B \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{copy}} \texttt{ $<$svector$>$} \
+
+        copy vector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{svector}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{display}} \texttt{ $<$canvas$>$ \Jsb{-height height} \Jsb{-from from} \Jsb{-to to} \Jsb{-step step} \Jsb{-scale scale} \Jsb{-tag tag}} \
+
+        display vector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{canvas}} &  \\
+ \texttt{\textbf{height}} &    \\
+ \texttt{\textbf{from}} &      \\
+ \texttt{\textbf{to}} &        \\
+ \texttt{\textbf{step}} &      \\
+ \texttt{\textbf{scale}} &     \\
+ \texttt{\textbf{tag}} &       \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{lin}} \texttt{ $<$a$>$ $<$b$>$} \
+
+        a * vector + b
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{a}} &     \\
+ \texttt{\textbf{b}} &     \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{mean}} \texttt{} \
+
+        gives the mean value
+
+      \Jitem{\Jlabel{SVector}{minmax}} \texttt{} \
+
+        gives minimum and maximum
+
+      \Jitem{\Jlabel{SVector}{mul}} \texttt{ $<$svectorA$>$ $<$svectorB$>$ \Jsb{-a a} \Jsb{-div div} \Jsb{-mode mode}} \
+
+        vector multiplication
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{svectorA}} &  \\
+ \texttt{\textbf{svectorB}} &  \\
+ \texttt{\textbf{a}} &            \\
+ \texttt{\textbf{div}} &        division instead multiplication  \\
+ \texttt{\textbf{mode}} &       mode 0, 1 or -1 for dimension(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{power}} \texttt{} \
+
+        gives the power value
+
+      \Jitem{\Jlabel{SVector}{puts}} \texttt{ \Jsb{-index index}} \
+
+        print vector as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{resize}} \texttt{ $<$dimension$>$} \
+
+        resize vector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{dimension}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{set}} \texttt{ $<$index$>$ $<$value$>$} \
+
+        set single coefficient
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &    \\
+ \texttt{\textbf{value}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVector}{swap}} \texttt{} \
+
+        swap byte order of short vector values
+
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

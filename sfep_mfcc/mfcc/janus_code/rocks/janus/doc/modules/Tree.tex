@@ -1,0 +1,174 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Tree}}
+
+This section describes the '\Jgloss{Tree}': \textsl{A 'Tree' object is an allophone clustering tree.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Tree  $<$name$>$ $<$phones$>$ $<$phonesSet$>$ $<$tags$>$ $<$modelSet$>$ \Jsb{-padPhone padphone}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of the tree  \\
+ \texttt{\textbf{phones}} &     set of phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{phonesSet}} &  set of phone set (\Jref{module}{PhonesSet}) \\
+ \texttt{\textbf{tags}} &       set of tags (\Jref{module}{Tags}) \\
+ \texttt{\textbf{modelSet}} &   model set \\
+ \texttt{\textbf{padphone}} &    padding phone index  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{tree configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Tree}{-blkSize} & = 5000 \\
+      \Jlabel{Tree}{-commentChar} & = ; \\
+      \Jlabel{Tree}{-itemN} & = 0 \\
+      \Jlabel{Tree}{-name} & = cbsdt \\
+      \Jlabel{Tree}{-padPhone} & = -1 \\
+      \Jlabel{Tree}{-phones} & = PHONES \\
+      \Jlabel{Tree}{-phonesSet} & = phonesSetISLci \\
+      \Jlabel{Tree}{-ptreeAdd} & = 0 \\
+      \Jlabel{Tree}{-tags} & = tagsISLci \\
+      \Jlabel{Tree}{-useN} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{tree}
+
+    \begin{description}
+      \Jitem{\Jlabel{Tree}{add}} \texttt{ $<$nodeName$>$ $<$question$>$ $<$noNode$>$ $<$yesNode$>$ $<$undefNode$>$ $<$model$>$ \Jsb{-ptree ptree}} \
+
+        add a new node to the tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{nodeName}} &   name of the node  \\
+ \texttt{\textbf{question}} &   question string  \\
+ \texttt{\textbf{noNode}} &     NO    successor node  \\
+ \texttt{\textbf{yesNode}} &    YES   successor node  \\
+ \texttt{\textbf{undefNode}} &  UNDEF successor node  \\
+ \texttt{\textbf{model}} &      name of the model  \\
+ \texttt{\textbf{ptree}} &       name of the ptree \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{cluster}} \texttt{ $<$rootNode$>$ \Jsb{-questionSet questionset} \Jsb{-minCount mincount} \Jsb{-minScore minscore} \Jsb{-maxSplit maxsplit} \Jsb{-file file} \Jsb{-bottomUp bottomup} \Jsb{-lee lee} \Jsb{-verbose verbose}} \
+
+        split whole subtree of a given root node
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rootNode}} &    root node \\
+ \texttt{\textbf{questionset}} &  question set (\Jref{module}{QuestionSet}) \\
+ \texttt{\textbf{mincount}} &     minimum count (ptree)  \\
+ \texttt{\textbf{minscore}} &     minimum score  \\
+ \texttt{\textbf{maxsplit}} &     maximum number of splits  \\
+ \texttt{\textbf{file}} &         cluster log file  \\
+ \texttt{\textbf{bottomup}} &     cluster bottom up (agglomerative)  \\
+ \texttt{\textbf{lee}} &          Kai-Fu Lee's bottom up cluster extension  \\
+ \texttt{\textbf{verbose}} &      verbose  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{get}} \texttt{ $<$node$>$ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$ \Jsb{-node node}} \
+
+        descend a tree for a given phone sequence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &           root node \\
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+ \texttt{\textbf{node}} &            want node name (0/1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{index}} \texttt{ $<$names*$>$} \
+
+        return the index of a node
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{list}} \texttt{} \
+
+        list a tree contents in TCL list format
+
+      \Jitem{\Jlabel{Tree}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of an indexed node
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{puts}} \texttt{} \
+
+        displays the contents of a tree object
+
+      \Jitem{\Jlabel{Tree}{question}} \texttt{ $<$node$>$ \Jsb{-questionSet questionset} \Jsb{-minCount mincount}} \
+
+        return best splitting question to ask
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &        root node \\
+ \texttt{\textbf{questionset}} &  question set (\Jref{module}{QuestionSet}) \\
+ \texttt{\textbf{mincount}} &     minimum count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{read}} \texttt{ $<$filename$>$} \
+
+        read a tree from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of tree file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{split}} \texttt{ $<$node$>$ $<$question$>$ $<$noNode$>$ $<$yesNode$>$ $<$undefNode$>$ \Jsb{-minCount mincount}} \
+
+        split node according to a question
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &       node \\
+ \texttt{\textbf{question}} &   question  \\
+ \texttt{\textbf{noNode}} &     NO    successor node  \\
+ \texttt{\textbf{yesNode}} &    YES   successor node  \\
+ \texttt{\textbf{undefNode}} &  UNDEF successor node  \\
+ \texttt{\textbf{mincount}} &    minimum count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{trace}} \texttt{ $<$node$>$ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$ \Jsb{-node node}} \
+
+        trace a tree for a given phone sequence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &           root node \\
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+ \texttt{\textbf{node}} &            want node name (0/1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{transform}} \texttt{ $<$tree$>$ $<$mainTree$>$ $<$modTree$>$ $<$questionSet$>$ \Jsb{-dummyName dummyname} \Jsb{-rootIdentifier rootidentifier} \Jsb{-divide divide}} \
+
+        transform tree for modalities
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tree}} &           tree with modality questions (\Jref{module}{Tree}) \\
+ \texttt{\textbf{mainTree}} &       tree to add later the normal nodes (\Jref{module}{Tree}) \\
+ \texttt{\textbf{modTree}} &        tree to add later the modality nodes (\Jref{module}{Tree}) \\
+ \texttt{\textbf{questionSet}} &    set of only modality questions (\Jref{module}{QuestionSet}) \\
+ \texttt{\textbf{dummyname}} &       name for dummy distributions  \\
+ \texttt{\textbf{rootidentifier}} &  string with rootIdentifiers separated by space  \\
+ \texttt{\textbf{divide}} &          divide tree into subtrees  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tree}{write}} \texttt{ $<$filename$>$} \
+
+        write a tree into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of tree file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{modelSet}} & (\Jref{module}{CBNewSet}) \\
+      \texttt{\textbf{ptreeSet}} & (\Jref{module}{PTreeSet}) \\
+      \texttt{\textbf{questionSet}} & (\Jref{module}{QuestionSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

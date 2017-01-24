@@ -1,0 +1,77 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFGLexicon}}
+
+This section describes the '\Jgloss{CFGLexicon}': \textsl{A 'CFGLexicon' object is a lexicon of a Context Free Grammar.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CFGLexicon} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{CFG}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfglexicon configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFGLexicon}{-NTN} & = 3 \\
+      \Jlabel{CFGLexicon}{-TN} & = 2 \\
+      \Jlabel{CFGLexicon}{-beginOS} & = $<$s$>$ \\
+      \Jlabel{CFGLexicon}{-endOS} & = $<$/s$>$ \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfglexicon}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFGLexicon}{add}} \texttt{ $<$word$>$ \Jsb{-type type}} \
+
+        adds an item to the CFG lexicon
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word to add  \\
+ \texttt{\textbf{type}} &   type of arc  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGLexicon}{index}} \texttt{ $<$word$>$ \Jsb{-type type}} \
+
+        get lvX of item with given name
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word  \\
+ \texttt{\textbf{type}} &   type of arc  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGLexicon}{name}} \texttt{ $<$lvX$>$ \Jsb{-type type}} \
+
+        get name of item with given lvX
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lvX}} &  vocabulary index  \\
+ \texttt{\textbf{type}} &  type of arc  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGLexicon}{puts}} \texttt{ \Jsb{-type type} \Jsb{-format format}} \
+
+        display the contents of CFG lexicon
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{type}} &    type of arc  \\
+ \texttt{\textbf{format}} &  output format  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGLexicon}{write}} \texttt{ $<$filename$>$ \Jsb{-type type}} \
+
+        writes a lexicon to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write into  \\
+ \texttt{\textbf{type}} &       type of arc  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{NT(0..2)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{T(0..1)}} & (\Jref{module}{}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

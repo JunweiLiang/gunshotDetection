@@ -1,0 +1,168 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFGSet}}
+
+This section describes the '\Jgloss{CFGSet}': \textsl{A 'CFGSet' object is a set of context free grammar.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CFGSet} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{LingKS}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfgset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFGSet}{-built} & = 1 \\
+      \Jlabel{CFGSet}{-cfgN} & = 1 \\
+      \Jlabel{CFGSet}{-name} & = c \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfgset}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFGSet}{activate}} \texttt{ $<$tag$>$} \
+
+        activates a grammar given by tag (cfgActivate)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tag}} &        tag of the grammar  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{build}} \texttt{ \Jsb{-mode mode} \Jsb{-overwrite overwrite} \Jsb{-verbose verbose}} \
+
+        builds a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mode}} &       score definition mode (null|fixed|equal|default=use stored build mode)  \\
+ \texttt{\textbf{overwrite}} &  overwrite predefined scores from grammar file  \\
+ \texttt{\textbf{verbose}} &    verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{clear}} \texttt{ \Jsb{-free free}} \
+
+        clears a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{free}} &  free items instead of clearing  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{compress}} \texttt{ \Jsb{-level level} \Jsb{-unfold unfold} \Jsb{-matchFile matchfile} \Jsb{-verbose verbose}} \
+
+        compress a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{level}} &      compress level  \\
+ \texttt{\textbf{unfold}} &     unfold grammar in new top level rule  \\
+ \texttt{\textbf{matchfile}} &  file with matching terminals  \\
+ \texttt{\textbf{verbose}} &    verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{deactivate}} \texttt{ $<$tag$>$} \
+
+        deactivates a grammar given by tag (cfgDeactivate)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tag}} &        tag of the grammar  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{fsm}} \texttt{ $<$rule$>$ $<$fsm$>$} \
+
+        write a FSM for a given rule (cfgSetWriteFSM)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rule}} &       rule to print as FSM  \\
+ \texttt{\textbf{fsm}} &        fsm file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{generate}} \texttt{ $<$seqN$>$ \Jsb{-mode mode} \Jsb{-recurse recurse} \Jsb{-file file}} \
+
+        generate terminal sequences (cfgSetGenerate)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{seqN}} &       number of terminal sequences  \\
+ \texttt{\textbf{mode}} &        generation mode (random|fixed)  \\
+ \texttt{\textbf{recurse}} &     follow recursions  \\
+ \texttt{\textbf{file}} &        file name to write output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{load}} \texttt{ $<$fileName$>$} \
+
+        loads a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{makeDict}} \texttt{ $<$baseDict$>$ $<$dict$>$ \Jsb{-vocab vocab} \Jsb{-map map} \Jsb{-classes classes} \Jsb{-fillers fillers}} \
+
+        makes a dictionary out of a base dictionary limited to the word entries of the CFG (cfgMakeDict)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{baseDict}} &   base dict for lookup  \\
+ \texttt{\textbf{dict}} &       resulting new dict  \\
+ \texttt{\textbf{vocab}} &       resulting search vocab  \\
+ \texttt{\textbf{map}} &         resulting mapping file  \\
+ \texttt{\textbf{classes}} &     mapping of classes  \\
+ \texttt{\textbf{fillers}} &     list of filler words  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{parse}} \texttt{ $<$text$>$ \Jsb{-verbose verbose}} \
+
+        parse a sentence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{text}} &    text to path  \\
+ \texttt{\textbf{verbose}} &  verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{parseTree}} \texttt{ $<$text$>$ \Jsb{-svmap svmap} \Jsb{-format format} \Jsb{-auxNT auxnt}} \
+
+        returns the parse tree of a given text string (cfgGetParseTree)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{text}} &       text string to parse  \\
+ \texttt{\textbf{svmap}} &       use SVMap to map SVX$<$-$>$LVX (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{format}} &      output format (soup|jsgf)  \\
+ \texttt{\textbf{auxnt}} &       print also auxilliary NTs  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of CFG set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (short, long)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{reduce}} \texttt{ $<$matchFile$>$ \Jsb{-verbose verbose}} \
+
+        reduces a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matchFile}} &  file with matching terminals  \\
+ \texttt{\textbf{verbose}} &     verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{save}} \texttt{ $<$fileName$>$ \Jsb{-pt pt}} \
+
+        saves a context free grammar set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+ \texttt{\textbf{pt}} &         dump also parse tree and rule stack  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGSet}{weightRules}} \texttt{ $<$rules$>$ \Jsb{-weight weight}} \
+
+        applies a weight to the given list of entry rules (cfgSetWeightRules)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rules}} &      list of rules  \\
+ \texttt{\textbf{weight}} &      weight apllied to all rules  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cfg(0..0)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{lex}} & (\Jref{module}{CFGLexicon}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{pt}} & (\Jref{module}{CFGParseTree}) \\
+      \texttt{\textbf{rs}} & (\Jref{module}{CFGRuleStack}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{CFG}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,7 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM21/iyu/sfep_test/
+videopaths=/home/iyu/sfep/gencmds/vids_rocks
+machine=rocks
+video_info=/data/MM21/iyu/sfep_test/features/video_info
+video_info_resized=/data/MM21/iyu/sfep_test/features/video_info_resized
+python27=/opt/python27/bin/python

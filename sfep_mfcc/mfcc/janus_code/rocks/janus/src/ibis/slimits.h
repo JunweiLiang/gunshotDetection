@@ -1,0 +1,311 @@
+/* ========================================================================
+    JANUS      Speech- to Speech Translation
+               ------------------------------------------------------------
+               Object: search limits
+               ------------------------------------------------------------
+
+    Author  :  Hagen Soltau
+    Module  :  slimits.h
+    Date    :  $Id: slimits.h 3177 2010-03-05 16:35:06Z metze $
+    Remarks :
+
+   ========================================================================
+
+    This software was developed by
+
+    the  University of Karlsruhe       and  Carnegie Mellon University
+         Dept. of Informatics               Dept. of Computer Science
+         ILKD, Lehrstuhl Prof.Waibel        Alex Waibel's NN & Speech Group
+         Am Fasanengarten 5                 5000 Forbes Ave
+         D-76131 Karlsruhe                  Pittsburgh, PA 15213
+         - Germany -                        - USA -
+
+    This software is part of the JANUS Speech- to Speech Translation Project
+
+    USAGE PERMITTED ONLY FOR MEMBERS OF THE JANUS PROJECT
+    AT CARNEGIE MELLON UNIVERSITY OR AT UNIVERSITAET KARLSRUHE
+    AND FOR THIRD PARTIES ONLY UNDER SEPARATE WRITTEN PERMISSION
+    BY THE JANUS PROJECT
+
+    It may be copied  only  to members of the JANUS project
+    in accordance with the explicit permission to do so
+    and  with the  inclusion  of  the  copyright  notices.
+
+    This software  or  any  other duplicates thereof may
+    not be copied or otherwise made available to any other person.
+
+    No title to and ownership of the software is hereby transferred.
+
+   ========================================================================
+
+    $Log$
+    Revision 1.3  2006/11/10 10:15:58  fuegen
+    merged changes from branch jtk-05-02-02-shajith
+    - all modification related to MMIE training
+    - first unverified functions for MPE training
+    - modifications made by Shajith, Roger, Wilson, and Sebastian
+
+    Revision 1.2.12.1  2006/11/03 14:28:13  stueker
+    introduced NEG_LOG_ZERO
+
+    Revision 1.2  2003/08/14 11:20:07  fuegen
+    Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+
+    Revision 1.1.4.22  2002/06/28 16:02:52  soltau
+    Added PSTATE : nr. of hmm states
+
+    Revision 1.1.4.21  2002/05/02 12:02:07  soltau
+    Added LCT_NIL
+
+    Revision 1.1.4.20  2002/02/01 14:17:20  fuegen
+    moved stypes.h into slimits.h
+
+    Revision 1.1.4.19  2002/01/16 09:16:45  metze
+    Made comments more explicit, removed ';' within comments
+
+    Revision 1.1.4.18  2002/01/14 13:36:32  soltau
+    *** empty log message ***
+
+    Revision 1.1.4.17  2001/12/17 11:57:33  soltau
+    Removed position mapper
+
+    Revision 1.1.4.16  2001/12/17 09:43:35  soltau
+    Deactivation of position mapper
+
+    Revision 1.1.4.15  2001/11/07 16:56:42  soltau
+    Changed data type for PHMMX
+
+    Revision 1.1.4.14  2001/10/01 10:43:14  soltau
+    introduced defines for polymorphism
+
+    Revision 1.1.4.13  2001/06/05 08:37:06  metze
+    Corrected LMSCORE_MAX
+
+    Revision 1.1.4.12  2001/06/01 12:51:18  metze
+    Moved LMSCORE_MAX here
+
+    Revision 1.1.4.11  2001/06/01 08:26:58  fuegen
+    added define of LVX_NIL
+    replace typedef of LCT for windows to __int64 instead of long long int
+
+    Revision 1.1.4.10  2001/05/29 10:02:40  soltau
+    Included <limits.h>
+
+    Revision 1.1.4.9  2001/05/23 08:25:26  metze
+    Introduced define LONG_RANGE_LM for LCT type
+
+    Revision 1.1.4.8  2001/05/11 14:07:36  fuegen
+    added type infos for context free grammars
+
+    Revision 1.1.4.7  2001/04/27 07:38:56  metze
+    General access functions to LM via 'LCT' implemented
+
+    Revision 1.1.4.6  2001/04/24 09:44:49  metze
+    Moved definition of lmScore to slimits.h
+
+    Revision 1.1.4.5  2001/04/12 17:27:32  fuegen
+    now includes stypes.h
+
+    Revision 1.1.4.4  2001/04/03 16:45:24  soltau
+    Added USE_RCM_LM
+
+    Revision 1.1.4.3  2001/03/12 18:51:24  soltau
+    Added RCM_BPX_NIL for RCM pruning
+
+    Revision 1.1.4.2  2001/02/16 17:52:32  soltau
+    Added SVX_MAX
+
+    Revision 1.1.4.1  2001/01/29 17:58:09  soltau
+    CONTEXT -> CTX
+
+    Revision 1.1  2001/01/12 08:35:49  soltau
+    Initial revision
+
+ 
+   ======================================================================== */
+
+#ifndef _slimits
+#define _slimits
+
+#include <limits.h>
+
+/* ------------------------------------------------------------------------
+    Common used typedefs
+   ------------------------------------------------------------------------ */
+
+typedef unsigned char  UCHAR;
+typedef unsigned short USHORT;
+typedef unsigned int   UINT;
+
+/* ========================================================================
+    HMM STATES
+   ======================================================================== */
+
+/* These defines restrict the number of HMM states to UHCAR_MAX. If you
+   need more, use the following setup.
+   typedef USHORT      PSTATE;
+   #define PSTATE_MAX  USHRT_MAX
+*/
+
+typedef UCHAR       PSTATE;
+#define PSTATE_MAX  UCHAR_MAX
+
+/* ========================================================================
+    Hidden Markov Model
+   ======================================================================== */
+
+/* These defines restrict the number of phone models to 2^32-1. If you
+   need fewer values, use the following setup.
+   typedef USHORT     PHMMX;
+   #define PHMMX_MAX  USHORT_MAX
+*/
+
+typedef UINT      PHMMX;
+#define PHMM_MAX  UINT_MAX
+
+/* ========================================================================
+    Left/Right context Model
+   ======================================================================== */
+
+/* For well defined systems, the number of different contexts to model
+   crossword triphones should not exceed 255. However, we may need larger 
+   values for multilingual systems. 
+   typedef USHORT        CTX;
+   #define CTX_MAX   USHRT_MAX
+*/
+
+typedef UCHAR        CTX;
+#define CTX_MAX      UCHAR_MAX
+
+
+/* ========================================================================
+    Linguistic polymorphism
+   ======================================================================== */
+
+/* For well defined systems, the number of different linguistic contexts to 
+   establish the polymorphism should not exceed 255. However, we may need larger 
+   values for some strange experiments.
+   typedef USHORT    LPM;
+   #define LPM_MAX   USHRT_MAX -1
+   #define LPM_NIL   USHRT_MAX 
+*/
+
+typedef UCHAR        LPM;
+#define LPM_MAX      UCHAR_MAX -1
+#define LPM_NIL      UCHAR_MAX
+
+
+/* ========================================================================
+    Search Vocabulary
+   ======================================================================== */
+
+/* These defines restrict the size of the SEARCH vocabulary to 65535.
+   If you need larger values, use the following setup:
+*/
+typedef UINT     SVX;
+#define SVX_MAX  UINT_MAX
+/*
+typedef USHORT    SVX;
+#define SVX_MAX   USHRT_MAX
+*/
+#define SVX_NIL   SVX_MAX
+
+
+/* ========================================================================
+    Language Model Vocabulary
+   ======================================================================== */
+
+/* These defines restrict the size of the LANGUAGE-MODEL vocabulary to 65535.
+   If you need larger values, use the following setup: (Caveat: memory hog)
+*/
+
+typedef UINT     LVX;
+#define LVX_MAX  UINT_MAX
+
+/*
+typedef USHORT    LVX;
+#define LVX_MAX   USHRT_MAX
+*/
+
+#define LVX_NIL   LVX_MAX
+
+
+/* ========================================================================
+    Linguistic Context
+   ======================================================================== */
+
+#define LONG_RANGE_LM
+
+#ifndef LONG_RANGE_LM
+
+typedef UINT    LCT;
+#define LCT_NIL 0xFFFF
+
+#else
+
+#define LCT_NIL 0xFFFFFFFF
+#ifndef WINDOWS
+typedef unsigned long long int LCT;
+#else
+typedef unsigned __int64 LCT;
+#endif
+
+#endif
+
+
+/* ========================================================================
+    Language Model
+   ======================================================================== */
+
+#define COMPRESSEDLM
+
+#ifdef COMPRESSEDLM
+/*
+  typedef signed char          lmScore;
+  #define LMSCORE_SCALE_FACTOR 12
+  #define LMSCORE_MAX          -127
+*/
+
+/*  typedef signed int     lmScore; */
+  typedef signed short int     lmScore;
+  #define LMSCORE_SCALE_FACTOR 1000
+  #define LMSCORE_MAX          -16383
+
+#else
+  typedef float                lmScore;
+  #define LMSCORE_SCALE_FACTOR 1
+  #define LMSCORE_MAX          -9999999.0
+#endif
+
+
+/* ========================================================================
+    Search Tree Level
+   ======================================================================== */
+
+/* These defines restrict the search tree level, e.g. the maximum number 
+   of phones for a vocabulary word to 255. If you need larger values, use 
+   the following setup.
+   typedef USHORT     LEVEL;
+   #define LEVEL_MAX  USHRT_MAX
+*/
+
+typedef UCHAR      LEVEL;
+#define LEVEL_MAX  UCHAR_MAX
+
+
+/* ========================================================================
+    Search Score
+   ======================================================================== */
+
+#define SCORE_MAX     9999999.0
+#define NEG_LOG_ZERO  1.0e+30
+#define RCM_BPX_NIL  -2
+
+
+/* ========================================================================
+    Extended LM Lookahead for right context models
+   ======================================================================== */
+
+#define USE_RCM_LM   0
+
+#endif

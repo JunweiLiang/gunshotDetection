@@ -1,0 +1,1085 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Documentation master file
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  janus-doku.tex
+%%  Date    :  $Id: janus-doku.tex 3382 2011-02-28 02:12:18Z metze $
+%%
+%%  Remarks :  This is the master file for the documentation
+%%             describing JRTk, it is intended to be processed
+%%             with LaTeX and LaTeX2html
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.10  2004/09/24 11:38:50  metze
+%%   added -expT info
+%%
+%%   Revision 1.9  2004/09/24 09:33:27  fuegen
+%%   corrected release date for P014
+%%
+%%   Revision 1.8  2004/09/23 12:18:14  fuegen
+%%   some more release comments for P014
+%%
+%%   Revision 1.7  2004/09/23 12:16:50  fuegen
+%%   added release comments for P014
+%%
+%%   Revision 1.6  2004/09/23 09:21:35  fuegen
+%%   removed comment about the sorting order conversion of SRI-LMs
+%%
+%%   Revision 1.5  2004/09/11 12:41:27  metze
+%%   P014 - final?
+%%
+%%   Revision 1.4  2004/08/16 16:10:12  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.3  2003/08/18 11:50:50  metze
+%%   Cleanup of 'rm...' problem
+%%
+%%   Revision 1.2  2003/08/14 11:18:54  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.28  2003/08/13 15:48:41  metze
+%%   Fixes for Hagen's taste
+%%
+%%   Revision 1.1.2.27  2003/08/13 15:25:17  metze
+%%   Matches release 5.0 P013
+%%
+%%   Revision 1.1.2.26  2003/08/07 13:00:45  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.25  2003/07/14 15:30:03  metze
+%%   More complete version for V5.0 P013
+%%
+%%   Revision 1.1.2.24  2003/06/26 15:08:39  metze
+%%   Initial changes for V5.0 P013
+%%
+%%   Revision 1.1.2.23  2003/04/30 15:43:59  metze
+%%   Changes before the new repository
+%%
+%%   Revision 1.1.2.22  2002/11/21 17:38:14  soltau
+%%   Updated P012
+%%
+%%   Revision 1.1.2.21  2002/11/21 16:15:45  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.20  2002/11/20 17:25:26  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.19  2002/11/20 16:12:12  metze
+%%   Doku Pre-P012
+%%
+%%   Revision 1.1.2.18  2002/11/15 15:23:15  fuegen
+%%   updated MS Windows stuff
+%%
+%%   Revision 1.1.2.17  2002/11/15 10:32:05  fuegen
+%%   updated compile instructions
+%%   added install and compile information for MS Windows
+%%
+%%   Revision 1.1.2.16  2002/11/05 16:50:48  metze
+%%   Improved part on compilation
+%%
+%%   Revision 1.1.2.15  2002/11/05 13:49:10  soltau
+%%   typo
+%%
+%%   Revision 1.1.2.14  2002/11/05 12:35:56  soltau
+%%   commented out section how to make the docu
+%%
+%%   Revision 1.1.2.13  2002/11/04 14:57:30  metze
+%%   Semi-automatic tcl-lib documentation
+%%
+%%   Revision 1.1.2.12  2002/10/25 08:48:45  metze
+%%   Added version history
+%%
+%%   Revision 1.1.2.11  2002/10/11 07:38:44  metze
+%%   Changes for lib2tex.tcl (\input{lib-auto.tex})
+%%
+%%   Revision 1.1.2.10  2002/10/04 13:30:28  metze
+%%   More docu
+%%
+%%   Revision 1.1.2.9  2002/08/29 16:57:19  soltau
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.8  2002/08/27 17:27:50  soltau
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.7  2002/08/27 16:53:05  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.6  2002/08/27 16:19:12  metze
+%%   New version of automatic generator.
+%%
+%%   Revision 1.1.2.5  2002/08/26 16:40:37  metze
+%%   Re-organization of modules
+%%
+%%   Revision 1.1.2.4  2002/08/01 13:42:21  metze
+%%   Fixes for clean documentation.
+%%
+%%   Revision 1.1.2.3  2002/07/31 13:09:47  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.2  2002/07/30 13:10:56  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/05/28 14:12:30  metze
+%%   Initial version of the Janus/ Ibis documentation
+%%
+%%
+%% ========================================================================
+%%
+%%   COPYRIGHT BY
+%%
+%%   Interactive Systems Laboratories at
+%%
+%%        University of Karlsruhe       and     Carnegie Mellon University
+%%        Dept. of Informatics                  Dept. of Computer Science
+%%        Interactive Systems Labs              Interactive Systems Labs
+%%        Lehrstuhl Prof.Waibel                 Alex Waibel's NN & Speech Group
+%%        Am Fasanengarten 5                    5000 Forbes Ave
+%%        D-76131 Karlsruhe                     Pittsburgh, PA 15213
+%%        - West Germany -                      - USA -
+%%
+%%   Copyright (C) 1990-1995.   All rights reserved.
+%%
+%%   This software is part of the JANUS Speech- to Speech Translation Project
+%%
+%%   USAGE PERMITTED ONLY FOR MEMBERS OF THE JANUS PROJECT
+%%   AT CARNEGIE MELLON UNIVERSITY OR AT UNIVERSITAET KARLSRUHE
+%%   AND FOR THIRD PARTIES ONLY UNDER SEPARATE WRITTEN PERMISSION
+%%   BY THE JANUS PROJECT
+%%
+%%   It may be copied  only  to members of the JANUS project
+%%   in accordance with the explicit permission to do so
+%%   and  with the  inclusion  of  the  copyright  notices.
+%%
+%%   This software  or  any  other duplicates thereof may
+%%   not be copied or otherwise made available to any other person.
+%%
+%%   No title to and ownership of the software is hereby transferred.
+%%
+%% =================================================================================
+
+\documentclass[a4paper,twoside]{book}
+
+\usepackage{color}
+
+%% check whether we are running pdflatex
+\newif\ifpdf
+  \ifx\pdfoutput\undefined
+  \pdffalse % we are not running pdflatex
+\else
+  \pdfoutput=1 % we are running pdflatex
+  \pdfcompresslevel=9     % compression level for text and image;
+  \pdftrue
+  \usepackage[pdftex]{graphicx}
+  \usepackage[pdftex,colorlinks]{hyperref}
+  \usepackage{thumbpdf}
+  \hypersetup{%
+    pdftitle = {Janus/ Ibis Documentation},
+    pdfauthor = {The Ibis Gang},
+    pdfsubject = {Software Documentation},
+    pdfkeywords = {Janus, Ibis, ASR}
+  }
+\fi
+\usepackage{html,htmllist,epsfig,makeidx}
+%% \usepackage[german]{babel}
+%% \usepackage[isolatin]{inputenc}
+
+
+%% White background (don't forget to use .latex2html-init!!!)
+\begin{htmlonly}
+\usepackage[dvips]{color}
+\pagecolor{White}
+\end{htmlonly}
+
+
+%%% --------------------------------------------------------------
+%%%
+%%%   Definitions for links, index ...
+%%%
+%%% --------------------------------------------------------------
+
+%%% <<<< EXTRA COMMANDS >>>
+
+%%  Each command will create an entry in the index
+\newcommand{\Jindex}    [1]{\index{\texttt{#1}} {\texttt{#1}}}
+\newcommand{\Jlabel}    [2]{\label{#1:#2} \Jindex{#2}}
+\newcommand{\Jref}      [2]{\htmlref{\texttt{#2}}{#1:#2}}
+
+%% Jindex = the index will contain a pointer to this item, print it in courier
+%% Jlabel = create a label, use Jindex
+%% Jref   = reference a label created with Jlabel
+
+
+%% Commands for glossary:
+%%   (This is in fact a hack, see 'Extramake')
+\newcommand{\Jgloss}    [1]{\htmlref{\textsl{#1}}{glossary:#1}}
+\newcommand{\JaddGloss} [2]{\label{RockAndRoll#1}}
+
+%% Jgloss    = refer to an entry explained in the glossary
+%% JaddGloss = create an entry in the glossary
+
+%% Convenience
+\newcommand{\Jsb}       [1]{$[$#1$]$}
+\newcommand{\Jitem}     [1]{\item[\texttt{#1}]}
+
+%% Jsb   = 'square brackets', print the argument in square brackets as
+%%         used for optional arguments
+%% Jitem = the same as \item, but it'll print in courier,
+%%         use it for itemized lists of modules, commands, ...
+
+
+\input{janus-version}
+
+
+%%%
+%%% --------------------------------------------------------------
+%%%
+
+ %% Title and so
+\title{JRTk and JANUS}
+\author{The Ibis-Gang}
+\date{(IBIS V\Jversion)}
+
+\makeindex
+\sloppy
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\begin{figure}
+\centering
+\ifpdf
+  % use epstopdf to generate .pdf from .eps or use .png
+  \includegraphics{Egyptthoth.png}
+\else
+  \psfig{file=Egyptthoth.eps}
+\fi
+\end{figure}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%% Some literature
+\nocite{finke:icassp97}
+\nocite{finke:asru97}
+\nocite{fritsch:icassp96}
+\nocite{kemp:eurospeech97}
+\nocite{ivica:diss}
+\nocite{finke:swb97}
+\nocite{soltau:icassp01}
+\nocite{soltau:asru2001}
+
+
+%% =============================================================================
+\chapter{Introduction} \label{sec:introduction}
+%% =============================================================================
+
+\JaddGloss{JRTk}{The Janus Recognition Toolkit}
+\JaddGloss{JANUS}{Equivalent to JRTK, or only the janus binary}
+\JaddGloss{Janus}{Equivalent to JRTK, sometimes used for pre-Ibis janus binaries}
+\JaddGloss{janus}{The 'janus' binary}
+\JaddGloss{Ibis}{The standard one-pass decoder in Janus 5.x.}
+\JaddGloss{ISL}{The Interactive Systems Labs at UKA and CMU}
+\JaddGloss{UKA}{Universit\"at Karlsruhe (TH)}
+\JaddGloss{CMU}{Carnegie Mellon University}
+
+This manual describes \Jgloss{JRTk}, the Janus Recognition Toolkit, in
+version  \textsl{V\Jversion},   which    includes  the   \Jgloss{Ibis}
+decoder. This manual also contains pointers, where to look for further
+information.   One  important  page is  the  online JRTK documentation
+available    at   \htmladdnormallink{\texttt{http://isl.ira.uka.de/\~{
+}jrtk/janus-doku.html}}{http://isl.ira.uka.de/~jrtk/janus-doku.html}.
+
+In the following chapter \ref{sec:basics}  you'll find the information
+you'll need to get Tcl and Janus up and running.  We focus on the UNIX
+variants, although much of  the information  also applies for  Windows
+installations.  You    might   want to  have  a   look  at    a sample
+\Jref{file}{.janusrc} first, which  is the main configuration file for
+Janus. The basic concepts of the JANUS user interface are discussed in
+\ref{sec:interface}. Chapter \ref{sec:training} covers all you'll need
+to   know   in order to  train  a   system using  JRTk,  while chapter
+\ref{sec:ibis} covers    the  Ibis decoder.   If   you're experiencing
+difficulties and need help in either  installing Janus, configuring it
+properly,   or    running  scripts,  the    trouble-shooting   section
+\ref{sec:troubleshooting} contains (hopefully) useful information.
+
+The JANUS interface   having  an object-oriented style,    you'll find
+descriptions of all modules in chapter \ref{sec:modules}; this will be
+of  interest to  both the  user  and the would-be  C  programmer.  The
+Tcl-library, which   should save you  a lot   of effort when  building
+systems at  script level, is  described in chapter \ref{sec:lib}.  The
+``Janus  Scripts Collection'', which   comprises a number  of standard
+scripts to build and test systems, also relies  on the Tcl-library. It
+is discussed  in section \ref{sec:interface}.  Chapter \ref{sec:files}
+describes some of JANUS' files and their formats.
+
+The people  who have worked on   JANUS over the  time can  be found in
+\ref{sec:people}.  At  the end of  this document,  you'll also  find a
+bibliography and a  glossary.  Chapter \ref{sec:basics}  also contains
+some  information on how to use  this manual, available in Postscript,
+HTML and  PDF  format. If you  have  questions or problems  with JRTk,
+please             send                      e-mail                 to
+\htmladdnormallink{\texttt{jrtk@ira.uka.de}}{mailto:jrtk@ira.uka.de}.
+
+Janus was   successfully  used in    a   number of  evaluations,   see
+\cite{finke:swb97,soltau:icassp2004,metze:nist2004}.
+
+%\vspace{2cm}
+%\ifpdf
+%  \centerline{\includegraphics{janus.png}}
+%\else
+%  \centerline{\psfig{file=janus.eps}}
+%\fi
+
+
+%% =============================================================================
+\chapter{Basics} \label{sec:basics}
+%% =============================================================================
+
+\section{What is it?} \label{basics:whatisit}
+
+The goal of  the ISL's JANUS project  is  to build a  general--purpose
+speech     recognition  toolkit   useful    for    both research   and
+applications. Currently, the   software  consists of  JRTk,  the Janus
+Recognition Toolkit for the development of speech recognition systems,
+including  the Ibis  decoder.   This  document attempts to  serve  two
+purposes: the  first one is to jump--start  users in getting the basic
+jobs done with JANUS,  be it for research  projects, or be it to build
+another system using  JANUS, while the second purpose  is to also give
+an overview  of the current research  done  within the  JANUS project.
+This  document is  for incoming  researchers  and students as  well as
+external partners in order to familiarize  themselves with the options
+and procedures to make the most of the existing code-base.  At the end
+of this document, you find a list of references to JANUS and an index,
+covering the most  important  concepts,  files  and commands used   in
+JANUS.
+
+\subsection*{Terminology}
+
+Over time, a number of terms have evolved, refering to different parts
+of the  system, although  JANUS' nomenclature  is not  always strictly
+adhered to:
+
+\begin{description}
+\item[JRTk] refers to the ASR Toolkit developed at the \Jgloss{ISL} in
+Karlsruhe (\Jgloss{UKA}) and Pittsburgh (\Jgloss{CMU}).
+It is implemented in C code, with an interface in Tcl/Tk,
+having an object-oriented look-and-feel.
+\item[janus] means the \texttt{janus} executable.
+\item[JANUS or Janus] can often be replaced by JRTk or janus.
+\item[Ibis]  denotes the one-pass decoder available in Janus V5.0 and later.
+\end{description}
+
+\subsection*{Why the names?\footnote{From http://concise.britannica.com.}}
+
+\begin{description}
+\item[Janus:] Roman god of doorways and archways, after whom the 
+    month of January is named.
+
+    Often depicted  as  a  double-faced   head,  he  was  a  deity  of
+    beginnings. The worship of Janus dated  back to the earliest years
+    of Rome, and the   city had many freestanding  ceremonial gateways
+    called  jani,    used for   symbolically auspicious   entrances or
+    exits.  The festival of Janus,  the Agonium, took place on January
+    9.
+
+\item[Ibis:] Egyptian Djhuty, also spelled Djhowtey.
+
+    In  Egyptian religion,  a  god of   the   moon, of reckoning,   of
+    learning, and of  writing.  He  was held   to be the  inventor  of
+    writing, the  creator of languages,   the scribe, interpreter, and
+    adviser of the gods, and the representative of the sun god, Re.
+
+    Thoth in turn was frequently represented in human form with an
+    ibis' head.
+
+\end{description}
+
+\section{About the documentation} \label{basics:doku}
+
+This documentation is intended to cover most  aspects that you'll need
+to know to use JRTk at the Tcl/Tk level. You should also find a lot of
+useful information  if you need to change  the C-Source.   If you find
+errors or   omissions, feel  free  to contact  one of  the maintainers
+(section        \ref{sec:people})        or    send        e-mail   to
+\htmladdnormallink{\texttt{jrtk@ira.uka.de}}{mailto:jrtk@ira.uka.de}. Don't
+forget    to    look    at     the     ``trouble-shooting''    section
+\ref{sec:troubleshooting}, too.
+
+% Also,   please  keep the  documentation  up to   date   by writing and
+% enhancing sections,  keeping JANUS in a coherent  and tidy state (both
+% code  and documentation); think about  the  maintainer's list and  the
+% index.
+
+This documentation contains four main parts:
+
+\begin{enumerate}
+
+\item A cookbook of training procedures in chapter \ref{sec:training}. Basic
+  system training can most easily be done by using the Janus Scripts Collection
+  documented in \ref{janus:scripts}.
+
+\item A How-To on decoding strategies and using existing systems with the 
+  Ibis one-pass decoder in chapter \ref{sec:ibis}.
+
+\item The alphabetical list of modules available at Tcl-level with
+  their description in chapter \ref{sec:modules}; a list of
+  functions provided by the Tcl-library can be found in chapter \ref{sec:lib}.
+
+\item A description of files and formats needed or used in JANUS
+  in chapter \ref{sec:files}.
+
+\end{enumerate}
+
+
+The source and documentation are kept under SVN, it is assumed that you are
+familiar with version control. To build documentation from the
+sources, you should be able to use ``make pdf'' with the provided
+``Makefile'' as follows:
+
+\begin{verbatim}
+~/janus/doc > ../src/Linux/janus lib2tex.tcl
+~/janus/doc > ../src/Linux/janus tcl2tex.tcl
+~/janus/doc > make pdf
+\end{verbatim}
+
+Generating documentation was last tested on ``Snow Leopard'' using Tcl 8.4.
+
+%Several output formats are available:
+
+%\begin{description}
+%\item[dvi] Simply type ``make'', this is very useful for debugging; if
+%  you type ``latex janus-doku'' you should be able to see the error
+%  messages generated by \LaTeX.
+
+%\item[ps] This generates a .dvi file and converts it into a .ps
+%  booklet which you should be able to print.
+
+%  \textbf{Caveat:} if the back-pages appear upside-down, leave out the pstops
+%  command.
+
+%\item[pdf] This creates a .pdf file using pdflatex. This file can be 
+%  printed and viewed online and looks much nicer than .html and you
+%  have the convenient hyperlinks. Also, after compilation you'll find
+%  the file ``link-errors'', which will help you to track wrong and
+%  missing hyper-links.
+
+%  \textbf{Caveat:} The .aux files produced by pdflatex are
+%  incompatible with the ones from latex. You should therefore always
+%  delete them ... (or use ``make clean''). Also, graphics produced by 
+%  ``eps2pdf'' didn't look all that great in acroread, so I converted
+%  the original data to .png or .jpg, which seems to be fine.
+
+%\item[html] The file janus-doku/janus-doku.html is generated by
+%  latex2html and you should be able to view the document with any web-browser.
+
+%  \textbf{Caveat:} The exact formatting depends on the browser and can
+%  therefore be rather strange. Also, the inline images used to print
+%  formulas etc. have a black border (bottom/ left), if you use the
+%  standard version of the script ``pstoimg'' and the ``pnmtools''. You
+%  can easily patch ``pstoimg'', it is currently fixed on
+%  i13pc33:/usr/bin/pstoimg or look for ``latex2html black border'' or
+%  the like on the internet.
+
+%\end{description}
+
+%As of this writing,   it was possible to  generate  reasonably-looking
+%documents on  a  Linux  PC running   SuSE 7.2   (keeping in mind   the
+%Caveats), however this cannot be guaranteed for all systems. Feel free
+%to experiment ...  To write new documentation in \LaTeX, please try to
+%match its  look and  feel with existing   files. For your convenience,
+%there are a couple of macros which you can use:
+
+%\begin{description}
+%\Jitem{$\backslash$Jindex\{object\}} creates a reference to ``object''
+%  in the index
+%\Jitem{$\backslash$Jlabel\{group\}\{object\}} creates a reference to
+%  ``object'' in the index and sets a label for ``group:object'' at the
+%  point in text where this command occurs
+%\Jitem{$\backslash$Jref\{group\}\{object\}} creates a reference to the
+%  corresponding $\backslash$Jlabel command
+
+%  The difference between $\backslash$Jindex and $\backslash$Jref is
+%  that $\backslash$Jref creates a reference directly to the text,
+%  while $\backslash$Jindex goes into the index
+
+%  The advantage using ``group'' and ``object'' for $\backslash$Jlabel
+%  and $\backslash$Jref is that you have one ``object''
+%  (e.g. \Jindex{-map}) in the index only once, while you can still
+%  have direct links to its occurrence in different ``groups''
+%  (e.g. \Jref{module}{CodebookSet} \Jref{CodebookSet}{read} and
+%  \Jref{module}{GLat} \Jref{GLat}{read}).
+%\Jitem{$\backslash$Jgloss\{ref\}} sets a reference to an entry in the glossary
+%\Jitem{$\backslash$JaddGloss\{ref\}\{text\}} describes an entry in the
+%  glossary (currently, text can only be one line)
+%\Jitem{$\backslash$Jsb\{-Monthy Python\}} is a shortcut to create
+%  optional arguments \Jsb{-Monty Python}
+%\Jitem{$\backslash$Jitem\{text\}} creates an $\backslash$item$[$text$]$ in the right font and
+%  so on
+%\end{description}
+
+
+\section{Installation} \label{basic:installing}
+
+All Janus  software is contained  in a \texttt{janus} directory, which
+you can either find  on your distribution  media, copy from somewhere,
+or check out from CVS/ SVN. Installing JRTk consists of the following three
+steps:
+
+\begin{enumerate}
+\item Copy  the janus  distribution  directory somewhere on  your file
+system.
+
+We     suggest  to create a  \texttt{janus}    directory  in your home
+directory. This directory will be  referred to as \texttt{<JANUSHOME>}
+in  the    future,    it  should     contain the     \texttt{library},
+\texttt{tcl-lib}, \texttt{gui-tcl} and optionally the    \texttt{bin},
+\texttt{src} and \texttt{doc} subdirectories.
+
+\item Set environment variables appropriately.
+
+Set your search path, so  that the correct  janus executable for  your
+system and  architecture can be found. On  a Linux system, you can for
+example  add  \texttt{<JANUSHOME>/src/Linux.gcc} to your \texttt{PATH}
+environment variable. Alternatively, you can copy the executable(s) to
+a location already on your search path (e.g. \texttt{\~{ }/bin}).
+
+On Unixes, janus needs three environment variables:
+
+\begin{description}
+
+\Jitem{\Jindex{JANUS\_LIBRARY}} needs to be set to \texttt{<JANUSHOME>/library}
+\Jitem{\Jindex{HOST}} should be set to the name of your node. On Linux machines using
+a \texttt{tcsh}, you can say \texttt{setenv HOST `uname -n`}
+\Jitem{\Jindex{HOME}} should contain the path to your home directory. In principle, this
+can be any directory.
+
+\end{description}
+
+Note that on  some Unix machines, it   might also be necessary to  set
+\Jindex{TCL\_LIBRARY}  and \Jindex{TK\_LIBRARY}   to appropriate  values
+(often \texttt{/usr/lib/tcl8.4} and \texttt{/usr/lib/tk8.4}), and you 
+might need to set \texttt{LD\_LIBRARY\_PATH}, if you want to use dynamic 
+linking. An example \texttt{.tcshrc} excerpt:
+
+\begin{verbatim}
+# JRTk
+setenv JANUS_LIBRARY   "${HOME}/janus/library"
+setenv TCL_LIBRARY     "/usr/lib/tcl8.4"
+setenv TK_LIBRARY      "/usr/lib/tk8.4"
+setenv LD_LIBRARY_PATH "${HOME}/tools/nist/lib:${HOME}/tools/portaudio/lib/.libs:${HOME}/tools/libsndfile-1.0.20/src/.libs"
+\end{verbatim}
+
+\item Adapt the startup configuration file \Jref{file}{.janusrc} to your needs.
+
+Copy         the    \texttt{<JANUSHOME>/scripts/janusrc}    file    to
+\texttt{\$$\{$HOME$\}$/.janusrc}, i.e. the directory declared with the
+\texttt{HOME} environment variable. Open the \Jref{file}{.janusrc} file
+with a text editor and change the lines setting the \Jindex{JANUSHOME}
+variable to    the value of   \texttt{<JANUSHOME>}. If  you experience
+difficulties  when creating  logfiles   on  a Windows  platform,   try
+uncommenting the \texttt{set LOGFILE "janus.log" } line.
+
+\end{enumerate}
+
+If you  are used to  a  Unix-style environment and   work on a Windows
+platform, you    might consider     looking at   the    Cygwin   tools
+(\htmladdnormallink{\texttt{http://www.cygwin.com/}}{http://www.cygwin.com/});   although
+Janus will run just as well without them.
+
+The default  \Jref{file}{.janusrc}  automatically optimizes your Janus
+setup depending on the architecture, operation system and location you
+use.  If janus doesn't  start or these automatically detected settings
+are incorrect, there are several things you can to check:
+
+  \begin{enumerate}
+    \item Are all the dynamically linked libraries there?
+      This is not the case if Janus complains about missing libraries, it
+      can be fixed by setting the environment variable
+      \texttt{LD\_LIBRARY\_PATH} accordingly. Tcl/Tk has to be available
+      in the correct version.
+    \item Does Janus not start because of wrong X settings? You either
+      have to set the \texttt{DISPLAY} environment variable or run a
+      Janus binary compiled without X support.
+    \item Are the paths set correctly (cf. \texttt{\~{ }/.tcshrc})?
+    \item Can Janus initialize properly? The environment variable
+      \texttt{JANUS\_LIBRARY} should be set to
+      \texttt{\~{ }/janus/library} (or whatever is appropriate)
+      and \texttt{\~{ }/.janusrc} should contain the lines 
+      \begin{verbatim}
+set JANUSLIB  "$env(HOME)/janus/gui-tcl"
+set auto_path "$env(HOME)/janus/tcl-lib \
+               $JANUSLIB $auto_path"
+      \end{verbatim}
+      %$
+      or equivalent.
+      These lines tell Janus where to find the Tcl scripts needed to
+      initialize Tcl and Janus itself properly. You can override the
+      settings for \texttt{gui-tcl} and \texttt{tcl-lib} in your own
+      scripts, but you have to know what you're doing ;-)
+    \item If Janus runs all right, but blocks (i.e. stops) when it tries to use
+      \texttt{fgets} (which is used in most procedures provided in
+      \texttt{tcl-lib}), you're most likely experiencing an
+      \texttt{fgets}-Problem and you want to read the \ref{sec:troubleshooting}
+      section.
+
+\end{enumerate}
+
+If the   above installation did  not work   for you,  there  are a few
+additional  things to check. You'll find   some information in section
+\ref{sec:troubleshooting}.
+
+On \texttt{Windows}, JRTk can be installed as follows:
+
+\begin{itemize}
+\item install gunzip (GnuWin32) for windows, preferable in version 1.3.5 (gzip-1.3.5-bin.exe)
+\item copy .janusrc to your home directory (Documents and Settings/... user name ...)
+\item edit .janusrc as appropriate
+\item install Tcl8.4 (ActiveTcl8.4.19.1.286921-win32-ix86-threaded.exe)
+\item add to system variables (Settings, Control Panel, System, Advanced, Environment Variables):
+  \begin{itemize}
+  \item new JANUS\_LIBRARY "...path.../janus/library" (Unix notation!)
+  \item add to PATH: "...path...$\backslash$GnuWin32$\backslash$bin" and "...path...janus$\backslash$tcl-lib" (you may need to do this as an administrator, Windows notation!)
+  \end{itemize}
+\item reboot windows
+\end{itemize}
+
+Compilation on Windows is usually done with Visual Studio. Also, be aware that
+Windows uses CR+LF line endings in text files, which under some circumstances
+cannot be read properly on Unixes. Also, if you get weird errors when loading acoustic
+models, try if the gzip and gunzip commands can be executed successfully from the command
+line.
+
+\section{Language Models} \label{janus:lms}
+
+The generation of language models is not part of JRTk. The standard LM
+in the Ibis decoder, created and loaded with
+
+\begin{verbatim}
+[LingKS lm$SID NGramLM] load $lmDesc
+\end{verbatim}
+
+can read a standard ARPA-format file. These can be created by a number of
+toolkits:
+
+\begin{itemize}
+\item The CLAUSI tools available at ISL.
+\item The CMU-SLMT toolkit, available at 
+\htmladdnormallink{\texttt{http://svr-www.eng.cam.ac.uk/\~{ }prc14/toolkit.html}}{http://svr-www.eng.cam.ac.uk/~prc14/toolkit.html}.
+\item The SRI Language Modeling Toolkit, available at 
+\htmladdnormallink{\texttt{http://www.speech.sri.com/projects/srilm/}}{http://www.speech.sri.com/projects/srilm/}.
+\end{itemize}
+
+Which one to use depends on availability and experience. Note that
+language models can become very big. Even a compressed (.gz) file will
+take up more space on disc and take longer to load than a so-called
+language model dump file.
+
+
+\section{Scoring} \label{basic:scoring}
+
+A  comprehensive scoring  package is  not  part of Janus. Instead, the
+Ibis decoder can write hypotheses in CTM format, which can directly be
+processed     with NIST's SCLite scoring   package.   Using Tcl, it is
+straightforward to write hypos in almost any format you might need.
+
+Additionally, the Tcl-library  implements an ``align'' function, which
+you  can  use to  compute string  edit distances for  simple alignment
+problems.  See  \Jref{lib}{align.tcl}  for  details.   This file  also
+defines a set of lower-level functions, which you might find useful.
+
+
+\section{Compilation} \label{basic:compiling}
+
+Using  the   Makefile provided  in the \texttt{src}   directory, it is
+possible to  compile Janus  on Linux, Mac OS X,   and Solaris.  You can  also set
+switches like \texttt{-DMTHREAD}    for a multi-threaded version    of
+Janus. Currently, two main targets are supported by this Makefile:
+
+\begin{description}
+\item[janus\_opt] the default version, contains everything to train and test
+\item[janusNX\_opt] janus\_opt without X-Windows and readline support
+\end{description}
+
+Simply  type  \texttt{make}  or  \texttt{make  janus\_opt}  to compile
+Janus. On SUNs,   you might  have  to  use \texttt{gmake} instead   of
+\texttt{make}.   To build  debugging   or profiling  versions, replace
+\texttt{opt} by \texttt{dbg}  or \texttt{prf}. For cleaning the object
+directory,    simply  type e.g.      \texttt{make clean\_opt}  for the
+optimized  code.  This  is especially neccessary,   when using another
+main  target, because  the  object files for   both targets are taking
+place in the same directory. Different directories will be created for
+\texttt{opt}, \texttt{dbg} and \texttt{prf} version.
+
+Depending  on the exact system configuration   you're using, Janus (on
+Unix, particularly Linux) depends on the following libraries:
+
+\begin{description}
+
+\item[System  Librarys]:  \texttt{ld, m, X11}  (until compiled without
+X11     support),  \texttt{readline}  (GNU), \texttt{termcap, ncurses,
+pthread}
+
+\item[Tcl/Tk 8.0] or greater;  if you  use Tcl/Tk  8.4 or  greater you
+should add \texttt{-DUSE\_COMPAT\_CONST} to your \texttt{CFlags}
+
+\item[SPHERE]:     \texttt{sp,    util}  from      NIST's       SPHERE
+library\footnote{\htmladdnormallink{\texttt{http://www.nist.gov/speech/tools/sphere\_26atarZ.htm}}{http://www.nist.gov/speech/tools/sphere\_26atarZ.htm},
+be warned: the original version  needs modifications to compile  under
+modern Linuxes and contains bugs}, if you want to read files in SPHERE
+format and you're using \texttt{-DSPHERE}
+
+\end{description}
+
+The exact libraries you'll need depend on  your system and if you want
+to use   static   or   dynamic linking. A   complete    description of
+compile-time options and  optimizations  is beyond the scope   of this
+documentation, on Linux systems we're using the following
+switches  for        \texttt{gcc}:         \texttt{-O3     -ffast-math
+-fomit-frame-pointer   -march=pentium4},    you   might   also     try
+\texttt{-mfpmath=sse -msse} on PIII systems.
+
+The following configurations are well tested:  On SOLARIS machines, we
+compile Janus  with the SUN  compiler  WS5.0 and the  GNU compiler gcc
+2.95; on Linux we mainly  use the Intel  C++ compiler icc6.0 (7.0) and
+gcc 2.95 or greater  (gcc 3.0, 3.2,  3.3).  On Windows  platforms, the
+Microsoft compiler  VisualC++ is used. A  work space file can be found
+in the \texttt{src/Windows} directory.
+
+If  you want to  generate  a version  which does not  include the three-pass
+decoder and the neural net code, do not include \texttt{\$(SEARCHOBS)}
+during  compilation  and  don't   include  \texttt{Search\_Init()}  in
+\texttt{src/main/janusInit.c}  (use  \texttt{-DIBIS -DNO\_NET}).  This
+is accomplished by using the \texttt{ibis\_opt} target.  For a version
+which does not rely on Tcl/ Tk, use the \texttt{ibisNTCL\_opt} target.
+More information can be  found  in the \texttt{Makefile} available  in
+the \texttt{src} directory.
+
+
+\subsection*{Defines}
+
+Some properties of  the Ibis decoder  can only be changed  by altering
+\texttt{\#define}s           and         \texttt{typedef}s          in
+\texttt{src/ibis/slimits.h}. Changing these values will require you to
+re-compile  Janus and will  also  make it  impossible to re-use object
+dump-files, because the internal representation of data structures has
+changed.
+
+The most frequently used settings are:
+
+\begin{description}
+
+\item[LVX, LVX\_MAX] sets the maximum language model vocabulary size to
+65535 ($2^{16}-1$) or $2^{32}-1$.
+
+\item[SVX, SVX\_MAX] sets the maximum search  vocabulary size to 65535
+($2^{16}-1$) or $2^{32}-1$. This setting has to be  at least as big as
+the  setting of  \texttt{LVX, LVX\_MAX}.   It  has some  influence  on
+runtime memory consumption.
+
+\end{description}
+
+
+\section{Version history} \label{basic:history}
+
+The version of Janus you are running can be determined from the
+start-up message the \texttt{janus} binary displays:
+
+\small{\begin{verbatim}
+# ======================================================================
+#  ____  ____  _____ _
+# |__  ||  _ \|_   _| | _     V5.0 P012 [Nov 11 2002 11:11:11]
+#    | || |_| | | | | |/ |  --------------------------------------------
+#    | ||  _ <  | | |   <     University of Karlsruhe, Germany
+#    | ||_| |_| |_| |_|\_|    Carnegie Mellon University, USA
+#   _| | JANUS Recognition
+#  \__/        Toolkit        (c) 1993-2002 Interactive Systems Labs
+#
+# ======================================================================
+started janus: on i13pc234.10934, Fri Oct 25 10:03:53 CEST 2002
+\end{verbatim}}
+
+This means that this executable was compiled on November 11, 2002. The
+version is  ``Janus V5.0, patch-level  12''.  Some versions  of Janus
+were ``stamped'' with an  extra tag (e.g.  ``fame'', ``glory'', ...),
+which will  then also appear printed  in this line. Also,  CVS or SVN
+version information  might be embedded  in the start-up  message. The
+last line of output, \texttt{started janus: ...}  is generated in the
+file  \Jref{file}{.janusrc}  and  logs  the  start-up  time  of  this
+process.  The differences between different versions and patch-levels
+of janus are listed below:
+
+\begin{description}
+
+\item[V5.2, P000] released on 2008-??-??
+
+  \begin{itemize}
+  \item added various feature enhancement techniques 
+  \item incorporates all code written for the RT07S Meeting eval
+  \item added description of pre-processing methods to documentation
+  \item added ICA
+  \end{itemize}
+
+\item[V5.0, P014] released on 2004-09-24
+
+  \begin{itemize}
+  \item bugfixes over P013
+  \item incorporates all code written for the RT04S Meeting eval
+  \item added the description of adaptation methods to documentation
+  \item some code for array (pre-)processing integrated
+  \item changes in CFG implementation: support of additional grammar
+    file formats (FSM, PFSG), support of weight definitions through
+    JSGF, support for generating random terminal sequences
+  \item support for reading LMs with unsorted n-gram sections, e.g.
+    produced by the SRILM-Toolkit
+  \item x86-64 code cleaning
+  \end{itemize}
+
+\item[V5.0, P013] released on 2003-08-13
+
+  \begin{itemize}
+  \item support for training on Windows (bugfixes in IslSystem)
+  \item cleaner interface to NGets
+  \item incorporates all code written for the RT03 CTS eval
+  \item major changes in grammar implementation
+  \item discriminative training (MMIE)
+  \item bugfixes (splitting of trees, interpolated LMs) 
+  \item changed glatComputeGamma and Confidence
+  \end{itemize}
+
+\item[V5.0, P012] released on 2002-11-27
+
+  \begin{itemize}
+  \item redesigned filler words
+  \item code-cleaning for windows
+  \end{itemize}
+
+\item[V5.0, P011] released on 2002-10-10
+
+  \begin{description}
+  \item[LingKS:] redesign of language model interface (Tcl-scripts
+    have to be adapted, see \Jref{proc}{ibisInit} for a comparison
+    of the two interfaces). Basically, a language model now is an
+    object of type \Jref{module}{LingKS}, while before the language
+    model could be of different types (LModelNJD, MetaLM, PhraseLM, CFGSet).
+    Now, a language model has a type-specific sub-object. The methods
+    and configuration options change accordingly.
+  \end{description}
+
+\item[V5.0, P010] released on 2002-02-27
+
+  \begin{description}
+  \item[XCM:] option for left context dependency only
+  \item[STree:]
+    convert search tree representation to general network structure
+    and compress the network with the 'coarset partition' algorithm
+  \item[GLat:]
+    changed lattice generation,
+    support to write lattices in HTK format
+  \item[LTree:]
+    redesigned ltreeFillCtx
+    changed acoustic rescoring of lattices
+  \item[MetaLM:]
+    more efficient interpolation
+  \item[PhraseLM:]
+    opimized lct handling,
+    added reading of map files
+  \item[CFG:]
+    basic grammar support
+  \item[HMM:]
+    training of full context dependent single phone words
+  \item[Codebooks/Distribs/Senones/Streams:]
+    a couple of things
+  \end{description}
+
+\item[V5.0, P009] released on 2002-01-07
+
+  \begin{description}
+  \item[GLat:]
+    \begin{itemize}
+    \item changed handling of filler words in forward/backward pass
+    \item added ignoreFTag option in glatAlign
+    \item improved handling of dis-connected nodes in glatConnect
+    \item added nodeN option in glatPrune
+    \end{itemize}
+  \item[PhraseLM:] fixed lct handling in ScoreArray function
+  \item[SMem/STree/SPass:] removed position mapper
+  \end{description}
+
+\item[V5.0, P008] released on 2001-12-05
+
+  \begin{itemize}
+  \item Changed search space memory management
+  \item Fixed trace function in stree
+  \item Changes according to the intel compiler
+  \end{itemize}
+
+\item[V5.0, P007] released on 2001-11-15
+
+  fixed final (?) problem with deletion of dictionary entries.
+
+\item[V5.0, P006] released on 2001-11-14
+
+  fixed remaining problem with deletion of dictionary entries.
+
+\item[V5.0, P005] released on 2001-11-07
+
+  \begin{itemize}
+  \item Increased data size for PHMMX in slimits.h
+  \item Added configuration options for svmap and phraseLM
+  \item Made praseLM relocatable
+  \end{itemize}
+
+\item[V5.0, P004] released on 2001-11-06
+
+  \begin{itemize}
+  \item Support for arbitrary HMM-topologies
+  \item Added one-state fast match module
+  \item Support for streams in scoreA and mladaptS
+  \item Deactivated LCT-checker in strace
+  \end{itemize}
+
+\item[V5.0, P003] released on 2001-10-30
+
+  Bugfixed and some new features:
+  removed a memory allocation bug in the
+  semitied covariance code, which showed up under Linux.
+  Also made the query of codebooks with distribution names
+  working. Made some conversion problems if distribution
+  and codebooks have different names.
+  Made featureADC a bit more portable.
+  Made deletion of words from the dictionary work.
+  Added saving to disc of a single distribution or codebook
+  into a distributionSet or CodebookSet.
+
+\item[V5.0, P002] released on 2001-10-19
+
+  Update of the windows environment to the IBIS code.
+
+\item[V5.0, P001] released on 2001-10-15
+
+  Established Ibis branch from former Janus main branch jtk-01-01-15-fms.
+
+\end{description}
+
+
+%% =============================================================================
+\chapter{The Janus User Interface} \label{sec:interface}
+%% =============================================================================
+
+\input{basicTcl}
+\input{basicJanus}
+\input{scriptCollection}
+
+%% =============================================================================
+\chapter{Pre-Processing with JRTk} \label{sec:frontend}
+%% =============================================================================
+
+\input{janus/pre_processing.tex}
+
+%% =============================================================================
+\chapter{Training with JRTk} \label{sec:training}
+%% =============================================================================
+
+\input{janus/basic.tex}
+\input{janus/advanced.tex}
+\input{janus/adaptation.tex}
+
+
+%% =============================================================================
+\chapter{Decoding with Ibis} \label{sec:ibis}
+%% =============================================================================
+
+\input{ibis/basic.tex}
+\input{ibis/advanced.tex}
+
+
+%% =============================================================================
+\chapter{Tips and Trouble-shooting} \label{sec:troubleshooting}
+%% =============================================================================
+
+\input{troubleshooting.tex}
+
+
+%% =============================================================================
+\chapter{Modules} \label{sec:modules}
+%% =============================================================================
+
+\input{modules}
+
+
+%% =============================================================================
+\chapter{Tcl-Library} \label{sec:lib}
+%% =============================================================================
+
+\input{lib-auto}
+%% \input{lib}
+
+
+%% =============================================================================
+\chapter{Files} \label{sec:files}
+%% =============================================================================
+
+\input{files}
+
+
+%% =============================================================================
+\chapter{Maintainers} \label{sec:people}
+%% =============================================================================
+
+This is a list of people to contact with questions about the JANUS project (V5.x):
+
+\begin{description}
+
+\item[Sebastian St\"{u}ker] \label{Sebastian}
+ Mail: \htmladdnormallink{\texttt{sebastian.stueker@kit.edu}}{mailto:sebastian.stueker@kit.edu} \\
+  Telephone: +49 (721) 608-6284 
+
+\item[Florian Metze] \label{Florian}
+ Mail: \htmladdnormallink{\texttt{fmetze@cs.cmu.edu}}{mailto:fmetze@cs.cmu.edu} \\
+  Telephone: +1 (412) 268-8984
+
+%%\item[Hagen Soltau] \label{Hagen}
+%%  worked on acoustic modeling and the Ibis decoder. \\
+%%  Mail: \htmladdnormallink{\texttt{soltau@ira.uka.de}}{mailto:fuegen@ira.uka.de} \\
+%%  Telephone: +49 721 608-4735
+
+\end{description}
+
+The standard procedure for  asking questions and reporting problems is
+sending                       e-mail                                to
+\htmladdnormallink{\texttt{jrtk@ira.uka.de}}{mailto:jrtk@ira.uka.de}.
+
+The \Jgloss{Ibis} decoder and this documentation was mainly written by
+Christian  F\"{ugen}, Florian  Metze,  and Hagen  Soltau.
+\Jgloss{Janus} was  mainly   developed  by Michael   Finke, J\"{u}rgen
+Fritsch,  Christian F\"{u}gen,  Hermann   Hild,  Thomas  Kemp, Florian
+Metze, Klaus Ries,  Ivica Rogina, Thomas  Schaaf, Hagen Soltau, Martin
+Westphal, Matthias W\"{o}lfel, Monika Woszczyna, Hua Yu, and Torsten
+Zeppenfeld.
+
+
+%% =============================================================================
+\newpage
+
+\bibliography{janus-doku}
+\bibliographystyle{plain}
+
+\chapter*{Glossary}
+
+\begin{description}
+\input{glossary}
+\end{description}
+
+\printindex
+
+\end{document}

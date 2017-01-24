@@ -1,0 +1,76 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PhraseLM}}
+
+This section describes the '\Jgloss{PhraseLM}': \textsl{This module takes a LM and adds phrases (aka. multi-words) to it.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{PhraseLM} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{LingKS}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{phraselm configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{PhraseLM}{-baseLM} & = lmISLci \\
+      \Jlabel{PhraseLM}{-baseN} & = 3 \\
+      \Jlabel{PhraseLM}{-bias} & = 0.000000 \\
+      \Jlabel{PhraseLM}{-history} & = 1 \\
+      \Jlabel{PhraseLM}{-itemN} & = 0 \\
+      \Jlabel{PhraseLM}{-order} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{phraselm}
+
+    \begin{description}
+      \Jitem{\Jlabel{PhraseLM}{add}} \texttt{ $<$search word$>$ $<$LM word string$>$ \Jsb{-prob prob} \Jsb{-v v}} \
+
+        add a mapping for a phrase
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{search word}} &     search vocabulary word  \\
+ \texttt{\textbf{LM word string}} &  language-model word(s)  \\
+ \texttt{\textbf{prob}} &             probability  \\
+ \texttt{\textbf{v}} &                verbose  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PhraseLM}{base}} \texttt{ $<$LingKS$>$} \
+
+        define the base LingKS
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{LingKS}} &  Base Linguistic Knowledge source (\Jref{module}{LingKS}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{PhraseLM}{puts}} \texttt{} \
+
+        display the contents of a PhraseLM
+
+      \Jitem{\Jlabel{PhraseLM}{readMapFile}} \texttt{ $<$file$>$ \Jsb{-mode mode} \Jsb{-verbose verbose} \Jsb{-base base}} \
+
+        read multi-words from an existing JANUS-Format map file (phraseLMReadMap)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &       map-file to read in  \\
+ \texttt{\textbf{mode}} &        add which entries (base, multi, all)  \\
+ \texttt{\textbf{verbose}} &     verbose  \\
+ \texttt{\textbf{base}} &        underlying lm  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PhraseLM}{readSubs}} \texttt{ \Jsb{-lks lks}} \
+
+        read map-table from 'NGramLM' object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lks}} &  Linguistic Knowledge Source (\Jref{module}{LingKS}) \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

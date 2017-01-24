@@ -1,0 +1,27 @@
+#
+# .tcshrc
+#
+
+# fmetze:
+
+# For autocompletion
+set autolist=1
+
+# Do not log me out
+unset autologout
+
+# JRTk
+setenv JANUS_LIBRARY   "${HOME}/janus/library"
+setenv TCL_LIBRARY     "/usr/lib/tcl8.4"
+setenv TK_LIBRARY      "/usr/lib/tk8.4"
+setenv LD_LIBRARY_PATH "${HOME}/tools/nist/lib:${HOME}/tools/portaudio/lib/.libs:${HOME}/tools/libsndfile-1.0.20/src/.libs"
+#:${HOME}/tools/snack2.2.10/unix:/people/wrhsiao0/intel/Compiler/11.1/046/lib/intel64
+
+setenv PATH            "${HOME}/bin:${HOME}/bin/sctk-2.2.1:${HOME}/tools/Sphere/bin:${HOME}/tools/srilm/bin:${HOME}/tools/srilm/bin/i686-m64:${PATH}"
+
+# Aliases for convenience
+alias rack0 "ssh islr0s0.is.cs.cmu.edu"
+alias rack1 "ssh islr1s0.is.cs.cmu.edu"
+
+# Condor Queue info
+alias cq 'condor_q -format "Iwd  = %s\n" Iwd -format "Args = %s\n" Args -format "Host = %s\n" RemoteHost -format "DAG  = %d\n" DAGManJobId \!:1'

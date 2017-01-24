@@ -1,0 +1,83 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{TmSet}}
+
+This section describes the '\Jgloss{TmSet}': \textsl{A TmSet is a set of state transition model objects (Tm) }
+
+\begin{description}
+
+  \item[Creation:] \texttt{TmSet  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of the tmset  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{tmset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{TmSet}{-blkSize} & = 20 \\
+      \Jlabel{TmSet}{-commentChar} & = ; \\
+      \Jlabel{TmSet}{-itemN} & = 1 \\
+      \Jlabel{TmSet}{-useN} & = 3 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{tmset}
+
+    \begin{description}
+      \Jitem{\Jlabel{TmSet}{add}} \texttt{ $<$name$>$ $<$tm$>$} \
+
+        add a Tm to the list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of the transition model  \\
+ \texttt{\textbf{tm}} &    transition model description  \\
+      \end{tabular}
+      \Jitem{\Jlabel{TmSet}{index}} \texttt{ $<$names*$>$} \
+
+        return index of named Tm(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{TmSet}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of indexed Tm(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{TmSet}{puts}} \texttt{} \
+
+        displays the contents of a transition model
+
+      \Jitem{\Jlabel{TmSet}{read}} \texttt{ $<$filename$>$} \
+
+        reads a TmSet from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of transition model description file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{TmSet}{write}} \texttt{ $<$filename$>$} \
+
+        writes a TmSet to a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Tm}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

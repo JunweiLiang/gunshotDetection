@@ -1,0 +1,266 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DistribSet}}
+
+This section describes the '\Jgloss{DistribSet}': \textsl{Set of distributions}
+
+\begin{description}
+
+  \item[Creation:] \texttt{DistribSet  $<$name$>$ $<$CodebookSet$>$ \Jsb{-bmem bmem}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of the distrib set  \\
+ \texttt{\textbf{CodebookSet}} &  set of codebooks (\Jref{module}{CodebookSet}) \\
+ \texttt{\textbf{bmem}} &          use block memory management  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{distribset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DistribSet}{-blkSize} & = 5000 \\
+      \Jlabel{DistribSet}{-codebookSet} & = codebookSetISLci \\
+      \Jlabel{DistribSet}{-distance} & = e \\
+      \Jlabel{DistribSet}{-dummyName} & = dummyDs \\
+      \Jlabel{DistribSet}{-dummyStart} & = -1 \\
+      \Jlabel{DistribSet}{-itemN} & = 3 \\
+      \Jlabel{DistribSet}{-minCount} & = 0.000000 \\
+      \Jlabel{DistribSet}{-name} & = distribSetISLci \\
+      \Jlabel{DistribSet}{-normDistance} & = 0 \\
+      \Jlabel{DistribSet}{-rewriteSet} & = (null) \\
+      \Jlabel{DistribSet}{-stateTable} & = (null) \\
+      \Jlabel{DistribSet}{-subX} & = -1 \\
+      \Jlabel{DistribSet}{-useN} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{distribset}
+
+    \begin{description}
+      \Jitem{\Jlabel{DistribSet}{accuFrame}} \texttt{ $<$distrib$>$ $<$frame$>$ \Jsb{-factor factor} \Jsb{-toframe toframe}} \
+
+        accumulates sufficient statistic from frame
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  name of the distribution \\
+ \texttt{\textbf{frame}} &    index of the requested frame  \\
+ \texttt{\textbf{factor}} &    training factor  \\
+ \texttt{\textbf{toframe}} &   first frame not to train  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{accuPath}} \texttt{ $<$path$>$ \Jsb{-factor factor}} \
+
+        accumulates sufficient statistic from path
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{factor}} &  training factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{add}} \texttt{ $<$name$>$ $<$codebook$>$} \
+
+        add a new distribution to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &      name of the distribution  \\
+ \texttt{\textbf{codebook}} &  name of the codebook \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{clearAccus}} \texttt{ \Jsb{-subX subx}} \
+
+        clears accumulators for all distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subx}} &  sub-accumulator, -1 to clear all  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{createAccus}} \texttt{ \Jsb{-subN subn}} \
+
+        creates accumulators for all distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subn}} &  number of subaccumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{createLh}} \texttt{ $<$lh$>$} \
+
+        fill the lh fields of the accumulators
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lh}} &  source likelihood accumulator (\Jref{module}{Lh}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{delete}} \texttt{ $<$item$>$} \
+
+        remove distribution from the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{dist}} \texttt{ $<$ModelArray P$>$ $<$ModelArray Q$>$ $<$ModelArray R$>$} \
+
+        measure distance between distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ModelArray P}} &  model array (\Jref{module}{ModelArray}) \\
+ \texttt{\textbf{ModelArray Q}} &  model array (\Jref{module}{ModelArray}) \\
+ \texttt{\textbf{ModelArray R}} &  model array (\Jref{module}{ModelArray}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{freeAccus}} \texttt{} \
+
+        frees accumulators for all distributions
+
+      \Jitem{\Jlabel{DistribSet}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{kldist}} \texttt{ $<$distribution 1$>$ $<$distribution 2$>$} \
+
+        computes the symmetrized Kullback-Leibler distance of two distribs
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distribution 1}} &  name of first distribution (\Jref{module}{Distrib}) \\
+ \texttt{\textbf{distribution 2}} &  name of second distribution (\Jref{module}{Distrib}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{load}} \texttt{ $<$filename$>$} \
+
+        loads distribution weights from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{loadAccus}} \texttt{ $<$filename$>$ \Jsb{-factor factor}} \
+
+        loads distribution accumulators from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+ \texttt{\textbf{factor}} &     multiplicator before adding  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{map}} \texttt{} \
+
+        map all distributions
+
+      \Jitem{\Jlabel{DistribSet}{merge}} \texttt{} \
+
+        merge distributions and codebooks
+
+      \Jitem{\Jlabel{DistribSet}{multiVar}} \texttt{ $<$Distrib$>$ \Jsb{-samples samples} \Jsb{-first first} \Jsb{-last last} \Jsb{-mode mode} \Jsb{-verbosity verbosity}} \
+
+        perform Multivar algorithm on codebook/ distribution given samples
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{Distrib}} &   Distribution \\
+ \texttt{\textbf{samples}} &    Number of random samples drawn (-1 for linear mode)  \\
+ \texttt{\textbf{first}} &      First sample  \\
+ \texttt{\textbf{last}} &       Last sample  \\
+ \texttt{\textbf{mode}} &       Univar, Multivar, TiedRho, TiedSelf mode?  \\
+ \texttt{\textbf{verbosity}} &  Verbosity of output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{multiVarInit}} \texttt{ $<$Distrib$>$ \Jsb{-seed seed} \Jsb{-rhoRel rhorel}} \
+
+        initialize Multivar algorithm
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{Distrib}} &  Distribution \\
+ \texttt{\textbf{seed}} &      seed for random number generator  \\
+ \texttt{\textbf{rhorel}} &    initialize univariate distribution  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{read}} \texttt{ $<$filename$>$} \
+
+        reads a distribution description file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{save}} \texttt{ $<$filename$>$} \
+
+        saves distribution weights into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{saveAccus}} \texttt{ $<$filename$>$} \
+
+        saves distribution accumulators into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{score}} \texttt{ $<$distrib$>$ $<$frame$>$} \
+
+        computes the score of a mixture distribution
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  name of the distribution \\
+ \texttt{\textbf{frame}} &    index of the requested frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{scoreFeature}} \texttt{ $<$distrib$>$ $<$matrix$>$ \Jsb{-row row} \Jsb{-from from} \Jsb{-to to} \Jsb{-offset offset} \Jsb{-factor factor} \Jsb{-anti anti}} \
+
+        store contribution of a feature in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  distribution name \\
+ \texttt{\textbf{matrix}} &   FMatrix \\
+ \texttt{\textbf{row}} &       row  \\
+ \texttt{\textbf{from}} &      start frame  \\
+ \texttt{\textbf{to}} &        end frame  \\
+ \texttt{\textbf{offset}} &    offset  \\
+ \texttt{\textbf{factor}} &    factor for this contribution  \\
+ \texttt{\textbf{anti}} &      name of the anti-distribution \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{scoreMatrix}} \texttt{ $<$distrib$>$ $<$matrix$>$ \Jsb{-from from} \Jsb{-to to}} \
+
+        store contribution of distrib in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  name of the distribution \\
+ \texttt{\textbf{matrix}} &   FMatrix \\
+ \texttt{\textbf{from}} &      start frame  \\
+ \texttt{\textbf{to}} &        end frame (needed!)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{scoreNBest}} \texttt{ $<$n$>$ $<$frame$>$} \
+
+        computes the n-best mixtures mixtures
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &      length of list  \\
+ \texttt{\textbf{frame}} &  index of the requested frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribSet}{split}} \texttt{} \
+
+        split distributions and codebooks
+
+      \Jitem{\Jlabel{DistribSet}{update}} \texttt{} \
+
+        update distributions and codebooks
+
+      \Jitem{\Jlabel{DistribSet}{write}} \texttt{ $<$filename$>$} \
+
+        writes a distribution description file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{codebookSet}} & (\Jref{module}{CodebookSet}) \\
+      \texttt{\textbf{distrib(0..2)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{rewriteSet}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Distrib}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

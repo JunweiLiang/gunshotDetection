@@ -1,0 +1,52 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of search vocabulary
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  svocab.tex
+%%  Date    :  $Id: svocab.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:19:01  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.2  2002/11/21 16:16:09  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.1  2002/10/04 13:30:57  metze
+%%   More docu
+%%
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{svocab}}
+
+A \Jref{module}{SVocab} description file. It contains a list of words which
+should also be contained in the dictionary.
+
+An example looks like this:
+
+\begin{verbatim}
+$ 1
+(
+)
+Anne
+Anne(2)
+\end{verbatim}
+
+The ``1'' in the first line declares ``\$'' to be a filler-word, i.e. 
+a word which is not handled by the language model. Instead, the \Jref{SVMap}{-filPen}
+is added for every transition into this word. ``(`` and ``)'' are the begin-of-sentence
+and end-of-sentence words.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-master: t
+%%% End: 

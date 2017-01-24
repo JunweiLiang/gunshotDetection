@@ -1,0 +1,160 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DMatrix}}
+
+This section describes the '\Jgloss{DMatrix}': \textsl{Matrix of double values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{DMatrix  $<$name$>$ $<$matrix$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{matrix}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{dmatrix configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DMatrix}{-count} & = 0.000000 \\
+      \Jlabel{DMatrix}{-m} & = 1 \\
+      \Jlabel{DMatrix}{-n} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{dmatrix}
+
+    \begin{description}
+      \Jitem{\Jlabel{DMatrix}{:=}} \texttt{} \
+
+        assign matrix (equiv. to 'copy')
+
+      \Jitem{\Jlabel{DMatrix}{FMatrix}} \texttt{} \
+
+        convert from a FMatrix
+
+      \Jitem{\Jlabel{DMatrix}{bload}} \texttt{ $<$filename$>$} \
+
+        load matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{bsave}} \texttt{ $<$filename$>$} \
+
+        save matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{clear}} \texttt{} \
+
+        set all matrix values to 0
+
+      \Jitem{\Jlabel{DMatrix}{copy}} \texttt{} \
+
+        copy matrix
+
+      \Jitem{\Jlabel{DMatrix}{det}} \texttt{ \Jsb{-format format}} \
+
+        compute determinant
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  format string  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{eigen}} \texttt{ $<$matrix$>$ \Jsb{-iter iter} \Jsb{-thresh thresh} \Jsb{-clean clean} \Jsb{-sort sort}} \
+
+        eigenvalues and vectors of symmetric matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix to hold eigenvectors \\
+ \texttt{\textbf{iter}} &     max. number of iterations  \\
+ \texttt{\textbf{thresh}} &   threshold for max. non diagonal element  \\
+ \texttt{\textbf{clean}} &    clean up eigenvalue matrix  \\
+ \texttt{\textbf{sort}} &     sort eigenvalues  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{get}} \texttt{ $<$1st index$>$ $<$2nd index$>$} \
+
+        get a single entry from a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{inv}} \texttt{ $<$matrix$>$} \
+
+        inverse of matrix using svd
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{mul}} \texttt{ $<$matrix$>$ $<$matrix$>$} \
+
+        matrixA * matrixB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix A \\
+ \texttt{\textbf{matrix}} &  matrix B \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{mulot}} \texttt{ $<$matrix$>$ $<$matrix$>$} \
+
+        matrixA * matrixB'
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix A \\
+ \texttt{\textbf{matrix}} &  matrix B \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{puts}} \texttt{ } \
+
+        print matrix contents as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{resize}} \texttt{} \
+
+        resize matrix
+
+      \Jitem{\Jlabel{DMatrix}{set}} \texttt{ $<$1st index$>$ $<$2nd index$>$ $<$value$>$} \
+
+        set a single entry in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+ \texttt{\textbf{value}} &      value  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{simdiag}} \texttt{ $<$matrix$>$ $<$matrix$>$ $<$matrix$>$ \Jsb{-iter iter} \Jsb{-thresh thresh}} \
+
+        simultaneous diagonalisation
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix with eigenvalues \\
+ \texttt{\textbf{matrix}} &  total scatter matrix \\
+ \texttt{\textbf{matrix}} &  within scatter matrix \\
+ \texttt{\textbf{iter}} &     max. number of iterations  \\
+ \texttt{\textbf{thresh}} &   threshold for max. non diagonal element  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{svd}} \texttt{ $<$matrix$>$ $<$matrix$>$ \Jsb{-clean clean}} \
+
+        singular value decomposition
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix W to hold singular values \\
+ \texttt{\textbf{matrix}} &  matrix V to hold basis of nullspace \\
+ \texttt{\textbf{clean}} &    clean up singular values  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DMatrix}{trans}} \texttt{} \
+
+        transpose matrix
+
+      \Jitem{\Jlabel{DMatrix}{unity}} \texttt{} \
+
+        make matrix a unity matrix
+
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

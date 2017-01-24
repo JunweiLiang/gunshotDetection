@@ -1,0 +1,159 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SVMap}}
+
+This section describes the '\Jgloss{SVMap}': \textsl{Search Vocabulary Mapper}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SVMap  $<$name$>$ $<$SVocab$>$ $<$LingKS$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the SVMap  \\
+ \texttt{\textbf{SVocab}} &  Search Vocabulary (\Jref{module}{SVocab}) \\
+ \texttt{\textbf{LingKS}} &  Linguistic Knowledge Source (\Jref{module}{LingKS}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{svmap configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SVMap}{-baseLM} & = lmISLci \\
+      \Jlabel{SVMap}{-baseVocab} & = svocabISLci \\
+      \Jlabel{SVMap}{-cacheN} & = 0 \\
+      \Jlabel{SVMap}{-calls} & = 0 \\
+      \Jlabel{SVMap}{-dirty} & = 0 \\
+      \Jlabel{SVMap}{-endString} & = $<$/s$>$ \\
+      \Jlabel{SVMap}{-filPen} & = 10.000000 \\
+      \Jlabel{SVMap}{-hits} & = 0 \\
+      \Jlabel{SVMap}{-lalz} & = 32.000000 \\
+      \Jlabel{SVMap}{-lvN} & = 0 \\
+      \Jlabel{SVMap}{-lz} & = 32.000000 \\
+      \Jlabel{SVMap}{-name} & = svmapISLci \\
+      \Jlabel{SVMap}{-phonePen} & = 0.000000 \\
+      \Jlabel{SVMap}{-startString} & = $<$s$>$ \\
+      \Jlabel{SVMap}{-svN} & = 4 \\
+      \Jlabel{SVMap}{-unkString} & = $<$UNK$>$ \\
+      \Jlabel{SVMap}{-useN} & = 5 \\
+      \Jlabel{SVMap}{-wordPen} & = 3.000000 \\
+      \Jlabel{SVMap}{-xN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{svmap}
+
+    \begin{description}
+      \Jitem{\Jlabel{SVMap}{add}} \texttt{ $<$search word$>$ $<$LM word$>$ \Jsb{-prob prob}} \
+
+        add or alter map entry
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{search word}} &  search vocabulary word  \\
+ \texttt{\textbf{LM word}} &      language-model word  \\
+ \texttt{\textbf{prob}} &          'probability' ($>$0 is higher)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{delete}} \texttt{ $<$word$>$} \
+
+        delete map entry
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  vocabulary word  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{get}} \texttt{ $<$search word$>$} \
+
+        prints out mapping for vocabulary word
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{search word}} &  the search word  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{index}} \texttt{ $<$n$>$} \
+
+        show mapping entry
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &   index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{load}} \texttt{ $<$filename$>$} \
+
+        load Mapping from binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{map}} \texttt{ $<$mapType$>$ \Jsb{-verbose verbose}} \
+
+        map SVocab indices to LM indices
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mapType}} &  id, base, class  \\
+ \texttt{\textbf{verbose}} &   verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{mappedto}} \texttt{ $<$word$>$} \
+
+        list words mapped to a particular word
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word to search for, empty string for filler words  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{match}} \texttt{ $<$lm$>$ $<$words$>$ $<$text$>$ \Jsb{-variants variants}} \
+
+        find best match for word (ngramLMMatch)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lm}} &         lm to use (\Jref{module}{LingKS}) \\
+ \texttt{\textbf{words}} &      words to find  \\
+ \texttt{\textbf{text}} &       text to use in file  \\
+ \texttt{\textbf{variants}} &    include variants in search  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{puts}} \texttt{  ( $<$s$>$ 0.000000   ) $<$/s$>$ 0.000000  } \
+
+        prints out map table
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ ( s 0.000000 }} &  \\
+ \texttt{\textbf{ ) /s 0.000000 }} &  \\
+ \texttt{\textbf{}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{read}} \texttt{ $<$filename$>$} \
+
+        read an LMMap file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{readMapFile}} \texttt{ $<$file$>$ \Jsb{-verbose verbose} \Jsb{-lm lm}} \
+
+        read mappings from an existing JANUS-Format map file (svmapReadMap)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &       map-file to read in  \\
+ \texttt{\textbf{verbose}} &     verbosity  \\
+ \texttt{\textbf{lm}} &          underlying lm  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{readSubs}} \texttt{ \Jsb{-lks lks}} \
+
+        read map-table from 'NGramLM' object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lks}} &  Linguistic Knowledge Source (\Jref{module}{LingKS}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{SVMap}{save}} \texttt{ $<$filename$>$} \
+
+        save Mapping to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file name  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{lingks}} & (\Jref{module}{LingKS}) \\
+      \texttt{\textbf{svocab}} & (\Jref{module}{SVocab}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

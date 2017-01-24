@@ -1,0 +1,87 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{IMatrix}}
+
+This section describes the '\Jgloss{IMatrix}': \textsl{Matrix of integer values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{IMatrix  $<$name$>$ $<$matrix$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{matrix}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{imatrix configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{IMatrix}{-m} & = 1 \\
+      \Jlabel{IMatrix}{-n} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{imatrix}
+
+    \begin{description}
+      \Jitem{\Jlabel{IMatrix}{:=}} \texttt{} \
+
+        assign matrix (equiv. to 'copy')
+
+      \Jitem{\Jlabel{IMatrix}{bload}} \texttt{ $<$filename$>$ \Jsb{-im im}} \
+
+        load matrix from binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+ \texttt{\textbf{im}} &         ignore m in file header  \\
+      \end{tabular}
+      \Jitem{\Jlabel{IMatrix}{bsave}} \texttt{ $<$filename$>$} \
+
+        save matrix to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{IMatrix}{clear}} \texttt{} \
+
+        set all matrix values to 0
+
+      \Jitem{\Jlabel{IMatrix}{copy}} \texttt{} \
+
+        copy matrix
+
+      \Jitem{\Jlabel{IMatrix}{get}} \texttt{ $<$1st index$>$ $<$2nd index$>$} \
+
+        get a single entry from a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{IMatrix}{puts}} \texttt{ } \
+
+        print matrix contents as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{IMatrix}{resize}} \texttt{} \
+
+        resize matrix
+
+      \Jitem{\Jlabel{IMatrix}{set}} \texttt{ $<$1st index$>$ $<$2nd index$>$ $<$value$>$} \
+
+        set a single entry in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+ \texttt{\textbf{value}} &      value  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

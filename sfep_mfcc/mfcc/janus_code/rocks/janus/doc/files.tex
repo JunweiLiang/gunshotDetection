@@ -1,0 +1,103 @@
+\input{files/cfg.tex}
+\input{files/codebookSet.tex}
+
+\section{\Jlabel{file}{desc.tcl}}
+
+A description file for a system. A typical file looks like:
+
+\input{files/desc.tex}
+
+{\tt  desc.tcl} also is   a good  place    to re-define other   common
+functions such as {\tt  dbaseUttFilter} or {\tt hmmMakeUtterance}.  In
+principle, you are free to re-configure everything  in this script, it
+is however common  practice, to set  the Tcl-variable {\tt SID} to the
+name  of  the directory, in which   this incarnation of {\tt desc.tcl}
+resides.
+
+\input{files/dictionary.tex}
+\input{files/distribSet.tex}
+\input{files/distribTree.tex}
+\input{files/featAccess.tex}
+\input{files/featDesc.tex}
+
+\section{\Jindex{.janusrc}} \label{file:.janusrc}
+
+This  describes the    file \Jindex{.janusrc},   which  is the    main
+configuration file  for Janus.  A copy of  this file  can be  found in
+\texttt{\~{ }/janus/scripts/janusrc}. It is  usable for both OSs, Unix
+and Windows.
+
+\input{files/janusrc.tex}
+
+It is read by JANUS at start-up. You'll then have to set your environment
+variables correctly. Just for reference, my \texttt{.tcshrc} contains
+the following Janus-related entries:
+
+{\small
+\begin{verbatim}
+# For Janus:
+setenv JANUS_LIBRARY $HOME/janus/library
+setenv TCL_LIBRARY   /usr/lib/tcl8.3
+setenv TK_LIBRARY    /usr/lib/tk8.3
+
+# Compiling:
+setenv IA32ROOT             /home/njd/intel/compiler60/ia32
+setenv LD_LIBRARY_PATH      ${IA32ROOT}/lib
+
+\end{verbatim}
+}
+
+For Windows, you should set the following environment variables, if
+not already specified:
+
+{\small
+\begin{verbatim}
+# take care of the '/' and '\'
+HOME          C:\user\fuegen
+JANUS_LIBRARY C:/user/fuegen/janus/library
+\end{verbatim}
+}
+
+\input{files/phonesSet.tex}
+\input{files/ptreeSet.tex}
+\input{files/svocab.tex}
+\input{files/tags.tex}
+\input{files/tmSet.tex}
+\input{files/topoSet.tex}
+\input{files/topoTree.tex}
+
+\section{\Jindex{db-spk}, \Jindex{db-utt}} \label{file:dbase}
+
+Janus  contains a database   object which  stores all  the information
+needed for  a particular system. An  example script to generate such a
+dbase is available in \texttt{\~{ }/janus/scripts/genDBase.tcl}.
+
+The database consists of two parts, each of which is store in a
+data-file (*.dat) and an index file (*.idx):
+
+\begin{description}
+\item[db-spk] The ``speaker database''
+
+  Every entry in  this database (corresponding to  a line in the file)
+  contains information for one  ``speaker''. It should contain a field
+  ``UTTS'', which lists all the  utterances (segments) which belong to
+  this speaker. Also, paths to  ADC files, speaker information or warp
+  factors can be stored here.
+
+\item[db-utt] The ``utterance database''
+
+  Every entry in this database  (corresponding to a  line in the file)
+  contains  information for one   ``utterance''.  It should  contain a
+  field ``SPK'', which links to the corresponding entry in the speaker
+  database, a field ``UTT'', which  repeats the utterance id and further
+  information (transliteration: ``TEXT'', ADC segment, ...)
+
+\end{description}
+
+Look at  \texttt{\~{ }/janus/scripts/genDBase.tcl} to see   how these
+files can be generated from free-format data.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,372 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{FMatrix}}
+
+This section describes the '\Jgloss{FMatrix}': \textsl{Matrix of float values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{FMatrix  $<$name$>$ $<$matrix$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{matrix}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{fmatrix configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{FMatrix}{-count} & = 0.000000 \\
+      \Jlabel{FMatrix}{-m} & = 1 \\
+      \Jlabel{FMatrix}{-n} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{fmatrix}
+
+    \begin{description}
+      \Jitem{\Jlabel{FMatrix}{:=}} \texttt{} \
+
+        assign matrix (equiv. to 'copy')
+
+      \Jitem{\Jlabel{FMatrix}{DMatrix}} \texttt{} \
+
+        convert from a DMatrix
+
+      \Jitem{\Jlabel{FMatrix}{add}} \texttt{ $<$a$>$ $<$fmatrixA$>$ $<$b$>$ $<$fmatrixB$>$} \
+
+        a * matrixA + b * matrixB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{a}} &           \\
+ \texttt{\textbf{fmatrixA}} &  \\
+ \texttt{\textbf{b}} &           \\
+ \texttt{\textbf{fmatrixB}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{addvec}} \texttt{ $<$fmatrixA$>$ $<$a$>$ $<$fvectorV$>$ $<$b$>$} \
+
+        a * matrixA + b * vectorB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fmatrixA}} &  \\
+ \texttt{\textbf{a}} &           \\
+ \texttt{\textbf{fvectorV}} &  \\
+ \texttt{\textbf{b}} &           \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{append}} \texttt{ $<$matrix$>$ $<$matrix$>$ $<$where$>$} \
+
+        append matrixB to matrixA
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix A \\
+ \texttt{\textbf{matrix}} &  matrix B \\
+ \texttt{\textbf{where}} &   in {above, below, left, right}  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{bappend}} \texttt{ $<$filename$>$} \
+
+        append matrix to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{bic}} \texttt{ $<$clusterN$>$ \Jsb{-lambda lambda} \Jsb{-iter iter} \Jsb{-eps eps}} \
+
+        Bayesian Information Criterion
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{clusterN}} & number of cluster  \\
+ \texttt{\textbf{lambda}} &   penalty term  \\
+ \texttt{\textbf{iter}} &     maximal iteration for kmeans  \\
+ \texttt{\textbf{eps}} &      minimal distortion  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{bload}} \texttt{ $<$filename$>$ \Jsb{-im im} \Jsb{-append append}} \
+
+        load matrix from binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+ \texttt{\textbf{im}} &         ignore m in file header  \\
+ \texttt{\textbf{append}} &     append file to matrix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{bmulot}} \texttt{} \
+
+        matrixA * bandmatrixB'
+
+      \Jitem{\Jlabel{FMatrix}{bsave}} \texttt{ $<$filename$>$} \
+
+        save matrix to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{clear}} \texttt{} \
+
+        set all matrix values to 0
+
+      \Jitem{\Jlabel{FMatrix}{cload}} \texttt{ $<$filename$>$ \Jsb{-append append}} \
+
+        load matrix from compressed file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+ \texttt{\textbf{append}} &     append file to matrix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{cluster}} \texttt{ \Jsb{-minM minm} \Jsb{-maxM maxm} \Jsb{-variance variance}} \
+
+        create optimal codebook
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{minm}} &      minimal size of output matrix  \\
+ \texttt{\textbf{maxm}} &      maximal size of output matrix  \\
+ \texttt{\textbf{variance}} &  maximal variance when clustering  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{copy}} \texttt{} \
+
+        copy matrix
+
+      \Jitem{\Jlabel{FMatrix}{cosine}} \texttt{ $<$m$>$ $<$n$>$ \Jsb{-type type}} \
+
+        create cosine transformation matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{m}} &  \\
+ \texttt{\textbf{n}} &  \\
+ \texttt{\textbf{type}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{csave}} \texttt{ $<$filename$>$ \Jsb{-mode mode}} \
+
+        save matrix to compressed file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+ \texttt{\textbf{mode}} &       extra compression modes: rl, none  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{det}} \texttt{ \Jsb{-format format}} \
+
+        compute determinant
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  format string  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{dev}} \texttt{ $<$matrix$>$ $<$matrix$>$} \
+
+        matrixA * matrixB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  mean values \\
+ \texttt{\textbf{matrix}} &  squared mean values \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{display}} \texttt{ $<$canvas$>$ \Jsb{-width width} \Jsb{-height height} \Jsb{-borderwidth borderwidth} \Jsb{-dx dx} \Jsb{-dy dy} \Jsb{-space space} \Jsb{-x x} \Jsb{-y y} \Jsb{-from from} \Jsb{-to to} \Jsb{-mode mode} \Jsb{-grey grey} \Jsb{-min min} \Jsb{-max max} \Jsb{-tag tag} \Jsb{-outline outline}} \
+
+        display matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{canvas}} &  \\
+ \texttt{\textbf{width}} &          \\
+ \texttt{\textbf{height}} &         \\
+ \texttt{\textbf{borderwidth}} &    \\
+ \texttt{\textbf{dx}} &             \\
+ \texttt{\textbf{dy}} &             \\
+ \texttt{\textbf{space}} &          \\
+ \texttt{\textbf{x}} &              \\
+ \texttt{\textbf{y}} &              \\
+ \texttt{\textbf{from}} &           \\
+ \texttt{\textbf{to}} &             \\
+ \texttt{\textbf{mode}} &           \\
+ \texttt{\textbf{grey}} &           \\
+ \texttt{\textbf{min}} &            \\
+ \texttt{\textbf{max}} &            \\
+ \texttt{\textbf{tag}} &            \\
+ \texttt{\textbf{outline}} &        \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{fromSample}} \texttt{ $<$fmatrix$>$ $<$a$>$} \
+
+        convert sample to kmeans'able FMatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fmatrix}} &  \\
+ \texttt{\textbf{a}} &          \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{get}} \texttt{ $<$1st index$>$ $<$2nd index$>$} \
+
+        get a single entry from a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{iload}} \texttt{ $<$filename$>$} \
+
+        load matrix from IBM file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{isave}} \texttt{ $<$filename$>$} \
+
+        save matrix to IBM file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{load}} \texttt{} \
+
+        load matrix from file
+
+      \Jitem{\Jlabel{FMatrix}{minmax}} \texttt{} \
+
+        gives minimum and maximum
+
+      \Jitem{\Jlabel{FMatrix}{mload}} \texttt{ $<$filename$>$ \Jsb{-idx idx} \Jsb{-append append}} \
+
+        load matrix from Matlab file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+ \texttt{\textbf{idx}} &        index of matrix to load  \\
+ \texttt{\textbf{append}} &     append file to matrix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{modulo}} \texttt{ \Jsb{-mod mod} \Jsb{-max max} \Jsb{-start start}} \
+
+        modulo matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mod}} &    modulo factor  \\
+ \texttt{\textbf{max}} &    maximum count  \\
+ \texttt{\textbf{start}} &  don't module first data  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{mul}} \texttt{ $<$matrix$>$ $<$matrix$>$} \
+
+        matrixA * matrixB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix A \\
+ \texttt{\textbf{matrix}} &  matrix B \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{mulcoef}} \texttt{ $<$fmatrixA$>$ $<$fmatrixB$>$ \Jsb{-a a} \Jsb{-div div} \Jsb{-mode mode}} \
+
+        multiply each coefficient
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fmatrixA}} &  \\
+ \texttt{\textbf{fmatrixB}} &  \\
+ \texttt{\textbf{a}} &            \\
+ \texttt{\textbf{div}} &        division instead multiplication  \\
+ \texttt{\textbf{mode}} &       mode 0, 1 or -1 for dimesion(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{mulot}} \texttt{} \
+
+        matrixA * matrixB'
+
+      \Jitem{\Jlabel{FMatrix}{neuralGas}} \texttt{ $<$matrix$>$ \Jsb{-maxIter maxiter} \Jsb{-tempS temps} \Jsb{-tempF tempf} \Jsb{-counts counts} \Jsb{-step step} \Jsb{-init init}} \
+
+        neural gas clustering
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix of sample vectors \\
+ \texttt{\textbf{maxiter}} &  number of iterations  \\
+ \texttt{\textbf{temps}} &    start temperature (0=k-means)  \\
+ \texttt{\textbf{tempf}} &    temperature multiplyer  \\
+ \texttt{\textbf{counts}} &   vector with counts \\
+ \texttt{\textbf{step}} &     only take every Nth sample  \\
+ \texttt{\textbf{init}} &     initialize with random samples  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{perceptron}} \texttt{ \Jsb{-bias bias} \Jsb{-log log} \Jsb{-type type}} \
+
+        perform perceptron operations for MLP
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{bias}} &  the bias FVector \\
+ \texttt{\textbf{log}} &   return logarithmic output  \\
+ \texttt{\textbf{type}} &  type: softmax or sigmoid  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{puts}} \texttt{ \Jsb{-ib ib} \Jsb{-ie ie} \Jsb{-jb jb} \Jsb{-je je} \Jsb{-format format} \Jsb{-left left} \Jsb{-right right} \Jsb{-middle middle}} \
+
+        print matrix contents as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ib}} &      start row  \\
+ \texttt{\textbf{ie}} &      end row  \\
+ \texttt{\textbf{jb}} &      start column  \\
+ \texttt{\textbf{je}} &      end column  \\
+ \texttt{\textbf{format}} &  format string  \\
+ \texttt{\textbf{left}} &    left side  \\
+ \texttt{\textbf{right}} &   right side  \\
+ \texttt{\textbf{middle}} &  between coefficients  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{resize}} \texttt{ $<$1st dimension$>$ $<$2nd dimension$>$} \
+
+        resize matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st dimension}} &  first index  \\
+ \texttt{\textbf{2nd dimension}} &  second index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{scatterPlot}} \texttt{ $<$canvas$>$ \Jsb{-width width} \Jsb{-height height} \Jsb{-x x} \Jsb{-y y} \Jsb{-xindex xindex} \Jsb{-yindex yindex} \Jsb{-from from} \Jsb{-to to} \Jsb{-xmin xmin} \Jsb{-xmax xmax} \Jsb{-ymin ymin} \Jsb{-ymax ymax} \Jsb{-tag tag} \Jsb{-line line} \Jsb{-p p}} \
+
+        scatter plot
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{canvas}} &  \\
+ \texttt{\textbf{width}} &     \\
+ \texttt{\textbf{height}} &    \\
+ \texttt{\textbf{x}} &       left side  \\
+ \texttt{\textbf{y}} &       upper side  \\
+ \texttt{\textbf{xindex}} &    \\
+ \texttt{\textbf{yindex}} &    \\
+ \texttt{\textbf{from}} &      \\
+ \texttt{\textbf{to}} &        \\
+ \texttt{\textbf{xmin}} &      \\
+ \texttt{\textbf{xmax}} &      \\
+ \texttt{\textbf{ymin}} &      \\
+ \texttt{\textbf{ymax}} &      \\
+ \texttt{\textbf{tag}} &       \\
+ \texttt{\textbf{line}} &    draw lines  \\
+ \texttt{\textbf{p}} &       point size  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{set}} \texttt{ $<$1st index$>$ $<$2nd index$>$ $<$value$>$} \
+
+        set a single entry in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+ \texttt{\textbf{value}} &      value  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{square}} \texttt{ $<$FMatrix$>$ \Jsb{-index index}} \
+
+        convert a row to a square matrix or vice-versa
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &  float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{index}} &     index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{trans}} \texttt{} \
+
+        transpose matrix
+
+      \Jitem{\Jlabel{FMatrix}{vts}} \texttt{ $<$a$>$ $<$fmatrixA$>$ $<$b$>$ $<$fmatrixB$>$} \
+
+        a * matrixA + b * matrixB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{a}} &           \\
+ \texttt{\textbf{fmatrixA}} &  \\
+ \texttt{\textbf{b}} &           \\
+ \texttt{\textbf{fmatrixB}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FMatrix}{window}} \texttt{ $<$FMatrix$>$ $<$1st index$>$ $<$2nd index$>$} \
+
+        window matrix (into other matrix at offset)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FMatrix}} &    float matrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{1st index}} &  first index  \\
+ \texttt{\textbf{2nd index}} &  second index  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

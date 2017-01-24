@@ -1,0 +1,233 @@
+
+Janus  can use just about  any  conceivable recognizer front-end. Most
+``standard'' ways of doing pre-processing, such as mel frequency cepstral coefficients (MFCC)s or perceptual linear prediction, are almost certainly already implemented    in the  \Jref{module}{FeatureSet}.  FIR-Filters   can be
+applied to features with the  \Jref{FeatureSet}{filter} method, and so
+on. Have   a  look   at  the   \Jref{module}{FeatureSet}  and  example
+\Jref{file}{featDesc}s to see what's already available. In the remainder of this chapter we will give more details about some of the features which are available in the \Jref{module}{FeatureSet} module and might require a more detailed explanation.
+
+Various sample scripts including MFCC and warped-minimum variance distortionless response (MVDR) front-ends as well as reverberation compensation by multi-step linear prediction (MSLP), non-stationary noise compensation by particle filter (PF)s and joint compensation of both distortions can be found in the scripts directory.
+
+\section{Spectral Estimation} \label{janus:specest}
+
+Spectral analysis is a fundamental part of speech feature extraction for automatic recognition and many other speech processing algorithms. Janus contains a broad variety of spectral estimation techniques to adjust for spectral resolution, variance of the estimated spectra, and to model the frequency response function of the vocal tract during voiced speech. In the following example the Fourier spectrum $<$FFT$>$, the warped MVDR spectral envelope $<$MVDR$>$ ---mel frequency for a 16 kHz signal--- and the scaling of the spectral envelope $<$sMVDR$>$ is demonstrated:
+
+\begin{verbatim}
+set order 30
+set windowsize 16ms
+
+$fes spectrum  FFT    ADC         $windowsize
+$fes adc2spec  ADC                $windowsize -win hamming -adc SPADC
+$fes specest   MVDR   SPADC       $order -type MVDR \
+                                         -lpmethod warp -warp 0.4595
+$fes specadj   sMVDR  MVDR   FFT  -smooth 2
+\end{verbatim}
+
+\noindent
+NOTE: For a 8 kHz signal the warp factor has to be replaced by 0.3624.
+
+~ \\
+
+Different spectral estimation techniques within the Janus framework are compared and explained in~\cite{Wolfel2005b,Wolfel2006,Wiley}.
+
+\section{VTLN} \label{janus:vtln}
+
+Vocal track length normalization (VTLN) can be applied either in the linear or in the warped (mel) domain. The domain mainly depends on the used spectral estimation method as described in section~\ref{janus:specest}. While the implementation in the linear domain is not able to reduce the number of spectral bins (can for example be implemented by the mel filterbank), the implementation in the warped domain can provide a reduced number of spectral bins. The two different implementations can be called as follows:
+
+\begin{itemize}
+	\item In the linear domain
+\begin{verbatim}
+$fes   VTLN <TO> <FROM> $WARP -mod lin -edge 0.8
+\end{verbatim}
+
+	\item In the warped (mel) domain
+\begin{verbatim}
+set warp [expr round(200-$WARP*100)/100.0]
+
+if { $warp < 0.75 } { set warp 0.75 }
+if { $warp == 1.0 } { set warp 1 }   
+if { $warp > 1.35 } { set warp 1.35 }
+
+if {[llength [objects FBMatrix VTLN${warp}]] != 1} {
+    writeLog stderr "LOAD filterbank 16 kHz, 16 ms, 129 bins, \
+        ${warp} warp"
+    source ${path}/filterbanks/Filterbanks16kHz16ms129bins/ \
+        VTLN.filterbank.${warp}
+}
+ 
+$fes   filterbank <TO> <FROM> VTLN${warp}
+\end{verbatim}
+
+NOTE: Different pre-calculated filterbank can be loaded for 8 and 16 kHz. 
+
+\end{itemize}
+
+\section{Feature Enhancement} \label{janus:enhancement}
+
+To cope well with the non-stationary behavior of additive and convolutive distortions Janus contains different feature enhancement techniques which can be used in addition to other adaptation methods as described in section~\ref{janus:adaptation}. In the remainder of this section we present a generic compensation framework to jointly compensate for additive and reverberant distortion. The framework can be easily adjusted to compensate for additive or reverberant distortion only as will be discussed.
+
+Different feature enhancement techniques within the Janus framework are compared and explained in~\cite{Wolfel2008e,Wiley}.
+
+~ \\
+
+\noindent
+In \textbf{featAccess.tcl} we read the distorted wave file, adjust the segment length, estimate late reflections $<$fADC$>$ and subtract the energy of the late reflections $<$fMVDR$>$ to get a dereverberant frame-by-frame speech estimate $<$subMVDR$>$:
+\begin{verbatim}
+# delay in seconds
+set delay 0.06
+set size 1000 
+
+# delermine var. automatically
+set delayBins  [expr round(16000 * $delay)]
+set delayFrames [expr round(100 * $delay)] 
+
+$fes readADC ADC16 $adcFile
+$fes cut ADC ADC16 [expr $arg(FROM) - $delay -2.0]s $arg(TO)s
+
+$fes multisteplp FILTER ADC -delay $delayBins -order $size
+set FILTER "[$fes:FILTER.data]"
+$fes filter fADC ADC "0 $FILTER"
+
+# estimate spectra ADC -> sMVDR and fADC -> fMVDR
+
+# adjust frames accordingly
+$fes cut sMVDR sMVDR $delayFrames end
+set frames [$fes:fMVDR configure -frameN]
+$fes cut fMVDR fMVDR 0 [expr $frames-1-$delayFrames]
+
+# dereverberant speech features
+$fes specsub subMVDR sMVDR fMVDR -a 1.0 -b 0.1
+\end{verbatim}
+
+~ \\
+
+\noindent
+In \textbf{featDesc.tcl} we initialize the particle filter as described in more detail in SpeechGMM.tcl, learn a GMM for noise as well as fnoise, and apply the particle filter to get the cleaned estimate $<$SPEC\_cleaned$>$ from the noisy frames $<$SPEC$>$:
+
+\begin{verbatim}
+if { ![info exists AMINIT] } {
+    writeLog stderr "=====> INIT Particle Filter <========"
+    source SpeechGMM.tcl
+    set AMINIT change   
+    initAM $SID $fes $AM $WARP
+    writeLog stderr "====================================="
+}
+ 
+if { $USEPF > 0.5 && [file exists ${spectra}/$arg(UTT)_cleaned.smp] } {
+  $fes FMatrix SPEC_cleaned
+  $fes:SPEC_cleaned.data bload ${spectra}/$arg(UTT)_cleaned.smp
+  puts "Loaded spectrum: ${spectra}/$arg(UTT)_cleaned.smp"
+} else {
+
+  # reduce spectral dimension sMVDR -> SPEC and subMVDR -> diffSPEC
+  $fes specsublog diffSPEC SPEC subSPEC
+  
+  if { $USEPF > 0.5 } {
+    # train new noise GMM -----------------------------------------------
+    $fes lin SILENCE SPEECH -1 1
+    $fes cut NSPEC SPEC 0 last -select SILENCE
+    set noiseN [$fes:NSPEC configure -frameN]
+    set inputN [$fes:SPEC configure -frameN]
+    writeLog stderr "INFO noise frames: $noiseN of $inputN detected"
+
+    if {$noiseN > 9} {
+        trainCB distribSet$AM codebookSet$AM noise
+    } else {
+        writeLog stderr "INFO < 10 noise frames, noise GMM not updated"
+    }
+
+    # shift means of codebook (do not use for additive compensation only)
+    trainCB distribSet$AM codebookSet$AM fnoise
+    subtractCB distribSet$AM codebookSet$AM noise fnoise
+
+    # -------------------------------------------------------------------
+    # use Particle Filter
+    # -------------------------------------------------------------------
+    $fes particlefilter SPEC_cleaned SPEC distribSet$AM \
+      -variance PREDICTVAR                              \
+      -refresh 1E-40                                    \
+      -nio 0.0                                          \
+      -ARsmoothing 1                                    \
+      -type sia                                         \
+      -init 0                                           \
+      -delayspec diffSPEC
+
+    # save spectra -----------------------------------------------------
+    $fes:SPEC_cleaned.data bsave ${spectra}/$arg(UTT)_cleaned.smp
+  }
+} 
+
+# additional processing
+
+# cut final feature length
+$fes cut LDA LDA 200 last 
+\end{verbatim}
+
+\noindent
+NOTE: If we are interested in compensating for additive distortions only we can remove ``-delayspec diffSPEC'' from the PF setting. If init is set to 1 the PF is reinitialized: new samples are drawn from the noise GMM and the AR matrix is set to diagonal. Reinitialization is necessary if an environment change is expected, e.g. for a new recording.
+
+~ \\
+
+\noindent
+In \textbf{SpeechGMM.tcl} necessary procedures are defined which are called by featDesc.tcl:
+\begin{verbatim}
+# load a codebook containing a clean speech GMM
+set ${AM}(codebookSetDesc)  ${pathPFAM}/final.cbsDesc.gz
+set ${AM}(codebookSetParam) ${pathPFAM}/final.cbs.gz
+set ${AM}(distribSetDesc)   ${pathPFAM}/final.dssDesc.gz
+set ${AM}(distribSetParam)  ${pathPFAM}/final.dss.gz
+
+# -----------------------------------------
+#  procedures
+# -----------------------------------------
+proc initAM {SID fes AM warp} {
+    codebookSetInit $AM  -featureSet featureSet$SID
+    distribSetInit  $AM
+
+    # add noise and fnoise model
+    codebookSet$AM add noise NSPEC 1 20 DIAGONAL
+    codebookSet$AM:noise createAccu
+    distribSet$AM add noise noise  
+
+    codebookSet$AM add fnoise diffSPEC 1 20 DIAGONAL
+    codebookSet$AM:fnoise createAccu
+    distribSet$AM add fnoise fnoise 
+
+    if { [llength [objects FMatrix $fes:PREDICTVAR]] != 1} {
+        $fes FMatrix PREDICTVAR
+        $fes:PREDICTVAR.data := "10 10 10 10 10 10 10 10 10 10 10 10 \
+                                 10 10 10 10 10 10 10 10 0.001 0.001"
+    }    
+}
+  
+# procedure to train a noise codebook
+proc trainCB {dss cbs class} {
+    set fe [$cbs.featureSet name [$cbs:$class configure -featX]]
+    set frameN [$cbs.featureSet : $fe configure -frameN]
+    $dss clearAccus
+    $cbs clearAccus
+    for {set i 0} {$i < $frameN} {incr i} {
+        $dss accuFrame $class $i
+    }
+    $dss update
+    puts "trained new $class model"
+}
+
+# subtract noise codebooks
+proc subtractCB {dss cbs class1 class2} {
+    set m1 [lindex [$cbs:$class1.mat] 0]
+    set m2 [lindex [$cbs:$class2.mat] 0]
+    
+    set count 0
+    set mean_values "{"
+    foreach m $m1 {
+        set temp [expr pow(10.0,0.1*[lindex $m1 $count])
+            -pow(10.0,0.1*[lindex $m2 $count])]
+        if { $temp < 10.0 } { set temp 10.0 }
+        set temp [expr 10.0*log10($temp)]    
+        incr count
+        set mean_values "$mean_values $temp"
+    }
+    set mean_values "$mean_values }"
+    $cbs:$class1 set $mean_values
+}
+\end{verbatim}

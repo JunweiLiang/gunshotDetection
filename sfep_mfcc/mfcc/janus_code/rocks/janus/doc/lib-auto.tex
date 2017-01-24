@@ -1,0 +1,1352 @@
+\textbf{WARNING:} These entries were generated automatically.
+This list is non-exhaustive, but it includes all 'user-level' functions.
+
+The argument LSID is the 'local system ID'. It is usually
+given by the variable SID. For example,
+'bbiInit' would usually be called as \texttt{bbiInit \$SID}
+or \texttt{bbiInit \$SID -desc bbi.desc -param bbi.param.gz}.
+
+\section{\Jlabel{lib}{align.tcl}}
+
+This is a collection of error rate measuring tools.
+There are four functions for aligning correct and hypothesised data:
+
+\begin{verbatim}
+     rawAlign      will return the alignment path for one sentence
+        align      will return the error summary for one sentence
+     rawAlignFile  will return the error summary for an entire file
+        alignFile  will not return anything but print to stdout like NIST's
+\end{verbatim}
+
+The purpose of implementing this in Tcl is to have a tool that will allow
+us to build a 1-button-Janus which will be able to tune itself on a given
+development (or crossvalidation) test set, using the recognition error rate
+as the driving objective function.\\
+
+Procedures defined in \texttt{tcl-lib/align.tcl}:
+
+  \subsection{\Jlabel{proc}{align}}
+
+    This function will return the error summary for one sentence.
+
+\begin{verbatim}
+align      co hy [-sub subP] [-ins insP] [-del delP]
+
+   co    = string containing correct sentence (rawAlign, align) or
+           file of many correct sentences (alignFiles, rawAlignFiles)
+   hy    = string containing the hypothesis (rawAlign, align) or
+           file of many hypotheses (alignFiles, rawAlignFiles)
+   subP  = two-dimensional array such that subP(w1,w2) is the
+           substitution penalty for substituting word w1 by word w2
+   insP  = one-dimensional array such that insP(w1) is the
+           insertion penalty for inserting the word w1
+   delP  = one-dimensional array such that delP(w1) is the
+           deletion penalty for deleting the word w1
+\end{verbatim}
+
+There is also an external scoring program, which runs significantly faster.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{align}{$<$corr$>$} & correct sentence (reference)  \\
+      \Jlabel{align}{$<$hypo$>$} & recognizer output (hypothesis)  \\
+      \Jlabel{align}{-sub} & 2D array of substitution penalties  \\
+      \Jlabel{align}{-ins} & 1D array of insertion penalties  \\
+      \Jlabel{align}{-del} & 1D array of deletion penalties  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{bbi.tcl}}
+
+BBI (Bucket-Box-Intersection) is a Gaussian selection
+algorithm, used for speed-up during decoding. Usually, the use of BBI during
+decodings results in a speed-up of factor 2, with marginal loss in word accuracy.
+The routines here set up the BBI infrastructure.\\
+
+Procedures defined in \texttt{tcl-lib/bbi.tcl}:
+
+  \subsection{\Jlabel{proc}{bbiSetInit}}
+
+    Initializes a BBI tree (loads the description file) and loads
+the parameters into the corresponding codebook. The codebook's scoring function then
+uses the BBI tree for future score computations. You can also use this function
+during creation of a BBI.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{bbiSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{bbiSetInit}{-codebookSet} & codebookSet object  \\
+      \Jlabel{bbiSetInit}{-desc} & description file  \\
+      \Jlabel{bbiSetInit}{-param} & parameter file  \\
+      \Jlabel{bbiSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{cbnew.tcl}}
+
+This is the Extended Codebook Set. Use it
+in conjunction with STCs (semi-tied co-variances), to find the
+OFS (optimal feature space).\\
+
+Procedures defined in \texttt{tcl-lib/cbnew.tcl}:
+
+  \subsection{\Jlabel{proc}{cbnewSetInit}}
+
+    Initializes the CBNew set. Load the 'CBNewParMatrixSet',
+requires 'ParmatSet'.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cbnewSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{cbnewSetInit}{-cbnewSet} & codebook set  \\
+      \Jlabel{cbnewSetInit}{-featureSet} & feature set (\Jref{module}{FeatureSet}) \\
+      \Jlabel{cbnewSetInit}{-parmatSet} & parameter matrix set (\Jref{module}{CBNewParMatrixSet}) \\
+      \Jlabel{cbnewSetInit}{-desc} & description file  \\
+      \Jlabel{cbnewSetInit}{-param} & parameter file  \\
+      \Jlabel{cbnewSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{cfg.tcl}}
+
+This file contains procedures for using Context Free Grammars together with the Ibis decoder. The grammars can be initialized by calling 'cfgInit \$SID' as usual. Other procedures are provided as methods of various objects.\\
+
+Procedures defined in \texttt{tcl-lib/cfg.tcl}:
+
+  \subsection{\Jlabel{proc}{cfgActivate}}
+
+    Sets the status of all grammars to active, which match the given tag. The tags 'SHARED' and 'all' are reserved\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgActivate}{cfgSet} &     ... \\
+      \Jlabel{cfgActivate}{$<$tag$>$} & tag of the grammar  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgDeactivate}}
+
+    Sets the status of all grammars to inactive, which match the given tag. The tags 'SHARED' and 'all' are reserved\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgDeactivate}{cfgSet} &     ... \\
+      \Jlabel{cfgDeactivate}{$<$tag$>$} & tag of the grammar  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgGenerate}}
+
+    Generates terminal sequences for a CFG\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgGenerate}{cfg} &  ... \\
+      \Jlabel{cfgGenerate}{$<$seqN$>$} & number of terminal sequences  \\
+      \Jlabel{cfgGenerate}{-mode} & generation mode (random|fixed)  \\
+      \Jlabel{cfgGenerate}{-recurse} & follow recursions  \\
+      \Jlabel{cfgGenerate}{-file} & file name to write output  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgGetParseTree}}
+
+    Returns the parse tree of a given text string. This method is case sensitive!\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgGetParseTree}{cfgSet} &     ... \\
+      \Jlabel{cfgGetParseTree}{$<$text$>$} & text string to parse  \\
+      \Jlabel{cfgGetParseTree}{-svmap} & use SVMap to map SVX$<$-$>$LVX (\Jref{module}{SVMap}) \\
+      \Jlabel{cfgGetParseTree}{-format} & output format (soup|jsgf)  \\
+      \Jlabel{cfgGetParseTree}{-auxNT} & print also auxilliary NTs  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgInit}}
+
+    Initializes the CFGs. By using the option '-makeDict' and defininig a base dictionary, it is also possible to build a new dictionary limited to the words given by the CFGs.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{cfgInit}{-grammars} & list of grammars and tags  \\
+      \Jlabel{cfgInit}{-baseDict} & base dict for lookup  \\
+      \Jlabel{cfgInit}{-dict} & resulting new dict  \\
+      \Jlabel{cfgInit}{-classes} & mapping of classes  \\
+      \Jlabel{cfgInit}{-fillers} & list of filler words  \\
+      \Jlabel{cfgInit}{-startover} & allow starting over  \\
+      \Jlabel{cfgInit}{-makeDict} & make dict out of cfg  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgSetGenerate}}
+
+    Generates terminal sequences for a CFGSet\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgSetGenerate}{cfgSet} &     ... \\
+      \Jlabel{cfgSetGenerate}{$<$seqN$>$} & number of terminal sequences  \\
+      \Jlabel{cfgSetGenerate}{-mode} & generation mode (random|fixed)  \\
+      \Jlabel{cfgSetGenerate}{-recurse} & follow recursions  \\
+      \Jlabel{cfgSetGenerate}{-file} & file name to write output  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgSetWeightRules}}
+
+    ???\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgSetWeightRules}{cfgSet} &     ... \\
+      \Jlabel{cfgSetWeightRules}{$<$rules$>$} & list of rules  \\
+      \Jlabel{cfgSetWeightRules}{-weight} & weight apllied to all rules  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{cfgSetWriteFSM}}
+
+    Writes a rule in a CFG or CFGSet in AT\&T FSM format\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cfgSetWriteFSM}{cfgSet} &     ... \\
+      \Jlabel{cfgSetWriteFSM}{$<$rule$>$} & rule to print as FSM  \\
+      \Jlabel{cfgSetWriteFSM}{$<$fsm$>$} & fsm file  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{cli.tcl}}
+
+Procedures to provide backward compatibility for commands included to reduce the need for forks. Usage is not exactly the same as the standard Unix commands.\\
+
+Procedures defined in \texttt{tcl-lib/cli.tcl}:
+
+  \subsection{\Jlabel{proc}{cp}}
+
+    Copies files\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{cp}{$<$from$>$} & file name(s) (glob expression)  \\
+      \Jlabel{cp}{$<$to$>$} & target (directory)  \\
+      \Jlabel{cp}{-f} & 0 return on error, 1 continue  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{mkdir}}
+
+    Creates directories\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{mkdir}{$<$dir$>$} & directory(ies)  \\
+      \Jlabel{mkdir}{-f} & 0 return on error, 1 continue  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{mv}}
+
+    Moves files\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{mv}{$<$from$>$} & file name(s) (glob expression)  \\
+      \Jlabel{mv}{$<$to$>$} & target (directory)  \\
+      \Jlabel{mv}{-f} & 0 return on error, 1 continue  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{rm}}
+
+    Removes files\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{rm}{$<$file$>$} & file name(s) (glob expression)  \\
+      \Jlabel{rm}{-f} & 0 return on error, 1 continue  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{rmdir}}
+
+    Removes directories\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{rmdir}{$<$dir$>$} & directory(ies) (glob expression)  \\
+      \Jlabel{rmdir}{-f} & 0 return on error, 1 continue  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{sleep}}
+
+    Sleeps.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{sleep}{$<$sec$>$} & sleep $<$sec$>$ seconds  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{touch}}
+
+    Touches files\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{touch}{$<$files$>$} & file name(s) (no glob)  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{wait}}
+
+    Waits a while.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{wait}{$<$file$>$} & name of file to wait for  \\
+      \Jlabel{wait}{-intervall} & poll every n seconds  \\
+      \Jlabel{wait}{-maxtime} & wait no longer than (sec)  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{codebook.tcl}}
+
+A CodebookSet contains a number of Codebooks,
+the standard JRTk object for Gaussian functions. The mixture weights
+are held in DistribSets.\\
+
+Procedures defined in \texttt{tcl-lib/codebook.tcl}:
+
+  \subsection{\Jlabel{proc}{codebookSetInit}}
+
+    Creates a CodebookSet (reads the description file)
+and can also load the parameters.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{codebookSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{codebookSetInit}{-codebookSet} & codebookSet object  \\
+      \Jlabel{codebookSetInit}{-featureSet} & feature set (\Jref{module}{FeatureSet}) \\
+      \Jlabel{codebookSetInit}{-desc} & description file  \\
+      \Jlabel{codebookSetInit}{-param} & parameter file  \\
+      \Jlabel{codebookSetInit}{-bmem} & use block memory management  \\
+      \Jlabel{codebookSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{dbase.tcl}}
+
+These functions deal with the Janus database. Most scripts
+rely on the database to find information related to the current speaker or the
+current utterance. In most cases, the DBase is organized as two different databases:
+one holding the information for all speakers (including which utterances they spoke) and
+one containing the information specific for one utterance (ADC, FROM, TO, speaker, ...).\\
+
+Procedures defined in \texttt{tcl-lib/dbase.tcl}:
+
+  \subsection{\Jlabel{proc}{dbaseInit}}
+
+    Initializes the DBase.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{dbaseInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{dbaseInit}{$<$name$>$} & data base name  \\
+      \Jlabel{dbaseInit}{-dbase} & data base object  \\
+      \Jlabel{dbaseInit}{-path} & dbase path  \\
+      \Jlabel{dbaseInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{dbaseUttFilter}}
+
+    Can be re-defined to leave out utterances during the
+training according to certain criteria.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{dbaseUttFilter}{$<$dbase$>$} & database name (not object)  \\
+      \Jlabel{dbaseUttFilter}{$<$uttID$>$} & utterance ID  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{dbaseUttInfo}}
+
+    Returns all the information available in the DBase for
+one given utterance. It combines the information in the speaker and utterance database.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{dbaseUttInfo}{$<$dbase$>$} & database name (not object)  \\
+      \Jlabel{dbaseUttInfo}{$<$spkID$>$} & speaker ID  \\
+      \Jlabel{dbaseUttInfo}{$<$uttID$>$} & utterance ID  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{foreachSegment}}
+
+    Can be used to loop over all utterances for a given speaker. Calls
+dbaseUttFilter to determine, if some segments should be left out.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{foreachSegment}{$<$utt$>$} & return value: variable to contain the utterance \\
+      \Jlabel{foreachSegment}{$<$dbase$>$} & the database you use \\
+      \Jlabel{foreachSegment}{$<$spk$>$} & the speaker \\
+      \Jlabel{foreachSegment}{$<$body$>$} & the script to execute \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{dictionary.tcl}}
+
+These functions deals with the dictionary.\\
+
+Procedures defined in \texttt{tcl-lib/dictionary.tcl}:
+
+  \subsection{\Jlabel{proc}{dictInit}}
+
+    Creates a dictionary object and possibly loads a
+dictionary file into it.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{dictInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{dictInit}{-phones} & phones  \\
+      \Jlabel{dictInit}{-tags} & tags  \\
+      \Jlabel{dictInit}{-dict} & dictionary  \\
+      \Jlabel{dictInit}{-desc} & description file  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{displayLabels.tcl}}
+
+These functions allow you to view the contents of a 
+label object. They are used by featshow.\\
+
+Procedures defined in \texttt{gui-tcl/displayLabels.tcl}:
+
+  \subsection{\Jlabel{proc}{displayLabels}}
+
+    Usage: \texttt{displayLabels $<$path$>$ $<$hmm$>$}
+
+        \begin{description}
+	\item[THE UTTERANCE WINDOW]
+
+	The first window will show a rectangle for each of the words that were
+	aligned in the utterance. (Optional words that were not aligned are
+	not displayed.) Each rectangle's width is proportional to the number
+	of frames that are consumed by the word, and its height is proportional
+	to the number of states (in terms of AModel-states). Every rectangle is
+	labeled with the orthographic spelling of the word, and with the frame
+	range (first frame .. last frame). However, you can decide yourself
+	what is displayed by choosing the appropriate radio-buttons in the
+        'full-view' menu.
+	Within the word-rectangles you can see smaller rectangles, representing
+	phonemes. These rectangles can be labelled with the phones names, if
+        you choose so.
+	You can choose the size of the display by clicking on the appropriate
+	radio-button in the 'full zoom' window.
+
+	\item[THE DETAILED VIEW WINDOW]
+
+	Clicking on a word's rectangle (not on one of the phones) with the 1st
+	mouse button will open a new window with a detailed display of the 
+	selected word. You can also select an area by dragging the mouse while 
+	holding the 3rd button. Or select an area by clicking on a phone's
+        rectangle. After you realease the mouse button, you'll get
+	a window with a detailed view of the selected area.
+	In this window you'll find a grid displaying the frames and states
+	of the utterance. The frames are labelled in a synchonuously scrolling
+        canvas below the main display canvas, the states are labelled (with the
+	senone names) in a synchronuously scrolling canvas to the left of the
+	main display canvas. Above the main display canvas is another
+	synchonuously scrolling canvas, whose contents are defined by the
+	procedure 'displayLabelsScore'. The default is to display the local
+	acoustic score for every frame, however you can redifine this function
+	to display whatever you wish from what is available in a CELL (see
+	displayLabelsLaprep for details). Every visited state is represented
+	by a circle. Below the circle are one, up to three, or up to six) lines
+	which show more information about the state. What is displayed below
+	the circles is defined in the procedure 'displayLabelsBelowCircle'.
+	Have a look at the code of the procedure if you'd like to redefine it.
+	Clicking on a circle will display all available information about that
+	state in an extra window.
+	You can choose how detailed your 'detailed view window' is by clicking
+	on the appropriate radio-button in the 'detailed zoom' menu.
+	\end{description}
+
+        Note that this procedure defines several global identifiers.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{displayLabels}{$<$path$>$} & underlying Path object (\Jref{module}{Path}) \\
+      \Jlabel{displayLabels}{$<$hmm$>$} & underlying HMM object (\Jref{module}{HMM}) \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{displayTree.tcl}}
+
+The functions defined in this file allow you to view 
+a Tree object in a Tk widget.\\
+
+Procedures defined in \texttt{gui-tcl/displayTree.tcl}:
+
+  \subsection{\Jlabel{proc}{treeDisplay}}
+
+    Displays a tree if you give it the name of the tree object
+and the name of the root node to start from.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{treeDisplay}{$<$tree$>$} & tree object (\Jref{module}{Tree}) \\
+      \Jlabel{treeDisplay}{$<$root$>$} & name of root node  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{distrib.tcl}}
+
+This file provides an easy way to set up the
+Gaussian mixture weights.\\
+
+Procedures defined in \texttt{tcl-lib/distrib.tcl}:
+
+  \subsection{\Jlabel{proc}{distribSetInit}}
+
+    Initializes a set of distributions. It reads the
+descriptions and can then load the parameters. by default, it assumes
+that the underlying codebook is called 'codebookSet\$SID', which is
+very easy to achieve if you use 'codebookSetInit'.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{distribSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{distribSetInit}{-distribSet} & distribSet object  \\
+      \Jlabel{distribSetInit}{-codebookSet} & codebook set (\Jref{module}{CodebookSet}) \\
+      \Jlabel{distribSetInit}{-desc} & description file  \\
+      \Jlabel{distribSetInit}{-param} & parameter file  \\
+      \Jlabel{distribSetInit}{-bmem} & bmem option  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{distribTree.tcl}}
+
+This file provides a wrapper for the tree of
+distributions, which is needed to find the distribution for each context.\\
+
+Procedures defined in \texttt{tcl-lib/distribTree.tcl}:
+
+  \subsection{\Jlabel{proc}{distribTreeInit}}
+
+    Initializes 'distribTree\$SID'. Needs a 'distribSet',
+a description file and creates a 'distribStream', which the 'senoneSet' 
+takes to compute scores.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{distribTreeInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{distribTreeInit}{-distribTree} & distribTree object  \\
+      \Jlabel{distribTreeInit}{-distribStrea} & m distribStream object  \\
+      \Jlabel{distribTreeInit}{-distribSet} & distribution set (\Jref{module}{DistribSet}) \\
+      \Jlabel{distribTreeInit}{-phones} & phones set (\Jref{module}{Phones}) \\
+      \Jlabel{distribTreeInit}{-phonesSet} & phonesSet set (\Jref{module}{PhonesSet}) \\
+      \Jlabel{distribTreeInit}{-tags} & tags set (\Jref{module}{Tags}) \\
+      \Jlabel{distribTreeInit}{-ptree} & polyphonic tree  \\
+      \Jlabel{distribTreeInit}{-desc} & description file  \\
+      \Jlabel{distribTreeInit}{-padPhone} & padding phone  \\
+      \Jlabel{distribTreeInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{featshow.tcl}}
+
+These functions allow you to display features.\\
+
+Procedures defined in \texttt{gui-tcl/featshow.tcl}:
+
+  \subsection{\Jlabel{proc}{featshow}}
+
+    Shows a feature, USAGE: featshow $<$featureset$>$ $<$feature$>$ [$<$width$>$ [$<$height$>$].\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{featshow}{$<$FeatureSet$>$} & FeatureSet to use (\Jref{module}{FeatureSet}) \\
+      \Jlabel{featshow}{$<$Feature$>$} & name of feature to display  \\
+      \Jlabel{featshow}{-width} & width of window  \\
+      \Jlabel{featshow}{-height} & height of window  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{feature.tcl}}
+
+This file covers the initialization of the
+FeatureSet. See 'featshow.tcl' to find out more about the visualization
+of these features.\\
+
+Procedures defined in \texttt{tcl-lib/feature.tcl}:
+
+  \subsection{\Jlabel{proc}{featureSetInit}}
+
+    Initializes a FeatureSet.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{featureSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{featureSetInit}{-featureSet} & feature set name  \\
+      \Jlabel{featureSetInit}{-desc} & description procedure  \\
+      \Jlabel{featureSetInit}{-access} & access function  \\
+      \Jlabel{featureSetInit}{-lda} & ptr to LDA matrix  \\
+      \Jlabel{featureSetInit}{-ldaFeat} & feat for LDA matrix  \\
+      \Jlabel{featureSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{featview.tcl}}
+
+These functions allow you to display features in a FeatureSet.\\
+
+Procedures defined in \texttt{gui-tcl/featview.tcl}:
+
+  \subsection{\Jlabel{proc}{featview}}
+
+    Displays different aspects of a FeatureSet, i.e. view its contents, load alternate files ...\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{featview}{$<$FeatureSet$>$} & FeatureSet to use (\Jref{module}{FeatureSet}) \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{ibis.tcl}}
+
+This file contains procedures for the Ibis decoder. It can  be initialized by calling 'ibisInit \$SID' as usual. The other rotines are available  as methods of various objects.\\
+
+Procedures defined in \texttt{tcl-lib/ibis.tcl}:
+
+  \subsection{\Jlabel{proc}{ibisInit}}
+
+    Initializes the Ibis decoder object hierarchy. It is possible to  integrate existing objects (e.g. language models) into the decoder, although this  procedure can build objects and load the appropriate descriptions, data- or dumpfiles, too.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{ibisInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{ibisInit}{-dict} & Search Dictionary (\Jref{module}{Dictionary}) \\
+      \Jlabel{ibisInit}{-ttree} & Topology Tree (\Jref{module}{Tree}) \\
+      \Jlabel{ibisInit}{-phmmSet} & Phonetic HMM Set (\Jref{module}{PHMMSet}) \\
+      \Jlabel{ibisInit}{-lcmSet} & Left Context Model Set (\Jref{module}{LCMSet}) \\
+      \Jlabel{ibisInit}{-rcmSet} & Right Context Model Set (\Jref{module}{RCMSet}) \\
+      \Jlabel{ibisInit}{-xcmSet} & X-Word Context Model Set (\Jref{module}{XCMSet}) \\
+      \Jlabel{ibisInit}{-vocab} & Search Vocabulary (\Jref{module}{SVocab}) \\
+      \Jlabel{ibisInit}{-svmap} & Mapper SVX-$>$LVX (\Jref{module}{SVMap}) \\
+      \Jlabel{ibisInit}{-stree} & Search Tree (Phonetic) (\Jref{module}{STree}) \\
+      \Jlabel{ibisInit}{-ltree} & Search Tree (Linguistic) (\Jref{module}{LTree}) \\
+      \Jlabel{ibisInit}{-spass} & Search Object (\Jref{module}{Tree}) \\
+      \Jlabel{ibisInit}{-streeDump} & search tree dump file  \\
+      \Jlabel{ibisInit}{-vocabDesc} & search vocabulary  \\
+      \Jlabel{ibisInit}{-mapDesc} & traditional LM-map file or pron. variants  \\
+      \Jlabel{ibisInit}{-maplaDesc} & traditional LM-map file or pron. variants  \\
+      \Jlabel{ibisInit}{-readSubs} & read map-table from 'NGramLM' into SVMap  \\
+      \Jlabel{ibisInit}{-phraseLMDesc} &  multi-word LM file  \\
+      \Jlabel{ibisInit}{-baseLMDesc} & base lmodel  \\
+      \Jlabel{ibisInit}{-ipolLMDesc} & interpolation lmodel  \\
+      \Jlabel{ibisInit}{-lmDesc} & language model  \\
+      \Jlabel{ibisInit}{-lmlaDesc} & language model lookahead  \\
+      \Jlabel{ibisInit}{-lalz} & LM lookahead weight  \\
+      \Jlabel{ibisInit}{-lz} & language model weight  \\
+      \Jlabel{ibisInit}{-lp} & language model penalty  \\
+      \Jlabel{ibisInit}{-fp} & filler word penalty  \\
+      \Jlabel{ibisInit}{-masterBeam} & master beam setting  \\
+      \Jlabel{ibisInit}{-lmType} & Language Model Type  \\
+      \Jlabel{ibisInit}{-lks} & Language Model (\Jref{module}{LingKS}) \\
+      \Jlabel{ibisInit}{-lm} & Language Model (discouraged) (\Jref{module}{LingKS}) \\
+      \Jlabel{ibisInit}{-lksla} & LookAhead Language Model (\Jref{module}{LingKS}) \\
+      \Jlabel{ibisInit}{-cacheN} & cache lines in ltree  \\
+      \Jlabel{ibisInit}{-depth} & depth of ltree  \\
+      \Jlabel{ibisInit}{-xcm} & use XCMSet  \\
+      \Jlabel{ibisInit}{-useCtx} & use context  \\
+      \Jlabel{ibisInit}{-smemFree} & free memory  \\
+      \Jlabel{ibisInit}{-ignoreRCM} & ignore RCMs in XCM  \\
+      \Jlabel{ibisInit}{-fastMatch} & Fast Match SID  \\
+      \Jlabel{ibisInit}{-verbose} & verbose  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{lksInit}}
+
+    Can be used to create a language model.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{lksInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{lksInit}{$<$LKSType$>$} & type of LingKS  \\
+      \Jlabel{lksInit}{-dict} & dictionary  \\
+      \Jlabel{lksInit}{-vocab} & vocabulary  \\
+      \Jlabel{lksInit}{-svmap} & mapper SVX-$>$LVX  \\
+      \Jlabel{lksInit}{-lks} & name of LingKS object  \\
+      \Jlabel{lksInit}{-lksBase} & name of LingKS base object  \\
+      \Jlabel{lksInit}{-lksIPol} & name of LingKS ipol object  \\
+      \Jlabel{lksInit}{-segSize} & segSize parameter for NGramLM  \\
+      \Jlabel{lksInit}{-lksWeights} & weights-file to load into main LingKS  \\
+      \Jlabel{lksInit}{-lksDesc} & file to load into main LingKS  \\
+      \Jlabel{lksInit}{-ipolDesc} & file to load into ipol LingKS  \\
+      \Jlabel{lksInit}{-baseDesc} & file to load into base LingKS  \\
+      \Jlabel{lksInit}{-phraseDesc} & file to load into phrase LingKS  \\
+      \Jlabel{lksInit}{-vocabDesc} & vocabulary file to load  \\
+      \Jlabel{lksInit}{-mapDesc} & mapping file to load  \\
+      \Jlabel{lksInit}{-readSubs} & LM to read substitutions from  \\
+      \Jlabel{lksInit}{-verbose} & verbosity  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{kmeans.tcl}}
+
+This file makes it easier to start EM training by 
+initializing the codebooks with the K-Means algorithm. Before you can do
+that, you need to extract samples.\\
+
+Procedures defined in \texttt{tcl-lib/kmeans.tcl}:
+
+  \subsection{\Jlabel{proc}{doKMeans}}
+
+    Performs K-Means in parallel, creating a CodebookSet (
+a DistribSet is produced, too, but the weights are equally distributed). 
+This procedure can combine and cluster data from different sample extractions.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{doKMeans}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{doKMeans}{$<$cbListFile$>$} & file of codebook names  \\
+      \Jlabel{doKMeans}{-codebookSet} & codebook set (\Jref{module}{CodebookSet}) \\
+      \Jlabel{doKMeans}{-distribSet} & distribution set (\Jref{module}{DistribSet}) \\
+      \Jlabel{doKMeans}{-paramFile} & base name of parameters  \\
+      \Jlabel{doKMeans}{-dataPath} & path of sample files  \\
+      \Jlabel{doKMeans}{-kmeansPath} & path of kmeans files  \\
+      \Jlabel{doKMeans}{-distribUpdat} & e update distributions  \\
+      \Jlabel{doKMeans}{-tempF} & final temperature  \\
+      \Jlabel{doKMeans}{-maxIter} & number of iterations  \\
+      \Jlabel{doKMeans}{-maxCount} & max no of samples  \\
+      \Jlabel{doKMeans}{-semFile} & semaphore file  \\
+      \Jlabel{doKMeans}{-doCombine} & combine samples on demand  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{label.tcl}}
+
+???\\
+
+Procedures defined in \texttt{gui-tcl/label.tcl}:
+
+\section{\Jlabel{lib}{labels.tcl}}
+
+Look here if you need to write labels (time-alignments).\\
+
+Procedures defined in \texttt{tcl-lib/labels.tcl}:
+
+  \subsection{\Jlabel{proc}{labelsMLAdaptWrite}}
+
+    Equivalent to 'labelsWrite', except that it performs
+speaker-specific MLLR adaptation on the reference before computing the 
+labels, which often results in better alignments. Takes more time, though.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{labelsMLAdaptWrite}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{labelsMLAdaptWrite}{$<$spkIDfile$>$} & file of speaker IDs  \\
+      \Jlabel{labelsMLAdaptWrite}{$<$MLAdapt$>$} & ML adaptation object (\Jref{module}{MLAdapt}) \\
+      \Jlabel{labelsMLAdaptWrite}{-path} & name of path  \\
+      \Jlabel{labelsMLAdaptWrite}{-lbox} & name of lbox  \\
+      \Jlabel{labelsMLAdaptWrite}{-labelPath} & path of label files  \\
+      \Jlabel{labelsMLAdaptWrite}{-update} & only try nonexisting paths  \\
+      \Jlabel{labelsMLAdaptWrite}{-beam} & viterbi beam  \\
+      \Jlabel{labelsMLAdaptWrite}{-topN} & topN beam  \\
+      \Jlabel{labelsMLAdaptWrite}{-optWord} & optional word  \\
+      \Jlabel{labelsMLAdaptWrite}{-variants} & variants 0/1  \\
+      \Jlabel{labelsMLAdaptWrite}{-minCount} & adaptation minCount  \\
+      \Jlabel{labelsMLAdaptWrite}{-putPath} & write path into log  \\
+      \Jlabel{labelsMLAdaptWrite}{-tryMax} & increasing beam  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{labelsWrite}}
+
+    Writes labels, i.e. computes and stores a viterbi path
+for every utterance of every speaker found in the speaker list. You can
+store the labels in separate files or in a 'label-box', which contains
+all alignments for one speaker in one singel file.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{labelsWrite}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{labelsWrite}{$<$spkIDfile$>$} & file of speaker IDs  \\
+      \Jlabel{labelsWrite}{-path} & name of path  \\
+      \Jlabel{labelsWrite}{-lbox} & name of lbox  \\
+      \Jlabel{labelsWrite}{-labelPath} & path of label files  \\
+      \Jlabel{labelsWrite}{-update} & only try nonexisting paths  \\
+      \Jlabel{labelsWrite}{-beam} & viterbi beam  \\
+      \Jlabel{labelsWrite}{-topN} & topN beam  \\
+      \Jlabel{labelsWrite}{-optWord} & optional word  \\
+      \Jlabel{labelsWrite}{-variants} & variants 0/1  \\
+      \Jlabel{labelsWrite}{-putPath} & write path into log  \\
+      \Jlabel{labelsWrite}{-tryMax} & increasing beam  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{latview.tcl}}
+
+A viewer for GLat objects.\\
+
+Procedures defined in \texttt{tcl-lib/latview.tcl}:
+
+  \subsection{\Jlabel{proc}{showlat}}
+
+    Display the contents of a GLat lattice in a Tk window.
+                    Be careful with large objects.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{showlat}{obj} &  ... \\
+      \Jlabel{showlat}{ARGS} & ??? \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{lda.tcl}}
+
+LDA (Linear Discriminant Analysis) is part of the
+standard preprocessing in the JRTk toolkit.\\
+
+Procedures defined in \texttt{tcl-lib/lda.tcl}:
+
+  \subsection{\Jlabel{proc}{doLDA}}
+
+    Computes the LDA matrix. Also extracts the counts (i.e. frames)
+for every codebook, which is useful information and is used to determine
+the module during sample extraction.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{doLDA}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{doLDA}{$<$LDA$>$} & LDA object (\Jref{module}{LDA}) \\
+      \Jlabel{doLDA}{$<$spkIDfile$>$} & file of speaker IDs  \\
+      \Jlabel{doLDA}{-countsFile} & file to save counts  \\
+      \Jlabel{doLDA}{-labelPath} & path of label files  \\
+      \Jlabel{doLDA}{-stream} & stream index  \\
+      \Jlabel{doLDA}{-optWord} & optional word  \\
+      \Jlabel{doLDA}{-variants} & variants 0/1  \\
+      \Jlabel{doLDA}{-featureSet} & feature set  \\
+      \Jlabel{doLDA}{-hmm} & hidden markov model  \\
+      \Jlabel{doLDA}{-senoneSet} & senone set  \\
+      \Jlabel{doLDA}{-path} & path object  \\
+      \Jlabel{doLDA}{-lbox} & lbox object  \\
+      \Jlabel{doLDA}{-semFile} & semaphore file  \\
+      \Jlabel{doLDA}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{misc.tcl}}
+
+This file contains various procedures.\\
+
+Procedures defined in \texttt{tcl-lib/misc.tcl}:
+
+  \subsection{\Jlabel{proc}{printDo}}
+
+    Performs an action (its argument) and prints the command
+line to stderr. Don't try to set variables within printDo, though.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{printDo}{args} & The commands to execute \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{parmat.tcl}}
+
+Library to initialize semi-tied full covariances.\\
+
+Procedures defined in \texttt{tcl-lib/parmat.tcl}:
+
+  \subsection{\Jlabel{proc}{parmatSetInit}}
+
+    Initializes semi-tied full covariances.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{parmatSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{parmatSetInit}{-parmatSet} & parameter matrix set  \\
+      \Jlabel{parmatSetInit}{-desc} & description file  \\
+      \Jlabel{parmatSetInit}{-dimN} & number of feature space dim. (if no desc. file is used)  \\
+      \Jlabel{parmatSetInit}{-param} & parameter file  \\
+      \Jlabel{parmatSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{phones.tcl}}
+
+Deals with the PhonesSet.\\
+
+Procedures defined in \texttt{tcl-lib/phones.tcl}:
+
+  \subsection{\Jlabel{proc}{phonesSetInit}}
+
+    Initializes a PhonesSet.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{phonesSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{phonesSetInit}{-phonesSet} & phones set  \\
+      \Jlabel{phonesSetInit}{-desc} & description file  \\
+      \Jlabel{phonesSetInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{samples.tcl}}
+
+Allows to extract samples, i.e. store the pre-processed
+data for every frame given labels and use it directly at a later stage, for
+example for KMeans.\\
+
+Procedures defined in \texttt{tcl-lib/samples.tcl}:
+
+  \subsection{\Jlabel{proc}{doExtract}}
+
+    Extract the data in separate files for each codebook
+according to a given alignment. This is very heavy on file I/O, so plan
+your setup accordingly. If you specify a counts file, you can also specify
+the 'maxCount'; the system will then automatically compute a modulo, which
+prevents more than 'maxCount' samples to be extracted for every codebook.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{doExtract}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{doExtract}{$<$SampleSet$>$} & SampleSet object (\Jref{module}{SampleSet}) \\
+      \Jlabel{doExtract}{$<$spkIDfile$>$} & file of speaker IDs  \\
+      \Jlabel{doExtract}{-path} & name of path  \\
+      \Jlabel{doExtract}{-lbox} & name of lbox  \\
+      \Jlabel{doExtract}{-labelPath} & path of label files  \\
+      \Jlabel{doExtract}{-dataPath} & path of data files  \\
+      \Jlabel{doExtract}{-combPath} & path for combining files  \\
+      \Jlabel{doExtract}{-countsFile} & file to save counts  \\
+      \Jlabel{doExtract}{-maxCount} & max count in file  \\
+      \Jlabel{doExtract}{-modulus} & modulus  \\
+      \Jlabel{doExtract}{-stream} & stream index  \\
+      \Jlabel{doExtract}{-optWord} & optional word  \\
+      \Jlabel{doExtract}{-variants} & variants 0/1  \\
+      \Jlabel{doExtract}{-doCombine} & doCombine 0/1  \\
+      \Jlabel{doExtract}{-semFile} & semaphore file  \\
+      \Jlabel{doExtract}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{senone.tcl}}
+
+This file contains various procedures.\\
+
+Procedures defined in \texttt{tcl-lib/senone.tcl}:
+
+  \subsection{\Jlabel{proc}{senoneSetInit}}
+
+    Initializes the SenoneSet.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{senoneSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{senoneSetInit}{$<$streams$>$} & stream array  \\
+      \Jlabel{senoneSetInit}{-phones} & phones set (\Jref{module}{Phones}) \\
+      \Jlabel{senoneSetInit}{-tags} & tags set (\Jref{module}{Tags}) \\
+      \Jlabel{senoneSetInit}{-desc} & description file  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{showSTree.tcl}}
+
+These functions allow you to view trees, too.\\
+
+Procedures defined in \texttt{gui-tcl/showSTree.tcl}:
+
+  \subsection{\Jlabel{proc}{showSTree}}
+
+    Displays a tree object! This procedure does not display an STree object, though!\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{showSTree}{$<$tree$>$} & tree object to display (\Jref{module}{Tree}) \\
+      \Jlabel{showSTree}{$<$startNode$>$} & name of start node (of tree to display)  \\
+      \Jlabel{showSTree}{$<$depth$>$} & depth of displayed tree  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{speech.tcl}}
+
+Sil/Speech Detector based on Gaussian mixture.\\
+
+Procedures defined in \texttt{tcl-lib/speech.tcl}:
+
+  \subsection{\Jlabel{proc}{speechInit}}
+
+    Creation and initialization of a speech detector
+using a codebookSet and a distribSet
+based on a description file and a parameter file.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{speechInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{speechInit}{-featureSet} & feature set (\Jref{module}{FeatureSet}) \\
+      \Jlabel{speechInit}{-cbsdesc} & description file  \\
+      \Jlabel{speechInit}{-cbsparam} & parameter file  \\
+      \Jlabel{speechInit}{-dssdesc} & description file  \\
+      \Jlabel{speechInit}{-dssparam} & parameter file  \\
+      \Jlabel{speechInit}{-apriori} & speech a priori prob  \\
+      \Jlabel{speechInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{tags.tcl}}
+
+This file initializes the tags.\\
+
+Procedures defined in \texttt{tcl-lib/tags.tcl}:
+
+  \subsection{\Jlabel{proc}{tagsInit}}
+
+    Creates a 'Tags' object, usually called tags\$SID.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{tagsInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{tagsInit}{-tags} & tags object name  \\
+      \Jlabel{tagsInit}{-desc} & description file  \\
+      \Jlabel{tagsInit}{-log} & name of log channel  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{topo.tcl}}
+
+This file initializes the TopoSet.\\
+
+Procedures defined in \texttt{tcl-lib/topo.tcl}:
+
+  \subsection{\Jlabel{proc}{topoSetInit}}
+
+    Creates a 'TopoSet'.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{topoSetInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{topoSetInit}{-tm} & transistion description  \\
+      \Jlabel{topoSetInit}{-senoneSet} & senoneSet set (\Jref{module}{SenoneSet}) \\
+      \Jlabel{topoSetInit}{-tmSet} & tmSet set (\Jref{module}{TmSet}) \\
+      \Jlabel{topoSetInit}{-desc} & topology description  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{ttreeInit}}
+
+    Creates a 'TopoTree'.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{ttreeInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{ttreeInit}{-phones} & phones set (\Jref{module}{Phones}) \\
+      \Jlabel{ttreeInit}{-phonesSet} & phonesSet set (\Jref{module}{PhonesSet}) \\
+      \Jlabel{ttreeInit}{-tags} & tags set (\Jref{module}{Tags}) \\
+      \Jlabel{ttreeInit}{-topoSet} & topoSet set (\Jref{module}{TopoSet}) \\
+      \Jlabel{ttreeInit}{-ptree} & polyphonic tree  \\
+      \Jlabel{ttreeInit}{-desc} & description file  \\
+      \Jlabel{ttreeInit}{-padPhone} & padding phone  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{train.tcl}}
+
+This file contains various procedures helpful 
+during recognizer development. Once initialized with 'trainInit \$SID',
+the training environment provides path, hmm and other objects along with
+a number of Tcl-defined methods.\\
+
+Procedures defined in \texttt{tcl-lib/train.tcl}:
+
+  \subsection{\Jlabel{proc}{fwdBwdUtterance}}
+
+    Performs forward-backward alignment of an utterance. The
+necessary information can be read from the database.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{fwdBwdUtterance}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{fwdBwdUtterance}{$<$speaker$>$} & speaker   ID  \\
+      \Jlabel{fwdBwdUtterance}{$<$uttID$>$} & utterance ID  \\
+      \Jlabel{fwdBwdUtterance}{-text} & text to align  \\
+      \Jlabel{fwdBwdUtterance}{-hmm} & hmm  \\
+      \Jlabel{fwdBwdUtterance}{-path} & path  \\
+      \Jlabel{fwdBwdUtterance}{-lbox} & name of lbox  \\
+      \Jlabel{fwdBwdUtterance}{-topN} & topN beam  \\
+      \Jlabel{fwdBwdUtterance}{-width} & width of path  \\
+      \Jlabel{fwdBwdUtterance}{-optWord} & optional word  \\
+      \Jlabel{fwdBwdUtterance}{-variants} & variants 0/1  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{labelUtterance}}
+
+    Reads a binary dumped path into the path\$SID
+                    structure and translates the senone indices by
+                    referring to the utterance HMM and using the path
+                    state indices to find the new senone indices therein.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{labelUtterance}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{labelUtterance}{$<$speaker$>$} & speaker   ID  \\
+      \Jlabel{labelUtterance}{$<$uttID$>$} & utterance ID  \\
+      \Jlabel{labelUtterance}{$<$file$>$} & filename  \\
+      \Jlabel{labelUtterance}{-text} & text to align  \\
+      \Jlabel{labelUtterance}{-optWord} & optional word  \\
+      \Jlabel{labelUtterance}{-variants} & variants 0/1  \\
+      \Jlabel{labelUtterance}{-eval} & eval string extension  \\
+      \Jlabel{labelUtterance}{-evalFES} & eval feature set 0/1  \\
+      \Jlabel{labelUtterance}{-featureSet} & feature set  \\
+      \Jlabel{labelUtterance}{-hmm} & hmm  \\
+      \Jlabel{labelUtterance}{-path} & path  \\
+      \Jlabel{labelUtterance}{-lbox} & name of lbox  \\
+      \Jlabel{labelUtterance}{-evalScore} & compute path score  \\
+      \Jlabel{labelUtterance}{-log} & name of log channel  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{pathWriteCTM}}
+
+    Writes a CTM-format hypothesis file from a path object.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{pathWriteCTM}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{pathWriteCTM}{$<$speaker$>$} & speaker   ID  \\
+      \Jlabel{pathWriteCTM}{$<$uttID$>$} & utterance ID  \\
+      \Jlabel{pathWriteCTM}{$<$from$>$} & from frame  \\
+      \Jlabel{pathWriteCTM}{-file} & filename  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{trainInit}}
+
+    Initializes the standard JRTk training environment.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{trainInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{trainInit}{-amodelSet} & acoustic models  \\
+      \Jlabel{trainInit}{-hmm} & hidden markov model  \\
+      \Jlabel{trainInit}{-path} & path object  \\
+      \Jlabel{trainInit}{-lbox} & Labelbox object  \\
+      \Jlabel{trainInit}{-topoTree} & topology tree (\Jref{module}{Tree}) \\
+      \Jlabel{trainInit}{-topoTreeRoot} &  root of topoTree  \\
+      \Jlabel{trainInit}{-durTree} & duration tree (\Jref{module}{Tree}) \\
+      \Jlabel{trainInit}{-durTreeRoot} & root of duration tree  \\
+      \Jlabel{trainInit}{-rcmSdp} & use right context for context-dependent single phone words  \\
+      \Jlabel{trainInit}{-dict} & dictionary (\Jref{module}{Dictionary}) \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{viterbiUtterance}}
+
+    Performs viterbi alignment of an utterance. The
+necessary information can be read from the database.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{viterbiUtterance}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{viterbiUtterance}{$<$speaker$>$} & speaker   ID  \\
+      \Jlabel{viterbiUtterance}{$<$uttID$>$} & utterance ID  \\
+      \Jlabel{viterbiUtterance}{-text} & text to align  \\
+      \Jlabel{viterbiUtterance}{-hmm} & name of hmm  \\
+      \Jlabel{viterbiUtterance}{-path} & name of path  \\
+      \Jlabel{viterbiUtterance}{-lbox} & name of Labelbox  \\
+      \Jlabel{viterbiUtterance}{-beam} & viterbi beam  \\
+      \Jlabel{viterbiUtterance}{-topN} & topN beam  \\
+      \Jlabel{viterbiUtterance}{-bpMod} & after every X frames clean up bpTable ($<$0 never)  \\
+      \Jlabel{viterbiUtterance}{-bpMul} & go Y * X frames back during cleanup ($<$1 start at first frame)  \\
+      \Jlabel{viterbiUtterance}{-optWord} & optional word  \\
+      \Jlabel{viterbiUtterance}{-variants} & variants 0/1  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{tree.tcl}}
+
+Various handy procedures for Tree objects.\\
+
+Procedures defined in \texttt{tcl-lib/tree.tcl}:
+
+  \subsection{\Jlabel{proc}{treeCluster}}
+
+    Clusters tree given a set of questions, the minimum
+                number of counts expected to be in the ModelArray for
+                each answer node, the minimum count and the maximum
+                number of splits for each node.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{treeCluster}{$<$tree$>$} & tree (\Jref{module}{Tree}) \\
+      \Jlabel{treeCluster}{$<$questionSet$>$} &  question set (\Jref{module}{QuestionSet}) \\
+      \Jlabel{treeCluster}{-file} & cluster log file  \\
+      \Jlabel{treeCluster}{-nodeList} & list of nodes  \\
+      \Jlabel{treeCluster}{-minCount} & minimum count  \\
+      \Jlabel{treeCluster}{-maxSplit} & max.number of split  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{treeQuestion}}
+
+    Find a question for a given node in the tree (if there
+                 is a polyphonic tree attached to the node).\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{treeQuestion}{$<$tree$>$} & tree (\Jref{module}{Tree}) \\
+      \Jlabel{treeQuestion}{$<$node$>$} & node name  \\
+      \Jlabel{treeQuestion}{$<$questionSet$>$} &  question set (\Jref{module}{QuestionSet}) \\
+      \Jlabel{treeQuestion}{$<$parent$>$} & parent name  \\
+      \Jlabel{treeQuestion}{$<$nodes$>$} & nodes array  \\
+      \Jlabel{treeQuestion}{$<$count$>$} & count array  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{treeReadSplits}}
+
+    Reads cluster log file into an array indexed by the
+                  gain of each split. This array is used to split
+                  a decision tree.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{treeReadSplits}{$<$files$>$} & cluster log files  \\
+      \Jlabel{treeReadSplits}{-list} & initial split list  \\
+    \end{tabular}
+
+\section{\Jlabel{lib}{vtln.tcl}}
+
+Procedure to handle VTLN (Vocal Tract Length Normalization)
+estimation and use.\\
+
+Procedures defined in \texttt{tcl-lib/vtln.tcl}:
+
+  \subsection{\Jlabel{proc}{findLabelWarp}}
+
+    Given a path (in a label file) rescore all utterances
+                  of the given speaker within a window of different
+                  warp scales. Utterances of the speaker are taken until 
+                  a maximum number of frames is reached.
+                  Return warp factor with best score and frames used.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{findLabelWarp}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{findLabelWarp}{$<$speaker$>$} & speaker ID  \\
+      \Jlabel{findLabelWarp}{-labelPath} & path of label files  \\
+      \Jlabel{findLabelWarp}{-warp} & center warp  \\
+      \Jlabel{findLabelWarp}{-window} & window width/2  \\
+      \Jlabel{findLabelWarp}{-delta} & delta steps  \\
+      \Jlabel{findLabelWarp}{-maxFrame} & maximal number of frames to use  \\
+      \Jlabel{findLabelWarp}{-v} & verbosity  \\
+      \Jlabel{findLabelWarp}{-optWord} & optional HMM word  \\
+      \Jlabel{findLabelWarp}{-variants} & use pronunciation variants  \\
+      \Jlabel{findLabelWarp}{-trl} & Text field in database entry  \\
+      \Jlabel{findLabelWarp}{-phoneLst} & list of phones  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{findViterbiWarp}}
+
+    Find the best warp factor within a given window around 
+                  an initial value. Use a first hypothesis given in 
+                  \$HYPO(\$utt) and do viterbi. Rescore for different warp
+                  scales and all utterances of the speaker.
+                  Return warp factor with best score and frames used.\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{findViterbiWarp}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{findViterbiWarp}{$<$speaker$>$} & speaker ID  \\
+      \Jlabel{findViterbiWarp}{-warp} & center warp  \\
+      \Jlabel{findViterbiWarp}{-window} & window width/2  \\
+      \Jlabel{findViterbiWarp}{-delta} & delta steps  \\
+      \Jlabel{findViterbiWarp}{-maxFrame} & maximal number of frames to use  \\
+      \Jlabel{findViterbiWarp}{-phoneLst} & list of phones  \\
+    \end{tabular}
+
+  \subsection{\Jlabel{proc}{vtlnInit}}
+
+    Reads in a file containing warp factors 
+(there is no procedure to write them, though; the file format is '$<$spk$>$ $<$scale$>$'
+in every line).\\
+
+    \textbf{Arguments:}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{vtlnInit}{LSID} & The system id, usually \$SID. \\
+      \Jlabel{vtlnInit}{-param} & file with warp scales  \\
+    \end{tabular}

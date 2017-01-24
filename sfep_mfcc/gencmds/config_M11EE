@@ -1,0 +1,6 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM21/iyu/M11EE
+videopaths=/home/iyu/sfep/gencmds/M11EE.list
+machine=rocks
+video_info=/data/MM21/iyu/M11EE/features/video_info
+video_info_resized=/data/MM21/iyu/M11EE/features/video_info_resized

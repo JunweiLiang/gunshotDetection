@@ -1,0 +1,94 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DistribStream}}
+
+This section describes the '\Jgloss{DistribStream}': \textsl{Distribution based stream}
+
+\begin{description}
+
+  \item[Creation:] \texttt{DistribStream  $<$name$>$ $<$DistribSet$>$ $<$Tree$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the distrib stream  \\
+ \texttt{\textbf{DistribSet}} &  set of distributions (\Jref{module}{DistribSet}) \\
+ \texttt{\textbf{Tree}} &        distribution tree (\Jref{module}{Tree}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{distribstream configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DistribStream}{-distribSet} & = distribSetISLci \\
+      \Jlabel{DistribStream}{-name} & = distribStreamISLci \\
+      \Jlabel{DistribStream}{-tree} & = distribTreeISLci \\
+      \Jlabel{DistribStream}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{distribstream}
+
+    \begin{description}
+      \Jitem{\Jlabel{DistribStream}{accu}} \texttt{ $<$distrib$>$ $<$frame$>$ \Jsb{-factor factor} \Jsb{-toframe toframe}} \
+
+        accumulate sufficient statistic
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  name of the distribution \\
+ \texttt{\textbf{frame}} &    index of the requested frame  \\
+ \texttt{\textbf{factor}} &    training factor  \\
+ \texttt{\textbf{toframe}} &   first frame not to train  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribStream}{get}} \texttt{ $<$node$>$ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$ \Jsb{-node node}} \
+
+        returns a distribution given a tagged phone sequence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &           root node \\
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+ \texttt{\textbf{node}} &            want node name (0/1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribStream}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribStream}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed distributions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribStream}{score}} \texttt{ $<$distrib$>$ $<$frame$>$} \
+
+        compute distribution score
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{distrib}} &  name of the distribution \\
+ \texttt{\textbf{frame}} &    index of the requested frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribStream}{update}} \texttt{} \
+
+        update distributions/codebook
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{distribSet}} & (\Jref{module}{DistribSet}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{tree}} & (\Jref{module}{Tree}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Distrib}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

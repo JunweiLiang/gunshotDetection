@@ -1,0 +1,90 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{AModelSet}}
+
+This section describes the '\Jgloss{AModelSet}': \textsl{set of acoustic models}
+
+\begin{description}
+
+  \item[Creation:] \texttt{AModelSet  $<$name$>$ $<$TTree$>$ $<$TTreeRoot$>$ \Jsb{-durationTree durationtree} \Jsb{-durationRoot durationroot} \Jsb{-contextCache contextcache}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of the amodel set  \\
+ \texttt{\textbf{TTree}} &        topology tree (\Jref{module}{Tree}) \\
+ \texttt{\textbf{TTreeRoot}} &    root name in TTree  \\
+ \texttt{\textbf{durationtree}} &  duration tree (\Jref{module}{Tree}) \\
+ \texttt{\textbf{durationroot}} &  duration tree root  \\
+ \texttt{\textbf{contextcache}} &  1 = create context cache  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{amodelset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{AModelSet}{-durRoot} & = -1 \\
+      \Jlabel{AModelSet}{-durTree} & = (null) \\
+      \Jlabel{AModelSet}{-name} & = amodelSetISLci \\
+      \Jlabel{AModelSet}{-senoneSet} & = senoneSetISLci \\
+      \Jlabel{AModelSet}{-tmSet} & = tmSetISLci \\
+      \Jlabel{AModelSet}{-tree} & = ttreeISLci \\
+      \Jlabel{AModelSet}{-treeRoot} & = 0 \\
+      \Jlabel{AModelSet}{-useN} & = 7 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{amodelset}
+
+    \begin{description}
+      \Jitem{\Jlabel{AModelSet}{add}} \texttt{ $<$senones$>$ $<$trans$>$} \
+
+        add a state graph to a set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senones}} &  list of senones \\
+ \texttt{\textbf{trans}} &    list of transition models \\
+      \end{tabular}
+      \Jitem{\Jlabel{AModelSet}{get}} \texttt{ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$} \
+
+        find acoustic model given a phonetic context
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+      \end{tabular}
+      \Jitem{\Jlabel{AModelSet}{puts}} \texttt{} \
+
+        displays the contents of an amodel set
+
+      \Jitem{\Jlabel{AModelSet}{reset}} \texttt{} \
+
+        remove all amodels from the set
+
+      \Jitem{\Jlabel{AModelSet}{scale}} \texttt{ $<$scale$>$} \
+
+        scale transition penalties
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{scale}} &  scale factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{AModelSet}{skip}} \texttt{ $<$skip$>$} \
+
+        switch to 3state skip topologies
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{skip}} &  0/1 use skip architecture  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{senoneSet}} & (\Jref{module}{SenoneSet}) \\
+      \texttt{\textbf{tmSet}} & (\Jref{module}{TmSet}) \\
+      \texttt{\textbf{tree}} & (\Jref{module}{Tree}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

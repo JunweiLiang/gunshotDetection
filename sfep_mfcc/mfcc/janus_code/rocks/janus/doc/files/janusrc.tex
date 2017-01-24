@@ -1,0 +1,321 @@
+{\small
+\begin{verbatim}
+# =======================================================
+#  JanusRTK   Janus Speech Recognition Toolkit
+#             -------------------------------------------
+#             Object: .janusrc - Resources file
+#             -------------------------------------------
+#
+#  Author  :  Florian Metze and Christian Fuegen
+#  Module  :  ~/.janusrc
+#  Date    :  2000-08-07
+#
+#  Remarks :  This file is read in by janus on startup
+#
+#             It contains a few settings and redefines some
+#             functions for compatibility with Linux and Windows
+#
+#             Original by Martin Westphal,
+#             Dec. 4, 1996 for Janus3.2
+#
+# =======================================================
+#  RCS info: $Id: janusrc.tex 3283 2010-07-02 17:46:12Z metze $
+# 
+#  $Log$
+#  Revision 1.5  2007/02/23 10:15:13  fuegen
+#  JANUSHOME can now be defined externally
+#
+#  Revision 1.4  2003/08/25 16:09:55  soltau
+#  Added library path to auto_path
+#
+#  Revision 1.3  2003/08/18 13:03:36  soltau
+#  removed some windows specific proc's (supported now by cli)
+#
+#  Revision 1.2  2003/08/14 11:19:43  fuegen
+#  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+#
+#  Revision 1.1.2.12  2003/08/13 09:41:01  soltau
+#  final fixes
+#
+#  Revision 1.1.2.11  2003/08/12 16:12:37  metze
+#  Cleanup for P013
+#
+#  Revision 1.1.2.10  2003/08/11 15:09:26  soltau
+#  made GLOBALFP global
+#
+#  Revision 1.1.2.9  2003/08/11 14:29:32  soltau
+#  exec windows support
+#
+#  Revision 1.1.2.8  2003/08/11 12:24:08  soltau
+#  Windows fix for writing log-files:
+#    set LOGFILE "janus.log" to pipe stdout from 'puts' to file
+#
+#  Revision 1.1.2.6  2003/06/26 15:09:20  metze
+#  Changes for V5.0 P013
+#
+#  Revision 1.1.2.5  2003/04/30 15:42:00  metze
+#  Final team
+#
+#  Revision 1.1.2.4  2003/04/09 14:42:05  metze
+#  Typo fixed
+#
+#  Revision 1.1.2.3  2003/04/09 14:41:51  metze
+#  Switched ngets off by default
+#
+#  Revision 1.1.2.2  2003/04/09 13:22:45  metze
+#  Cleaned up ngets stuff
+#
+#  Revision 1.2  2003/01/17 15:42:24  fuegen
+#  Merged changes on branch jtk-01-01-15-fms
+#
+#  Revision 1.1.2.1  2002/11/15 14:33:13  fuegen
+#  Initial version
+#
+#
+# =======================================================
+
+# -------------------------------------------------------
+#  check host and home
+# -------------------------------------------------------
+
+# for Condor & SLURM this is unreliable, therefore always set env(HOST)
+set env(HOST) [lindex [split [info hostname] .] 0]
+
+if {![info exists env(HOME)]} {
+    set env(HOME) "HOME"
+    #puts "set home directory : $env(HOME)"
+} 
+
+# -------------------------------------------------------
+#  Set the auto path so that tcl libraries can be found.
+# -------------------------------------------------------
+
+if {[info exists env(JANUSHOME)]} { 
+    set JANUSHOME $env(JANUSHOME)
+} else {
+    # E.g. for Windows:
+    # set JANUSHOME "e:/ISL/hagen"
+
+    # For Unix:
+    set JANUSHOME  [file join $env(HOME) janus]
+}
+
+set JANUSLIB                        [file join $JANUSHOME gui-tcl]
+set auto_path [linsert $auto_path 0 [file join $JANUSHOME tcl-lib]]
+set auto_path [linsert $auto_path 0 [file join $JANUSHOME library]]
+set auto_path [linsert $auto_path 0 $JANUSLIB]
+regsub -all {\\} $auto_path {/} auto_path
+
+# ----------------------------------------------------------------
+#  WINDOWS dependent settings
+#  1. define global variable LOGFILE to pipe stdout/stderr to file
+#  2. manual sourcing of tcl-lib and gui-tcl
+#  3. function redefinitions
+#     exit  - for logging
+#     puts  - output teeing into logfiles
+#     exec  - to support some unix commands also under windows
+# ----------------------------------------------------------------
+
+if {[regexp {indows} $tcl_platform(os)]} {
+    # uncomment this to pipe stdout/stderr to file
+    # set LOGFILE "janus.log"
+
+    # auto-sourcing
+    set flist [concat [glob $JANUSHOME/gui-tcl/*.tcl] [glob $JANUSHOME/tcl-lib/*.tcl]]
+    foreach f $flist { 
+	if [string match "*makeIndex*" $f] continue
+	if [string match "*JRTk*" $f]      continue
+	if [string match "*test*" $f]      continue
+	catch {source $f}
+    }
+    catch { rename exit exit-org }
+    proc exit { args } {
+	global GLOBALFP
+	if [info exists GLOBALFP] { close $GLOBALFP }
+	exit-org
+    }
+
+    catch { rename puts puts-org }
+    proc puts { args } {
+	global LOGFILE GLOBALFP
+	set argc [llength $args]
+	if {! [info exists LOGFILE] } { 
+	    return [eval "puts-org $args"]
+	}
+	if {! [info exists GLOBALFP]} { set GLOBALFP [open $LOGFILE w] }
+	set fp $GLOBALFP
+	if {"-nonewline" == [lindex $args 0]} {
+	    if {$argc == 3 } { set fp [lindex $args 1] }
+	    if {$fp == "stdout" || $fp == "stderr"} { set fp $GLOBALFP}
+	    puts-org -nonewline $fp [lindex $args end]
+	} else {
+	    if {$argc == 2} { set fp [lindex $args 0] }
+	    if {$fp == "stdout" || $fp == "stderr"} { set fp $GLOBALFP}
+	    puts-org $fp [lindex $args end]
+	}
+	return
+    }
+
+    catch { rename exec exec-org }
+    proc exec { args } {
+	global LOGFILE
+        set cmd  [lindex $args 0]
+        set opts [lrange $args 1 end]
+	set cmdX [lsearch [list touch rm mkdir touch date] $cmd]
+
+	if { $cmdX >= 0} { return [eval "$args"] }
+
+	if { [catch {set res [eval exec-org $args]} msg] } {
+	    # write error message to log file
+	    if [info exists LOGFILE] {
+		puts "ERROR pseudo-exec: \n called '$args' \n and got \n '$msg'\n"
+	    }
+	    error "ERROR pseudo-exec: \n called '$args' \n and got \n '$msg'\n"
+	} else {
+	    return $res
+	}
+    }
+}
+
+# ----------------------------------------------------------------
+# Unix dependent settings
+#  - socket based redefinitions of fgets and ngets 
+#  - define socket host and port number
+#  - start NGETS server via tcl-lib/ngetGUI.tcl 
+#
+# ----------------------------------------------------------------
+
+if {0 && ![regexp {indows} $tcl_platform(os)]} {
+    if {![info exists NGETS(HOST)]} {
+	set NGETS(HOST)         islpc13
+	set NGETS(PORT)         63060	
+	set NGETS(VERBOSE)      1
+	set NGETS(MGETS)        0
+	
+	catch {
+	    regexp {uid=(\d+)} [exec id] dummy NGETS(PORT)
+	    set NGETS(PORT) [expr $NGETS(PORT) + 52000]
+	    unset dummy
+	}
+    }
+
+    if {[regexp "^isl" $env(HOST)] && [string length $NGETS(HOST)] &&
+	[string compare $env(HOST) $NGETS(HOST)]} {
+
+	set NGETS(STARTUP) "using ngets: $NGETS(HOST):$NGETS(PORT)"
+
+	# --------------------------------------
+	#   FGETS from server
+	# --------------------------------------
+	catch {rename fgets fgets-org}
+	proc fgets {file line_ } {
+	    upvar  $line_ line
+	    global NGETS
+	    
+	    if {[file pathtype $file] == "relative"} {
+		set file "[pwd]/$file"
+	    }
+	    regsub -all "^/net"    $file ""         file
+	    regsub -all "^/export" $file "/project" file
+	    
+	    return [ngets $file line]
+	}
+	
+	# --------------------------------------
+	#   GLOB from server, too
+	# --------------------------------------
+	catch {rename glob glob-org}
+	proc glob { args } {
+	    global NGETS
+	    
+	    set line ""
+	    set nc   [regsub -- "-nocomplain " $args "" args]
+	    regsub -- "--" $args "" args
+	    
+	    foreach f $args {
+		set rel 0
+		if {[file pathtype $f] == "relative"} {
+		    set f [file join [pwd] $f]
+		    set rel 1
+		}
+		
+		# Strip '/net' from filenames
+		regsub -all "^/net" $f "" f
+		
+		# Local filesystems don't need nglob
+		if {[regexp "^/export" $f] || [regexp "^/tmp" $f]} {
+		    set tmp [glob-org -nocomplain -- $f]
+		} else {
+		    set tmp [nglob $f]
+		}
+		if {$rel} {regsub -all " [pwd]/" " $tmp" " " tmp}
+		append line [string trim $tmp]
+	    }
+	    
+	    return $line
+	}
+    }
+}
+
+# ------------------------------------------------------------------------
+#  Set the audio device for featshow.
+# ------------------------------------------------------------------------
+
+switch {tcl_platform(os)} {
+    SunOS {
+	set DEVICE SUN
+	#set USERDEVICE {exec aplay -file $filename -g $gaindb -e int}
+    }
+    Linux {
+	set DEVICEPLAY(User) {exec sox -q -t raw -r $rate -s -w $filename -t ossdsp -s -w /dev/dsp}
+    }
+}
+
+# -------------------------------------------------------
+#  General stuff
+# -------------------------------------------------------
+
+proc general_info {} {
+   global tcl_platform tcl_version tk_version tcl_precision
+   catch {puts "machine: $tcl_platform(machine) \
+                         $tcl_platform(os) \
+                         $tcl_platform(osVersion)"}
+   catch {puts "tcl $tcl_version"}
+   catch {puts "tk $tk_version"}
+   catch {puts "tcl_precision: $tcl_precision"}   
+}
+
+proc writeJanusLog msg {
+    global env
+    puts stdout $msg
+    flush stdout
+}
+
+catch { randomInit [pid] }
+
+if {!$tcl_interactive} {
+    set clicksatstart [clock clicks -milliseconds]
+    catch { rename exit exit-org }
+    proc exit { args } {
+	global clicksatstart env
+	set wt [expr .001*([clock clicks -milliseconds]-$clicksatstart)]
+	puts stderr "ended [info nameofexecutable]: $env(HOST).[pid], [clock format [clock seconds]], system= [systemtime -total 1] user= [usertime -total 1] wall= $wt ([format %3.1f [expr 100.0*[usertime -total 1]/$wt]]%) "
+	exit-org
+    }
+}
+
+# -------------------------------------------------------
+#  print start-up message
+# -------------------------------------------------------
+
+if {!$tcl_interactive} {
+    puts stderr "started [info nameofexecutable]: $env(HOST).[pid], [clock format [clock seconds]]"
+    #puts stderr "script: [info script] directory [pwd]"
+    puts stderr "library: $auto_path"
+}
+
+if {[info exists NGETS(STARTUP)]} {
+    puts $NGETS(STARTUP)
+}
+\end{verbatim}
+}

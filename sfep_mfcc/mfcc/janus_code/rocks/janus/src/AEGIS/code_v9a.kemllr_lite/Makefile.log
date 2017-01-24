@@ -1,0 +1,85 @@
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c edge.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c gaussian.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c ahmm.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c HTKparser.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c main.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c memmgr.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c multimix.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c pdf.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c relation_info.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c state.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c readHTKformat.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c computebelldelta.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c computebell_fe_preprocess.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c recognizer.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c linear_algebra.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c cluster_engine.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c str_util.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c math_engine.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c token.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c cache.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c transcription.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c mlf.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c network.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c reg_tree.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c mllr.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c adictionary.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c kernel.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c comp_kernel.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c hmmset.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c accumulator.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c util_new.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c janus_aegis.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c aegis.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c ev.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c ei_kev.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c rsw_ext.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c svm.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c mpe.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c g-mmie.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c gdlr.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c gdfsa.cpp 
+gcc -O3 -fomit-frame-pointer -march=x86-64 -msse3 -fopenmp -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/afs/cs.cmu.edu/user/fmetze/tools/ATLAS/include -I/afs/cs.cmu.edu/user/fmetze/tools/CLAPACK-3.2.1/INCLUDE -I.. -c fmpe.cpp 
+ar -rv libaegis.a edge.o gaussian.o ahmm.o HTKparser.o main.o memmgr.o multimix.o pdf.o relation_info.o state.o readHTKformat.o computebelldelta.o computebell_fe_preprocess.o recognizer.o linear_algebra.o cluster_engine.o str_util.o math_engine.o token.o cache.o transcription.o mlf.o network.o reg_tree.o mllr.o adictionary.o kernel.o comp_kernel.o hmmset.o accumulator.o util_new.o janus_aegis.o aegis.o ev.o ei_kev.o rsw_ext.o svm.o mpe.o g-mmie.o gdlr.o gdfsa.o fmpe.o
+r - edge.o
+r - gaussian.o
+r - ahmm.o
+r - HTKparser.o
+r - main.o
+r - memmgr.o
+r - multimix.o
+r - pdf.o
+r - relation_info.o
+r - state.o
+r - readHTKformat.o
+r - computebelldelta.o
+r - computebell_fe_preprocess.o
+r - recognizer.o
+r - linear_algebra.o
+r - cluster_engine.o
+r - str_util.o
+r - math_engine.o
+r - token.o
+r - cache.o
+r - transcription.o
+r - mlf.o
+r - network.o
+r - reg_tree.o
+r - mllr.o
+r - adictionary.o
+r - kernel.o
+r - comp_kernel.o
+r - hmmset.o
+r - accumulator.o
+r - util_new.o
+r - janus_aegis.o
+r - aegis.o
+r - ev.o
+r - ei_kev.o
+r - rsw_ext.o
+r - svm.o
+r - mpe.o
+r - g-mmie.o
+r - gdlr.o
+r - gdfsa.o
+r - fmpe.o

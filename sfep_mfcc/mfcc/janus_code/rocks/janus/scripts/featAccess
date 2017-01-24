@@ -1,0 +1,63 @@
+# ========================================================================
+#  JRTk         IslSystem
+#             ------------------------------------------------------------
+#               Object: Feature Access for UKA training setup
+#             ------------------------------------------------------------
+#
+#  Author  :  Hagen Soltau
+#  Module  :  featAccess
+#  Date    :  31/01/2002
+#
+#  $Log$
+#  Revision 1.2  2003/12/17 13:04:52  metze
+#  P013
+#
+#
+# ========================================================================
+
+global WAVFILE WARPSCALE warpScales
+
+
+# ------------------------------------------------------------------------
+#  Load ADC segment...
+# ------------------------------------------------------------------------
+
+set adcfile [file join /project/njd/IslData/adcs $arg(ADC)]
+
+if {![info exists WAVFILE] || $WAVFILE != $adcfile } {
+
+    if {[file exists ${adcfile}.shn]} {
+	set bm      shorten
+	set adcfile ${adcfile}.shn
+    } else {
+	set bm      auto
+    }
+    set WAVFILE $adcfile
+    lappend sampleList "NEWADC 1"
+
+    $fes readADC  ADC $adcfile -h 0 -v 0 -offset mean -bm $bm
+    $fes spectrum FFT ADC 20ms
+}
+
+
+# ------------------------------------------------------------------------
+#  WARP factor
+# ------------------------------------------------------------------------
+
+if {[info exists WARPSCALE]} { set WARP $WARPSCALE } else {
+    if {[info exist warpScales($arg(spk))]} { 
+        set WARP $warpScales($arg(spk))
+    }  else {
+        set WARP 1.000
+    }
+}
+lappend sampleList "WARP $WARP"
+
+writeLog stderr "$fes ADCfile $arg(utt) WARP $WARP"
+
+
+# ------------------------------------------------------------------------
+#  End
+# ------------------------------------------------------------------------
+
+set     accessList $sampleList

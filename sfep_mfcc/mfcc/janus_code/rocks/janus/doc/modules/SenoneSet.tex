@@ -1,0 +1,293 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SenoneSet}}
+
+This section describes the '\Jgloss{SenoneSet}': \textsl{Set of senones}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SenoneSet  $<$name$>$ $<$streamArray$>$ \Jsb{-phones phones} \Jsb{-tags tags}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of the senones set  \\
+ \texttt{\textbf{streamArray}} &  list of {stream [-streamType ST] [-weight W]} \\
+ \texttt{\textbf{phones}} &        set of phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{tags}} &          set of tags (\Jref{module}{Tags}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{senoneset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SenoneSet}{-blkSize} & = 500 \\
+      \Jlabel{SenoneSet}{-commentChar} & = ; \\
+      \Jlabel{SenoneSet}{-featSetN} & = 0 \\
+      \Jlabel{SenoneSet}{-itemN} & = 3 \\
+      \Jlabel{SenoneSet}{-likelihood} & = 19818593809134516683284466247022550307969560532372820289052298547227492287269066003353371578464677708354784984630777632190197726731726256539322330433800299685255404083717439970587856530552624078657405487795367051264.000000 \\
+      \Jlabel{SenoneSet}{-mixMode} & = 0 \\
+      \Jlabel{SenoneSet}{-normalize} & = 0 \\
+      \Jlabel{SenoneSet}{-scoreScale} & = 1.000000 \\
+      \Jlabel{SenoneSet}{-useN} & = 7 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{senoneset}
+
+    \begin{description}
+      \Jitem{\Jlabel{SenoneSet}{accu}} \texttt{ $<$path$>$ \Jsb{-factor factor} \Jsb{-random random} \Jsb{-from from} \Jsb{-to to}} \
+
+        accumulate training data for the given path
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{factor}} &  training factor  \\
+ \texttt{\textbf{random}} &  random frame presentation  \\
+ \texttt{\textbf{from}} &    start frame  \\
+ \texttt{\textbf{to}} &      end   frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{accuWeights}} \texttt{ $<$path$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-accu accu} \Jsb{-v v} \Jsb{-zeroMode zeromode}} \
+
+        accu statistics to train stream weights (MMIE)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &     path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{from}} &      first frame  \\
+ \texttt{\textbf{to}} &        last frame  \\
+ \texttt{\textbf{accu}} &      for MMI: accu into 'num' (ref) or 'den' (hyp)  \\
+ \texttt{\textbf{v}} &         verbose information  \\
+ \texttt{\textbf{zeromode}} &  don't train streams with weight 0  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{accuWeightsMLE}} \texttt{ $<$path$>$ \Jsb{-zeroMode zeromode} \Jsb{-v v}} \
+
+        accumulate MLE statistics to train stream weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &     path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{zeromode}} &  update streams with weight=0  \\
+ \texttt{\textbf{v}} &         verbose information  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{add}} \texttt{ $<$senone$>$ \Jsb{-name name}} \
+
+        add a new senone to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senone}} &  list of score names \\
+ \texttt{\textbf{name}} &     name of the senone  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{addNorm}} \texttt{ $<$name$>$ $<$streamX$>$ \Jsb{-histN histn} \Jsb{-minmaxN minmaxn}} \
+
+        add a stream normalizer item
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &     name of stream normalizer  \\
+ \texttt{\textbf{streamX}} &  stream index  \\
+ \texttt{\textbf{histn}} &     resolution of histogram  \\
+ \texttt{\textbf{minmaxn}} &   number of samples for min/max computation  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{clearAccuWeights}} \texttt{} \
+
+        clear update stream weights accu
+
+      \Jitem{\Jlabel{SenoneSet}{clearMix}} \texttt{ $<$streamN$>$ $<$frameN$>$} \
+
+        clear dynamic stream mixer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{streamN}} &  number of streams  \\
+ \texttt{\textbf{frameN}} &   number of frames  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{clearNorm}} \texttt{ \Jsb{-name name}} \
+
+        clear stream normalizer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of stream normalizer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{clearStreamCache}} \texttt{ \Jsb{-frameN framen}} \
+
+        clear stream cache (opt\_str score fct)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{framen}} &  number of frames to clear  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{get}} \texttt{ $<$senone tag$>$ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$} \
+
+        find a senone given phonetic context
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senone tag}} &     tag \\
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{index}} \texttt{} \
+
+        returns indices of named senones
+
+      \Jitem{\Jlabel{SenoneSet}{labelMix}} \texttt{ $<$path$>$ \Jsb{-soft soft} \Jsb{-smooth smooth}} \
+
+        compute mixing weights based on labels
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{soft}} &    soft targets?  \\
+ \texttt{\textbf{smooth}} &  size of smoothing window  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{load}} \texttt{ $<$filename$>$} \
+
+        load a senone binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to load from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{loadAccuWeights}} \texttt{ $<$filename$>$} \
+
+        load MLE- or MMIE-update stream weights accu
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to load from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{loadNorm}} \texttt{ $<$filename$>$ \Jsb{-name name}} \
+
+        load stream normalizer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of file  \\
+ \texttt{\textbf{name}} &       name of stream normalizer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{name}} \texttt{ $<$index$>$} \
+
+        returns names of indexed senones
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &  index to look up  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{read}} \texttt{ $<$filename$>$} \
+
+        reads a senone description file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{reset}} \texttt{} \
+
+        reset senoneSet
+
+      \Jitem{\Jlabel{SenoneSet}{save}} \texttt{ $<$filename$>$} \
+
+        save a senone binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save to  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{saveAccuWeights}} \texttt{ $<$filename$>$} \
+
+        save MLE- or MMIE-update stream weights accu
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save to  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{saveNorm}} \texttt{ $<$filename$>$ \Jsb{-name name}} \
+
+        save stream normalizer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of file  \\
+ \texttt{\textbf{name}} &       name of stream normalizer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{score}} \texttt{ $<$senone$>$ $<$frame$>$} \
+
+        compute the score for a senone and a frame
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{senone}} &  senone index  \\
+ \texttt{\textbf{frame}} &   index of the requested frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{scoreMatrix}} \texttt{ $<$matrix$>$ \Jsb{-topN topn} \Jsb{-mode mode}} \
+
+        compute the scores for senones in a matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix to score results in \\
+ \texttt{\textbf{topn}} &     topN value for score function  \\
+ \texttt{\textbf{mode}} &     cb or ds  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{setScoreFct}} \texttt{ $<$name$>$} \
+
+        set score function (interface to Ibis)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  one of (base, opt, opt\_thread, opt\_semCont, opt\_str, compress, old\_base, old\_opt)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{setWeights}} \texttt{ \Jsb{-global global} \Jsb{-local local} \Jsb{-weight weight}} \
+
+        set stream weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{global}} &  set weight global  \\
+ \texttt{\textbf{local}} &   set weights for each senone  \\
+ \texttt{\textbf{weight}} &  array of stream weights \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{update}} \texttt{} \
+
+        update the underlying acoustic parameters
+
+      \Jitem{\Jlabel{SenoneSet}{updateMix}} \texttt{ \Jsb{-smooth smooth}} \
+
+        update dynamic stream mixer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{smooth}} &  size of smoothing window  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{updateWeights}} \texttt{ \Jsb{-mode mode} \Jsb{-tie tie} \Jsb{-mass mass} \Jsb{-contrast contrast} \Jsb{-minCount mincount} \Jsb{-start start} \Jsb{-clear clear} \Jsb{-iter iter} \Jsb{-min min} \Jsb{-v v}} \
+
+        update stream weights (MMIE)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mode}} &      dmc or mmi  \\
+ \texttt{\textbf{tie}} &       global, phone, state, or senone-based smoothing  \\
+ \texttt{\textbf{mass}} &      probability mass to assign  \\
+ \texttt{\textbf{contrast}} &  contrast  \\
+ \texttt{\textbf{mincount}} &  min count for update  \\
+ \texttt{\textbf{start}} &     first stream index to touch (0 or 1)  \\
+ \texttt{\textbf{clear}} &     clear accus after update  \\
+ \texttt{\textbf{iter}} &      loops  \\
+ \texttt{\textbf{min}} &       min weight, $>$=1 no control, $<$0 auto to -1*val  \\
+ \texttt{\textbf{v}} &         verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{updateWeightsMLE}} \texttt{ \Jsb{-minCnt mincnt} \Jsb{-M m} \Jsb{-K k} \Jsb{-zeroMode zeromode} \Jsb{-noiseMode noisemode} \Jsb{-mode mode} \Jsb{-startIdx startidx}} \
+
+        MLE-update stream weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mincnt}} &     min. count to update  \\
+ \texttt{\textbf{m}} &          M-norm, M $>$ 1  \\
+ \texttt{\textbf{k}} &          normalizer constant  \\
+ \texttt{\textbf{zeromode}} &   update streams with weight=0  \\
+ \texttt{\textbf{noisemode}} &  zero noises before update?  \\
+ \texttt{\textbf{mode}} &       global, phone, state, or senone-based smoothing  \\
+ \texttt{\textbf{startidx}} &   start index (0 or 1 is useful)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SenoneSet}{write}} \texttt{ $<$filename$>$} \
+
+        writes a senone description file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read from  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{stream(0..0)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{tagList}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Senone}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

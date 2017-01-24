@@ -1,0 +1,38 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{STab}}
+
+This section describes the '\Jgloss{STab}': \textsl{Backpointer table}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{STab} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{SPass}!
+
+\vspace{3mm} \item[Methods:] \texttt{stab}
+
+    \begin{description}
+      \Jitem{\Jlabel{STab}{puts}} \texttt{ \Jsb{-fromX fromx} \Jsb{-toX tox}} \
+
+        displays the contents of a backpointer table
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fromx}} &  from frame  \\
+ \texttt{\textbf{tox}} &    to frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{STab}{trace}} \texttt{ \Jsb{-bpIdx bpidx} \Jsb{-frameIdx frameidx} \Jsb{-fromX fromx} \Jsb{-bpL bpl} \Jsb{-v v}} \
+
+        trace back from final state
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{bpidx}} &     final state for trace back  \\
+ \texttt{\textbf{frameidx}} &  final frame for trace back  \\
+ \texttt{\textbf{fromx}} &     trace back until frame fromX  \\
+ \texttt{\textbf{bpl}} &       list of backpointers to end trace back  \\
+ \texttt{\textbf{v}} &         verbose output  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

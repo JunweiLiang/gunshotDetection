@@ -1,0 +1,1017 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of advanced decoding
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Hagen Soltau & many others
+%%  Module  :  advanced.tex
+%%  Date    :  $Id: advanced.tex 3382 2011-02-28 02:12:18Z metze $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.6  2004/09/24 09:51:56  fuegen
+%%   final changes for P014
+%%
+%%   Revision 1.5  2004/08/16 16:11:58  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.4  2004/07/26 13:57:57  fuegen
+%%   Updated the CFG section
+%%   Correceted some spelling errors
+%%
+%%   Revision 1.3  2003/11/17 13:08:29  metze
+%%   Version 5.0P013 fixed
+%%
+%%   Revision 1.2  2003/08/14 11:19:02  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.18  2003/08/13 15:52:04  fuegen
+%%   corrected some typos
+%%
+%%   Revision 1.1.2.17  2003/08/13 14:24:13  fuegen
+%%   added deactivation of rules
+%%
+%%   Revision 1.1.2.16  2003/08/13 14:15:18  fuegen
+%%   some updates for the CFG section
+%%
+%%   Revision 1.1.2.15  2003/06/26 15:08:39  metze
+%%   Initial changes for V5.0 P013
+%%
+%%   Revision 1.1.2.14  2003/05/12 15:01:50  metze
+%%   Resolved conflict
+%%
+%%   Revision 1.1.2.13  2003/04/30 15:44:00  metze
+%%   Changes before the new repository
+%%
+%%   Revision 1.1.2.12  2002/11/22 09:39:48  fuegen
+%%   changes in context free grammar section
+%%
+%%   Revision 1.1.2.11  2002/11/21 17:38:52  soltau
+%%   Fixed Glat svmap
+%%
+%%   Revision 1.1.2.10  2002/11/21 16:16:29  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.9  2002/11/20 16:15:02  metze
+%%   Doku Pre-P012
+%%
+%%   Revision 1.1.2.8  2002/11/19 09:17:44  fuegen
+%%   minor changes for overfull hboxes
+%%
+%%   Revision 1.1.2.7  2002/11/18 15:12:24  fuegen
+%%   some changes on context free grammar section
+%%
+%%   Revision 1.1.2.6  2002/11/18 12:20:52  fuegen
+%%   added section on context free grammars
+%%
+%%   Revision 1.1.2.5  2002/11/05 13:43:36  soltau
+%%   typo
+%%
+%%   Revision 1.1.2.4  2002/11/05 12:34:55  soltau
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.3  2002/11/04 14:57:31  metze
+%%   Semi-automatic tcl-lib documentation
+%%
+%%   Revision 1.1.2.2  2002/10/28 17:28:08  soltau
+%%   first draft
+%%
+%%   Revision 1.1.2.1  2002/08/29 16:57:44  soltau
+%%   Initial version
+%%
+%%
+%% ========================================================================
+
+
+\section{Advanced Decoding} \label{ibis:advanced}
+
+In this section, we assume that you  already have some experience with
+the JANUS object  interface  and the  Tcl-Library.  To run  some  more
+advanced experiments you will  probably initialize the  decoding engine
+by   yourself  without  making   use   of  the   \Jref{proc}{ibisInit}
+function.  The  decoder works  in  a  single  pass using all available
+acoustic and linguistic information.  A full language  model lookahead
+is implemented  based on the  concept of linguistic polymorphism.  The
+search   vocabulary  is organized as   a  compact network sharing both
+prefixes  and  suffixes. The active search   space will be dynamically
+allocated  on demand using a  block memory management. The decoder can
+handle virtually unlimited   vocabularies with  higher order    n-gram
+language models. Context free grammars as  well as decoding along word
+graphs are supported.
+
+
+\subsection{Decoder Initialization}
+
+To  setup the central  search object, called \Jref{module}{SPass}, you
+will   create several objects     along  the module  hierarchy   shown
+above. The     interface      to the   training    objects      is the
+\Jref{module}{SenoneSet},  which provides    access   to  a set     of
+probability density  functions (pdf) for  each HMM state for a given
+left  and  right phonetic context.   Each pdf  itself might consist of
+streams  using statistical models  as    gaussian mixtures or   neural
+networks.  The \Jref{module}{TopoSet}  defines the HMM topologies used
+to   model   the    base phones.  Both  \Jref{module}{SenoneSet}    and
+\Jref{module}{TopoSet}  are needed  to  build a \Jref{module}{PHMMSet}
+object which  serves  as the basic acoustic  model  interface for  the
+decoder. Left and right context dependent models cab  then be built on
+top  of these basic  acoustic  models.  If you   have a statistical n-gram
+language model {\em  mylm.arpabo.gz} together  with a vocabulary  {\em
+myvocab}, the decoder initialization may look like this.
+
+\begin{verbatim}
+
+# context dependent phonetic hidden markov models
+PHMMSet phmmSetX3  ttreeX3    ROOT
+LCMSet  lcmSetX3   phmmSetX3
+RCMSet  rcmSetX3   phmmSetX3
+
+# language model
+[LingKS lmX3 NGramLM] load mylm.arpabo.gz
+
+# Search Vocabulary, Vocabulary Mapper
+SVocab  svocabX3   dictX3
+SVMap   svmapX3    svocabX3  lmX3
+
+svocabX3 read myvocab
+svmapX3  map  base
+
+# Search Network, Linguistic Tree, Single Pass Decoder
+STree streeX3 svmapX3 lcmSetX3 rcmSetX3 
+LTree ltreeX3 streeX3 
+SPass spassX3 streeX3 ltreeX3
+
+\end{verbatim}
+
+A few configuration options for the language model cache and the beam search
+will complete the startup. A word penalty and a language model weight can be
+configured in the \Jref{module}{SVMap} object.
+
+\begin{verbatim}
+# configure LanguageModel cache
+ltreeX3 configure -cacheN 200 -ncacheN 10
+
+# configure Vocabulary Mapper
+svmapX3 configure -phonePen  0.0 -wordPen 0 -silPen 10 -filPen 0 -lz 30
+
+# configure Single Pass Decoder
+spassX3 configure -stateBeam 130
+spassX3 configure -wordBeam   90
+spassX3 configure -morphBeam  80
+spassX3 configure -transN 35 -morphN 8
+\end{verbatim}
+
+
+\subsection{Lattices}
+
+By default, lattices (defined  by the object \Jref{module}{GLat}) will
+not be generated at all, since all acoustic and linguistic information
+is truly  used in the  first pass and  a second  rescoring  pass is not
+necessary. However,  for several tasks  like MMIE  training, Consensus
+decoding, or acoustic rescoring, lattices might be wanted.
+
+A  lattice node (``GNode''  in  \Jref{module}{GLat}) represents a word
+with start and end time together  with the phonetic context, while the
+linguistic context  is    excluded.   Lattice  links   (``GLink''   in
+\Jref{module}{GLat})  store the acoustic  scores for the right context
+dependent models. The  lattice generation works  in two phases. In the
+first phase, lattice nodes and links will be created on the fly during
+decoding  directly  from  the active  search   space by bypassing  the
+back-pointer table.  Since, we  bypass  the back-pointer table,  several
+lattices nodes might  be unconnected.  Therefore,  a second phase will
+add lattice  links    with       respect to  their        a-posteriori
+probabilities. This  approach   allows  to extract    more information
+when compared to a lattice generation based on a back-pointer table.
+
+\begin{verbatim}
+
+# configure thresholds for lattice generation  
+spassX3.glat configure -alphaBeam 200 -topN 150
+
+# preprocess audio data
+set uttInfo [dbaseUttInfo dbX3 $spk $utt]
+featureSetX3 eval $uttInfo
+
+# run decoder
+spassX3 run
+
+# connect lattice nodes and prune
+spassX3.glat connect -beam 200
+spassX3.glat prune -nodeN [expr 100 * [llength $hypo]]
+spassX3.glat write myLat.gz
+
+\end{verbatim}
+
+To apply  different language model  weights and penalties,  the method
+\Jref{GLat}{rescore} might be used  to get the n-best hypotheses. Word
+posteriori based    confidences  can be extracted    using  the method
+\Jref{GLat}{confidence}. There are many  manipulation functions to add
+or delete nodes and links. You can also create lattices by adding word
+sequences  with  \Jref{GLat}{addPath}.   Lattice  error rates  can  be
+computed by  align a sequence of reference  words to the  lattice with
+\Jref{GLat}{align}.
+
+\begin{verbatim}
+GLat glatX3 svmapX3 
+
+glatX3 read mylat.gz
+set output [glatX3 rescore -map svmapX3 -topN 1]
+set hypo   [lrange [lindex $output 0] 2 end]
+set conf   [glatX3 confidence $hypo -scale [expr 1.0 / $lz]]
+\end{verbatim}
+% $
+
+
+\subsection{Vocabulary Mapper}
+
+A \Jref{module}{SVMap} defines a  map function to  map words  from the
+search vocabulary \Jref{module}{SVocab} to the vocabulary defined by a
+linguistic knowledge     source \Jref{module}{LingKS}.     The  search
+vocabulary consists of all   words to be recognized  potentially while
+the vocabulary from the \Jref{module}{LingKS} contains those words for
+which  linguistic information, e.g.  a  language model probability, is
+available.  For example,    a  pronunciation variant  belongs  to  the
+\Jref{module}{SVocab}, but only  the  base-form occurs in  the language
+model. The   \Jref{module}{SVMap}   will  define   a mapping   between
+pronunciation   variant  and    base-form,  potentially  including    a
+pronunciation probability.   The  same concept  can  be used to define
+class-based language models, e.g. pronunciation variants can be seen as
+a special case of a class based language model, which  is shown in the
+following lines.
+
+\begin{verbatim}
+# class based language model
+[LingKS lmX3 NGramLM] load classLM.arpabo.gz
+
+# Search Vocabulary, Vocabulary Mapper
+SVocab  svocabX3   dictX3
+SVMap   svmapX3    svocabX3  lmX3
+
+svocabX3 read myvocab
+
+# define basic map
+svmapX3  map  base
+
+# read substitution section from a class based language model
+svmapX3 readSubs -lks lmX3
+\end{verbatim}
+
+The   \Jref{module}{SVMap} allows   great   flexibility  in  combining
+vocabularies and  languages  models. You  can  define your own mapping
+easily  by    using  the  \Jref{SVMap}{add},   \Jref{SVMap}{delete} or
+\Jref{SVMap}{readMapFile}  functions.  Pronunciation probabilities can
+be   modified dynamically    during     decoding by   changing     the
+\Jref{module}{SVMap} entries.  If you want  to exclude a word from the
+search   vocabulary,  just delete the    corresponding map  entry.  No
+restructuring of the search network is necessary.
+
+A frequent use of the vocabulary mapper is to quickly and easily add a
+few  words to an  existing recognizer. If you  don't have any language
+model information, you just create dictionary  entries and map them to
+some  existing  language model  word in  the SVMap.  The probabilities
+accepted  \Jref{SVMap}{add} method  are  log-probs, i.e. if  you add a
+word using \texttt{-prob 0.0} it  will have an intra-class probability
+of 1, while   a word added  using   \texttt{-prob -2.3} will  have  an
+intra-class probability  of 0.5. Note  that it is  also to possible to
+have   ``probabilities'' $p  >  1$   using  for example  \texttt{-prob
+1.0}. This is a  useful hack if you  find that some words ``just don't
+get recognized properly''.
+
+
+\subsection{Interpolation of Language Models}
+
+Now,     let's interpolate  some   linguistic  knowledge  sources. The
+interpolation object itself  is  again a linguistic  knowledge source,
+but of type {\em MetaLM}. By doing this, you  can create a hierarchy
+of interpolated  language  models. You  can  also combine  statistical
+n-gram  models with context free  grammars. Global or context dependent
+interpolation  weights   might    be used.   Here is    an  example of
+interpolating a Switchboard and a Broadcast-News language model.
+
+\begin{verbatim}
+# basis language models
+[LingKS lks_SWB NGramLM] load switchboard.lm.gz
+[LingKS lks_BN  NGramLM] load broadcast.lm.gz
+
+# interpolated LM
+LingKS lks MetaLM
+lks.data LMadd lks_SWB
+lks.data LMadd lks_BN
+
+# interpolation weights
+lks.data loadWeights interpol.weights
+\end{verbatim}
+
+In principle, you  can   use the interpolated  language  model   as it
+is.  However, the  interpolation causes  millions of   $exp$ and $log$
+computations and    therefore   the   decoding  time   will   increase
+significantly. To    speed up the  decoding,  we  recommend   to use a
+simplified language model as a lookahead instead  of the full model. In
+particular, you can use one of the basis models to that end.
+
+\begin{verbatim}
+# Search Vocabulary, Vocabulary Mapper
+SVocab  svocabX3   dictX3
+SVMap   svmapX3    svocabX3  lks
+
+svocabX3 read myvocab
+svmapX3  map  base
+
+# Search Network, Linguistic Tree, Single Pass Decoder
+STree streeX3 svmapX3 lcmSetX3 rcmSetX3 
+
+# Simplified lookahead
+SVMap svmapLA svocabX3 lks_SWB
+svmapLA map base
+LTree ltreeX3 streeX3 -map svmapLA
+
+# Decoder
+SPass spassX3 streeX3 ltreeX3
+
+# configure LTree to use svmap's score function for the leafs
+ltreeX3 configure -cacheN 1 -ncacheN 500 -mode single 
+svmapX3 configure -cacheN 30
+\end{verbatim}
+
+
+\subsection{Modeling of Word Phrases}
+
+A linguistic knowledge source from type {\em PhraseLM}  can be used to
+model word  phrases  (aka  multi-words).   This  object  type  defines
+mappings between sequences of  words. In particular, the substitutions
+of   a    class  based   language   model  can   be      handled by  a
+\Jref{module}{LingKS}  of type {\em  PhraseLM}.  Map files can be read
+in by using  the method \Jref{PhraseLM}{readMapFile}.   A line  of the
+map   file might looks  like    this ``aboutit(2) \{about it\}   -prob
+-1.06'', which maps the word {\em aboutit} to  the sequence {\em about
+it}  with a negative logarithmic  probability of -1.06.  The following
+lines  shows  the construction  of  an linguistic knowledge  source by
+interpolating a  3-gram with a class based   5-gram language model and
+each is using word phrases.
+
+\begin{verbatim}
+# 3gram swb LM
+[LingKS lm1 NGramLM] load swb.3gram.gz
+
+# 5gram class based swb LM
+[LingKS lm2 NGramLM] load swb.5gram.gz
+[[LingKS lm3 PhraseLM].data base lm2].data readSubs
+
+# interpolated LM
+LingKS lm4 MetaLM
+lm4.data LMadd lm1
+lm4.data LMadd lm3
+lm4.data loadWeights interpol.weights
+
+# multiwords for the final LM
+[[LingKS lmX3 PhraseLM].data base lm4].data readMapFile swb.dict03.map
+
+# lookahead LM : phraseLM over swb lm1
+[[LingKS lmLA PhraseLM].data base lm1].data readMapFile swb.dict03.map
+
+# Search Vocabulary, Vocabulary Mapper
+SVocab  svocabX3  dictX3
+SVMap   svmapX3   svocabX3  lmX3
+svmapX3 map base
+svmapLA readMapFile swb.dict03.map
+
+# Simplified lookahead svmap
+SVMap svmapLA svocabX3 lm1
+svmapLA map base
+svmapLA readMapFile swb.dict03.map
+
+# linguistic tree
+LTree ltreeX3 streeX3 -map svmapLA
+
+# Decoder
+SPass spassX3 streeX3 ltreeX3
+
+# configure LTree to use svmap's score function for the leafs
+ltreeX3 configure -cacheN 1 -ncacheN 500 -mode single 
+svmapX3 configure -cacheN 30
+\end{verbatim}
+
+
+\subsection{Context Free Grammars}
+
+IBIS allows to decode also along context free grammars (CFG) in
+addition to the classical statistical n-gram language models. This is
+especially an advantage in small domains, where less domain dependent
+training data is available for n-gram language models. Rather than
+compiling one network or a finite state graph out of the grammar
+description files, we use a more dynamic approach. Several rule based
+recursive transition networks (RTNs) are linked together by their
+non-terminal symbols. During decoding, a rule stack gives us the
+ability to enter or leave the linked networks. This kind of network
+organization gives us high flexibility when used in combination with
+dialog managers. Furthermore, it enables us to work with real
+context-free grammars.
+
+The CFG implementation supports currently the following grammar
+description formats:
+\begin{description}
+\item{SOUP} The grammar format of the CMU SOUP-Parser
+  \cite{gavalda:iwpt00}, which is used for many IF-based translation
+  systems. It is an expansion of the CMU Phoenix-Parser
+  \cite{ward:icassp91} grammar format. An example grammar can be found
+  in the section \Jref{file}{ContextFreeGrammars}.
+\item{JSGF} The Java Speech Grammar Format, whereby import statements
+  are currently not supported. Further documentation can be found in
+  \cite{jsgf}.
+\item{FSM} The AT\&T FSM (finite state machine) text file format
+  \cite{fsm}.
+\item{PFSG} The probabilistic finite state graph (PFSG) format, which
+  is used by the SRI language model toolkit \cite{srilm}.
+\end{description}
+
+
+In most cases, we are working with non-statistical semantic grammars,
+i.e. each transition to the next word has the same language model
+score\footnote{Therefore a score of -1.0 (=0.1) is used for all
+  transitions to terminals and a score of 0.0 (=1.0) is used for
+  $\epsilon$-transitions and all transitions to non-terminals.}. But
+there is also support for all other kinds of probabilistic recurrent
+transition networks, whereby the probabilities can either be specified
+in the grammar file or equally distributed during the build process.
+
+The context free grammar implementation in Janus can not only be used
+to do speech recognition, but also for parsing sentences and returning
+the parse trees for a given hypothesis. Currently there is only one
+major disadvantage compared to the SOUP or Phoenix parser, skipping of
+words is not possible.
+
+A demonstration system for grammar based speech recognition with IBIS
+and for building small demo applications using speech recognition,
+named One4All was written by Christian F\"{u}gen and is maintained at the ISL by
+\htmlref{Sebastian}{Sebastian}. Feel free to ask him, if you want to
+have that system, or if there are any questions about it.
+
+\subsubsection{Initialization}
+
+The initialization of the CFGs can be done either automatically by
+using \Jref{proc}{cfgInit} together with some settings in
+\Jref{file}{desc.tcl} or manually. \Jref{proc}{cfgInit} has to be
+called somewhere before \Jref{proc}{ibisInit}, because the linguistic
+knowledge source has to be given as LM parameter to
+\Jref{proc}{ibisInit}. After setting the appropriate values in
+\Jref{file}{desc.tcl}, the differing two lines from the standard
+start-up given above looks as follows:
+
+\begin{verbatim}
+cfgInit         $SID
+ibisInit        $SID -lm cfgSet$SID
+\end{verbatim}
+% $
+
+After decoding you can get the resulting parse tree by calling
+\Jref{CFGSet}{parseTree}, which has also the ability to map terminal
+classes (see \ref{cfg:classes}) back to their class members, by using
+the corresponding \Jref{module}{SVMap} as additional argument. This
+function is case sensitive and can also be used for parsing and
+afterwards returning the parse tree for any other text.
+
+\begin{verbatim}
+# e.g. get hypothesis
+set hypo [spass$SID.stab trace]
+set text [lrange $hypo 2 end]
+
+# get parse tree
+set parseTree [cfgSet$SID.data parseTree $text -svmap svmap$SID]
+\end{verbatim}
+% $
+
+Initializing grammars or grammar sets manually goes e.g. as follows:
+
+\begin{verbatim}
+# grammar set for decoding
+LingKS cfgSet CFGSet
+
+CFG cfg1 -lks cfgSet
+cfg1 load grammar1
+
+CFG cfg2 -lks cfgSet
+cfg2 load grammar2
+
+cfgSet.data build
+
+# single grammar for parsing
+CFG cfg
+cfg load grammar1
+cfg load grammar2
+cfg build
+\end{verbatim}
+
+As mentioned already above several grammar file formats are supported.
+They can be specified, if the automatic format detection fails. To
+change the manner of how the initial transition probabilities are set,
+a mode can be given to the build command. Following are a few example
+commands:
+
+\begin{verbatim}
+cfg load grammar -format pfsg
+cfg build -mode equal              ;# equally distributed scores
+cfg build -mode equal -overwrite 1 ;# also overwrites given probs from file
+\end{verbatim}
+
+
+\subsubsection{Sub-Grammars and Grammar Domains}
+
+Several domain dependent sub-grammars can be activated/deactivated and
+loaded at run time by using the \Jref{module}{CFGSet} object. The
+activation/de\-activation mechanism goes all the way to the rule
+level, giving the dialogue management system the full control over the
+speech recognizer. Furthermore, it is also allowed to penalize
+grammars or rules, by giving them a penalty factor.
+
+When working with domain dependent grammars we support also a
+so-called shared grammar, which includes domain independent concepts,
+to eliminate the overhead of defining the same concepts in different
+grammars. Therefore you can assign domain tags to grammars, with
+which grouping of several grammars to one domain is possible (see
+also \Jref{file}{desc.tcl}). Grammars can now be activated or
+deactivated by using their domain tags instead of switching each
+grammar in the set directly. The tag \texttt{SHARED} is reserved for
+the shared grammar, which is always activated and with the tag
+\texttt{all} given as argument to the activation/deactivation function
+all grammars are switched.  Deactivated grammars are excluded from the
+next decoding or parsing process.
+
+\begin{verbatim}
+# activates only grammars of the navigation domain
+cfgSet$SID.data deactivate all
+cfgSet$SID.data activate NAV
+
+# deactivates a rule in a grammar
+cfgSet$SID.data.cfg(0):greeting configure -status Inactive
+\end{verbatim}
+% $
+
+In the resulting parse tree, the domain tags are separated from the
+non terminal symbols by a colon, which makes it easy to see directly
+the matching domain of a query.
+
+
+\subsubsection{Tight coupling of Speech Recognition and Dialogue Management}
+
+When developing human-machine interfaces consisting of speech
+recognition and dialogue management, the context free grammar
+implementation of IBIS allows for a tight coupling between speech
+recognition and dialogue management. Therefore the same linguistic
+knowledge sources should be used in both components, so that IBIS can
+be used as a parser for the user queries. The parsed output of IBIS
+can be directly used by the dialogue manager to determine the user
+intention. Furthermore, especially when using clarification questions,
+the current dialogue context can be used to predict the context of the
+next user utterance and can be directly passed to the speech
+recognizer in form of top-level rule names to restrict the search
+space for the next decoding step\cite{fuegen:icslp04}.
+
+The following script excerpts are showing the weighting mechanism of
+rules in IBIS to restrict the search space. All the entry rules of the
+used grammars are divided into two sets, a responseSet and a querySet.
+The responseSet consists only of rules, which are less likely to be
+used at the beginning of a dialogue, i.e.  consists mainly of rules
+which cover all responses to clarification questions. The querySet
+contains all the rules which are most likely used at the beginning of
+the dialog.
+
+\begin{verbatim}
+proc weightRules { mode rules } {
+    global par agent SID
+
+    switch $mode {
+        responseSet {
+            # reset weights and clear cache
+            cfgSet$SID.data weightRules _ALL_ -weight 0.000
+            cfgSet$SID.data clear
+            cfgSet$SID.data build -verbose 0
+
+            set par(responseSet) $rules
+            cfgSet$SID.data weightRules _ALL_ -weight -1.000
+            set ret [cfgSet$SID.data weightRules $rules -weight -2.000]
+
+            putsInfo "disabling rules ($ret): $rules"
+        }
+        enable {
+            if { ![info exists par(responseSet)] } {
+                set par(responseSet) _ALL_
+            }
+            weightRules responseSet $par(responseSet)
+
+            set par(enableRules) $rules
+            set ret [cfgSet$SID.data weightRules $rules -weight 0.000]
+
+            putsInfo "enabling rules ($ret): $rules"
+        }
+    }
+}
+\end{verbatim}
+
+Before starting the decoding, i.e. during the initialization phase of
+the recognizer, a predefined set of rules can be loaded from a file,
+which consist of rules, which are usually not used at the beginning of
+a dialogue. These rules are used to define the responseSet and are
+penalized per default.
+
+\begin{verbatim}
+set fp [open $disableLst r]
+while { [gets $fp rule] >= 0 } { lappend rules [string trim $rule {[]}] }
+close $fp
+
+weightRules responseSet $rules
+\end{verbatim}
+% $
+
+Depending on the dialogue context, rules of that responseSet can be
+selected by the dialogue manager and given to the speech recognizer.
+These rules can now be enabled, i.e. preferred against all other
+rules.
+
+\begin{verbatim}
+if { [info exists infoA(ENRULES)] && [llength $infoA(ENRULES)] } {
+    weightRules enable      $infoA(ENRULES)
+} else {
+    weightRules responseSet $par(responseSet)
+}
+\end{verbatim}
+% $
+
+\subsubsection{Expanding the Grammar on the fly}
+
+Another feature is, that grammars can be expanded on the fly by new
+rules or terminals without restarting the recognizer. Even new words
+can be added to the grammar and the search network on the fly.
+
+\begin{verbatim}
+# adding of a few new paths together with some new rules
+# this does not add new words to the search network
+cfg addPath {[_NT_last]} {( last but not least )}
+cfg addPtah {s[test]} {( this is the first  sentence )}
+cfg addPath {s[testSuite]} {( this is the second sentence )}
+cfg addPath {s[testSuite]} {( *BLA the third )}
+cfg addPath {s[testSuite]} {( *BLA fourth )}
+cfg addPath {s[testSuite]} {( *BLA [_NT_last] the fifth )}
+\end{verbatim}
+
+
+\subsubsection{Starting Over}
+
+By default, it is not possible to walk through the grammar more than
+once, when decoding a sentence.  This might be okay for most
+applications, but for some others, it might restrict the way to
+communicate with the system too much.  In these cases, you can
+reconfigure the parsing process, so that it will be possible to start
+again with the top level rules, when a final terminal in the grammar
+is reached. However, due to the extended search space, the recognition
+accuracy might get worse. To have an influence on this, it is possible
+to set a penalty for starting over. An example looks like:
+
+\begin{verbatim}
+# enable startover for all grammars with a penalty factor of 2.0
+cfgInit         $SID -startover 2.0
+
+# disable startover for one grammar in the set
+cfgSet$SID.data.cfg(0) configure -startover -1.0
+\end{verbatim}
+
+
+\subsubsection{Top Level Rules}
+
+In some cases it might be useful to allow the parsing to start at
+every rule defined in the grammar and not only at the top level rules.
+This can be done for e.g. the first grammar in the set by
+
+\begin{verbatim}
+cfgSet$SID.data.cfg(0) configure -allPublic 1
+\end{verbatim}
+% $
+
+
+\subsubsection{Synchronize Dictionary} \label{advanced:cfg:dict}
+
+Using the functions defined  in \Jref{lib}{cfg.tcl} it is possible  to
+bring the dictionary in synchronization with the grammars, so that the
+words defined in the dictionary are limited to the grammar vocabulary.
+Therefore you should define at least the following variables in
+\Jref{file}{desc.tcl}:
+
+\begin{verbatim}
+set ${SID}(cfg,dict)      $dictPath/nav.dict
+set ${SID}(cfg,baseDict)  $dictPath/baseDict
+\end{verbatim}
+
+With \texttt{basedict} a large background dictionary is defined, in
+which all words in the grammars have to be defined. The result of the
+synchronization can be found in \texttt{dict}. The initialization of
+the decoder then looks as follows:
+
+\begin{verbatim}
+cfgInit         $SID -makeDict 1
+dictInit        $SID -desc [set ${SID}(cfg,dict)]
+ibisInit        $SID -lm cfgSet$SID
+\end{verbatim}
+% $
+
+
+\subsubsection{Out-Sourcing of Terminal Classes to SVMap}
+\label{cfg:classes}
+
+When working with  large classes of  terminals, like in the navigation
+domain a   large  number of  street names,   it  is  often  helpful to
+out-source them   from  the grammar to   the   search vocabulary mapper
+(\Jref{module}{SVMap}).  This reduces  the  number of grammar accesses
+and   therefore  speeds  up the  recognition   process.   To use  this
+functionality you have to  use  the  initialization given in   section
+\ref{advanced:cfg:dict} and  should additionally  define the following
+variable in \Jref{file}{desc.tcl}:
+
+\begin{verbatim}
+set ${SID}(cfg,classes)   [list $dictPath/nav.classes]
+\end{verbatim}
+
+The referred file defines a mapping between a terminal and its class
+identifier. An example of a mapping between street names looks as
+follows.
+
+\begin{verbatim}
+acherstra~se                   @street
+adalbert-stifter-stra~se       @street
+adenauerring                   @street
+adlerstra~se                   @street
+agathenstra~se                 @street
+ahaweg                         @street
+ahornweg                       @street
+\end{verbatim}
+
+You have to use \texttt{@} as a class identifier.
+
+
+\subsubsection{Handling of Noises}
+
+To cope with spontaneous non-verbal speech events and non-human
+noises, we are using the mechanism of filler words in the decoder.
+Filler words can potentially occur between any two terminals. Instead
+of asking the language model for their score, a predefined filler
+penalty is applied. A complete set of variables defined in
+\Jref{file}{desc.tcl} together with the handling of noises as filler
+words looks then as follows (the variable \texttt{fillers} is added):
+
+\begin{verbatim}
+set ${SID}(cfg,grammars)  [list [list NAV \
+                                     $cfgPath/cfg.ka.nav \
+                                     $cfgPath/cfg.base.nav] \
+                                [list SHARED \
+                                     $cfgPath/cfg.shared]]
+set ${SID}(cfg,dict)      $dictPath/nav.dict
+set ${SID}(cfg,baseDict)  $dictPath/baseDict
+set ${SID}(cfg,classes)   [list $dictPath/nav.classes]
+set ${SID}(cfg,fillers)   [list $dictPath/nav.fillers]
+\end{verbatim}
+
+The initialization differs only in one point from the initialization
+in section \ref{advanced:cfg:dict}:
+
+\begin{verbatim}
+set dict [set ${SID}(cfg,dict)]
+cfgInit         $SID -makeDict 1
+dictInit        $SID -desc $dict
+ibisInit        $SID -lm cfgSet$SID \
+                     -vocabDesc $dict.v -mapDesc $dict.m
+\end{verbatim}
+
+In the \texttt{fillers} file all noises are defined which should occur
+during decoding as filler words. An example looks as follows:
+
+\begin{verbatim}
++click+
++interjection+
++interjection+(ah)
++pause+
+\end{verbatim}
+
+To not loose too much in recognition accuracy, you need to tune the
+filler penalty on a development set.  The configuration can be done as
+follows:
+
+\begin{verbatim}
+svmap$SID configure -filPen 60
+\end{verbatim}
+% $
+
+
+\subsubsection{Visualization and Generation}
+
+The recursive transitions networks for a specific rule can be printed
+out and visualized using the AT\&T FSM-Toolkit \cite{fsm}, e.g. for
+debugging purposes. Therefore the FSM-Toolkit has to be installed and
+all the executables has to be added to the PATH environment variable.
+Furthermore, 'dot' has to be installed. The following command produces
+the FSM description files for the given rule and uses the FSM-Toolkit
+and 'dot' to generate a postscript file (in this case
+rqPathDscrFSM.ps).
+
+\begin{verbatim}
+cfg fsm request-path-description rqPathDscrFSM
+\end{verbatim}
+
+Also the terminal sequences produced by a specific rule can be printed
+out. Therefore the generation functions can be used. The terminal
+sequences can either be generated randomly according to the stored
+probability distribution in the transitions or fixed, by traversing
+all the transitions in a fixed order. In the latter case, no
+recursions are supported. Following are a few example commands.
+
+\begin{verbatim}
+cfg generate 10 -mode random
+cfg generate 10 -mode random -recurse 1
+cfg generate 10 -mode fixed
+
+# generates 10 terminal sequences randomly with no recursions (default)
+cfg:request-path-description generate 10
+
+# generation can also be used in combination with starting over
+cfg configure -startover 1
+cfg generate 10
+\end{verbatim}
+
+
+\subsection{Decoding along Lattices}
+
+A Lattice can be seen as a constrain of your search space. This allows
+you to rescore lattices with new  better acoustic modes without a full
+decoding.  To  that  end,     a lattice   can    be  attached  to    a
+\Jref{module}{LTree}. To allow a more flexible word graph, the lattice
+might  be optimized  with \Jref{GLat}{compress}.   After attaching the
+lattice, the decoding can be done as usual.
+
+\begin{verbatim}
+GLat glatX3 svmapX3
+ltreeX3 constraint glatX3 -mode exact -type SVX
+\end{verbatim}
+
+
+\subsection{Run-On Recognition, partial traceback}
+
+For practical applications, the decoding should  be run while receiving
+audio data and    output     partial results immediately.     It    is
+straightforward to write a Tcl loop for  such purposes. The only thing
+to care, is  to tell the decoder to  not start from the beginning each
+time. Assuming a audio  interface function {\em getAudio} is provided,
+the loop will look like this:
+
+\begin{verbatim}
+set myinit 1
+while { [getAudioData] != 0 } {
+  featureSet eval $uttInfo
+  spass run -init $myinit
+  set hypo   [spass.stab trace]
+  set frameX [spass configure -frameX]
+  puts "processed $frameX frames, got partial hypo $hypo"
+  set myinit 0
+}
+\end{verbatim}
+ 
+
+\subsection{Network Optimization}
+
+The default construction of  the search network builds a  tree
+structure.  However, a more compact  network can be obtained by  using
+the method  \Jref{STree}{compress},  which exploits  redundancies in  a
+more  general way.   Additionally,  the  whole search  network  might be
+dumped  into  a   single file, allowing   a   faster  startup  of  the
+decoder. If  you  load  a dump  file,  you  don't have to   read other
+description  files  for  the dictionary,  vocabulary,   mapper or even
+language model. At startup, you load the dump file by adding an option
+"-dump filename" at creating of the \Jref{module}{STree} object.
+
+\begin{verbatim}
+streeX3 compress
+streeX3 dump mydump.stree.gz
+\end{verbatim}
+
+
+\subsection{Dynamic Vocabularies}
+
+The IBIS decoder is designed  to handle vocabularies dynamically, e.g.
+it    is possible  to   add   or   delete words  at  runtime   without
+reconstruction of the search network.  To delete a word, it's actually
+not necessary to delete the word from the search network. You can also
+simply deactivate the word   by removing the corresponding  map  entry
+from the \Jref{module}{SVMap} object.
+
+\begin{verbatim}
+# add word
+dictX3   add $newWord $newPron
+svocabX3 add $newWord
+svmapX3  add $newWord $lmClass -prob $classProb
+streeX3  add $newWord
+spassX3  reinit
+
+# delete word
+streeX3  delete $newWord
+svmapX3  delete $newWord
+svocabX3 delete $newWord
+spassX3  reinit
+
+# deactivation instead of deletion
+svmapX3  delete $newWord
+\end{verbatim}
+% $
+
+In  particular,   you  can   combine   these  techniques   with run-on
+recognition to add unknown words on the fly by  defining a time offset
+for   the decoder reinitialization.  This  will  allow  the decoder to
+process that audio excerpt again  to  consider the  added word at  the
+correct time.  The offset will be configured with ``-START'' option at
+the \Jref{SPass}{reinit} method from the \Jref{module}{SPass} object..
+
+The default   configuration of the IBIS  decoder   will allows  you to
+process a vocabulary   of 64k words.  However,  if you want  to  use
+larger vocabularies,  you can  simply change the   defines for SVX and
+SVX\_MAX in \texttt{src/ibis/slimits.h} and recompile.
+
+\begin{verbatim}
+typedef UINT     SVX;          
+#define SVX_MAX  UINT_MAX
+\end{verbatim}
+
+
+\subsection{Consensus Decoding}
+
+When doing ASR, what you  really are interested  in is word error rate
+(WER), not   sentence error  rate (SER), which   however  is what  the
+standard beam search optimizes. Several approaches  exist which do not
+try to  minimize the overall  score,  but instead try to  optimize the
+word  error rate  via confidence  measures or  introduce  some kind of
+clustering between competing hypotheses in a lattice.
+
+One such approach was developed by Lidia Mangu, when she was at John's
+Hopkins.  Lidia  Mangu's  code   can  read  our  lattices    when  you
+\Jref{GLat}{write} them   with {\tt   -format slf},   implemented  and
+documented by \htmlref{Florian}{Florian}.
+
+IBIS  implements this  approach  to  ``Consensus Lattice Processing'',
+which  allows you  to decode,  produce a   lattice, compute confidence
+measures on it and the convert it  into a confusion network, which you
+can  then  rescore for  the most likely   hypo. The  sequence looks as
+follows:
+
+\begin{verbatim}
+set nodeDens  20
+set postScale 2.0
+set clpBeam   5.0
+set silScale  1.0
+set cutoff    0.1
+
+...
+
+lat$SID read $latIn/$utt.lat.gz
+set  hypo [lindex [lat$SID rescore -v 1] 0]
+
+svmap$SID load svmapCLP
+svmap$SID  configure -wordPen $lp -lz $lz
+
+lat$SID prune -nodeN [expr $nodeDens * [llength $hypo]]
+lat$SID splitMW
+
+lat$SID posteriori -scale [expr $postScale/$lz]
+set  cons [lat$SID consensus -v 1 -beam $clpBeam -silScale $silScale -cutoff $cutoff]
+\end{verbatim}
+
+%% $
+As pronunciation probabilities need to  be regarded differently during
+confidence computation (here,  they are real probabilities,  which sum
+up to  1, while during decoding they  are mere scores), you might want
+to use a separate vocabulary mapper (and maybe LM for multi-words) for
+a-posteriori generation. It is usually a good  idea to prune a lattice
+before    computing  posteriors.   The \Jref{GLat}{consensus}   method
+computes    the  consensus   on the     probabilities  filled  in   by
+\Jref{GLat}{posteriori}, you can also compute  a confusion network  on
+several  lattices at  the  same time by   adding  the \texttt{-lats}
+option. The other parameters to consensus should  be set with care for
+performance and time consumption.
+
+Usually,  the  word-posteriors  (confidence scores)  generated  using
+Consensus are superior     to   those generated by    other    methods
+(i.e. \Jref{GLat}{posteriori} alone).  If pruning takes too long,  try
+using a simpler svmapLA. If it fails with interpolated LMs, try:
+
+\begin{verbatim}
+# Configure LM
+printDo mlm1.MetaLM configure -mlctMax 1000000
+printDo mlm2.MetaLM configure -mlctMax 1000000
+printDo mlm2.MetaLM configure -lvxCache 100000
+\end{verbatim}
+
+If computing the consensus takes too long, try reducing nodeDens or
+clpBeam. The resulting confusion networks can be converted into
+lattices, HMMs, ... and can be used for MMIE training, and many other
+purposes.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

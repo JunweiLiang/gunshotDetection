@@ -1,0 +1,61 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PHMMSet}}
+
+This section describes the '\Jgloss{PHMMSet}': \textsl{set of phone hidden markov models}
+
+\begin{description}
+
+  \item[Creation:] \texttt{PHMMSet  $<$name$>$ $<$TTree$>$ $<$TTreeRoot$>$ \Jsb{-useCtx usectx}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of the PHMM set  \\
+ \texttt{\textbf{TTree}} &      topology tree (\Jref{module}{Tree}) \\
+ \texttt{\textbf{TTreeRoot}} &  root name in TTree  \\
+ \texttt{\textbf{usectx}} &      use HMM context table 0/1  \\
+      \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{phmmset}
+
+    \begin{description}
+      \Jitem{\Jlabel{PHMMSet}{add}} \texttt{ $<$states$>$ $<$trans$>$} \
+
+        Add a PHMM by specifying a state graph
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{states}} &  list of states  \\
+ \texttt{\textbf{trans}} &   list of transitions for each state  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PHMMSet}{load}} \texttt{ $<$filename$>$} \
+
+        load a set of Phone models
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to load from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PHMMSet}{puts}} \texttt{} \
+
+        displays the set of Phone models
+
+      \Jitem{\Jlabel{PHMMSet}{save}} \texttt{ $<$filename$>$} \
+
+        save a set of Phone models
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save to  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{senoneSet}} & (\Jref{module}{SenoneSet}) \\
+      \texttt{\textbf{tmSet}} & (\Jref{module}{TmSet}) \\
+      \texttt{\textbf{tree}} & (\Jref{module}{Tree}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

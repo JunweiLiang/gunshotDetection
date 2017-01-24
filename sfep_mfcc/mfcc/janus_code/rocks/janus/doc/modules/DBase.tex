@@ -1,0 +1,109 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DBase}}
+
+This section describes the '\Jgloss{DBase}': \textsl{DBase}
+
+\begin{description}
+
+  \item[Creation:] \texttt{DBase  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+      \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{dbase}
+
+    \begin{description}
+      \Jitem{\Jlabel{DBase}{add}} \texttt{ $<$key$>$ $<$list$>$} \
+
+        add record to database
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &   key  \\
+ \texttt{\textbf{list}} &  list of {varName varValue}  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{close}} \texttt{} \
+
+        close database
+
+      \Jitem{\Jlabel{DBase}{delete}} \texttt{ $<$key$>$} \
+
+        delete record from database
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &  key  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{first}} \texttt{} \
+
+        get first key in database
+
+      \Jitem{\Jlabel{DBase}{get}} \texttt{ $<$key$>$} \
+
+        get record from database
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{key}} &  key  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{list}} \texttt{} \
+
+        list all keys in database
+
+      \Jitem{\Jlabel{DBase}{next}} \texttt{} \
+
+        get next key in database
+
+      \Jitem{\Jlabel{DBase}{open}} \texttt{ $<$file$>$ $<$index$>$ \Jsb{-ptrSize ptrsize} \Jsb{-mode mode}} \
+
+        open database
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &    name of database file  \\
+ \texttt{\textbf{index}} &   name of index file  \\
+ \texttt{\textbf{ptrsize}} &  size of pointer (use when creating only, global parameter)  \\
+ \texttt{\textbf{mode}} &     r | rw | rwc  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{read}} \texttt{ $<$filename$>$} \
+
+        add records from file to database
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of file to read  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{uttFilter}} \texttt{ $<$dbase$>$ $<$uttID$>$} \
+
+        filter utterance in foreachSegment (dbaseUttFilter)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{dbase}} &      database name (not object)  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{uttInfo}} \texttt{ $<$dbase$>$ $<$spkID$>$ $<$uttID$>$} \
+
+        find utterance information (dbaseUttInfo1)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{dbase}} &      database name (not object)  \\
+ \texttt{\textbf{spkID}} &      speaker ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DBase}{write}} \texttt{ $<$filename$>$} \
+
+        write records from database to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of file to read  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{dbaseIdx}} & (\Jref{module}{DBaseIdx}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,5 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM31/iyu/MEDTEST14/
+videopaths=/data/MM21/iyu/junk/MEDTEST1314_videos_path
+machine=rocks
+python27=/opt/python27/bin/python

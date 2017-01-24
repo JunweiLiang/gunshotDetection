@@ -1,0 +1,64 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFGRule}}
+
+This section describes the '\Jgloss{CFGRule}': \textsl{A 'CFGRule' object is a rule of a context free grammar.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CFGRule} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{CFG}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfgrule configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFGRule}{-lvX} & = 0 \\
+      \Jlabel{CFGRule}{-status} & = Active \\
+      \Jlabel{CFGRule}{-type} & = Root\_Rule \\
+      \Jlabel{CFGRule}{-weight} & = 0.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfgrule}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFGRule}{addPath}} \texttt{ $<$line$>$ \Jsb{-format format}} \
+
+        adds a path to a rule
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{line}} &   path to add  \\
+ \texttt{\textbf{format}} &  grammar format  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGRule}{generate}} \texttt{ $<$seqN$>$ \Jsb{-mode mode} \Jsb{-recurse recurse} \Jsb{-file file} \Jsb{-append append}} \
+
+        generates sentences starting with rule
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{seqN}} &    number of terminal sequences  \\
+ \texttt{\textbf{mode}} &     generation mode (random|fixed)  \\
+ \texttt{\textbf{recurse}} &  follow recursions  \\
+ \texttt{\textbf{file}} &     file to write output  \\
+ \texttt{\textbf{append}} &   append to file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGRule}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of CFG rule
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (short, long)  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cfg}} & (\Jref{module}{CFG}) \\
+      \texttt{\textbf{leaf}} & (\Jref{module}{CFGNode}) \\
+      \texttt{\textbf{root}} & (\Jref{module}{CFGNode}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

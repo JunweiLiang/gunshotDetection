@@ -1,0 +1,107 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CBNewParMatrixSet}}
+
+This section describes the '\Jgloss{CBNewParMatrixSet}': \textsl{Set of CBNewParMatrix parameter matrices}
+
+\begin{description}
+
+  \item[Creation:] \texttt{CBNewParMatrixSet  $<$name$>$ $<$par1$>$ \Jsb{-defLearnRate deflearnrate}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of the set  \\
+ \texttt{\textbf{par1}} &         number of dimensions of feature space ($<$dimN$>$) or @$<$fName$>$: structure file to load \\
+ \texttt{\textbf{deflearnrate}} &  SUPERFLUOUS  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{cbnewparmatrixset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CBNewParMatrixSet}{-blkSize} & = 5000 \\
+      \Jlabel{CBNewParMatrixSet}{-defLearnRate} & = 0.100000 \\
+      \Jlabel{CBNewParMatrixSet}{-dimN} & = 1 \\
+      \Jlabel{CBNewParMatrixSet}{-itemN} & = 0 \\
+      \Jlabel{CBNewParMatrixSet}{-name} & = cbnewparmatrixset \\
+      \Jlabel{CBNewParMatrixSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cbnewparmatrixset}
+
+    \begin{description}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{add}} \texttt{ $<$parMatName$>$ $<$blockN$>$ $<$sizeVect$>$ \Jsb{-dimVect dimvect} \Jsb{-learnRate learnrate}} \
+
+        add new list element
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{parMatName}} &  name of parameter matrix object  \\
+ \texttt{\textbf{blockN}} &      number of blocks in parameter matrix  \\
+ \texttt{\textbf{sizeVect}} &    vector holding block sizes (\Jref{module}{SVector}) \\
+ \texttt{\textbf{dimvect}} &      dimension index vector (\Jref{module}{SVector}) \\
+ \texttt{\textbf{learnrate}} &    SUPERFLUOUS  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{cleanup}} \texttt{} \
+
+        remove all parameter matrices without no links
+
+      \Jitem{\Jlabel{CBNewParMatrixSet}{cluster}} \texttt{} \
+
+        cluster Gaussians
+
+      \Jitem{\Jlabel{CBNewParMatrixSet}{convert}} \texttt{ $<$FeatureSet$>$ $<$name$>$} \
+
+        convert feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FeatureSet}} &  name of the feature set (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{name}} &        source feature  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{evalKL}} \texttt{} \
+
+        evaluate KL criterion
+
+      \Jitem{\Jlabel{CBNewParMatrixSet}{index}} \texttt{ $<$names*$>$} \
+
+        get index of list element
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{loadWeights}} \texttt{ $<$fName$>$} \
+
+        load weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of structure file to create  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{name}} \texttt{ $<$idx*$>$} \
+
+        get name of list element
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{save}} \texttt{ $<$fName$>$} \
+
+        save object structure
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of structure file to create  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{saveWeights}} \texttt{ $<$fName$>$} \
+
+        save weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fName}} &  name of structure file to create  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewParMatrixSet}{update}} \texttt{} \
+
+        update parameter matrices
+
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

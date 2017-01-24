@@ -1,0 +1,19 @@
+#!/bin/sh
+# ls modules/*.tex            | awk ' { printf ("\\input{%s}\n", $$0) } ' | grep -v 'SUB_' > modules/ok/_Extra.tex
+# ls ibis/*.tex               | awk ' { printf ("\\input{%s}\n", $$0) } ' | grep -v 'SUB_' > ibis.tex
+# ls janus/*.tex              | awk ' { printf ("\\input{%s}\n", $$0) } ' | grep -v 'SUB_' > janus.tex
+# ls files/*.tex              | awk ' { printf ("\\input{%s}\n", $$0) } ' | grep -v 'SUB_' > files.tex
+
+cat *.tex */*.tex */*/*.tex | awk ' /JaddGloss{/ { sub("}[^}]*$",""); sub (".*JaddGloss{",""); split($0,a,"}{"); printf ("\\item[%s] \\label{glossary:%s} %s\n", a[1], a[1], a[2]) } ' | sort -uf > glossary.tex
+
+echo "{\\small"           >  files/desc.tex
+echo "\\\begin{verbatim}" >> files/desc.tex
+cat  ../scripts/desc.tcl  >> files/desc.tex
+echo "\\\end{verbatim}"   >> files/desc.tex
+echo "}"                  >> files/desc.tex
+
+echo "{\small"            >  files/janusrc.tex
+echo "\\\begin{verbatim}" >> files/janusrc.tex
+cat  ../scripts/janusrc   >> files/janusrc.tex
+echo "\\\end{verbatim}"   >> files/janusrc.tex
+echo "}"                  >> files/janusrc.tex

@@ -1,0 +1,59 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{FCovMatrix}}
+
+This section describes the '\Jgloss{FCovMatrix}': \textsl{Covariance matrix type (float)}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{FCovMatrix} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{Codebook}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{fcovmatrix configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{FCovMatrix}{-det} & = 0.000000 \\
+      \Jlabel{FCovMatrix}{-type} & = DIAGONAL \\
+      \Jlabel{FCovMatrix}{-useN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{fcovmatrix}
+
+    \begin{description}
+      \Jitem{\Jlabel{FCovMatrix}{+=}} \texttt{ $<$source$>$ \Jsb{-scale scale} \Jsb{-alpha alpha}} \
+
+        add two scaled covariance matrices
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source covariance matrix (\Jref{module}{FCovMatrix}) \\
+ \texttt{\textbf{scale}} &    scaling of the destination  \\
+ \texttt{\textbf{alpha}} &    scaling of the source  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FCovMatrix}{:=}} \texttt{ $<$source$>$} \
+
+        copy covariance matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source covariance matrix (\Jref{module}{FCovMatrix}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{FCovMatrix}{clear}} \texttt{} \
+
+        clear the contents of an covariance accumulator
+
+      \Jitem{\Jlabel{FCovMatrix}{set}} \texttt{ $<$matrix$>$} \
+
+        set the covariance matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix of covariance vectors  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FCovMatrix}{variances}} \texttt{} \
+
+        returns a list of the variances along the axis
+
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

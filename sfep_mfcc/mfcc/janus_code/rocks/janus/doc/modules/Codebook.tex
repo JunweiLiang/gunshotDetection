@@ -1,0 +1,217 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Codebook}}
+
+This section describes the '\Jgloss{Codebook}': \textsl{Codebook}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{Codebook} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{CodebookSet}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{codebook configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Codebook}{-bbiX} & = -1 \\
+      \Jlabel{Codebook}{-bbiY} & = 0 \\
+      \Jlabel{Codebook}{-cfg} & = default \\
+      \Jlabel{Codebook}{-count(0..3)} & = 0.000000 \\
+      \Jlabel{Codebook}{-dimN} & = 4 \\
+      \Jlabel{Codebook}{-featX} & = 0 \\
+      \Jlabel{Codebook}{-featY} & = -1 \\
+      \Jlabel{Codebook}{-name} & = SIL \\
+      \Jlabel{Codebook}{-refMax} & = 0 \\
+      \Jlabel{Codebook}{-refN} & = 4 \\
+      \Jlabel{Codebook}{-type} & = DIAGONAL \\
+      \Jlabel{Codebook}{-useN} & = 2 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{codebook}
+
+    \begin{description}
+      \Jitem{\Jlabel{Codebook}{:=}} \texttt{ $<$source$>$} \
+
+        copy the parameters of one codebook into another
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  name of the source codebook (\Jref{module}{Codebook}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{accuMatrix}} \texttt{ $<$fmatrix$>$} \
+
+        accumulate data from fmatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fmatrix}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{add}} \texttt{ $<$codebook$>$ $<$count$>$ $<$codebook$>$ $<$count$>$} \
+
+        add two one-dimensional codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  first codebook (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{count}} &     count for first codebook  \\
+ \texttt{\textbf{codebook}} &  second codebook (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{count}} &     count for second codebook  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{alloc}} \texttt{ \Jsb{-compress compress} \Jsb{-mode mode}} \
+
+        allocate the codebook
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{compress}} &  compressed codebook  \\
+ \texttt{\textbf{mode}} &      mode for compressed codebooks (ask Hagen at soltau@ira.uka.de)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{bhattacharyaMatrix}} \texttt{ $<$codebook$>$ $<$fmatrix$>$} \
+
+        compute pairwise bhattacharya distances of codebook {components;} store result in FMatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  Codebook to calculate the distance to (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{fmatrix}} &   FMatrix to store the distances in (\Jref{module}{FMatrix}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{covarShift}} \texttt{ $<$shift$>$} \
+
+        add a constant value to all variances
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{shift}} &  shift value to be added  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{covarTie}} \texttt{ $<$indexList$>$} \
+
+        tie covariance matrices together
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{indexList}} &  indices of matrices to be tied \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{covarTie?}} \texttt{} \
+
+        show which covariance matrices are tied together
+
+      \Jitem{\Jlabel{Codebook}{covarType}} \texttt{ $<$n$>$ $<$type$>$} \
+
+        modify the type of covariance matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &     index of the reference vector  \\
+ \texttt{\textbf{type}} &  desired type of the covariance matix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{covarUntie}} \texttt{ $<$indexList$>$} \
+
+        untie covariance matrices
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{indexList}} &  indices of matrices to get their own copy \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{createAccu}} \texttt{ \Jsb{-subN subn}} \
+
+        create an accumulator
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subn}} &  number of subaccumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{createMap}} \texttt{ $<$n$>$} \
+
+        create a codebook map
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &   length of map  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{extMhnMatrix}} \texttt{ $<$codebook$>$ $<$fmatrix$>$} \
+
+        compute pairwise extended Mahanalobis distances of codebook {components;} store result in FMatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  Codebook to calculate the distance to (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{fmatrix}} &   FMatrix to store the distances in (\Jref{module}{FMatrix}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{freeAccu}} \texttt{} \
+
+        remove an accumulator
+
+      \Jitem{\Jlabel{Codebook}{freeMap}} \texttt{} \
+
+        remove a codebook map
+
+      \Jitem{\Jlabel{Codebook}{invert}} \texttt{ \Jsb{-updateDet updatedet}} \
+
+        invert covariance matrix to get original one
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{updatedet}} &  update log(det(covar)) before inversion  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{klmatrix}} \texttt{ $<$codebook$>$ $<$fmatrix$>$} \
+
+        compute pairwise KL-distances of codebook {components;} store result in FMatrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  Codebook to calculate the distance to (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{fmatrix}} &   FMatrix to store the distances in (\Jref{module}{FMatrix}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{lin2log}} \texttt{} \
+
+        transformation into log domain
+
+      \Jitem{\Jlabel{Codebook}{log2lin}} \texttt{} \
+
+        transformation into linear domain
+
+      \Jitem{\Jlabel{Codebook}{noise}} \texttt{ $<$codebook$>$ \Jsb{-s s} \Jsb{-n n}} \
+
+        adding of a noise cb (lin domain!)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{codebook}} &  noise codebook (\Jref{module}{Codebook}) \\
+ \texttt{\textbf{s}} &          weight for speech  \\
+ \texttt{\textbf{n}} &          weight for noise  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{set}} \texttt{ $<$matrix$>$ \Jsb{-refX refx} \Jsb{-dimX dimx}} \
+
+        set reference vectors in the codebook
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix of reference vectors \\
+ \texttt{\textbf{refx}} &     index of the reference vector  \\
+ \texttt{\textbf{dimx}} &     index of the dimension  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{split}} \texttt{ \Jsb{-max max} \Jsb{-beam beam}} \
+
+        split codebook (create map)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{max}} &   splitting beam  \\
+ \texttt{\textbf{beam}} &  max. number of splits  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{splitList}} \texttt{} \
+
+        codebook split candidates
+
+      \Jitem{\Jlabel{Codebook}{stepdiag}} \texttt{ $<$modulo$>$ \Jsb{-mode mode}} \
+
+        create step-diagonal covariances
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{modulo}} &  Modulo  \\
+ \texttt{\textbf{mode}} &     0=dimensions, 1=sorted individually, 2=sorted by average cov  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Codebook}{update}} \texttt{} \
+
+        update one codebook
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{accu}} & (\Jref{module}{CodebookAccu}) \\
+      \texttt{\textbf{cfg}} & (\Jref{module}{Cbcfg}) \\
+      \texttt{\textbf{cov(0..3)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{map}} & (\Jref{module}{CodebookMap}) \\
+      \texttt{\textbf{mat}} & (\Jref{module}{FMatrix}) \\
+      \texttt{\textbf{ref(0..3)}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

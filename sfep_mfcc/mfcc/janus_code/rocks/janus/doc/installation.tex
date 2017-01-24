@@ -1,0 +1,86 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Documentation for Installation
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  installation.tex
+%%  Date    :  $Id: installation.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:18:47  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.4  2003/08/13 15:24:53  metze
+%%   Matches release 5.0 P013
+%%
+%%   Revision 1.1.2.3  2002/07/31 13:09:47  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.2  2002/07/30 13:11:11  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/05/28 14:12:30  metze
+%%   Initial version of the Janus/ Ibis documentation
+%%
+%%
+%% ========================================================================
+
+
+\section{Installation} \label{basic:installing}
+
+You can either just use JANUS binaries and  run Tcl-scripts or you can
+check out JANUS  from CVS and access the  source code,  building JANUS
+itself. How you can run JANUS depends on where you are: CMU or UKA.
+If you want to compile your own version of JANUS, read on.
+
+The JANUS binary can reside anywhere in your path, depending on the options
+used during compilation, you'll need Tcl/Tk (8.0 or greater) and the
+GNU readline and termcap libraries for dynamic linking.
+
+If you use Tcl/Tk 8.4 and your Janus directory is in \$HOME/janus, you can
+set your environment variables as follows (on SuSE 8.2, using \texttt{tcsh}):
+
+\begin{verbatim}
+setenv JANUS_LIBRARY        ${HOME}/janus/library
+setenv TCL_LIBRARY          /usr/lib/tcl8.4
+setenv TK_LIBRARY           /usr/lib/tk8.4
+setenv LD_LIBRARY_PATH      ${IA32ROOT}/lib
+setenv HOST                 `uname -n`
+\end{verbatim}
+
+IA32ROOT is the root directory of the Intel C++ Compiler and is only
+needed if you want to compile or run programs using this compiler.
+More information on settings can be found in section \Jref{file}{janusrc},
+which covers the \$HOME/.janusrc configuration file for janus.
+
+In the file \texttt{\${HOME}/.janusrc}, which is read by Janus on
+startup, you should define at least the following variables:
+
+\begin{verbatim}
+set JANUSLIB       /home/metze/janus/gui-tcl
+set auto_path     "/home/metze/janus/library /home/metze/janus/tcl-lib $JANUSLIB"
+\end{verbatim}
+
+Currently, janus comes in three versions:
+
+\begin{description}
+\item[Janus]   The full blown JRTk, which includes a Tcl/Tk interface and two decoders.
+\item[Ibis]    The same as Janus, but without the old three-pass decoder.
+\item[Decoder] A cooked-down version suitable only for decoding and without the Tcl/Tk interface.
+\end{description}
+
+All versions    usually are called   a  \texttt{janus} executable, the
+``default''  version is ``Ibis'', which  does not include the obsolete
+three-pass search.  If you need the old search, you'll want to look at
+section \ref{basic:compiling} and compile your own janus.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "installation"
+%%% End: 

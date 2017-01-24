@@ -1,0 +1,419 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Basic Tcl
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  basicTcl.tex
+%%  Date    :  $Id: basicTcl.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%  $Log$
+%%  Revision 1.2  2003/08/14 11:18:44  fuegen
+%%  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%  Revision 1.1.2.4  2002/11/21 16:15:45  metze
+%%  Pre-P012
+%%
+%%  Revision 1.1.2.3  2002/11/20 16:12:12  metze
+%%  Doku Pre-P012
+%%
+%%  Revision 1.1.2.2  2002/08/26 16:40:37  metze
+%%  Re-organization of modules
+%%
+%%  Revision 1.1.2.1  2002/08/01 13:42:20  metze
+%%  Fixes for clean documentation.
+%%
+%% ========================================================================
+
+\section{Tcl basics in 5 minutes}
+
+Tcl stands for 'tool command language' and is pronounced 'tickle.'
+
+\subsection*{Starting}
+
+You start tcl by typing  \texttt{tcl}  or \texttt{tclsh} in your  Unix
+shell. Thus  you enter an interactive mode  within Tcl.  You can leave
+with the tcl  command \texttt{exit}. If you  want to use the  tcl tool
+kit (TclTk) you use \texttt{wish} instead of \texttt{tcl}.
+
+\begin{verbatim}
+> tcl
+tcl> # this is a comment because the line starts with '#'
+tcl> # now we define the variable text
+tcl> set text "hello world"
+tcl> puts $text
+hello world
+tcl> exit
+>
+\end{verbatim}
+
+%% $
+
+\subsection*{Variables}
+
+Variables in tcl can be defined with the  command \texttt{set} and the
+value can be     used with \texttt{\$variable\_name}.  Arrays can   be
+indexed with arbitrary names in (). Curly  braces are used to separate
+variable names from following characters.
+
+\begin{verbatim}
+tcl> set name1 Hans
+tcl> puts $name1
+Hans
+tcl> set name2 $name1
+tcl> puts ${name2}_im_Glueck
+Hans_im_Glueck
+tcl> set data(name) Hans
+tcl> set data(age)  35
+tcl> set data(1,2)  something
+tcl> set index name
+tcl> puts $data($index)
+Hans
+\end{verbatim}
+
+%% $
+
+\subsection*{Commands, grouping and procedures}
+ 
+Commands and procedures are called with their name followed by
+arguments. Arguments are separated by spaces. They can be grouped
+together with "" or {}. The difference is that variables within "" will
+be replaced. ';' separates commands in one line.
+
+\begin{verbatim}
+tcl> set a 1
+tcl> puts "$a + 1"
+1 + 1
+tcl> puts {$a + 1}
+$a + 1
+tcl> puts "{$a} + 1"
+{1} + 1
+tcl> set b 1; puts $b;     # bla bla
+\end{verbatim}
+
+A command and arguments within [] will be executed and [command arg1
+arg2 ..] will be replaced with the return value.
+
+\begin{verbatim}
+tcl> expr 1 + 2
+3
+tcl> puts "1 + 2 = [expr 1 + 2]"
+1 + 2 = 3
+\end{verbatim}
+
+%% $
+
+The interpretation of \$variable and [] can be switched off with \\.
+
+\begin{verbatim}
+tcl> set a 999
+tcl> puts "\[$a \$\]"
+[999 $]
+tcl> puts {[$a $]}
+[$a $]
+\end{verbatim}
+
+New  commands or better   procedures can be   defined with the command
+\texttt{proc}.
+
+\begin{verbatim}
+tcl> proc add {a b} {return [expr $a + $b]}
+tcl> add 1 2
+3
+\end{verbatim}
+
+Note that the procedure name 'add', the variable list '{a b}' and the
+body of the function '{return [expr \$a + \$b]}' are the arguments of the
+command 'proc'. You can also use optional arguments with their default
+value.
+
+\begin{verbatim}
+tcl> proc printText {times {text "hello word"}} {
+=>     for {set i 0} {$i<$times} {incr i} {
+=>       puts $text
+=>     }
+=>     return $times
+=>   }
+tcl> printText 2
+hello word
+hello word
+tcl> printText 1 "hello Monika"
+hello Monika
+\end{verbatim}
+
+Each procedure has a local scope for variables. But you can use the
+'global' command in a procedure to access global variables.
+
+\begin{verbatim}
+tcl> proc putsnames {} {global name1; puts $name1; puts $name2}
+tcl> putsnames
+can't read "name1": no such variable
+tcl> set name1 Tanja
+tcl> set name2 Petra
+tcl> putsnames
+Tanja
+can't read "name2": no such variable
+\end{verbatim}
+
+\subsection*{Control flow}
+
+\begin{verbatim}
+tcl> if {$i > 0} {puts "1"} else {puts "0"}
+tcl> if {"$name" == "Tilo"} {
+=>     #
+=>     #do something here
+=>     #
+=>   }
+tcl> for {set i 0} {$i < 10} {incr i} {puts $i}
+tcl> foreach value {1 2 3 5} {puts stdout "$value"}
+tcl> while {$i>0} {incr i -1}
+tcl> switch $i {
+=>     1         {puts "i = 1"}
+=>     "hello"   {puts "hi"}
+=>     default   {puts "?"}
+=>   }
+\end{verbatim}
+
+%% $
+
+You can exit a loop with 'break' or 'continue' with the next iteration.
+
+\subsection*{Errors}
+
+With 'catch' errors can be trapped.
+
+\begin{verbatim}
+tcl> if [catch {expr 1.0 / $a} result ] {
+=>      puts stderr $result
+=>   } else {
+=>      puts "1 / $a = $result"
+=>   }       
+\end{verbatim}
+
+\subsection*{File I/O}
+
+\begin{verbatim}
+tcl>  set FP [open $fileName r]
+tcl>  set found 0
+tcl>  while {[gets $FP line] >= 0} {
+=>       if {[string compare "ABC" $line] == 0} {set found 1; break}
+            # found exactly "ABC"
+=>       if ![string compare "XYZ" $line] {set found 2; break}
+            # found exactly "XYZ"
+=>       if [string match ABC*XYZ $line] {set found 3; break}
+            # found "ABC..something..XYZ"
+=>    }
+tcl>  close $FPI
+
+tcl>  set FP [open $fileName r]
+tcl>  set first100bytes  [read $FP 100] 
+tcl>  set rest           [read $FP]
+tcl>  close $FPI
+\end{verbatim}
+
+\subsection*{The string command}
+
+Strings are the basic data items in Tcl. The general syntax of the Tcl
+\texttt{string} command is
+
+\texttt{string /operation stringvalue otherargs/}.
+
+\begin{verbatim}
+tcl> string length abc
+3
+tcl> string index abc 1
+b
+tcl> string range abcd 1 end
+bcd
+\end{verbatim}
+
+To compare two strings  you can also  use \texttt{==}. But  that might
+not work as you wanted with strings containing digits because 1 equals
+1.00 (but not in a string sense).
+
+\begin{verbatim}
+     if ![string compare $a $b] {puts "$a and $b differ"} 
+\end{verbatim}
+
+Use 'first' or 'last' to look for a substring. The return value is the
+index of the first character of the substring within the string.
+
+\begin{verbatim}
+tcl> string first abc xxxabcxxxabcxx
+3
+tcl> string last abc xxxabcxxxabcxxx
+9
+tcl> string last abc xxxxxx
+-1
+\end{verbatim}
+
+The 'string match' command uses the glob-style pattern matching like
+many UNIX shell commands do (Glob-style syntax):
+
+\begin{description}
+\item[*] Matches any number of any character.
+\item[?] Matches any single character.
+\item[[ ]] One of a set of characters like [a-z].
+\end{description}
+
+\begin{verbatim}
+tcl> string match {a[0-9]bc?def\?ghi*} a5bcYdef?ghixxx
+1
+
+tcl> set a [string tolower abcXY]
+abcxy
+tcl> string toupper $a
+ABCXY
+tcl> string trim "  abc  "
+abc
+tcl> string trimright "xxabcxxxx" x
+xxabc
+tcl> string trimleft "  a  bc" 
+a  bc
+\end{verbatim}
+
+Here comes a small example that finds the word with 'x' in a sentence.
+
+\begin{verbatim}
+tcl> set s {abc dexfgh ijklm}
+tcl> string first x $s
+6
+tcl> set start  [string wordstart $s 6]  ;# start position
+4 
+tcl> set end    [string wordend $s 6]    ;# position after word
+10 
+tcl> string range $s $start [expr $end - 1]
+dexfgh
+\end{verbatim}
+
+\subsection*{More commands dealing with strings}
+
+\begin{verbatim}
+tcl> set a abc
+tcl> append a def
+abcdef
+
+tcl> puts [format "%8s\t%8.4f" $a -12.7]
+  abcdef        -12.7000
+tcl> scan "distance 12.34m" "%s%f%c" what value unit
+3 
+\end{verbatim}
+
+\subsection*{Regular Expressions}
+
+Regular expression syntax. Matches any character.
+
+\begin{description}
+\item[*] Matches zero or more.
+\item[?] Matches zero or one.
+\item[( )] Groups a sub-pattern.
+\item[|] Alternation.
+\item[[ ]] Set of characters like [a-z]. [\^0-9] means that numbers are excluded.
+\item[\^\_] Beginning of the string.
+\item[\$] End of string.
+\end{description}
+
+\begin{verbatim}
+tcl> regexp {hello|Hello} Hello
+1
+tcl> regexp {[hH]ello} Hello
+1
+tcl> regexp {[0-9]\.([a-z])([a-wyz]*)} "xxx8.babcxxxxxx" match s1 s2
+1
+tcl> puts "$match $s1 $s2"
+8.babc b abc
+
+tcl> regsub {[0-9]\.([a-z])([a-wyz]*)} "xxx8.babcxxxxxx" {__\1__\2__&__}  var
+tcl> puts $var
+xxx__b__abc__8.babc__xxxxxx
+\end{verbatim}
+
+\subsection*{Lists}
+
+Tcl lists are just strings with a special interpretation. Separated by
+white space or grouped with braces or quotes.
+
+\begin{verbatim}
+tcl> set mylist "a b {c d}"
+tcl> set mylist [list a b {c d}]         ;# same as above
+tcl> foreach element $mylist {puts $element}
+a
+b
+c d
+\end{verbatim}
+
+Here several Tcl commands related to lists:
+
+\begin{verbatim}
+tcl> lindex $mylist 1         ;# note the index starts with 0
+b
+tcl> llength $mylist          ;# 'c d' is only one element
+3
+
+tcl> lappend mylist {g h}     ;# this time the list name 'mylist' is used
+a b {c d} {g h}
+tcl> lrange $mylist 2 end
+{c d} {g h}
+tcl> linsert $mylist 3 E x    ;# note that we don't give the list name here!
+a b {c d} E x {g h}
+tcl> set mylist [linsert $mylist 3 E x];# to change the list we have to use 'set'
+a b {c d} E x {g h}
+
+tcl> lsearch -exact $mylist E ;# other modes are the default '-glob' and '-regexp'
+3
+tcl> lreplace $mylist 3 5 e f {g h i} 
+a b {c d} e f {g h i}
+tcl> lreplace $mylist 3 3     ;# delete element 3
+
+tcl> lsort "-1.2 -1 -900 -90 1e-3 10"
+-1 -1.2 -90 -900 10 1e-3
+tcl> lsort -real "-1.2 -1 -900 -90 1e-3 10"
+     # other flags are '-ascii','-integer','-increasing','-decreasing'
+-900 -90 -1.2 -1 1e-3 10
+
+tcl> list "a b" c
+{a b} c
+tcl> concat "a b" c
+a b c
+
+tcl> join "{} usr local bin" /
+/usr/local/bin
+tcl> split /usr/my-local/bin /-
+{} usr my local bin
+\end{verbatim}
+
+\subsection*{Arrays}
+
+\begin{verbatim}
+tcl> array exists a
+0
+tcl> set a(0) 0.12;   set a(1) 1.23;   set a(name) hello  
+
+tcl> array size a
+3
+tcl> array names a
+0 name 1
+tcl> array get a 
+0 0.12 name hello 1 1.23
+\end{verbatim}
+
+The initialization could have been done with:
+
+\begin{verbatim}
+tcl> array set a "0 0.12 name hello 1 1.23"
+tcl> array set b [array get a]     ;# Copy array b from a:
+\end{verbatim}
+
+Other array commands are startsearch, nextelement, anymore,
+donesearch.
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: t
+%%% TeX-master: "janus-doku"
+%%% End: 

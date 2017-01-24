@@ -1,0 +1,12 @@
+shicheng PSC version
+
+./ColorDescriptors/src/feat_extract/batch_process.h:            ExecutableProcessStep(string exe_path,
+string input_tar_f, string output_f) : ProcessStep(input_tar_f, output_f, getenv("SCRATCH_RAMDISK")) ,
+executable_path(exe_path) {
+./ColorDescriptors/src/feat_extract/bof_merger.h:               BofMergerStep(string input_tar_f, strin
+g output_f, string input_suff) : ProcessStep(input_tar_f, output_f, getenv("SCRATCH_RAMDISK")) , input_
+suffix(input_suff){
+./fisher/cpp_version/src/FisherVectorEncode.cpp:    readfeatsmat(cv7, feat_type, getenv("SCRATCH_RAMDIS
+K"), r2);
+
+kf_wrapper can also be changed

@@ -1,0 +1,107 @@
+# ========================================================================
+# Feature access using mslp and mvdr
+# ------------------------------------------------------------------------
+#
+#  Author  :  Matthias Woefel
+#  Module  :  featAccess.mslp.mvdr
+#  Date    :  12/09/2008
+#  $Log: featAccess,v $
+# ========================================================================
+
+global WAVFILE BASE meanPath
+
+set spectra spectra
+
+# delay in seconds
+set delay 0.06
+set size 1000
+
+# delermine var. automatically
+set delayBins  [expr round(16000 * $delay)]
+set delayFrames [expr round(100 * $delay)]
+
+# if { ! [info exists arg(CONV)]}    { error "featAccess: no info for CONV"    }
+if { ! [info exists arg(CONVID)]}  { error "featAccess: no info for CONVID"  }
+if { ! [info exists arg(FROM)]}    { error "featAccess: no info for FROM"    }
+if { ! [info exists arg(TO)]}      { error "featAccess: no info for TO"      }
+#if { ! [info exists arg(CHANNEL)]} { error "featAccess: no info for CHANNEL" }
+if { ! [info exists WAVFILE]}      { set WAVFILE "" }
+if { ! [info exists BASE]}         { set BASE /project/TechED/ExpAlex/Alex16kHz }
+
+# ------------------------------------------------------------------------
+#  Load ADC segment...
+# ------------------------------------------------------------------------
+
+if {$WAVFILE != "$arg(CONVID) $arg(FROM) $arg(TO)" } {
+    if {"[lindex $WAVFILE 0]" != "$arg(CONVID)"} {
+        set directory [pwd]
+
+        set channels "CTM Lapel_1 TableTop_1 Array_C1"
+        foreach type $channels {
+            regsub -all "_.*" $type "" check
+            if { [eval regexp {$check} $directory ""] } { break; }
+        }
+
+        puts "CHANNEL: $type"
+
+        set adcFile $BASE/${type}_16k.wav
+
+	writeLog stderr "$fes Loading $adcFile"
+	if {![file exists $adcFile]} {
+	    puts stderr "cannot find adc for $arg(CONVID)"
+	    error "cannot find adc for $arg(CONVID)"
+	}
+	$fes readADC ADC16 $adcFile
+    }
+    $fes cut      ADC     ADC16   [expr $arg(FROM) - $delay -2.0]s $arg(TO)s
+    puts "Cut ADC from $arg(FROM)s to $arg(TO)s"
+    #$fes aspike   ASPIKE  ADC    -maxslope 7000 -alpha 0.2 -meanslope 10 -thresh 13
+    #----------------- speech detection ---------------------------------------
+    $fes   adc2pow         POWER   ADC    16ms
+    $fes   alog            POWER   POWER  1 4
+    $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+    $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+    $fes   normalize       POWER   POWER  -min -0.1 -max 0.5
+    $fes   thresh          SPEECH  POWER  1.0 0 upper
+    $fes   thresh          SPEECH  SPEECH 0   0 lower
+    $fes cut SPEECH SPEECH $delayFrames end
+
+    #----------------- mel filter bank ----------------------------------------
+    $fes   spectrum        FFT0            ADC             16ms
+
+    # ------------------------------------------------------------------------
+    #  Calculate the Warped Spectral Envelope
+    # ------------------------------------------------------------------------
+
+    set order 30
+    set windowsize 16ms
+
+    #calculate spectra -----------------------------------------------------------
+    $fes adc2spec          ADC                   $windowsize -win hamming -adc SPADC
+    $fes specest           MVDR   SPADC          $order -type MVDR -lpmethod warp -warp 0.4595
+    $fes specadj           sMVDR  MVDR     FFT0  -smooth 2
+
+    $fes multisteplp FILTER ADC -delay $delayBins -order $size
+
+    set FILTER "[$fes:FILTER.data]"
+    $fes filter fADC ADC "0 $FILTER"
+
+    $fes spectrum          fFFT    fADC          16ms
+    $fes adc2spec          fADC                  $windowsize -win hamming -adc fSPADC -shift 10ms
+    $fes specest           fMVDR   fSPADC        $order -type MVDR -lpmethod warp -warp 0.4595
+    $fes specadj           fMVDR   fMVDR   fFFT  -smooth 2
+
+    $fes cut sMVDR sMVDR $delayFrames end
+    $fes cut FFT0 FFT0 $delayFrames end
+    set frames [$fes:fMVDR configure -frameN]
+    $fes cut fMVDR fMVDR 0 [expr $frames-1-$delayFrames]
+
+    $fes specsub subMVDR sMVDR fMVDR -a 1.0 -b 0.1
+
+    set WAVFILE "$arg(CONVID) $arg(FROM) $arg(TO)"
+} else {
+    puts "skipped featAccess.mvdr"
+}
+
+# Finis
+set     accessList $sampleList

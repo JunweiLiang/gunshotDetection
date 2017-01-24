@@ -1,0 +1,129 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{ModalitySet}}
+
+This section describes the '\Jgloss{ModalitySet}': \textsl{A 'ModalitySet' object is a set of modalities.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{ModalitySet  $<$name$>$ $<$tags$>$ \Jsb{-addTags addtags}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the modality set  \\
+ \texttt{\textbf{tags}} &    tags object (\Jref{module}{Tags}) \\
+ \texttt{\textbf{addtags}} &  add tag names to tags-object  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{modalityset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{ModalitySet}{-addTags} & = 0 \\
+      \Jlabel{ModalitySet}{-dummyStart} & = -1 \\
+      \Jlabel{ModalitySet}{-endFrameX} & = -1 \\
+      \Jlabel{ModalitySet}{-itemN} & = 0 \\
+      \Jlabel{ModalitySet}{-name} & = modalitySetISLci \\
+      \Jlabel{ModalitySet}{-startFrameX} & = -1 \\
+      \Jlabel{ModalitySet}{-tags} & = tagsISLci \\
+      \Jlabel{ModalitySet}{-tree} & = (null) \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{modalityset}
+
+    \begin{description}
+      \Jitem{\Jlabel{ModalitySet}{add}} \texttt{ $<$name$>$ $<$updateProc$>$ $<$tagName$>$} \
+
+        add a new modality to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of modality  \\
+ \texttt{\textbf{updateProc}} &  TCL modality update proc  \\
+ \texttt{\textbf{tagName}} &     Name for tag  \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{addTags}} \texttt{} \
+
+        add tags to tags-object
+
+      \Jitem{\Jlabel{ModalitySet}{answer}} \texttt{ $<$startFrameX$>$ $<$endFrameX$>$} \
+
+        get answer of all modalities in the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startFrameX}} &  start frame for answer  \\
+ \texttt{\textbf{endFrameX}} &    end frame for answer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{answer2codedTags}} \texttt{ $<$answer$>$ \Jsb{-tags tags}} \
+
+        coded tags for answer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{answer}} &  answer (majority)  \\
+ \texttt{\textbf{tags}} &     tags-object (\Jref{module}{Tags}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{answer2tags}} \texttt{ $<$answer$>$} \
+
+        get a list of tags for an answer
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{answer}} &  answer for modalities (binary coded)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{delete}} \texttt{} \
+
+        delete a modality from the set
+
+      \Jitem{\Jlabel{ModalitySet}{deleteTags}} \texttt{} \
+
+        delete tags from tags-object
+
+      \Jitem{\Jlabel{ModalitySet}{getRootNodes}} \texttt{} \
+
+        get root nodes of tree
+
+      \Jitem{\Jlabel{ModalitySet}{majorityAnswer}} \texttt{ \Jsb{-startFrameX startframex} \Jsb{-endFrameX endframex}} \
+
+        get the majority of the answers
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startframex}} &  start frame for answer  \\
+ \texttt{\textbf{endframex}} &    end frame for answer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{puts}} \texttt{} \
+
+        display the contents of the modality-set
+
+      \Jitem{\Jlabel{ModalitySet}{reset}} \texttt{} \
+
+        reset set
+
+      \Jitem{\Jlabel{ModalitySet}{trace}} \texttt{ $<$rootX$>$ $<$answer$>$} \
+
+        trace given subtree with given answers
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{rootX}} &   root node index of subtree  \\
+ \texttt{\textbf{answer}} &  answers for modalities (coded as int)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{ModalitySet}{update}} \texttt{} \
+
+        update all modalities in the set
+
+      \Jitem{\Jlabel{ModalitySet}{updateUtterance}} \texttt{} \
+
+        update modality for the whole utterance (modalityUpdateUtterance)
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{localTags}} & (\Jref{module}{Tags}) \\
+      \texttt{\textbf{tags}} & (\Jref{module}{Tags}) \\
+      \texttt{\textbf{tree}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

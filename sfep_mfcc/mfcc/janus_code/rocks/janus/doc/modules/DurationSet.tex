@@ -1,0 +1,163 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DurationSet}}
+
+This section describes the '\Jgloss{DurationSet}': \textsl{A 'DurationSet' object is an array of explicite duration models.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{DurationSet  $<$name$>$ $<$map$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{map}} &  duration to histogram mapping \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{durationset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DurationSet}{-blkSize} & = 5000 \\
+      \Jlabel{DurationSet}{-commentChar} & = ; \\
+      \Jlabel{DurationSet}{-floor} & = 0.000000 \\
+      \Jlabel{DurationSet}{-itemN} & = 0 \\
+      \Jlabel{DurationSet}{-map} & =  1  \\
+      \Jlabel{DurationSet}{-minCount} & = 5.000000 \\
+      \Jlabel{DurationSet}{-momentum} & = 0.000000 \\
+      \Jlabel{DurationSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{durationset}
+
+    \begin{description}
+      \Jitem{\Jlabel{DurationSet}{accu}} \texttt{ $<$path$>$ $<$hmm$>$ \Jsb{-factor factor}} \
+
+        accumulate training data
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{hmm}} &    name of the HMM object (\Jref{module}{HMM}) \\
+ \texttt{\textbf{factor}} &  training factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{add}} \texttt{ $<$durModel$>$ $<$probs$>$ \Jsb{-count count}} \
+
+        add new duration model(s) to a duration set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{durModel}} &  name of duration models  \\
+ \texttt{\textbf{probs}} &     array of probabilities \\
+ \texttt{\textbf{count}} &      total occurence count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{clearAccus}} \texttt{} \
+
+        clear training data accumulators
+
+      \Jitem{\Jlabel{DurationSet}{createAccus}} \texttt{} \
+
+        allocate training data accumulators
+
+      \Jitem{\Jlabel{DurationSet}{delete}} \texttt{ $<$durModel*$>$} \
+
+        delete duration model(s) from a duration set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{durModel*}} & list of duration models \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{dist}} \texttt{ $<$ModelArray P$>$ $<$ModelArray Q$>$ $<$ModelArray R$>$} \
+
+        measure distance between duration models
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ModelArray P}} &  model array (\Jref{module}{ModelArray}) \\
+ \texttt{\textbf{ModelArray Q}} &  model array (\Jref{module}{ModelArray}) \\
+ \texttt{\textbf{ModelArray R}} &  model array (\Jref{module}{ModelArray}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{freeAccus}} \texttt{} \
+
+        allocate training data accumulators
+
+      \Jitem{\Jlabel{DurationSet}{index}} \texttt{ $<$names*$>$} \
+
+        return index of named duration model(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{loadAccus}} \texttt{ $<$filename$>$} \
+
+        load training data accumulators from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of indexed duration model(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{prob}} \texttt{ $<$durationModel$>$ $<$durationFrameN$>$} \
+
+        return the duration probability for a named duration model
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{durationModel}} &   name of duration model \\
+ \texttt{\textbf{durationFrameN}} &  duration in frames  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{puts}} \texttt{} \
+
+        displays the contents of a duration set
+
+      \Jitem{\Jlabel{DurationSet}{putsAccu}} \texttt{ $<$durationModel*$>$} \
+
+        display training data accumulator
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{durationModel*}} & duration models \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{read}} \texttt{ $<$filename$>$} \
+
+        read a duration set from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of DurationSet file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{saveAccus}} \texttt{ $<$filename$>$} \
+
+        save training data accumulators to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to write  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{scale}} \texttt{ $<$factor$>$} \
+
+        multiply all log-probs with given value
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{factor}} &  multiplicative factor for log-probs  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DurationSet}{update}} \texttt{} \
+
+        update the duration probabilities
+
+      \Jitem{\Jlabel{DurationSet}{write}} \texttt{ $<$filename$>$} \
+
+        write a duration set into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of DurationSet file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

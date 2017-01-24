@@ -1,0 +1,121 @@
+# ========================================================================
+#  JanusRTk     Janus Recognition Toolkit
+#               ----------------------------------------------------------
+#               Object: Feature Description
+#               ----------------------------------------------------------
+#
+#  Author    :  Hagen Soltau
+#  Module    :  featDesc
+#  Remarks   :  based on Hua's new frontend, 40 dimensions
+#
+#  $Log$
+#  Revision 1.2  2003/12/17 13:04:54  metze
+#  P013
+#
+#  Revision 1.1  2002/03/04 16:10:49  soltau
+#  Initial revision
+#
+# ========================================================================
+
+global WARPSCALE warpScales
+global sas pms wX STORE_CMS
+
+
+# ------------------------------------------------------------------------
+#  Speech Detection
+# ------------------------------------------------------------------------
+
+if {[info exists arg(NEWADC)] && $arg(NEWADC)} {    
+    $fes   adc2pow         POWER   ADC      20ms
+    $fes   alog            POWER   POWER  1 4
+    $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+    $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+    $fes   normalize       POWER   POWER  -min -0.1 -max 0.5
+    $fes   thresh          SPEECH  POWER  1.0 0 upper
+    $fes   thresh          SPEECH  SPEECH 0   0 lower
+}
+
+
+# ------------------------------------------------------------------------
+#  Vocal Tract Length Normalization + MCEP
+# ------------------------------------------------------------------------
+
+$fes VTLN     WFFT      FFT  $arg(WARP) -mod lin -edge 0.8
+
+if {[llength [objects FBMatrix matrixMEL]] != 1} {
+    set melN 30
+    set points [$fes:FFT configure -coeffN]
+    set rate   [expr 1000 * [$fes:FFT configure -samplingRate]]
+    [FBMatrix matrixMEL] mel -N $melN -p $points -rate $rate
+}
+
+$fes   filterbank       MEL             WFFT           matrixMEL
+$fes   log              lMEL            MEL            1.0 1.0
+
+set cepN 13
+
+if {[llength [objects FMatrix matrixCOS]] != 1} {
+    set n [$fes:lMEL configure -coeffN]
+    [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+
+$fes   matmul           MCEP            lMEL            matrixCOS
+
+
+# ------------------------------------------------------------------------
+#  Mean Subtraction, Delta, Delta-Delta and LDA
+# ------------------------------------------------------------------------
+
+regsub -all "\\." $arg(WARP) "" scaleN
+
+switch $STORE_CMS {
+    UPDATE { ;# update mean but don't store it
+	FVector dummyM Mean$scaleN
+	FVector dummyS SMean$scaleN
+	
+	$fes  meansub  FEAT   MCEP  -a 2 -weight SPEECH \
+	    -upMean  dummyM   \
+	    -upSMean dummyS
+	
+	dummyM destroy
+	dummyS destroy
+    }
+    STORE {  ;# update mean and store
+	$fes  meansub  FEAT   MCEP  -a 2 -weight SPEECH \
+	    -upMean  Mean$scaleN   \
+	    -upSMean SMean$scaleN
+    }
+    USE {    ;# don't update mean, just use it
+	$fes  meansub  FEAT   MCEP  -a 2 \
+	    -mean    Mean$scaleN   \
+	    -smean   SMean$scaleN
+    }
+    USEFIX { ;# don't update mean, just use it
+        $fes  meansub  FEAT   MCEP  -a 2 \
+            -mean    ${fes}Mean    \
+            -smean   ${fes}SMean
+    }
+}
+$fes adjacent FEAT+   FEAT  -delta 5
+
+if {[$fes index LDAMatrix] > -1} {
+    $fes matmul   LDA     FEAT+ $fes:LDAMatrix.data -cut 32
+}
+
+
+# ------------------------------------------------------------------------
+#  STC and Feature Space Adaptation
+# ------------------------------------------------------------------------
+
+if {[info exists pms]} {
+    foreach p [$pms] {
+	$fes matmul OFS-$p LDA $pms:$p.item(0)
+	if {[info exists sas]} {
+	    $sas adapt $fes:OFS-$p.data $fes:OFS-$p.data 0
+	}
+    }
+} else {
+    if {[info exists sas]} {
+	$sas adapt $fes:LDA.data $fes:LDA.data 0
+    }
+}

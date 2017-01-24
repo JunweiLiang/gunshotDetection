@@ -1,0 +1,283 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Documentation for ibis.tcl
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  ibis.tex
+%%  Date    :  $Id: ibis.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:19:04  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.1  2002/08/27 16:19:27  metze
+%%   New version of automatic generator.
+%%
+%%   Revision 1.1.2.3  2002/08/01 13:42:21  metze
+%%   Fixes for clean documentation.
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:12  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/05/28 14:12:31  metze
+%%   Initial version of the Janus/ Ibis documentation
+%%
+%%
+%% ========================================================================
+
+\section{\Jlabel{lib}{ibis.tcl}}
+
+This describes the tcl-lib  file \texttt{ibis.tcl}, which helps you to
+use the \Jgloss{Ibis} decoder. It contains the following procedures:
+
+\subsection{\Jlabel{proc}{printDo}}
+
+Just a little helper routine, which will show a command on the screen and
+then execute it.
+
+\subsection{\Jlabel{proc}{ibisInit}}
+
+Can be used to initialize a full decoder all in one command. It will do
+the following steps:
+
+\begin{enumerate}
+
+\item Create \Jref{module}{PHMMSet}, \Jref{module}{LCMSet}, \Jref{module}{RCMSet}, and possibly \Jref{module}{XCMSet}
+
+\item Create a \Jref{module}{SVocab}
+
+\item Create a language model of  any type using \Jref{proc}{ibisCreateLM},
+possibly also create a separate \Jref{module}{NGramLM} for the Look-Ahead
+structure
+
+\item Create a \Jref{module}{SVMap}
+
+\item Read the vocabulary and initialize the mapper, unless we read a \Jref{module}{STree} dump file
+
+\item  Create the \Jref{module}{STree},  maybe reading in a dump file,
+create the \Jref{module}{LTree} and the \Jref{module}{SPass} object.
+
+\end{enumerate}
+
+As is good practice for xInit procedures, the parameters can be 
+specified in one of three ways (in order of precedence):
+
+\begin{enumerate}
+\item On the command line.
+\item In the \$SID array
+\item By default values in the procedure
+\end{enumerate}
+
+If any of the needed  objects already exist,  they won't be recreated.
+This  is very handy  because  you can build   for example your complex
+language model yourself (possibly using  dumps where appropriate)  and
+then call \Jref{proc}{ibisInit}, which will do all the remaining work.
+Remember,  you   can  create    \Jref{module}{STree}  dumps  with  the
+\texttt{-dumpLM 0} option to \Jref{STree}{dump}.
+
+\begin{description}
+
+\item[Parameters:] \texttt{ibisInit \$SID}
+
+\begin{description}
+
+\Jitem{\Jlabel{ibisInit}{-dict} \Jref{module}{Dictionary},  \Jlabel{ibisInit}{-ttree} \Jref{module}{Tree},
+  \Jlabel{ibisInit}{-phmmSet} \Jref{module}{PHMMSet}, \Jlabel{ibisInit}{-lcmSet} \Jref{module}{LCMSet},}
+  \texttt{\Jlabel{ibisInit}{-rcmSet} \Jref{module}{RCMSet},   \Jlabel{ibisInit}{-xcmSet} \Jref{module}{XCMSet},
+  \Jlabel{ibisInit}{-vocab} \Jref{module}{SVocab},    \Jlabel{ibisInit}{-svmap} \Jref{module}{SVMap},
+  \Jlabel{ibisInit}{-stree} \Jref{module}{STree},     \Jlabel{ibisInit}{-ltree} \Jref{module}{LTree},
+  \Jlabel{ibisInit}{-lmla} \Jref{module}{NGramLM},  \Jlabel{ibisInit}{-lm}    lm}
+  allow you to tell ibisInit which (existing) object to use. Standard values are e.g.
+  \texttt{dict\$SID} and \texttt{ttree\$SID}. The language model used for the lookahead
+  has to be of type \Jref{module}{NGramLM}.
+
+\Jitem{\Jlabel{ibisInit}{-streeDump} dump,   \Jlabel{ibisInit}{-vocabDesc} vocab,
+  \Jlabel{ibisInit}{-mapDesc} map,}          \texttt{\Jlabel{ibisInit}{-phraseDesc} phraseDesc,
+  \Jlabel{ibisInit}{-baseLMDesc} baseLMDesc, \Jlabel{ibisInit}{-ipolLMDesc} ipolLMDesc,
+  \Jlabel{ibisInit}{-lmDesc} lmDesc,         \Jlabel{ibisInit}{-lmlaDesc} lmlaDesc}
+  allow you to specify the name of the description files for the objects. If \texttt{-streeDump}
+  is specified, \texttt{vocab} will not be read!
+  
+\Jitem{\Jlabel{ibisInit}{-lalz} x, \Jlabel{ibisInit}{-lz} x, \Jlabel{ibisInit}{-lp} x,
+  \Jlabel{ibisInit}{-masterBeam} x} will configure \Jref{module}{SVMap} and \Jref{module}{SPass}.
+
+\Jitem{\Jlabel{ibisInit}{-cacheN} n, \Jlabel{ibisInit}{-depth} n} configure the \Jref{module}{LTree}.
+
+\Jitem{\Jlabel{ibisInit}{-lmType} type} allows to set the type of the language model to be
+  created.
+
+\Jitem{\Jlabel{ibisInit}{-segSize} n} will be passed to \Jref{module}{NGramLM} when
+  loading the language model.
+
+\Jitem{\Jlabel{ibisInit}{-xcm} 0$|$1, \Jlabel{ibisInit}{-ignoreRCM} 0$|$1} configure the
+  behavior of the \Jref{module}{XCMSet}, if one exists.
+
+\Jitem{\Jlabel{ibisInit}{-fastMatch} LFID} configures the system ID for the fast match
+  module, which you'll have to create for yourself.
+
+\end{description}
+
+\item[Prerequisites] \
+
+It is best to call \Jref{proc}{ibisInit} in a sequence such as:
+
+\begin{verbatim}
+
+senoneSetInit   $SID  distribStream$SID
+topoSetInit     $SID
+ttreeInit       $SID 
+dictInit        $SID
+trainInit       $SID
+dbaseInit       $SID  $dbase -path $dbasePath
+
+
+# ------------------------------------------------
+#  Init New Janus Decoder
+#    The STree-dump contains the SenoneSet, too!!!
+# ------------------------------------------------
+
+ibisInit $SID -masterBeam $masterBeam -lz $lz -lp $lp
+svmap$SID readLMMap
+svmap$SID map class
+
+\end{verbatim}
+
+% $
+
+\Jref{proc}{ibisInit} requires and will check for the following objects:
+
+\begin{enumerate}
+
+\item{\Jref{module}{Tree}} the topology tree.
+\item{\Jref{module}{Dictionary}} the dictionary.
+
+\end{enumerate}
+
+\item[Description] \
+
+In this example, ibisInit  loaded the language  model, too, but we are
+free to reconfigure the \Jref{module}{SVMap} after the creation of the
+search tree. The filenames  to use were  configured in the \$SID array
+(please have a  look at the code or  existing systems to  see how that
+works).
+
+\end{description}
+
+\subsection{\Jlabel{proc}{phraseLMReadMap}}
+
+Can be used to read a standard map-file into a \Jref{module}{PhraseLM}.
+The Ibis decoder no longer uses a true ``Map'' language model, but
+splits its contents into two parts for greater efficiency:
+
+\begin{enumerate}
+\item The one-word parts usually can be treated very efficiently in the \Jref{module}{SVMap}
+\item The multi-words will be handled by \Jref{module}{PhraseLM}
+\end{enumerate}
+
+However, there are situations when you want to handle word-to-word mappings
+in a PhraseLM, too, for example when handling stacked language models that
+involve pronunciation scores. This procedure deals with these issues and
+works in the same way as \Jref{proc}{svmapReadMap}, also accessible as 
+\Jref{PhraseLM}{readMapFile} and \Jref{SVMap}{readMapFile}.
+
+A map-file contains lines of the form:
+
+\begin{verbatim}
+{AB(2)}      {AB}
+{AND_HAD(1)} {AND HAD} -prob -0.943350
+\end{verbatim}
+
+The \texttt{-prob} part is optional.
+
+\begin{description}
+
+\item[Parameters:] \texttt{phraseLMReadMap file}
+
+\begin{description}
+\Jitem{\Jlabel{phraseLMReadMap}{-mode} base$|$multi$|$all:} do only
+include the multi-words (``multi'') or only add baseforms (i.e. words that
+don't contain a '(') to the language model (``base''); ``all'' includes all
+words found in the map-file (useful only with cascaded language models)
+\Jitem{\Jlabel{phraseLMReadMap}{-base} lmodel} language
+model underlying the \Jref{module}{PhraseLM}, can be specified here, too
+\Jitem{\Jlabel{phraseLMReadMap}{-verbose} 0$|$1} output
+\end{description}
+
+\item[Prerequisites] none really, apart from a \Jref{module}{PhraseLM}
+  and a file ;-).
+
+\end{description}
+
+\subsection{\Jlabel{proc}{svmapReadMap}}
+
+Pretty much the twin of \Jref{proc}{phraseLMReadMap}. Reads a map-file
+and adds the mappings not covered by the underlying language model to
+the \Jref{module}{SVMap}.
+
+\begin{description}
+
+\item[Parameters:] \texttt{svmapReadMap file}
+
+\begin{description}
+\Jitem{\Jlabel{svmapReadMap}{-lm} lmodel} language
+model underlying the \Jref{module}{SVMap}, can be specified here, too
+\Jitem{\Jlabel{svmapReadMap}{-verbose} 0$|$1} output
+\end{description}
+
+\item[Prerequisites] none really, apart from a \Jref{module}{SVMap}
+  and a file ;-).
+
+\item[Description] This procedure will add a mapping for a word, if
+its pronunciation probability in an underyling language model
+is different from the one stored in the file.
+
+\end{description}
+
+\subsection{\Jlabel{proc}{ibisCreateLM}}
+
+Function mainly for internal use only, you can however use it to
+construct the following language model types: \Jref{module}{PhraseLM},
+\Jref{module}{MetaLM}, \Jref{module}{NGramLM} or
+\Jref{module}{STree}, if the language model is in fact stored in the
+STree's dump file (it will simply create an \Jref{module}{NGramLM}
+but not load anything).
+
+\subsection{\Jlabel{proc}{spassWriteHypo}}
+
+Writes a hypo from a \Jref{module}{SPass} to file or stdout. The
+format is CTM, hence this procedure is also 
+available as \Jref{SPass}{writeCTM}.
+
+The \Jlabel{spassWriteHypo}{-warpA} and \Jlabel{spassWriteHypo}{-rate}
+options are important for Switchboard, I presume?
+
+\subsection{\Jlabel{proc}{glatWriteHypo}}
+
+Equivalent to \Jref{proc}{spassWriteHypo} for lattices. If you already
+know the hypothesis, you can simply call this procedure with the
+\Jlabel{spassWriteHypo}{-result} option, then it will not so a
+\Jref{GLat}{rescore} to get it.
+
+\subsection{\Jlabel{proc}{glatWriteTRN}}
+
+Writes out a hypothesis in TRN format, otherwise equivalent to
+\Jref{proc}{glatWriteHypo}. This format is produced by Lidia Mangu's
+consensus code; this routine allows our results to be scored with the
+same tools as hers.
+
+\subsection{\Jlabel{proc}{metaLMloadWeights}}
+
+Also available as \Jref{MetaLM}{loadWeights}, this procedure
+reads in interpolation weights for a \Jref{module}{MetaLM} from a
+standard weights file.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

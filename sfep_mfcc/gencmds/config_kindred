@@ -1,0 +1,7 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM22/iyu/Kindred/
+videopaths=/data/MM2/MED/Kindred/part_1/video_dim_info/raw_video_list.txt
+machine=rocks
+video_info=/data/MM2/MED/Kindred/part_1/video_dim_info/raw_video_dim_info.txt
+video_info_resized=/data/MM2/MED/Kindred/part_1/video_dim_info/resize_video_dim_info.txt
+python27=/opt/python27/bin/python

@@ -1,0 +1,5 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM22/iyu/tch_fv/
+videopaths=/home/iyu/sfep/gencmds/tch_vids
+machine=rocks
+video_info=/data/MM22/iyu/tch_fv/features/video_info

@@ -1,0 +1,168 @@
+# ========================================================================
+# Feature description using a particle filter
+# ------------------------------------------------------------------------
+#
+#  Author  :  Matthias Woefel
+#  Module  :  featDesc.mvdr.PF
+#  Date    :  12/09/2008
+#  $Log: featDesc.test,v $
+# ========================================================================
+
+global WARPSCALE warpScales doAdapt wX pms pms1
+global oldADC meanPath oldSPEAKER SID AMINIT
+global AM AMN amPar USEPF
+global PHONES UTT flag remember utt spectra
+
+# ------------------------------------------------------------------------
+# init Particle Filter
+# ------------------------------------------------------------------------
+if {![info exist WARPSCALE]} {
+  if [info exist warpScales($arg(CONVID))] {
+     set WARP $warpScales($arg(CONVID))
+  }  else {
+      if [info exist warpScales($arg(SPK))] {
+          set WARP $warpScales($arg(SPK))
+      }  else {
+          set WARP 1.00
+          puts "WARN : no warpfactor found for $arg(CONVID)"
+      }
+  }
+} else { set WARP $WARPSCALE }
+
+set warp [expr round(200-$WARP*100)/100.0]
+
+if { $warp < 0.75 } { set warp 0.75 }
+if { $warp == 1.0 } { set warp 1 }
+if { $warp > 1.25 } { set warp 1.25 }
+
+if { ![info exists AMINIT] } {
+    writeLog stderr "=====> INIT Particle Filter <========"
+    source SpeechGMM.tcl
+    set AMINIT change
+    initAM $SID $fes $AM $AMN $WARP
+    writeLog stderr "====================================="
+}
+
+# ------------------------------------------------------------------------
+#  Filterbank + Vocal Tract Length Normalization + MCEP
+# ------------------------------------------------------------------------
+if {[llength [objects FBMatrix VTLN${warp}]] != 1} {
+    writeLog stderr "LOAD filterbank 16 kHz, 16 ms, 129 bins, ${warp} warp"
+    source  ${base}/filterbanks/Filterbanks16kHz16ms129bins/VTLN.filterbank.${warp}
+}
+
+$fes   filterbank        LIN             sMVDR      VTLN${warp}
+$fes   log               lLIN            LIN        10.0 0.0
+
+if { [llength [objects FMatrix matrixCOS]] != 1} {
+   set cepN 20
+   set n [$fes:lLIN configure -coeffN]
+   [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+
+$fes   matmul           CEP             lLIN           matrixCOS
+
+# use Matlab to invert Matrix
+# COSmatrix = mxImportFMATFile('COSmatrix20x20.fmat')
+# InvCOSmatrix = 20/129 * inv(COSmatrix)
+# mxExportToFMATFile('InvCOSmatrix20x20.fmat', InvCOSmatrix);
+# mxExportToFMATFile('COSmatrix20x20.fmat', 129/20*InvCOSmatrix);
+
+if { [llength [objects FMatrix InvCOSmatrix]] != 1} {
+    $fes FMatrix InvCOSmatrix
+    $fes:InvCOSmatrix.data bload  ${base}/filterbanks/InvCOSmatrix20x20.fmat
+}
+
+if { [llength [objects FMatrix COSmatrix]] != 1} {
+    $fes FMatrix COSmatrix
+    $fes:COSmatrix.data bload  ${base}/filterbanks/COSmatrix20x20.fmat
+}
+
+if { $USEPF > 0.5 && [file exists ${spectra}/$arg(UTT)_cleaned.smp] } {
+  $fes FMatrix SPEC_cleaned
+  $fes:SPEC_cleaned.data bload ${spectra}/$arg(UTT)_cleaned.smp
+  puts "Loaded spectrum: ${spectra}/$arg(UTT)_cleaned.smp"
+} else {
+
+  $fes   filterbank      fLIN           fMVDR      VTLN${warp}
+  $fes   log             lfLIN          fLIN       10.0 0.0
+  $fes   matmul          fCEP           lfLIN      matrixCOS
+
+  $fes   filterbank      subLIN         subMVDR    VTLN${warp} 
+  $fes   log             lsubLIN        subLIN     10.0 0.0
+  $fes   matmul          subCEP         lsubLIN    matrixCOS
+
+  $fes matmul            SPEC           CEP         $fes:InvCOSmatrix.data
+  $fes matmul            fSPEC          fCEP        $fes:InvCOSmatrix.data
+  $fes matmul            subSPEC        subCEP      $fes:InvCOSmatrix.data
+
+  $fes specsublog diffSPEC SPEC subSPEC
+
+  if { $USEPF > 0.5 } {
+    # train new noise GMM ----------------------------------------------------
+    $fes lin             SILENCE SPEECH -1 1
+    $fes cut             $amPar(Noise,fe) SPEC 0 last -select SILENCE
+    set noiseN [$fes:$amPar(Noise,fe) configure -frameN]
+    set inputN [$fes:SPEC configure -frameN]
+    writeLog stderr "INFO noise frames: $noiseN of $inputN detected"
+
+    if {$noiseN > 9} {
+        trainCB distribSet$AM codebookSet$AM noise
+    } else {
+        writeLog stderr "INFO < 10 noise frames, noise GMM not updated"
+    }
+
+    trainCB distribSet$AM codebookSet$AM fnoise
+
+    subtractCB distribSet$AM codebookSet$AM noise fnoise 
+
+    # ------------------------------------------------------------------------
+    # use Particle Filter
+    # ------------------------------------------------------------------------
+    $fes particlefilter SPEC_cleaned SPEC distribSet$AM \
+      -variance PREDICTVAR                              \
+      -refresh 1E-40                                    \
+      -nio 0.0                                          \
+      -ARsmoothing 5                                    \
+      -type direct                                      \
+      -init 0                                           \
+      -delayspec diffSPEC
+
+    # save spectra -----------------------------------------------------------
+    $fes:SPEC_cleaned.data bsave ${spectra}/$arg(UTT)_cleaned.smp
+  }
+}
+
+if { $USEPF < 0.5 } {
+  $fes matmul           CEP_cleaned     SPEC   $fes:COSmatrix.data
+} else {
+  $fes matmul           CEP_cleaned     SPEC_cleaned   $fes:COSmatrix.data
+}
+
+$fes meansub          FEAT_cleaned    CEP_cleaned    -a 2 -weight SPEECH
+$fes adjacent         FEAT+           FEAT_cleaned   -delta  7
+
+if { [$fes index LDAMatrix] > -1} {
+   $fes matmul   LDA   FEAT+ $fes:LDAMatrix.data -cut 42
+   $fes meansub  LDA   LDA   -a 0 -weight SPEECH
+}
+
+if {[info exists pms]} {
+    foreach p $pms {
+        $fes matmul   OFS-$p  FEAT+  $fes:$p.data -cut 42
+	$fes meansub  OFS-$p  OFS-$p -a 0 -weight SPEECH
+    }
+}
+
+if {[info exists pms1]} {
+    foreach p [$pms1] {
+        $fes matmul   OFS-$p  LDA    $pms1:$p.item(0) -cut 42
+	$fes meansub  OFS-$p  OFS-$p -a 0 -weight SPEECH
+    }
+}
+
+if {[info exist doAdapt] && $doAdapt} {
+    signalAdapt$SID adapt $fes:LDA.data $fes:LDA.data $wX
+}
+
+$fes cut LDA LDA 200 last

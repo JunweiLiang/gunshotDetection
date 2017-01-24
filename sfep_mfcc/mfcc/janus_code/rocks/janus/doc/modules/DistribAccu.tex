@@ -1,0 +1,64 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{DistribAccu}}
+
+This section describes the '\Jgloss{DistribAccu}': \textsl{a single distribution's accumulator}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{DistribAccu} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{Distrib}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{distribaccu configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{DistribAccu}{-count} & = 4.0000e-06 \\
+      \Jlabel{DistribAccu}{-subN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{distribaccu}
+
+    \begin{description}
+      \Jitem{\Jlabel{DistribAccu}{*=}} \texttt{ $<$factor$>$} \
+
+        multiplies an accumulator with a factor
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{factor}} &  multiplication factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribAccu}{+=}} \texttt{ $<$source$>$ \Jsb{-factor factor} \Jsb{-valX valx}} \
+
+        adds one accumulator to another
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source accumulator (\Jref{module}{DistribAccu}) \\
+ \texttt{\textbf{factor}} &   scaling factor  \\
+ \texttt{\textbf{valx}} &     add accus to valX component  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribAccu}{:=}} \texttt{ $<$source$>$} \
+
+        copies one accumulator into another
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source accumulator (\Jref{module}{DistribAccu}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribAccu}{$>$=}} \texttt{ $<$shift$>$} \
+
+        increase an accumulator's counts by a number
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{shift}} &  value by which to increment every count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{DistribAccu}{clear}} \texttt{ \Jsb{-subX subx}} \
+
+        reset a single distribution's accumulator to zero
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subx}} &  sub-accumulator, -1 to clear all  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

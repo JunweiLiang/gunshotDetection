@@ -1,0 +1,1630 @@
+g++ -O2 -fomit-frame-pointer -static -I../../base/ -I../../features/ -I../../hmm/ -I../../ibis/ -I../../itf/ -I../../main/ -I../../models/ -I../../net/ -I../../search/ -I../../stc/  -D__USE_GNU -DLINUX -I/home/wrhsiao/Software/lda-0.9 -I/home/wrhsiao/ATLAS/include -I/home/wrhsiao/CLAPACK/include -c ev.cpp 
+In file included from /usr/include/g++/istream:45,
+                 from /usr/include/g++/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from ev.h:12,
+                 from ev.cpp:1:
+/usr/include/g++/limits:205:22: macro "min" requires 2 arguments, but only 1 given
+In file included from /usr/include/g++/istream:45,
+                 from /usr/include/g++/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from ev.h:12,
+                 from ev.cpp:1:
+/usr/include/g++/limits:205: error: syntax error before `throw'
+/usr/include/g++/limits:206:22: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:206: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:206: error: syntax error before `throw'
+/usr/include/g++/limits:206: error: syntax error before `throw'
+/usr/include/g++/limits:207: error: syntax error before `(' token
+/usr/include/g++/limits:208: error: syntax error before `(' token
+/usr/include/g++/limits:209: error: syntax error before `(' token
+/usr/include/g++/limits:210: error: syntax error before `(' token
+/usr/include/g++/limits:211: error: syntax error before `(' token
+/usr/include/g++/limits:212: error: syntax error before `(' token
+/usr/include/g++/limits:219: error: specializing `struct 
+   std::numeric_limits<bool>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:222:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:222: error: syntax error before `throw'
+/usr/include/g++/limits:224:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:224: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:224: error: syntax error before `throw'
+/usr/include/g++/limits:268: error: syntax error before `}' token
+/usr/include/g++/limits:272: error: specializing `struct 
+   std::numeric_limits<char>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:275:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:275: error: syntax error before `throw'
+/usr/include/g++/limits:277:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:277: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:277: error: syntax error before `throw'
+/usr/include/g++/limits:280: error: redefinition of `const int digits'
+/usr/include/g++/limits:227: error: `const int digits' previously defined here
+/usr/include/g++/limits:281: error: redefinition of `const int digits10'
+/usr/include/g++/limits:228: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:282: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:229: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:283: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:230: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:284: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:231: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:285: error: redefinition of `const int radix'
+/usr/include/g++/limits:232: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `char epsilon()':
+/usr/include/g++/limits:287: error: new declaration `char epsilon()'
+/usr/include/g++/limits:234: error: ambiguates old declaration `bool epsilon()'
+/usr/include/g++/limits: In function `char round_error()':
+/usr/include/g++/limits:289: error: new declaration `char round_error()'
+/usr/include/g++/limits:236: error: ambiguates old declaration `bool 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:291: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:238: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:292: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:239: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:293: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:240: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:294: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:241: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:296: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:243: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:297: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:244: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:298: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:245: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:299: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:246: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:300: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:247: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `char infinity()':
+/usr/include/g++/limits:303: error: new declaration `char infinity()'
+/usr/include/g++/limits:250: error: ambiguates old declaration `bool infinity()
+   '
+/usr/include/g++/limits: In function `char quiet_NaN()':
+/usr/include/g++/limits:305: error: new declaration `char quiet_NaN()'
+/usr/include/g++/limits:252: error: ambiguates old declaration `bool 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `char signaling_NaN()':
+/usr/include/g++/limits:307: error: new declaration `char signaling_NaN()'
+/usr/include/g++/limits:254: error: ambiguates old declaration `bool 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `char denorm_min()':
+/usr/include/g++/limits:309: error: new declaration `char denorm_min()'
+/usr/include/g++/limits:256: error: ambiguates old declaration `bool 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:311: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:258: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:312: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:259: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:313: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:260: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:315: error: redefinition of `const bool traps'
+/usr/include/g++/limits:265: error: `const bool traps' previously defined here
+/usr/include/g++/limits:316: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:266: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:317: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:267: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:318: error: syntax error before `}' token
+/usr/include/g++/limits:322: error: specializing `struct 
+   std::numeric_limits<signed char>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:325:30: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:325: error: syntax error before `throw'
+/usr/include/g++/limits:327:30: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:327: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:327: error: syntax error before `throw'
+/usr/include/g++/limits:330: error: redefinition of `const int digits'
+/usr/include/g++/limits:280: error: `const int digits' previously defined here
+/usr/include/g++/limits:331: error: redefinition of `const int digits10'
+/usr/include/g++/limits:281: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:332: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:282: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:333: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:283: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:334: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:284: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:335: error: redefinition of `const int radix'
+/usr/include/g++/limits:285: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `signed char epsilon()':
+/usr/include/g++/limits:337: error: new declaration `signed char epsilon()'
+/usr/include/g++/limits:287: error: ambiguates old declaration `char epsilon()'
+/usr/include/g++/limits: In function `signed char round_error()':
+/usr/include/g++/limits:339: error: new declaration `signed char round_error()'
+/usr/include/g++/limits:289: error: ambiguates old declaration `char 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:341: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:291: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:342: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:292: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:343: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:293: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:344: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:294: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:346: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:296: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:347: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:297: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:348: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:298: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:349: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:299: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:350: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:300: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `signed char infinity()':
+/usr/include/g++/limits:353: error: new declaration `signed char infinity()'
+/usr/include/g++/limits:303: error: ambiguates old declaration `char infinity()
+   '
+/usr/include/g++/limits: In function `signed char quiet_NaN()':
+/usr/include/g++/limits:355: error: new declaration `signed char quiet_NaN()'
+/usr/include/g++/limits:305: error: ambiguates old declaration `char 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `signed char signaling_NaN()':
+/usr/include/g++/limits:357: error: new declaration `signed char 
+   signaling_NaN()'
+/usr/include/g++/limits:307: error: ambiguates old declaration `char 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `signed char denorm_min()':
+/usr/include/g++/limits:359: error: new declaration `signed char denorm_min()'
+/usr/include/g++/limits:309: error: ambiguates old declaration `char 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:361: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:311: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:362: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:312: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:363: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:313: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:365: error: redefinition of `const bool traps'
+/usr/include/g++/limits:315: error: `const bool traps' previously defined here
+/usr/include/g++/limits:366: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:316: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:367: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:317: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:368: error: syntax error before `}' token
+/usr/include/g++/limits:372: error: specializing `struct 
+   std::numeric_limits<unsigned char>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:375:32: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:375: error: syntax error before `throw'
+/usr/include/g++/limits:377:32: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:377: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:377: error: syntax error before `throw'
+/usr/include/g++/limits:380: error: redefinition of `const int digits'
+/usr/include/g++/limits:330: error: `const int digits' previously defined here
+/usr/include/g++/limits:381: error: redefinition of `const int digits10'
+/usr/include/g++/limits:331: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:382: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:332: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:383: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:333: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:384: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:334: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:385: error: redefinition of `const int radix'
+/usr/include/g++/limits:335: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `unsigned char epsilon()':
+/usr/include/g++/limits:387: error: new declaration `unsigned char epsilon()'
+/usr/include/g++/limits:337: error: ambiguates old declaration `signed char 
+   epsilon()'
+/usr/include/g++/limits: In function `unsigned char round_error()':
+/usr/include/g++/limits:389: error: new declaration `unsigned char 
+   round_error()'
+/usr/include/g++/limits:339: error: ambiguates old declaration `signed char 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:391: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:341: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:392: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:342: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:393: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:343: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:394: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:344: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:396: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:346: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:397: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:347: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:398: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:348: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:399: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:349: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:400: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:350: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `unsigned char infinity()':
+/usr/include/g++/limits:403: error: new declaration `unsigned char infinity()'
+/usr/include/g++/limits:353: error: ambiguates old declaration `signed char 
+   infinity()'
+/usr/include/g++/limits: In function `unsigned char quiet_NaN()':
+/usr/include/g++/limits:405: error: new declaration `unsigned char quiet_NaN()'
+/usr/include/g++/limits:355: error: ambiguates old declaration `signed char 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `unsigned char signaling_NaN()':
+/usr/include/g++/limits:407: error: new declaration `unsigned char 
+   signaling_NaN()'
+/usr/include/g++/limits:357: error: ambiguates old declaration `signed char 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `unsigned char denorm_min()':
+/usr/include/g++/limits:409: error: new declaration `unsigned char denorm_min()
+   '
+/usr/include/g++/limits:359: error: ambiguates old declaration `signed char 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:411: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:361: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:412: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:362: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:413: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:363: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:415: error: redefinition of `const bool traps'
+/usr/include/g++/limits:365: error: `const bool traps' previously defined here
+/usr/include/g++/limits:416: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:366: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:417: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:367: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:418: error: syntax error before `}' token
+/usr/include/g++/limits:422: error: specializing `struct 
+   std::numeric_limits<wchar_t>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:425:26: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:425: error: syntax error before `throw'
+/usr/include/g++/limits:427:26: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:427: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:427: error: syntax error before `throw'
+/usr/include/g++/limits:430: error: redefinition of `const int digits'
+/usr/include/g++/limits:380: error: `const int digits' previously defined here
+/usr/include/g++/limits:431: error: redefinition of `const int digits10'
+/usr/include/g++/limits:381: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:432: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:382: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:433: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:383: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:434: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:384: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:435: error: redefinition of `const int radix'
+/usr/include/g++/limits:385: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `wchar_t epsilon()':
+/usr/include/g++/limits:437: error: new declaration `wchar_t epsilon()'
+/usr/include/g++/limits:387: error: ambiguates old declaration `unsigned char 
+   epsilon()'
+/usr/include/g++/limits: In function `wchar_t round_error()':
+/usr/include/g++/limits:439: error: new declaration `wchar_t round_error()'
+/usr/include/g++/limits:389: error: ambiguates old declaration `unsigned char 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:441: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:391: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:442: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:392: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:443: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:393: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:444: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:394: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:446: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:396: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:447: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:397: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:448: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:398: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:449: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:399: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:450: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:400: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `wchar_t infinity()':
+/usr/include/g++/limits:453: error: new declaration `wchar_t infinity()'
+/usr/include/g++/limits:403: error: ambiguates old declaration `unsigned char 
+   infinity()'
+/usr/include/g++/limits: In function `wchar_t quiet_NaN()':
+/usr/include/g++/limits:455: error: new declaration `wchar_t quiet_NaN()'
+/usr/include/g++/limits:405: error: ambiguates old declaration `unsigned char 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `wchar_t signaling_NaN()':
+/usr/include/g++/limits:457: error: new declaration `wchar_t signaling_NaN()'
+/usr/include/g++/limits:407: error: ambiguates old declaration `unsigned char 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `wchar_t denorm_min()':
+/usr/include/g++/limits:459: error: new declaration `wchar_t denorm_min()'
+/usr/include/g++/limits:409: error: ambiguates old declaration `unsigned char 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:461: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:411: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:462: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:412: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:463: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:413: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:465: error: redefinition of `const bool traps'
+/usr/include/g++/limits:415: error: `const bool traps' previously defined here
+/usr/include/g++/limits:466: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:416: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:467: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:417: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:468: error: syntax error before `}' token
+/usr/include/g++/limits:472: error: specializing `struct 
+   std::numeric_limits<short int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:475:24: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:475: error: syntax error before `throw'
+/usr/include/g++/limits:477:24: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:477: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:477: error: syntax error before `throw'
+/usr/include/g++/limits:480: error: redefinition of `const int digits'
+/usr/include/g++/limits:430: error: `const int digits' previously defined here
+/usr/include/g++/limits:481: error: redefinition of `const int digits10'
+/usr/include/g++/limits:431: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:482: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:432: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:483: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:433: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:484: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:434: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:485: error: redefinition of `const int radix'
+/usr/include/g++/limits:435: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `short int epsilon()':
+/usr/include/g++/limits:487: error: new declaration `short int epsilon()'
+/usr/include/g++/limits:437: error: ambiguates old declaration `wchar_t 
+   epsilon()'
+/usr/include/g++/limits: In function `short int round_error()':
+/usr/include/g++/limits:489: error: new declaration `short int round_error()'
+/usr/include/g++/limits:439: error: ambiguates old declaration `wchar_t 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:491: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:441: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:492: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:442: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:493: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:443: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:494: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:444: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:496: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:446: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:497: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:447: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:498: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:448: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:499: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:449: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:500: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:450: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `short int infinity()':
+/usr/include/g++/limits:503: error: new declaration `short int infinity()'
+/usr/include/g++/limits:453: error: ambiguates old declaration `wchar_t 
+   infinity()'
+/usr/include/g++/limits: In function `short int quiet_NaN()':
+/usr/include/g++/limits:505: error: new declaration `short int quiet_NaN()'
+/usr/include/g++/limits:455: error: ambiguates old declaration `wchar_t 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `short int signaling_NaN()':
+/usr/include/g++/limits:507: error: new declaration `short int signaling_NaN()'
+/usr/include/g++/limits:457: error: ambiguates old declaration `wchar_t 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `short int denorm_min()':
+/usr/include/g++/limits:509: error: new declaration `short int denorm_min()'
+/usr/include/g++/limits:459: error: ambiguates old declaration `wchar_t 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:511: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:461: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:512: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:462: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:513: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:463: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:515: error: redefinition of `const bool traps'
+/usr/include/g++/limits:465: error: `const bool traps' previously defined here
+/usr/include/g++/limits:516: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:466: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:517: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:467: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:518: error: syntax error before `}' token
+/usr/include/g++/limits:522: error: specializing `struct 
+   std::numeric_limits<short unsigned int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:525:33: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:525: error: syntax error before `throw'
+/usr/include/g++/limits:527:33: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:527: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:527: error: syntax error before `throw'
+/usr/include/g++/limits:530: error: redefinition of `const int digits'
+/usr/include/g++/limits:480: error: `const int digits' previously defined here
+/usr/include/g++/limits:531: error: redefinition of `const int digits10'
+/usr/include/g++/limits:481: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:532: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:482: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:533: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:483: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:534: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:484: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:535: error: redefinition of `const int radix'
+/usr/include/g++/limits:485: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `short unsigned int epsilon()':
+/usr/include/g++/limits:537: error: new declaration `short unsigned int 
+   epsilon()'
+/usr/include/g++/limits:487: error: ambiguates old declaration `short int 
+   epsilon()'
+/usr/include/g++/limits: In function `short unsigned int round_error()':
+/usr/include/g++/limits:539: error: new declaration `short unsigned int 
+   round_error()'
+/usr/include/g++/limits:489: error: ambiguates old declaration `short int 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:541: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:491: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:542: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:492: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:543: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:493: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:544: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:494: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:546: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:496: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:547: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:497: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:548: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:498: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:549: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:499: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:550: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:500: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `short unsigned int infinity()':
+/usr/include/g++/limits:553: error: new declaration `short unsigned int 
+   infinity()'
+/usr/include/g++/limits:503: error: ambiguates old declaration `short int 
+   infinity()'
+/usr/include/g++/limits: In function `short unsigned int quiet_NaN()':
+/usr/include/g++/limits:555: error: new declaration `short unsigned int 
+   quiet_NaN()'
+/usr/include/g++/limits:505: error: ambiguates old declaration `short int 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `short unsigned int signaling_NaN()':
+/usr/include/g++/limits:557: error: new declaration `short unsigned int 
+   signaling_NaN()'
+/usr/include/g++/limits:507: error: ambiguates old declaration `short int 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `short unsigned int denorm_min()':
+/usr/include/g++/limits:559: error: new declaration `short unsigned int 
+   denorm_min()'
+/usr/include/g++/limits:509: error: ambiguates old declaration `short int 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:561: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:511: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:562: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:512: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:563: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:513: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:565: error: redefinition of `const bool traps'
+/usr/include/g++/limits:515: error: `const bool traps' previously defined here
+/usr/include/g++/limits:566: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:516: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:567: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:517: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:568: error: syntax error before `}' token
+/usr/include/g++/limits:572: error: specializing `struct 
+   std::numeric_limits<int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:575:22: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:575: error: syntax error before `throw'
+/usr/include/g++/limits:577:22: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:577: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:577: error: syntax error before `throw'
+/usr/include/g++/limits:580: error: redefinition of `const int digits'
+/usr/include/g++/limits:530: error: `const int digits' previously defined here
+/usr/include/g++/limits:581: error: redefinition of `const int digits10'
+/usr/include/g++/limits:531: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:582: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:532: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:583: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:533: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:584: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:534: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:585: error: redefinition of `const int radix'
+/usr/include/g++/limits:535: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `int epsilon()':
+/usr/include/g++/limits:587: error: new declaration `int epsilon()'
+/usr/include/g++/limits:537: error: ambiguates old declaration `short unsigned 
+   int epsilon()'
+/usr/include/g++/limits: In function `int round_error()':
+/usr/include/g++/limits:589: error: new declaration `int round_error()'
+/usr/include/g++/limits:539: error: ambiguates old declaration `short unsigned 
+   int round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:591: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:541: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:592: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:542: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:593: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:543: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:594: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:544: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:596: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:546: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:597: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:547: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:598: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:548: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:599: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:549: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:600: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:550: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `int infinity()':
+/usr/include/g++/limits:603: error: new declaration `int infinity()'
+/usr/include/g++/limits:553: error: ambiguates old declaration `short unsigned 
+   int infinity()'
+/usr/include/g++/limits: In function `int quiet_NaN()':
+/usr/include/g++/limits:605: error: new declaration `int quiet_NaN()'
+/usr/include/g++/limits:555: error: ambiguates old declaration `short unsigned 
+   int quiet_NaN()'
+/usr/include/g++/limits: In function `int signaling_NaN()':
+/usr/include/g++/limits:607: error: new declaration `int signaling_NaN()'
+/usr/include/g++/limits:557: error: ambiguates old declaration `short unsigned 
+   int signaling_NaN()'
+/usr/include/g++/limits: In function `int denorm_min()':
+/usr/include/g++/limits:609: error: new declaration `int denorm_min()'
+/usr/include/g++/limits:559: error: ambiguates old declaration `short unsigned 
+   int denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:611: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:561: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:612: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:562: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:613: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:563: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:615: error: redefinition of `const bool traps'
+/usr/include/g++/limits:565: error: `const bool traps' previously defined here
+/usr/include/g++/limits:616: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:566: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:617: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:567: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:618: error: syntax error before `}' token
+/usr/include/g++/limits:622: error: specializing `struct 
+   std::numeric_limits<unsigned int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:625:31: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:625: error: syntax error before `throw'
+/usr/include/g++/limits:627:31: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:627: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:627: error: syntax error before `throw'
+/usr/include/g++/limits:630: error: redefinition of `const int digits'
+/usr/include/g++/limits:580: error: `const int digits' previously defined here
+/usr/include/g++/limits:631: error: redefinition of `const int digits10'
+/usr/include/g++/limits:581: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:632: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:582: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:633: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:583: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:634: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:584: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:635: error: redefinition of `const int radix'
+/usr/include/g++/limits:585: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `unsigned int epsilon()':
+/usr/include/g++/limits:637: error: new declaration `unsigned int epsilon()'
+/usr/include/g++/limits:587: error: ambiguates old declaration `int epsilon()'
+/usr/include/g++/limits: In function `unsigned int round_error()':
+/usr/include/g++/limits:639: error: new declaration `unsigned int round_error()
+   '
+/usr/include/g++/limits:589: error: ambiguates old declaration `int 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:641: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:591: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:642: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:592: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:643: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:593: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:644: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:594: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:646: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:596: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:647: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:597: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:648: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:598: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:649: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:599: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:650: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:600: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `unsigned int infinity()':
+/usr/include/g++/limits:653: error: new declaration `unsigned int infinity()'
+/usr/include/g++/limits:603: error: ambiguates old declaration `int infinity()'
+/usr/include/g++/limits: In function `unsigned int quiet_NaN()':
+/usr/include/g++/limits:655: error: new declaration `unsigned int quiet_NaN()'
+/usr/include/g++/limits:605: error: ambiguates old declaration `int quiet_NaN()
+   '
+/usr/include/g++/limits: In function `unsigned int signaling_NaN()':
+/usr/include/g++/limits:657: error: new declaration `unsigned int 
+   signaling_NaN()'
+/usr/include/g++/limits:607: error: ambiguates old declaration `int 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `unsigned int denorm_min()':
+/usr/include/g++/limits:659: error: new declaration `unsigned int denorm_min()'
+/usr/include/g++/limits:609: error: ambiguates old declaration `int 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:661: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:611: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:662: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:612: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:663: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:613: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:665: error: redefinition of `const bool traps'
+/usr/include/g++/limits:615: error: `const bool traps' previously defined here
+/usr/include/g++/limits:666: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:616: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:667: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:617: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:668: error: syntax error before `}' token
+/usr/include/g++/limits:672: error: specializing `struct 
+   std::numeric_limits<long int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:675:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:675: error: syntax error before `throw'
+/usr/include/g++/limits:677:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:677: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:677: error: syntax error before `throw'
+/usr/include/g++/limits:680: error: redefinition of `const int digits'
+/usr/include/g++/limits:630: error: `const int digits' previously defined here
+/usr/include/g++/limits:681: error: redefinition of `const int digits10'
+/usr/include/g++/limits:631: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:682: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:632: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:683: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:633: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:684: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:634: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:685: error: redefinition of `const int radix'
+/usr/include/g++/limits:635: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `long int epsilon()':
+/usr/include/g++/limits:687: error: new declaration `long int epsilon()'
+/usr/include/g++/limits:637: error: ambiguates old declaration `unsigned int 
+   epsilon()'
+/usr/include/g++/limits: In function `long int round_error()':
+/usr/include/g++/limits:689: error: new declaration `long int round_error()'
+/usr/include/g++/limits:639: error: ambiguates old declaration `unsigned int 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:691: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:641: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:692: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:642: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:693: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:643: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:694: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:644: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:696: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:646: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:697: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:647: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:698: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:648: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:699: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:649: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:700: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:650: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `long int infinity()':
+/usr/include/g++/limits:703: error: new declaration `long int infinity()'
+/usr/include/g++/limits:653: error: ambiguates old declaration `unsigned int 
+   infinity()'
+/usr/include/g++/limits: In function `long int quiet_NaN()':
+/usr/include/g++/limits:705: error: new declaration `long int quiet_NaN()'
+/usr/include/g++/limits:655: error: ambiguates old declaration `unsigned int 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `long int signaling_NaN()':
+/usr/include/g++/limits:707: error: new declaration `long int signaling_NaN()'
+/usr/include/g++/limits:657: error: ambiguates old declaration `unsigned int 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `long int denorm_min()':
+/usr/include/g++/limits:709: error: new declaration `long int denorm_min()'
+/usr/include/g++/limits:659: error: ambiguates old declaration `unsigned int 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:711: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:661: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:712: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:662: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:713: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:663: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:715: error: redefinition of `const bool traps'
+/usr/include/g++/limits:665: error: `const bool traps' previously defined here
+/usr/include/g++/limits:716: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:666: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:717: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:667: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:718: error: syntax error before `}' token
+/usr/include/g++/limits:722: error: specializing `struct 
+   std::numeric_limits<long unsigned int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:725:32: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:725: error: syntax error before `throw'
+/usr/include/g++/limits:727:32: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:727: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:727: error: syntax error before `throw'
+/usr/include/g++/limits:730: error: redefinition of `const int digits'
+/usr/include/g++/limits:680: error: `const int digits' previously defined here
+/usr/include/g++/limits:731: error: redefinition of `const int digits10'
+/usr/include/g++/limits:681: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:732: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:682: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:733: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:683: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:734: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:684: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:735: error: redefinition of `const int radix'
+/usr/include/g++/limits:685: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `long unsigned int epsilon()':
+/usr/include/g++/limits:737: error: new declaration `long unsigned int 
+   epsilon()'
+/usr/include/g++/limits:687: error: ambiguates old declaration `long int 
+   epsilon()'
+/usr/include/g++/limits: In function `long unsigned int round_error()':
+/usr/include/g++/limits:739: error: new declaration `long unsigned int 
+   round_error()'
+/usr/include/g++/limits:689: error: ambiguates old declaration `long int 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:741: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:691: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:742: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:692: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:743: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:693: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:744: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:694: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:746: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:696: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:747: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:697: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:748: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:698: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:749: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:699: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:750: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:700: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `long unsigned int infinity()':
+/usr/include/g++/limits:753: error: new declaration `long unsigned int 
+   infinity()'
+/usr/include/g++/limits:703: error: ambiguates old declaration `long int 
+   infinity()'
+/usr/include/g++/limits: In function `long unsigned int quiet_NaN()':
+/usr/include/g++/limits:755: error: new declaration `long unsigned int 
+   quiet_NaN()'
+/usr/include/g++/limits:705: error: ambiguates old declaration `long int 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `long unsigned int signaling_NaN()':
+/usr/include/g++/limits:757: error: new declaration `long unsigned int 
+   signaling_NaN()'
+/usr/include/g++/limits:707: error: ambiguates old declaration `long int 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `long unsigned int denorm_min()':
+/usr/include/g++/limits:759: error: new declaration `long unsigned int 
+   denorm_min()'
+/usr/include/g++/limits:709: error: ambiguates old declaration `long int 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:761: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:711: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:762: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:712: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:763: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:713: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:765: error: redefinition of `const bool traps'
+/usr/include/g++/limits:715: error: `const bool traps' previously defined here
+/usr/include/g++/limits:766: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:716: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:767: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:717: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:768: error: syntax error before `}' token
+/usr/include/g++/limits:772: error: specializing `struct 
+   std::numeric_limits<long long int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:775:28: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:775: error: syntax error before `throw'
+/usr/include/g++/limits:777:28: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:777: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:777: error: syntax error before `throw'
+/usr/include/g++/limits:780: error: redefinition of `const int digits'
+/usr/include/g++/limits:730: error: `const int digits' previously defined here
+/usr/include/g++/limits:781: error: redefinition of `const int digits10'
+/usr/include/g++/limits:731: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:782: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:732: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:783: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:733: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:784: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:734: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:785: error: redefinition of `const int radix'
+/usr/include/g++/limits:735: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `long long int epsilon()':
+/usr/include/g++/limits:787: error: new declaration `long long int epsilon()'
+/usr/include/g++/limits:737: error: ambiguates old declaration `long unsigned 
+   int epsilon()'
+/usr/include/g++/limits: In function `long long int round_error()':
+/usr/include/g++/limits:789: error: new declaration `long long int 
+   round_error()'
+/usr/include/g++/limits:739: error: ambiguates old declaration `long unsigned 
+   int round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:791: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:741: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:792: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:742: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:793: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:743: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:794: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:744: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:796: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:746: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:797: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:747: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:798: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:748: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:799: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:749: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:800: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:750: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `long long int infinity()':
+/usr/include/g++/limits:803: error: new declaration `long long int infinity()'
+/usr/include/g++/limits:753: error: ambiguates old declaration `long unsigned 
+   int infinity()'
+/usr/include/g++/limits: In function `long long int quiet_NaN()':
+/usr/include/g++/limits:805: error: new declaration `long long int quiet_NaN()'
+/usr/include/g++/limits:755: error: ambiguates old declaration `long unsigned 
+   int quiet_NaN()'
+/usr/include/g++/limits: In function `long long int signaling_NaN()':
+/usr/include/g++/limits:807: error: new declaration `long long int 
+   signaling_NaN()'
+/usr/include/g++/limits:757: error: ambiguates old declaration `long unsigned 
+   int signaling_NaN()'
+/usr/include/g++/limits: In function `long long int denorm_min()':
+/usr/include/g++/limits:809: error: new declaration `long long int denorm_min()
+   '
+/usr/include/g++/limits:759: error: ambiguates old declaration `long unsigned 
+   int denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:811: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:761: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:812: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:762: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:813: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:763: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:815: error: redefinition of `const bool traps'
+/usr/include/g++/limits:765: error: `const bool traps' previously defined here
+/usr/include/g++/limits:816: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:766: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:817: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:767: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:818: error: syntax error before `}' token
+/usr/include/g++/limits:822: error: specializing `struct 
+   std::numeric_limits<long long unsigned int>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:825:37: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:825: error: syntax error before `throw'
+/usr/include/g++/limits:827:37: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:827: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:827: error: syntax error before `throw'
+/usr/include/g++/limits:830: error: redefinition of `const int digits'
+/usr/include/g++/limits:780: error: `const int digits' previously defined here
+/usr/include/g++/limits:831: error: redefinition of `const int digits10'
+/usr/include/g++/limits:781: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:832: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:782: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:833: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:783: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:834: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:784: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:835: error: redefinition of `const int radix'
+/usr/include/g++/limits:785: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `long long unsigned int epsilon()':
+/usr/include/g++/limits:837: error: new declaration `long long unsigned int 
+   epsilon()'
+/usr/include/g++/limits:787: error: ambiguates old declaration `long long int 
+   epsilon()'
+/usr/include/g++/limits: In function `long long unsigned int round_error()':
+/usr/include/g++/limits:839: error: new declaration `long long unsigned int 
+   round_error()'
+/usr/include/g++/limits:789: error: ambiguates old declaration `long long int 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:841: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:791: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:842: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:792: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:843: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:793: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:844: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:794: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:846: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:796: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:847: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:797: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:848: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:798: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:849: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:799: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:850: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:800: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `long long unsigned int infinity()':
+/usr/include/g++/limits:853: error: new declaration `long long unsigned int 
+   infinity()'
+/usr/include/g++/limits:803: error: ambiguates old declaration `long long int 
+   infinity()'
+/usr/include/g++/limits: In function `long long unsigned int quiet_NaN()':
+/usr/include/g++/limits:855: error: new declaration `long long unsigned int 
+   quiet_NaN()'
+/usr/include/g++/limits:805: error: ambiguates old declaration `long long int 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `long long unsigned int signaling_NaN()':
+/usr/include/g++/limits:857: error: new declaration `long long unsigned int 
+   signaling_NaN()'
+/usr/include/g++/limits:807: error: ambiguates old declaration `long long int 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `long long unsigned int denorm_min()':
+/usr/include/g++/limits:859: error: new declaration `long long unsigned int 
+   denorm_min()'
+/usr/include/g++/limits:809: error: ambiguates old declaration `long long int 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:861: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:811: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:862: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:812: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:863: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:813: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:865: error: redefinition of `const bool traps'
+/usr/include/g++/limits:815: error: `const bool traps' previously defined here
+/usr/include/g++/limits:866: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:816: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:867: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:817: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:868: error: syntax error before `}' token
+/usr/include/g++/limits:872: error: specializing `struct 
+   std::numeric_limits<float>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:875:24: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:875: error: syntax error before `throw'
+/usr/include/g++/limits:877:24: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:877: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:877: error: syntax error before `throw'
+/usr/include/g++/limits:880: error: redefinition of `const int digits'
+/usr/include/g++/limits:830: error: `const int digits' previously defined here
+/usr/include/g++/limits:881: error: redefinition of `const int digits10'
+/usr/include/g++/limits:831: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:882: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:832: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:883: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:833: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:884: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:834: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:885: error: redefinition of `const int radix'
+/usr/include/g++/limits:835: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `float epsilon()':
+/usr/include/g++/limits:887: error: new declaration `float epsilon()'
+/usr/include/g++/limits:837: error: ambiguates old declaration `long long 
+   unsigned int epsilon()'
+/usr/include/g++/limits: In function `float round_error()':
+/usr/include/g++/limits:889: error: new declaration `float round_error()'
+/usr/include/g++/limits:839: error: ambiguates old declaration `long long 
+   unsigned int round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:891: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:841: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:892: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:842: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:893: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:843: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:894: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:844: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:897: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:846: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:899: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:847: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:900: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:848: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:902: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:849: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:903: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:850: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `float infinity()':
+/usr/include/g++/limits:906: error: new declaration `float infinity()'
+/usr/include/g++/limits:853: error: ambiguates old declaration `long long 
+   unsigned int infinity()'
+/usr/include/g++/limits: In function `float quiet_NaN()':
+/usr/include/g++/limits:908: error: new declaration `float quiet_NaN()'
+/usr/include/g++/limits:855: error: ambiguates old declaration `long long 
+   unsigned int quiet_NaN()'
+/usr/include/g++/limits: In function `float signaling_NaN()':
+/usr/include/g++/limits:910: error: new declaration `float signaling_NaN()'
+/usr/include/g++/limits:857: error: ambiguates old declaration `long long 
+   unsigned int signaling_NaN()'
+/usr/include/g++/limits: In function `float denorm_min()':
+/usr/include/g++/limits:912: error: new declaration `float denorm_min()'
+/usr/include/g++/limits:859: error: ambiguates old declaration `long long 
+   unsigned int denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:915: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:861: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:916: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:862: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:917: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:863: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:919: error: redefinition of `const bool traps'
+/usr/include/g++/limits:865: error: `const bool traps' previously defined here
+/usr/include/g++/limits:920: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:866: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:921: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:867: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:922: error: syntax error before `}' token
+/usr/include/g++/limits:930: error: specializing `struct 
+   std::numeric_limits<double>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:933:25: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:933: error: syntax error before `throw'
+/usr/include/g++/limits:935:25: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:935: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:935: error: syntax error before `throw'
+/usr/include/g++/limits:938: error: redefinition of `const int digits'
+/usr/include/g++/limits:880: error: `const int digits' previously defined here
+/usr/include/g++/limits:939: error: redefinition of `const int digits10'
+/usr/include/g++/limits:881: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:940: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:882: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:941: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:883: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:942: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:884: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:943: error: redefinition of `const int radix'
+/usr/include/g++/limits:885: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `double epsilon()':
+/usr/include/g++/limits:945: error: new declaration `double epsilon()'
+/usr/include/g++/limits:887: error: ambiguates old declaration `float epsilon()
+   '
+/usr/include/g++/limits: In function `double round_error()':
+/usr/include/g++/limits:947: error: new declaration `double round_error()'
+/usr/include/g++/limits:889: error: ambiguates old declaration `float 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:949: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:891: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:950: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:892: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:951: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:893: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:952: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:894: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:955: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:897: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:957: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:899: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:958: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:900: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:960: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:902: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:961: error: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/g++/limits:903: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `double infinity()':
+/usr/include/g++/limits:964: error: new declaration `double infinity()'
+/usr/include/g++/limits:906: error: ambiguates old declaration `float 
+   infinity()'
+/usr/include/g++/limits: In function `double quiet_NaN()':
+/usr/include/g++/limits:966: error: new declaration `double quiet_NaN()'
+/usr/include/g++/limits:908: error: ambiguates old declaration `float 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `double signaling_NaN()':
+/usr/include/g++/limits:968: error: new declaration `double signaling_NaN()'
+/usr/include/g++/limits:910: error: ambiguates old declaration `float 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `double denorm_min()':
+/usr/include/g++/limits:970: error: new declaration `double denorm_min()'
+/usr/include/g++/limits:912: error: ambiguates old declaration `float 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:973: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:915: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:974: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:916: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:975: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:917: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:977: error: redefinition of `const bool traps'
+/usr/include/g++/limits:919: error: `const bool traps' previously defined here
+/usr/include/g++/limits:978: error: redefinition of `const bool tinyness_before
+   '
+/usr/include/g++/limits:920: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:979: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:921: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:980: error: syntax error before `}' token
+/usr/include/g++/limits:988: error: specializing `struct 
+   std::numeric_limits<long double>' in different namespace
+/usr/include/g++/limits:203: error:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/g++/limits:991:30: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:991: error: syntax error before `throw'
+/usr/include/g++/limits:993:30: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/limits:993: error: ISO C++ forbids defining types within 
+   return type
+/usr/include/g++/limits:993: error: syntax error before `throw'
+/usr/include/g++/limits:996: error: redefinition of `const int digits'
+/usr/include/g++/limits:938: error: `const int digits' previously defined here
+/usr/include/g++/limits:997: error: redefinition of `const int digits10'
+/usr/include/g++/limits:939: error: `const int digits10' previously defined 
+   here
+/usr/include/g++/limits:998: error: redefinition of `const bool is_signed'
+/usr/include/g++/limits:940: error: `const bool is_signed' previously defined 
+   here
+/usr/include/g++/limits:999: error: redefinition of `const bool is_integer'
+/usr/include/g++/limits:941: error: `const bool is_integer' previously defined 
+   here
+/usr/include/g++/limits:1000: error: redefinition of `const bool is_exact'
+/usr/include/g++/limits:942: error: `const bool is_exact' previously defined 
+   here
+/usr/include/g++/limits:1001: error: redefinition of `const int radix'
+/usr/include/g++/limits:943: error: `const int radix' previously defined here
+/usr/include/g++/limits: In function `long double epsilon()':
+/usr/include/g++/limits:1003: error: new declaration `long double epsilon()'
+/usr/include/g++/limits:945: error: ambiguates old declaration `double 
+   epsilon()'
+/usr/include/g++/limits: In function `long double round_error()':
+/usr/include/g++/limits:1005: error: new declaration `long double round_error()
+   '
+/usr/include/g++/limits:947: error: ambiguates old declaration `double 
+   round_error()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:1007: error: redefinition of `const int min_exponent'
+/usr/include/g++/limits:949: error: `const int min_exponent' previously defined 
+   here
+/usr/include/g++/limits:1008: error: redefinition of `const int min_exponent10'
+/usr/include/g++/limits:950: error: `const int min_exponent10' previously 
+   defined here
+/usr/include/g++/limits:1009: error: redefinition of `const int max_exponent'
+/usr/include/g++/limits:951: error: `const int max_exponent' previously defined 
+   here
+/usr/include/g++/limits:1010: error: redefinition of `const int max_exponent10'
+/usr/include/g++/limits:952: error: `const int max_exponent10' previously 
+   defined here
+/usr/include/g++/limits:1013: error: redefinition of `const bool has_infinity'
+/usr/include/g++/limits:955: error: `const bool has_infinity' previously 
+   defined here
+/usr/include/g++/limits:1015: error: redefinition of `const bool has_quiet_NaN'
+/usr/include/g++/limits:957: error: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/g++/limits:1016: error: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/g++/limits:958: error: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/g++/limits:1018: error: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/g++/limits:960: error: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/g++/limits:1020: error: redefinition of `const bool 
+   has_denorm_loss'
+/usr/include/g++/limits:961: error: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/g++/limits: In function `long double infinity()':
+/usr/include/g++/limits:1023: error: new declaration `long double infinity()'
+/usr/include/g++/limits:964: error: ambiguates old declaration `double 
+   infinity()'
+/usr/include/g++/limits: In function `long double quiet_NaN()':
+/usr/include/g++/limits:1025: error: new declaration `long double quiet_NaN()'
+/usr/include/g++/limits:966: error: ambiguates old declaration `double 
+   quiet_NaN()'
+/usr/include/g++/limits: In function `long double signaling_NaN()':
+/usr/include/g++/limits:1027: error: new declaration `long double 
+   signaling_NaN()'
+/usr/include/g++/limits:968: error: ambiguates old declaration `double 
+   signaling_NaN()'
+/usr/include/g++/limits: In function `long double denorm_min()':
+/usr/include/g++/limits:1029: error: new declaration `long double denorm_min()'
+/usr/include/g++/limits:970: error: ambiguates old declaration `double 
+   denorm_min()'
+/usr/include/g++/limits: At global scope:
+/usr/include/g++/limits:1032: error: redefinition of `const bool is_iec559'
+/usr/include/g++/limits:973: error: `const bool is_iec559' previously defined 
+   here
+/usr/include/g++/limits:1033: error: redefinition of `const bool is_bounded'
+/usr/include/g++/limits:974: error: `const bool is_bounded' previously defined 
+   here
+/usr/include/g++/limits:1034: error: redefinition of `const bool is_modulo'
+/usr/include/g++/limits:975: error: `const bool is_modulo' previously defined 
+   here
+/usr/include/g++/limits:1036: error: redefinition of `const bool traps'
+/usr/include/g++/limits:977: error: `const bool traps' previously defined here
+/usr/include/g++/limits:1037: error: redefinition of `const bool 
+   tinyness_before'
+/usr/include/g++/limits:978: error: `const bool tinyness_before' previously 
+   defined here
+/usr/include/g++/limits:1038: error: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/g++/limits:979: error: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/g++/limits:1039: error: syntax error before `}' token
+In file included from /usr/include/g++/locale:47,
+                 from /usr/include/g++/bits/istream.tcc:37,
+                 from /usr/include/g++/istream:768,
+                 from /usr/include/g++/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from ev.h:12,
+                 from ev.cpp:1:
+/usr/include/g++/bits/locale_facets.tcc:500:58: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/locale_facets.tcc:520:56: macro "max" requires 2 arguments, but only 1 given
+In file included from /usr/include/g++/locale:47,
+                 from /usr/include/g++/bits/istream.tcc:37,
+                 from /usr/include/g++/istream:768,
+                 from /usr/include/g++/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from ev.h:12,
+                 from ev.cpp:1:
+/usr/include/g++/bits/locale_facets.tcc: In function `bool 
+   std::__verify_grouping(const std::basic_string<_CharT, 
+   std::char_traits<_CharT>, std::allocator<_CharT> >&, 
+   std::basic_string<_CharT, std::char_traits<_CharT>, std::allocator<_CharT> 
+   >&)':
+/usr/include/g++/bits/locale_facets.tcc:2211: error: syntax error before `(' 
+   token
+In file included from /usr/include/g++/istream:768,
+                 from /usr/include/g++/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from ev.h:12,
+                 from ev.cpp:1:
+/usr/include/g++/bits/istream.tcc:147:50: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/istream.tcc:148:60: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/istream.tcc:202:48: macro "min" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/istream.tcc:203:58: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/istream.tcc:655:63: macro "max" requires 2 arguments, but only 1 given
+/usr/include/g++/bits/istream.tcc:963:57: macro "max" requires 2 arguments, but only 1 given
+gmake: *** [ev.o] Error 1

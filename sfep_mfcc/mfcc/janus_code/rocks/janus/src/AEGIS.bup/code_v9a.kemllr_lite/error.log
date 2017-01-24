@@ -1,0 +1,1613 @@
+In file included from /usr/include/c++/3.2.2/istream:45,
+                 from /usr/include/c++/3.2.2/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from main.cpp:6:
+/usr/include/c++/3.2.2/limits:942:22: macro "min" requires 2 arguments, but only 1 given
+In file included from /usr/include/c++/3.2.2/istream:45,
+                 from /usr/include/c++/3.2.2/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from main.cpp:6:
+/usr/include/c++/3.2.2/limits:942: parse error before `throw'
+/usr/include/c++/3.2.2/limits:943:22: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:943: ISO C++ forbids defining types within return 
+   type
+/usr/include/c++/3.2.2/limits:943: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:943: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:944: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:945: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:946: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:947: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:948: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:949: syntax error before `(' token
+/usr/include/c++/3.2.2/limits:956: specializing `struct 
+   std::numeric_limits<bool>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:959:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:959: parse error before `throw'
+/usr/include/c++/3.2.2/limits:962:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:962: ISO C++ forbids defining types within return 
+   type
+/usr/include/c++/3.2.2/limits:962: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1007: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1013: specializing `struct 
+   std::numeric_limits<char>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1016:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1016: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1018:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1018: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1018: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1021: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:965: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1022: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:966: `const int digits10' previously defined here
+/usr/include/c++/3.2.2/limits:1023: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:967: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1024: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:968: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1025: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:969: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1026: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:970: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `char epsilon()':
+/usr/include/c++/3.2.2/limits:1028: new declaration `char epsilon()'
+/usr/include/c++/3.2.2/limits:972: ambiguates old declaration `bool epsilon()'
+/usr/include/c++/3.2.2/limits: In function `char round_error()':
+/usr/include/c++/3.2.2/limits:1030: new declaration `char round_error()'
+/usr/include/c++/3.2.2/limits:974: ambiguates old declaration `bool 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1032: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:976: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1033: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:977: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1034: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:978: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1035: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:979: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1037: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:981: `const bool has_infinity' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1038: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:982: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1039: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:983: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1040: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:984: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1041: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:985: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `char infinity()':
+/usr/include/c++/3.2.2/limits:1044: new declaration `char infinity()'
+/usr/include/c++/3.2.2/limits:988: ambiguates old declaration `bool infinity()'
+/usr/include/c++/3.2.2/limits: In function `char quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1046: new declaration `char quiet_NaN()'
+/usr/include/c++/3.2.2/limits:990: ambiguates old declaration `bool quiet_NaN()
+   '
+/usr/include/c++/3.2.2/limits: In function `char signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1048: new declaration `char signaling_NaN()'
+/usr/include/c++/3.2.2/limits:992: ambiguates old declaration `bool 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `char denorm_min()':
+/usr/include/c++/3.2.2/limits:1050: new declaration `char denorm_min()'
+/usr/include/c++/3.2.2/limits:994: ambiguates old declaration `bool 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1052: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:996: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1053: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:997: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1054: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:998: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1056: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1003: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1057: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1005: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1058: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1006: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1059: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1073: specializing `struct 
+   std::numeric_limits<signed char>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1076:30: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1076: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1078:30: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1078: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1078: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1081: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1021: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1082: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1022: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1083: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1023: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1084: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1024: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1085: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1025: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1086: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1026: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `signed char epsilon()':
+/usr/include/c++/3.2.2/limits:1088: new declaration `signed char epsilon()'
+/usr/include/c++/3.2.2/limits:1028: ambiguates old declaration `char epsilon()'
+/usr/include/c++/3.2.2/limits: In function `signed char round_error()':
+/usr/include/c++/3.2.2/limits:1090: new declaration `signed char round_error()'
+/usr/include/c++/3.2.2/limits:1030: ambiguates old declaration `char 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1092: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1032: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1093: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1033: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1094: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1034: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1095: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1035: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1097: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1037: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1098: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1038: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1099: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1039: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1100: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1040: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1101: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1041: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `signed char infinity()':
+/usr/include/c++/3.2.2/limits:1104: new declaration `signed char infinity()'
+/usr/include/c++/3.2.2/limits:1044: ambiguates old declaration `char infinity()
+   '
+/usr/include/c++/3.2.2/limits: In function `signed char quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1106: new declaration `signed char quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1046: ambiguates old declaration `char 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `signed char signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1108: new declaration `signed char 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1048: ambiguates old declaration `char 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `signed char denorm_min()':
+/usr/include/c++/3.2.2/limits:1110: new declaration `signed char denorm_min()'
+/usr/include/c++/3.2.2/limits:1050: ambiguates old declaration `char 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1112: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1052: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1113: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1053: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1114: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1054: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1116: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1056: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1117: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1057: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1118: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1058: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1119: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1130: specializing `struct 
+   std::numeric_limits<unsigned char>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1133:32: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1133: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1135:32: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1135: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1135: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1138: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1081: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1139: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1082: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1140: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1083: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1141: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1084: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1142: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1085: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1143: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1086: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `unsigned char epsilon()':
+/usr/include/c++/3.2.2/limits:1145: new declaration `unsigned char epsilon()'
+/usr/include/c++/3.2.2/limits:1088: ambiguates old declaration `signed char 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `unsigned char round_error()':
+/usr/include/c++/3.2.2/limits:1147: new declaration `unsigned char 
+   round_error()'
+/usr/include/c++/3.2.2/limits:1090: ambiguates old declaration `signed char 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1149: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1092: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1150: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1093: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1151: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1094: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1152: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1095: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1154: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1097: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1155: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1098: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1156: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1099: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1157: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1100: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1158: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1101: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `unsigned char infinity()':
+/usr/include/c++/3.2.2/limits:1161: new declaration `unsigned char infinity()'
+/usr/include/c++/3.2.2/limits:1104: ambiguates old declaration `signed char 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `unsigned char quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1163: new declaration `unsigned char quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1106: ambiguates old declaration `signed char 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `unsigned char signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1165: new declaration `unsigned char 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1108: ambiguates old declaration `signed char 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `unsigned char denorm_min()':
+/usr/include/c++/3.2.2/limits:1167: new declaration `unsigned char denorm_min()
+   '
+/usr/include/c++/3.2.2/limits:1110: ambiguates old declaration `signed char 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1169: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1112: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1170: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1113: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1171: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1114: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1173: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1116: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1174: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1117: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1175: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1118: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1176: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1185: specializing `struct 
+   std::numeric_limits<wchar_t>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1188:26: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1188: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1190:26: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1190: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1190: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1193: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1138: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1194: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1139: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1195: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1140: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1196: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1141: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1197: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1142: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1198: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1143: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `wchar_t epsilon()':
+/usr/include/c++/3.2.2/limits:1200: new declaration `wchar_t epsilon()'
+/usr/include/c++/3.2.2/limits:1145: ambiguates old declaration `unsigned char 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `wchar_t round_error()':
+/usr/include/c++/3.2.2/limits:1202: new declaration `wchar_t round_error()'
+/usr/include/c++/3.2.2/limits:1147: ambiguates old declaration `unsigned char 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1204: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1149: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1205: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1150: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1206: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1151: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1207: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1152: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1209: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1154: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1210: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1155: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1211: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1156: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1212: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1157: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1213: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1158: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `wchar_t infinity()':
+/usr/include/c++/3.2.2/limits:1216: new declaration `wchar_t infinity()'
+/usr/include/c++/3.2.2/limits:1161: ambiguates old declaration `unsigned char 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `wchar_t quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1218: new declaration `wchar_t quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1163: ambiguates old declaration `unsigned char 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `wchar_t signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1220: new declaration `wchar_t signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1165: ambiguates old declaration `unsigned char 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `wchar_t denorm_min()':
+/usr/include/c++/3.2.2/limits:1222: new declaration `wchar_t denorm_min()'
+/usr/include/c++/3.2.2/limits:1167: ambiguates old declaration `unsigned char 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1224: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1169: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1225: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1170: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1226: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1171: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1228: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1173: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1229: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1174: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1230: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1175: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1231: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1243: specializing `struct 
+   std::numeric_limits<short int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1246:24: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1246: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1248:24: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1248: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1248: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1251: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1193: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1252: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1194: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1253: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1195: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1254: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1196: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1255: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1197: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1256: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1198: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `short int epsilon()':
+/usr/include/c++/3.2.2/limits:1258: new declaration `short int epsilon()'
+/usr/include/c++/3.2.2/limits:1200: ambiguates old declaration `wchar_t 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `short int round_error()':
+/usr/include/c++/3.2.2/limits:1260: new declaration `short int round_error()'
+/usr/include/c++/3.2.2/limits:1202: ambiguates old declaration `wchar_t 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1262: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1204: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1263: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1205: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1264: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1206: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1265: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1207: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1267: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1209: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1268: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1210: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1269: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1211: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1270: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1212: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1271: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1213: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `short int infinity()':
+/usr/include/c++/3.2.2/limits:1274: new declaration `short int infinity()'
+/usr/include/c++/3.2.2/limits:1216: ambiguates old declaration `wchar_t 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `short int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1276: new declaration `short int quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1218: ambiguates old declaration `wchar_t 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `short int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1278: new declaration `short int signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1220: ambiguates old declaration `wchar_t 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `short int denorm_min()':
+/usr/include/c++/3.2.2/limits:1280: new declaration `short int denorm_min()'
+/usr/include/c++/3.2.2/limits:1222: ambiguates old declaration `wchar_t 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1282: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1224: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1283: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1225: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1284: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1226: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1286: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1228: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1287: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1229: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1288: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1230: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1289: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1300: specializing `struct 
+   std::numeric_limits<short unsigned int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1303:33: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1303: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1305:33: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1305: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1305: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1308: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1251: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1309: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1252: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1310: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1253: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1311: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1254: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1312: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1255: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1313: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1256: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `short unsigned int epsilon()':
+/usr/include/c++/3.2.2/limits:1315: new declaration `short unsigned int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits:1258: ambiguates old declaration `short int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `short unsigned int round_error()':
+/usr/include/c++/3.2.2/limits:1317: new declaration `short unsigned int 
+   round_error()'
+/usr/include/c++/3.2.2/limits:1260: ambiguates old declaration `short int 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1319: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1262: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1320: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1263: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1321: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1264: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1322: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1265: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1324: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1267: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1325: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1268: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1326: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1269: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1327: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1270: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1328: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1271: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `short unsigned int infinity()':
+/usr/include/c++/3.2.2/limits:1331: new declaration `short unsigned int 
+   infinity()'
+/usr/include/c++/3.2.2/limits:1274: ambiguates old declaration `short int 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `short unsigned int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1333: new declaration `short unsigned int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1276: ambiguates old declaration `short int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `short unsigned int 
+   signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1335: new declaration `short unsigned int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1278: ambiguates old declaration `short int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `short unsigned int denorm_min()':
+/usr/include/c++/3.2.2/limits:1337: new declaration `short unsigned int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits:1280: ambiguates old declaration `short int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1339: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1282: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1340: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1283: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1341: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1284: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1343: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1286: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1344: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1287: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1345: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1288: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1346: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1355: specializing `struct 
+   std::numeric_limits<int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1358:22: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1358: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1360:22: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1360: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1360: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1363: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1308: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1364: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1309: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1365: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1310: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1366: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1311: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1367: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1312: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1368: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1313: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `int epsilon()':
+/usr/include/c++/3.2.2/limits:1370: new declaration `int epsilon()'
+/usr/include/c++/3.2.2/limits:1315: ambiguates old declaration `short unsigned 
+   int epsilon()'
+/usr/include/c++/3.2.2/limits: In function `int round_error()':
+/usr/include/c++/3.2.2/limits:1372: new declaration `int round_error()'
+/usr/include/c++/3.2.2/limits:1317: ambiguates old declaration `short unsigned 
+   int round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1374: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1319: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1375: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1320: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1376: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1321: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1377: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1322: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1379: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1324: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1380: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1325: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1381: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1326: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1382: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1327: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1383: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1328: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `int infinity()':
+/usr/include/c++/3.2.2/limits:1386: new declaration `int infinity()'
+/usr/include/c++/3.2.2/limits:1331: ambiguates old declaration `short unsigned 
+   int infinity()'
+/usr/include/c++/3.2.2/limits: In function `int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1388: new declaration `int quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1333: ambiguates old declaration `short unsigned 
+   int quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1390: new declaration `int signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1335: ambiguates old declaration `short unsigned 
+   int signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `int denorm_min()':
+/usr/include/c++/3.2.2/limits:1392: new declaration `int denorm_min()'
+/usr/include/c++/3.2.2/limits:1337: ambiguates old declaration `short unsigned 
+   int denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1394: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1339: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1395: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1340: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1396: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1341: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1398: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1343: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1399: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1344: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1400: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1345: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1401: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1412: specializing `struct 
+   std::numeric_limits<unsigned int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1415:31: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1415: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1417:35: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1417: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1417: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1420: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1363: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1421: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1364: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1422: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1365: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1423: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1366: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1424: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1367: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1425: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1368: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `unsigned int epsilon()':
+/usr/include/c++/3.2.2/limits:1427: new declaration `unsigned int epsilon()'
+/usr/include/c++/3.2.2/limits:1370: ambiguates old declaration `int epsilon()'
+/usr/include/c++/3.2.2/limits: In function `unsigned int round_error()':
+/usr/include/c++/3.2.2/limits:1429: new declaration `unsigned int round_error()
+   '
+/usr/include/c++/3.2.2/limits:1372: ambiguates old declaration `int 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1431: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1374: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1432: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1375: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1433: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1376: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1434: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1377: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1436: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1379: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1437: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1380: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1438: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1381: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1439: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1382: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1440: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1383: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `unsigned int infinity()':
+/usr/include/c++/3.2.2/limits:1443: new declaration `unsigned int infinity()'
+/usr/include/c++/3.2.2/limits:1386: ambiguates old declaration `int infinity()'
+/usr/include/c++/3.2.2/limits: In function `unsigned int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1445: new declaration `unsigned int quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1388: ambiguates old declaration `int quiet_NaN()
+   '
+/usr/include/c++/3.2.2/limits: In function `unsigned int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1447: new declaration `unsigned int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1390: ambiguates old declaration `int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `unsigned int denorm_min()':
+/usr/include/c++/3.2.2/limits:1449: new declaration `unsigned int denorm_min()'
+/usr/include/c++/3.2.2/limits:1392: ambiguates old declaration `int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1451: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1394: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1452: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1395: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1453: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1396: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1455: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1398: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1456: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1399: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1457: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1400: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1458: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1467: specializing `struct 
+   std::numeric_limits<long int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1470:23: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1470: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1472:23: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1472: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1472: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1475: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1420: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1476: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1421: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1477: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1422: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1478: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1423: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1479: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1424: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1480: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1425: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `long int epsilon()':
+/usr/include/c++/3.2.2/limits:1482: new declaration `long int epsilon()'
+/usr/include/c++/3.2.2/limits:1427: ambiguates old declaration `unsigned int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `long int round_error()':
+/usr/include/c++/3.2.2/limits:1484: new declaration `long int round_error()'
+/usr/include/c++/3.2.2/limits:1429: ambiguates old declaration `unsigned int 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1486: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1431: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1487: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1432: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1488: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1433: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1489: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1434: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1491: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1436: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1492: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1437: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1493: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1438: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1494: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1439: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1495: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1440: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `long int infinity()':
+/usr/include/c++/3.2.2/limits:1498: new declaration `long int infinity()'
+/usr/include/c++/3.2.2/limits:1443: ambiguates old declaration `unsigned int 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `long int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1500: new declaration `long int quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1445: ambiguates old declaration `unsigned int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1502: new declaration `long int signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1447: ambiguates old declaration `unsigned int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long int denorm_min()':
+/usr/include/c++/3.2.2/limits:1504: new declaration `long int denorm_min()'
+/usr/include/c++/3.2.2/limits:1449: ambiguates old declaration `unsigned int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1506: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1451: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1507: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1452: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1508: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1453: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1510: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1455: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1511: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1456: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1512: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1457: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1513: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1524: specializing `struct 
+   std::numeric_limits<long unsigned int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1527:32: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1527: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1529:32: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1529: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1529: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1532: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1475: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1533: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1476: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1534: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1477: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1535: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1478: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1536: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1479: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1537: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1480: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `long unsigned int epsilon()':
+/usr/include/c++/3.2.2/limits:1539: new declaration `long unsigned int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits:1482: ambiguates old declaration `long int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `long unsigned int round_error()':
+/usr/include/c++/3.2.2/limits:1541: new declaration `long unsigned int 
+   round_error()'
+/usr/include/c++/3.2.2/limits:1484: ambiguates old declaration `long int 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1543: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1486: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1544: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1487: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1545: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1488: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1546: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1489: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1548: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1491: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1549: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1492: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1550: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1493: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1551: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1494: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1552: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1495: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `long unsigned int infinity()':
+/usr/include/c++/3.2.2/limits:1555: new declaration `long unsigned int 
+   infinity()'
+/usr/include/c++/3.2.2/limits:1498: ambiguates old declaration `long int 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `long unsigned int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1557: new declaration `long unsigned int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1500: ambiguates old declaration `long int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long unsigned int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1559: new declaration `long unsigned int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1502: ambiguates old declaration `long int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long unsigned int denorm_min()':
+/usr/include/c++/3.2.2/limits:1561: new declaration `long unsigned int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits:1504: ambiguates old declaration `long int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1563: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1506: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1564: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1507: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1565: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1508: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1567: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1510: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1568: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1511: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1569: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1512: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1570: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1579: specializing `struct 
+   std::numeric_limits<long long int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1582:28: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1582: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1584:28: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1584: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1584: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1587: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1532: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1588: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1533: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1589: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1534: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1590: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1535: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1591: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1536: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1592: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1537: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `long long int epsilon()':
+/usr/include/c++/3.2.2/limits:1594: new declaration `long long int epsilon()'
+/usr/include/c++/3.2.2/limits:1539: ambiguates old declaration `long unsigned 
+   int epsilon()'
+/usr/include/c++/3.2.2/limits: In function `long long int round_error()':
+/usr/include/c++/3.2.2/limits:1596: new declaration `long long int 
+   round_error()'
+/usr/include/c++/3.2.2/limits:1541: ambiguates old declaration `long unsigned 
+   int round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1598: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1543: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1599: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1544: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1600: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1545: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1601: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1546: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1603: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1548: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1604: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1549: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1605: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1550: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1606: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1551: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1607: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1552: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `long long int infinity()':
+/usr/include/c++/3.2.2/limits:1610: new declaration `long long int infinity()'
+/usr/include/c++/3.2.2/limits:1555: ambiguates old declaration `long unsigned 
+   int infinity()'
+/usr/include/c++/3.2.2/limits: In function `long long int quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1612: new declaration `long long int quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1557: ambiguates old declaration `long unsigned 
+   int quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long long int signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1614: new declaration `long long int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1559: ambiguates old declaration `long unsigned 
+   int signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long long int denorm_min()':
+/usr/include/c++/3.2.2/limits:1616: new declaration `long long int denorm_min()
+   '
+/usr/include/c++/3.2.2/limits:1561: ambiguates old declaration `long unsigned 
+   int denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1618: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1563: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1619: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1564: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1620: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1565: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1622: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1567: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1623: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1568: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1624: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1569: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1625: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1636: specializing `struct 
+   std::numeric_limits<long long unsigned int>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1639:37: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1639: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1641:37: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1641: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1641: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1644: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1587: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1645: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1588: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1646: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1589: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1647: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1590: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1648: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1591: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1649: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1592: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int epsilon()':
+/usr/include/c++/3.2.2/limits:1651: new declaration `long long unsigned int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits:1594: ambiguates old declaration `long long int 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int 
+   round_error()':
+/usr/include/c++/3.2.2/limits:1653: new declaration `long long unsigned int 
+   round_error()'
+/usr/include/c++/3.2.2/limits:1596: ambiguates old declaration `long long int 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1655: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1598: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1656: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1599: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1657: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1600: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1658: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1601: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1660: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1603: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1661: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1604: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1662: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1605: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1663: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1606: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1664: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1607: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int infinity()':
+/usr/include/c++/3.2.2/limits:1667: new declaration `long long unsigned int 
+   infinity()'
+/usr/include/c++/3.2.2/limits:1610: ambiguates old declaration `long long int 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int 
+   quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1669: new declaration `long long unsigned int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1612: ambiguates old declaration `long long int 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int 
+   signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1671: new declaration `long long unsigned int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1614: ambiguates old declaration `long long int 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long long unsigned int 
+   denorm_min()':
+/usr/include/c++/3.2.2/limits:1673: new declaration `long long unsigned int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits:1616: ambiguates old declaration `long long int 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1675: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1618: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1676: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1619: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1677: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1620: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1679: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1622: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1680: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1623: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1681: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1624: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1682: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1691: specializing `struct 
+   std::numeric_limits<float>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1694:24: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1694: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1696:24: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1696: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1696: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1699: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1644: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1700: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1645: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1701: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1646: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1702: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1647: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1703: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1648: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1704: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1649: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `float epsilon()':
+/usr/include/c++/3.2.2/limits:1706: new declaration `float epsilon()'
+/usr/include/c++/3.2.2/limits:1651: ambiguates old declaration `long long 
+   unsigned int epsilon()'
+/usr/include/c++/3.2.2/limits: In function `float round_error()':
+/usr/include/c++/3.2.2/limits:1708: new declaration `float round_error()'
+/usr/include/c++/3.2.2/limits:1653: ambiguates old declaration `long long 
+   unsigned int round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1710: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1655: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1711: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1656: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1712: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1657: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1713: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1658: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1715: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1660: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1716: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1661: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1717: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1662: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1718: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1663: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1719: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1664: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `float infinity()':
+/usr/include/c++/3.2.2/limits:1722: new declaration `float infinity()'
+/usr/include/c++/3.2.2/limits:1667: ambiguates old declaration `long long 
+   unsigned int infinity()'
+/usr/include/c++/3.2.2/limits: In function `float quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1724: new declaration `float quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1669: ambiguates old declaration `long long 
+   unsigned int quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `float signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1726: new declaration `float signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1671: ambiguates old declaration `long long 
+   unsigned int signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `float denorm_min()':
+/usr/include/c++/3.2.2/limits:1728: new declaration `float denorm_min()'
+/usr/include/c++/3.2.2/limits:1673: ambiguates old declaration `long long 
+   unsigned int denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1730: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1675: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1731: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1676: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1732: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1677: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1734: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1679: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1735: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1680: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1736: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1681: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1737: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1767: specializing `struct 
+   std::numeric_limits<double>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1770:25: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1770: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1772:25: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1772: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1772: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1775: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1699: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1776: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1700: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1777: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1701: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1778: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1702: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1779: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1703: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1780: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1704: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `double epsilon()':
+/usr/include/c++/3.2.2/limits:1782: new declaration `double epsilon()'
+/usr/include/c++/3.2.2/limits:1706: ambiguates old declaration `float epsilon()
+   '
+/usr/include/c++/3.2.2/limits: In function `double round_error()':
+/usr/include/c++/3.2.2/limits:1784: new declaration `double round_error()'
+/usr/include/c++/3.2.2/limits:1708: ambiguates old declaration `float 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1786: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1710: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1787: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1711: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1788: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1712: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1789: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1713: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1791: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1715: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1792: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1716: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1793: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1717: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1794: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1718: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1796: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1719: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `double infinity()':
+/usr/include/c++/3.2.2/limits:1799: new declaration `double infinity()'
+/usr/include/c++/3.2.2/limits:1722: ambiguates old declaration `float 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `double quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1801: new declaration `double quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1724: ambiguates old declaration `float 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `double signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1803: new declaration `double signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1726: ambiguates old declaration `float 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `double denorm_min()':
+/usr/include/c++/3.2.2/limits:1805: new declaration `double denorm_min()'
+/usr/include/c++/3.2.2/limits:1728: ambiguates old declaration `float 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1807: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1730: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1808: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1731: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1809: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1732: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1811: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1734: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1812: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1735: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1813: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1736: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1815: parse error before `}' token
+/usr/include/c++/3.2.2/limits:1846: specializing `struct 
+   std::numeric_limits<long double>' in different namespace
+/usr/include/c++/3.2.2/limits:940:   from definition of `template<class _Tp> 
+   struct std::numeric_limits'
+/usr/include/c++/3.2.2/limits:1849:30: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1849: parse error before `throw'
+/usr/include/c++/3.2.2/limits:1851:30: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/limits:1851: ISO C++ forbids defining types within 
+   return type
+/usr/include/c++/3.2.2/limits:1851: syntax error before `throw'
+/usr/include/c++/3.2.2/limits:1854: redefinition of `const int digits'
+/usr/include/c++/3.2.2/limits:1775: `const int digits' previously defined here
+/usr/include/c++/3.2.2/limits:1855: redefinition of `const int digits10'
+/usr/include/c++/3.2.2/limits:1776: `const int digits10' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1856: redefinition of `const bool is_signed'
+/usr/include/c++/3.2.2/limits:1777: `const bool is_signed' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1857: redefinition of `const bool is_integer'
+/usr/include/c++/3.2.2/limits:1778: `const bool is_integer' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1858: redefinition of `const bool is_exact'
+/usr/include/c++/3.2.2/limits:1779: `const bool is_exact' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1859: redefinition of `const int radix'
+/usr/include/c++/3.2.2/limits:1780: `const int radix' previously defined here
+/usr/include/c++/3.2.2/limits: In function `long double epsilon()':
+/usr/include/c++/3.2.2/limits:1861: new declaration `long double epsilon()'
+/usr/include/c++/3.2.2/limits:1782: ambiguates old declaration `double 
+   epsilon()'
+/usr/include/c++/3.2.2/limits: In function `long double round_error()':
+/usr/include/c++/3.2.2/limits:1863: new declaration `long double round_error()'
+/usr/include/c++/3.2.2/limits:1784: ambiguates old declaration `double 
+   round_error()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1865: redefinition of `const int min_exponent'
+/usr/include/c++/3.2.2/limits:1786: `const int min_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1866: redefinition of `const int min_exponent10'
+/usr/include/c++/3.2.2/limits:1787: `const int min_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1867: redefinition of `const int max_exponent'
+/usr/include/c++/3.2.2/limits:1788: `const int max_exponent' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1868: redefinition of `const int max_exponent10'
+/usr/include/c++/3.2.2/limits:1789: `const int max_exponent10' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1870: redefinition of `const bool has_infinity'
+/usr/include/c++/3.2.2/limits:1791: `const bool has_infinity' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1871: redefinition of `const bool has_quiet_NaN'
+/usr/include/c++/3.2.2/limits:1792: `const bool has_quiet_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1872: redefinition of `const bool 
+   has_signaling_NaN'
+/usr/include/c++/3.2.2/limits:1793: `const bool has_signaling_NaN' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1874: redefinition of `const 
+   std::float_denorm_style has_denorm'
+/usr/include/c++/3.2.2/limits:1794: `const std::float_denorm_style has_denorm' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1876: redefinition of `const bool has_denorm_loss
+   '
+/usr/include/c++/3.2.2/limits:1796: `const bool has_denorm_loss' previously 
+   defined here
+/usr/include/c++/3.2.2/limits: In function `long double infinity()':
+/usr/include/c++/3.2.2/limits:1880: new declaration `long double infinity()'
+/usr/include/c++/3.2.2/limits:1799: ambiguates old declaration `double 
+   infinity()'
+/usr/include/c++/3.2.2/limits: In function `long double quiet_NaN()':
+/usr/include/c++/3.2.2/limits:1882: new declaration `long double quiet_NaN()'
+/usr/include/c++/3.2.2/limits:1801: ambiguates old declaration `double 
+   quiet_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long double signaling_NaN()':
+/usr/include/c++/3.2.2/limits:1884: new declaration `long double 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits:1803: ambiguates old declaration `double 
+   signaling_NaN()'
+/usr/include/c++/3.2.2/limits: In function `long double denorm_min()':
+/usr/include/c++/3.2.2/limits:1886: new declaration `long double denorm_min()'
+/usr/include/c++/3.2.2/limits:1805: ambiguates old declaration `double 
+   denorm_min()'
+/usr/include/c++/3.2.2/limits: At global scope:
+/usr/include/c++/3.2.2/limits:1888: redefinition of `const bool is_iec559'
+/usr/include/c++/3.2.2/limits:1807: `const bool is_iec559' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1889: redefinition of `const bool is_bounded'
+/usr/include/c++/3.2.2/limits:1808: `const bool is_bounded' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1890: redefinition of `const bool is_modulo'
+/usr/include/c++/3.2.2/limits:1809: `const bool is_modulo' previously defined 
+   here
+/usr/include/c++/3.2.2/limits:1892: redefinition of `const bool traps'
+/usr/include/c++/3.2.2/limits:1811: `const bool traps' previously defined here
+/usr/include/c++/3.2.2/limits:1893: redefinition of `const bool tinyness_before
+   '
+/usr/include/c++/3.2.2/limits:1812: `const bool tinyness_before' previously 
+   defined here
+/usr/include/c++/3.2.2/limits:1894: redefinition of `const 
+   std::float_round_style round_style'
+/usr/include/c++/3.2.2/limits:1813: `const std::float_round_style round_style' 
+   previously defined here
+/usr/include/c++/3.2.2/limits:1896: parse error before `}' token
+In file included from /usr/include/c++/3.2.2/locale:46,
+                 from /usr/include/c++/3.2.2/bits/istream.tcc:37,
+                 from /usr/include/c++/3.2.2/istream:297,
+                 from /usr/include/c++/3.2.2/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from main.cpp:6:
+/usr/include/c++/3.2.2/bits/locale_facets.tcc:474:58: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/locale_facets.tcc:493:56: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/locale_facets.tcc:1531:59: macro "max" requires 2 arguments, but only 1 given
+In file included from /usr/include/c++/3.2.2/istream:297,
+                 from /usr/include/c++/3.2.2/fstream:45,
+                 from readHTKformat.h:21,
+                 from recognizer.h:13,
+                 from main.cpp:6:
+/usr/include/c++/3.2.2/bits/istream.tcc:150:50: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/istream.tcc:151:60: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/istream.tcc:214:48: macro "min" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/istream.tcc:215:58: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/istream.tcc:727:63: macro "max" requires 2 arguments, but only 1 given
+/usr/include/c++/3.2.2/bits/istream.tcc:1030:57: macro "max" requires 2 arguments, but only 1 given
+gmake: *** [main.o] Error 1

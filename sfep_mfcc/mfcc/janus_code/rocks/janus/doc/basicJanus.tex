@@ -1,0 +1,217 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Basic Janus UI
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  basicJanus.tex
+%%  Date    :  $Id: basicJanus.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%  $Log$
+%%  Revision 1.2  2003/08/14 11:18:44  fuegen
+%%  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%  Revision 1.1.2.2  2002/08/26 16:40:37  metze
+%%  Re-organization of modules
+%%
+%%  Revision 1.1.2.1  2002/08/01 13:42:20  metze
+%%  Fixes for clean documentation.
+%%
+%% ========================================================================
+
+\section{Janus Objects}
+
+JANUS was designed to be programmable. The programming language is
+Tcl/Tk, expanded by some object classes and their methods. Object
+classes are things like dictionaries, codebooks, but also the decoder
+itself is an object class. Every object class has its methods
+(operations that can be done with objects of that class). Objects can
+have subobjects and can be hierarchically organized. The object oriented
+programming paradign allows, at least in principle, to plug in and out
+objects as one wishes. Simply change the dictionary by assigning a new
+one, copy codebooks as easily as "cb1 := cb2", add distribution
+accumulators as easily as "ds1.accu += ds2.accu", etc.
+
+\subsection*{Create JANUS Objects}
+
+Objects are meant to hold data but also provide methods to manipulate
+that data. To define an object you have to specify its *type*. The
+convention is that type names start with capital letters and objects
+with small letters. You can define as many objects of one type as you
+like. To see what types exist just type (one of the few) JANUS command
+'types'.\footnote{By the way '\%' is the prompt of the JANUS shell.
+ You can also use any Tcl and Tk commands.}
+
+\begin{verbatim}
+% types
+FlatFwd ModelArray DurationSet Word Cbcfg SampleSet DVector PTree HMM 
+Vocab FMatrix CodebookMapItem PTreeSet MLNorm Dscfg PathItemList 
+CodebookAccu HypoList DBaseIdx SampleSetClass SenoneTag Feature 
+PhonesSet DCovMatrix Phone FBMatrix Phones DistribAccu IMatrix 
+TopoSet SVector XWModel IArray DMatrix FVector StateGraph FCovMatrix 
+Duration PTreeNode LatNode Hypo Senone TreeFwd LDA Topo MLNormClass 
+Codebook Tags LDAClass FeatureSet Tree PhoneGraph CodebookMap Path 
+Search AModelSet RewriteSet
+\end{verbatim}
+
+The list you get here depends on the version and compile options. You
+create an object when you enter a *type name* followed by the *name of
+the new object*. Some types require additional arguments, like
+subobjects. As an example we define an object (let's call it 'ps') of
+type PhonesSet. You can get a list of all objects you have defined with
+the command 'objects'. One object name can only be used once (also for
+different types) but you can 'destroy' objects. 'destroy' is a standard
+method of every object (s.b.).
+
+\begin{verbatim}
+% PhonesSet ps
+ps
+% PhonesSet ps
+WARNING itf.c(0287)   Object ps already exists.
+% PhonesSet ps2 
+ps2
+% objects
+ps ps2
+\end{verbatim}
+
+summary: JANUS commands *types * list all object types
+*objects * list all objects defined by user
+
+\subsection*{Standard Methods}
+
+As soon as you have defined an object you can use its *name* followed by
+a *method* and arguments. The different object types have their own
+methods of course but at least a few are standard methods that exist for
+every object. These are
+
+\begin{description}
+\item[type] gives the type of the object
+\item[puts] print contents of the object
+\item[configure] configure the object
+\item[:] allow access to list element
+\item[.] allow access to subobjects
+\item[destroy] destroy object
+\end{description}
+
+To find out what other methods exist we enter eather the *type name*
+without any object name or the object name follwed by '-help'. To get
+more information about a specific method we enter the object name, the
+method and '-help'.
+
+\begin{verbatim}
+% ps -help
+
+DESCRIPTION
+
+A 'PhonesSet' object is a set of 'Phones' objects.
+
+METHODS
+
+puts               displays the contents of a set of phone-sets
+add                add new phone-set to a set of phones-set
+delete             delete phone-set(s) from a set of phone-sets
+read               read a set of phone-sets from a file
+write              write a set of phone-sets into a file
+index              return index of named phone-set(s)
+name               return the name of indexed phone-set(s)
+
+% ps add -help
+Options of 'add' are:
+ < name>    name of list (string:"NULL")
+ < phone*>  list of phones
+% ps add VOWEL A E I O U
+\end{verbatim}
+
+We just added the element 'VOWEL' to the PhonesSet object ps. To see the
+contents of the object we can use the method 'puts' or just the object
+name which is the same in most cases.
+
+\begin{verbatim}
+% ps puts 
+VOWEL
+% ps
+VOWEL
+\end{verbatim}
+
+\subsection*{Access to Elements and Subobjects}
+
+The standard methods ':' and '.' allow access to elements and subobjects
+respectively. *Elements* of an objects have the same kind of structure
+like the words of a dictionary or phone groups (like the 'VOWEL') in the
+PhonesSet. Nevertheless they can also be objects and most time they are.
+*Subobjects* are more unique, like the Phones of a dictionary as we will
+see immedeately. For these two methods and only for them you can omit
+the spaces between the object and also between the single argument which
+is the name of the element or the subobject. If you don't give a name
+you will obtain a list of the choices.\footnote{In case of ':' you again 
+get a list of the elements like with 'puts' or just the object name with 
+no method.}
+
+\begin{verbatim}
+% ps:
+VOWEL
+% ps:VOWEL
+A E I O U
+% ps type
+PhonesSet
+% ps:VOWEL type
+Phones
+\end{verbatim}
+
+Let's assume we have also defined a phone group 'PHONES' in the
+PhonesSet 'ps' that contains all the Phones of a dictionary. Then we can
+create a dictionary object that needs the name of a *Phones object* and
+of a *Tags object* as arguments. Both have to be created before.
+
+\begin{verbatim}
+% Tags ts
+ts
+% Dictionary d ps:PHONES ts
+d
+% d add DOG "D O G"
+% d add DUCK "D U CK"
+% d.
+phones tags item(0..1) list
+% d:
+DOG DUCK
+\end{verbatim}
+
+With 'd.phones' for example you have access to the object 'ps:PHONES'.
+Although there is a method for PhonesSet to delete elements like
+'PHONES' you will get an error if you try that because it was locked as
+you defined the dictionary. This prevents objects from being deleted
+while they are used by other objects.
+
+\subsection*{Configuration}
+
+Sometimes it might be necessary to configure *objects* or *object
+types*. You can get all configure items, get a specific one or set one
+or more items. In the latter case only if they are writable.
+
+\begin{verbatim}
+% ps configure
+{-useN 1} {-commentChar {;}} {-itemN 2} {-blkSize 20} 
+% ps configure -commentChar
+{;}
+% ps configure -commentChar #
+\end{verbatim}
+
+Note: The old comment sign ';' was protected with curly braces {}
+because it is the command separator in Tcl.
+
+Can you explain the following line and its return value.
+
+\begin{verbatim}
+% ps configure -commentChar ;
+#
+\end{verbatim}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

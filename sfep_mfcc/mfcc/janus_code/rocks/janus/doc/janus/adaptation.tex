@@ -1,0 +1,129 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of adaptation methods
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Many cooks...
+%%  Module  :  adaptation.tex
+%%  Date    :  $Id: adaptation.tex 2484 2004-08-16 16:12:32Z metze $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2004/08/16 16:12:32  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.1  2004/08/04 11:29:11  metze
+%%   Initial version
+%%
+%% ========================================================================
+
+\section{Adaptation} \label{janus:adaptation}
+
+Janus contains   several \Jindex{Adaptation} methods,  subsumed  under
+``training''.  Please note that the examples here can  only serve as a
+rough guide to your own experiments.
+
+\subsection{MLLR Adapation in feature space} \label{janus:cmllr}
+
+\JaddGloss{FMLLR}{Feature-Space Maximum Likelihood Linear Regression}
+\JaddGloss{CMLLR}{Constrained MLLR}
+
+This  type  of  adaptation   (often  referred to  as   \Jgloss{CMLLR},
+\Jgloss{FMLLR}) has already    been   described in the    context   of
+Feature-space based  Speaker  Adaptive  Training.  It  represents  the
+easiest way to    adapt  a system  to new   conditions.  It uses   the
+\Jref{module}{SignalAdapt} module.
+
+Basically, you use \Jref{SignalAdapt}{adapt} to collect statistics and
+\Jref{SignalAdapt}{compute} to compute an adaptation matrix, which you
+can then use to transform your  features. Interestingly, it seems more
+effective to collect adapted features then unadapted ones, which would
+be theoretically correct. The \Jref{module}{SignalAdapt} allows you to
+keep several  accumulators  at the  same  time,  so you  can  adapt to
+several targets  at the same time. This  approach  is also very useful
+for incremental adaptation  and in cases  where only little adaptation
+data is available.
+
+For more information on this adaptation scheme, which can also be used
+for speaker-adaptive training, look at section \ref{sec:fsat}, too.
+
+\subsection{MLLR Adapation in model space} \label{janus:mllr}
+
+\JaddGloss{MLLR}{Maximum Likelihood Linear Regression}
+
+\Jgloss{MLLR}  adaptation  can be  used to adapt  models  to  new test
+conditions, be it  a particular speaker or  a new channel.  It is more
+powerful than feature-space MLLR  (see \ref{janus:cmllr}), because  it
+uses a regression tree  and therefore more  and  a variable  amount of
+parameters can be adapted.
+
+The first step to perform MLLR adaptation  is to collect statistics on
+the  adaptation    data.     To   do  this,      use     the  standard
+\Jref{janus}{train.tcl} script  as if you  wanted to continue training
+your model on  your adaptation data. All  you have to  do is make sure
+you call the procedure \texttt{doAccu}  only once by setting the begin
+and end  iterations accordingly and you   also probably don't  want to
+execute   the \Jref{SenoneSet}{update} on the \Jref{module}{SenoneSet}
+and save the  generated \Jref{module}{Codebook}.  Note that there  are
+two ways of doing this:
+
+\begin{itemize}
+\Jitem{Supervised}   when you have true transcripts of the adaptation data;
+                     you can now use labels or viterbi to align the data
+\Jitem{Unsupervised} when you do not have transcripts. Usually, you then use
+                     the confidence-annotated output of a previous recognition 
+                     run and viterbi to align the data
+\end{itemize}
+
+Depending on  which way suits  you more, you might  have to change the
+calls  in  \texttt{doAccu}    to    \Jref{proc}{labelUtterance}     to
+\Jref{proc}{viterbiUtterance}.  Now you  can  use your models  and the
+collected statistics  (found in the  accu) to update the parameters of
+the model using the script \Jref{janus}{mllr.tcl}.
+
+If you have   a lot  of  adaptation data,  you   can also update   the
+covariances of your models  by setting \texttt{adaptVar} to \texttt{1}
+in  \Jref{janus}{mllr.tcl}  and executing  this script  a second time.
+You  would then   use the models   with  adapted means  (the result of
+executing \Jref{janus}{mllr.tcl} once)  to collect statistics a second
+time and adapt the   covariances of the   models  in a second  run  of
+\Jref{janus}{mllr.tcl}.
+
+The optimal settings    of the \texttt{depth}  and   \texttt{minCount}
+parameters depend on your task, so feel free to experiment with these.
+
+\subsection{MAP Adaptation}  \label{janus:map}
+
+\JaddGloss{MAP}{Maximum A-Posteriori Estimation}
+\JaddGloss{MLE}{Maximum Likelihood Estimation}
+
+\Jgloss{MAP} adaptation uses the  same \Jgloss{MLE} criterion employed
+during training.   Adaptation   therefore  consists  of    loading the
+accumulated statistics   of the ``background''  system, weighting them
+with   a weighting factor   and  then adding  the weighted  statistics
+accumulated with the  same models on  the adaptation data before doing
+the  normal  ML-update.    To    collect the  statistics,   use    the
+\Jref{janus}{train.tcl} script on    both data sets as   described  in
+chapter \ref{janus:mllr}, doing only one iteration and leaving out the
+update;  the  script  \Jref{janus}{map.tcl}    will then   perform the
+adaptation.
+
+\subsection{MAM Adaptation} \label{janus:mam}
+
+\JaddGloss{MAM}{Model-Based Acoustic Mapping}
+
+\Jgloss{MAM}  is   an  adaptation/ normalization  method  developed by
+Martin Westphal in his thesis. The current Janus contains all the code
+he wrote,   an   experiment with MAM    can for  example be   found in
+\texttt{/project/nespole/sys/mam} at UKA.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-master: t
+%%% TeX-master: t
+%%% End: 

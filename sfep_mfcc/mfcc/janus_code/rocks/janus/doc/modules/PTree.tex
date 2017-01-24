@@ -1,0 +1,89 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PTree}}
+
+This section describes the '\Jgloss{PTree}': \textsl{Polyphonic Tree}
+
+\begin{description}
+
+  \item[Creation:] \texttt{PTree  $<$name$>$ $<$phones$>$ $<$tags$>$ $<$modelSet$>$ \Jsb{-addProc addproc}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{phones}} &    set of phones (\Jref{module}{Phones}) \\
+ \texttt{\textbf{tags}} &      set of tags (\Jref{module}{Tags}) \\
+ \texttt{\textbf{modelSet}} &  set of models \\
+ \texttt{\textbf{addproc}} &    TCL add model proc  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{ptree configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{PTree}{-addProc} & = (null) \\
+      \Jlabel{PTree}{-count} & = 0.000000 \\
+      \Jlabel{PTree}{-maxContext} & = -1 \\
+      \Jlabel{PTree}{-name} & = ptree \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{ptree}
+
+    \begin{description}
+      \Jitem{\Jlabel{PTree}{add}} \texttt{ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$ \Jsb{-count count} \Jsb{-model model}} \
+
+        adds another polyphone to the tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+ \texttt{\textbf{count}} &           count  \\
+ \texttt{\textbf{model}} &           model  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTree}{get}} \texttt{ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$} \
+
+        find polyphone in the tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTree}{models}} \texttt{ $<$modelArray$>$ \Jsb{-minCount mincount}} \
+
+        returns a model array of models in the tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{modelArray}} &  model array (\Jref{module}{ModelArray}) \\
+ \texttt{\textbf{mincount}} &     minimum count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTree}{question}} \texttt{ $<$questionSet$>$ \Jsb{-minCount mincount}} \
+
+        find a question for splitting
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{questionSet}} &  question set (\Jref{module}{QuestionSet}) \\
+ \texttt{\textbf{mincount}} &      minimum count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PTree}{split}} \texttt{ $<$questionSet$>$ $<$question$>$ \Jsb{-minCount mincount}} \
+
+        split a tree by asking a question
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{questionSet}} &  question set (\Jref{module}{QuestionSet}) \\
+ \texttt{\textbf{question}} &     question  \\
+ \texttt{\textbf{mincount}} &      minimum count  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{modelSet}} & (\Jref{module}{DistribSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

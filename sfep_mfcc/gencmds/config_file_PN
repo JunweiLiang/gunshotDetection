@@ -1,0 +1,7 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM31/iyu/PN/
+videopaths=/data/MM2/MED/raw_videos/MED14-EvalFull.list
+video_info=/data/MM31/iyu/PN/features/video_info
+video_info_resized=/data/MM31/iyu/PN/features/video_info_resized
+machine=rocks
+python27=/opt/python27/bin/python

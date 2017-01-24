@@ -1,0 +1,4 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM21/iyu/MEDTEST
+videopaths=/data/MM21/iyu/MEDTEST/list
+machine=rocks

@@ -1,0 +1,15 @@
+dbase.tcl  
+   added dbaseUttFilter (Hagen Soltau)
+labels.tcl  
+   changed labelsMLAdaptWrite, use mla store/restore commands (Hagen Soltau)
+   added increasing beams in labelsWrite, labelsMLAdaptWrite  (Hagen Soltau)
+   compress label files
+   added option to put labels as ascii
+train.tcl
+   changed labelUtterance, compute lscore (Hagen Soltau)
+   handle compressed label files
+vtln.tcl
+   changed phoneLst from all phones to voiced !!! (Hagen Soltau)
+   pass cwarp arguments as strings
+parmat.tcl
+   added semi-tied covariances stuff

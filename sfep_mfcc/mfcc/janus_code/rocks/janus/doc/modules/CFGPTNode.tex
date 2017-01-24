@@ -1,0 +1,57 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CFGPTNode}}
+
+This section describes the '\Jgloss{CFGPTNode}': \textsl{A 'CFGPTNode' object is a node of a parse tree.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CFGPTNode} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{CFGParseTree}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{cfgptnode configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CFGPTNode}{-bestScore} & = 0.000000 \\
+      \Jlabel{CFGPTNode}{-bestX} & = 0 \\
+      \Jlabel{CFGPTNode}{-itemN} & = 1 \\
+      \Jlabel{CFGPTNode}{-lvX} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cfgptnode}
+
+    \begin{description}
+      \Jitem{\Jlabel{CFGPTNode}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of parse tree node
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (SHORT, LONG)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CFGPTNode}{trace}} \texttt{ \Jsb{-auxNT auxnt} \Jsb{-topN topn} \Jsb{-format format}} \
+
+        returns parse tree by tracing back node
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{auxnt}} &   print also auxilliary NTs  \\
+ \texttt{\textbf{topn}} &    print the topN parse trees  \\
+ \texttt{\textbf{format}} &  output format (jsgf, soup)  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{child}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{next}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{parent}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{CFGPTItem}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

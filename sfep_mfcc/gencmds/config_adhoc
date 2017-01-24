@@ -1,0 +1,6 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM22/iyu/MED12Adhoc/
+videopaths=/home/iyu/sfep/gencmds/vids_adhoc
+machine=rocks
+video_info=/data/MM22/iyu/MED12Adhoc/features/video_info
+video_info_resized=/data/MM22/iyu/MED12Adhoc/features/video_info_resized

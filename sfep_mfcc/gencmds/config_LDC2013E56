@@ -1,0 +1,6 @@
+sfepdir=/home/iyu/sfep
+outputdir=/data/MM21/iyu/LDC2013E056/
+videopaths=/home/iyu/sfep/gencmds/run_vids
+machine=rocks
+video_info=/data/MM21/iyu/LDC2013E056/features/video_info
+video_info_resized=/data/MM21/iyu/LDC2013E056/features/video_info_resized

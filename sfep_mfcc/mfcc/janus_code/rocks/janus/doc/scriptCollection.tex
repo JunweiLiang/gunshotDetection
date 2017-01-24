@@ -1,0 +1,361 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Documentation for Script Collection
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  scriptCollection.tex
+%%  Date    :  $Id: scriptCollection.tex 2568 2004-11-09 19:54:57Z metze $
+%%
+%%  Remarks :
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.4  2004/11/09 19:53:48  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.3  2004/08/16 16:10:13  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.2  2003/08/14 11:18:56  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.7  2003/08/07 13:01:24  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.6  2003/04/30 15:43:59  metze
+%%   Changes before the new repository
+%%
+%%   Revision 1.1.2.5  2002/11/21 16:15:46  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.4  2002/11/05 13:43:49  soltau
+%%   typo
+%%
+%%   Revision 1.1.2.3  2002/11/05 07:45:44  metze
+%%   Removed reference to trainPT
+%%
+%%   Revision 1.1.2.2  2002/10/04 13:30:29  metze
+%%   More docu
+%%
+%%   Revision 1.1.2.1  2002/08/26 16:40:37  metze
+%%   Re-organization of modules
+%%
+%%
+%% ========================================================================
+
+
+\section{The Janus Library: ``tcl-lib'' and ``gui-tcl''}
+
+The Tcl-library is  a set of procedures  the user can invoke and which
+provide  a number of ``convenience''  functions.   The scripts in  the
+Janus  Scripts Collection  (\texttt{\~{ }/janus/scripts},  see chapter
+\Jref{janus}{scripts})  use      the    Tcl-library extensively.   The
+Tcl-library   can  be   found   in   \texttt{\~{ }/janus/tcl-lib}  and
+\texttt{\~{ }/janus/gui-tcl}.   To  auto-load   the  functions,  the
+Tcl-variable \texttt{auto\_path} has to be set correctly, i.e.  to the
+value of these two directories. Also, a  file \texttt{tclIndex} has to
+exist   in these directories. You  should  not need to   worry, if you
+follow  the standard install instructions,  otherwise refer to any Tcl
+manual for a description of the auto-loading mechanism.  The functions
+available in the tcl-lib are described in chapter \Jref{sec}{lib}.
+
+\section{The Janus Scripts Collection} \label{janus:scripts}
+
+The  directory  \texttt{\~{ }/janus/scripts}  contains  a  number  of
+scripts, which   we  normally use  to train  and   test systems. These
+scripts  are  often modified and    copied in a  system  directory for
+documentation purposes.
+
+If you have access to an example system  (i.e. IslData, IslSystem), we
+suggest that  you have a  look at it  to see how  data and scripts are
+typically  organized in a  JRTk project.  Usually,  the structure of a
+project  looks as  follows (this  project  would be called the  ``M1''
+system):
+
+{\small
+\begin{verbatim}
+M1/
+|
++--master.log
+|
++--Log/
+|  '--makeCI.log
+|    
++--desc/
+|  +--desc.tcl
+|  +--codebookSet
+|  +--distribSet
+|  +--distribTree
+|  +--featAccess
+|  +--featDesc
+|  +--phonesSet
+|  +--tags
+|  +--tmSet
+|  +--topoSet
+|  '--topoTree
+|
++--train/
+|  +--ldaM1.bmat
+|  +--ldaM1.counts
+|  +--convList
+|  |
+|  +--Log/
+|  |  +--lda.log
+|  |  +--samples.log
+|  |  +--kmeans.log
+|  |  '--train.log
+|  |
+|  +--Accus/
+|  |  +- 1.cba.gz
+|  |  '--1.dsa.gz
+|  |
+|  '--Weights
+|     +--0.cbs.gz
+|     '--0.dss.gz
+|
++--test/
+   +--convList
+   |
+   +--Log/
+   |  '--test.log
+   |
+   '--hypos/
+      '--H_kottan_z26_p0_LV.ctm
+\end{verbatim}
+}
+
+Typically, a  system  directory (here:  ``M1'')  contains a number  of
+sub-directories, each  for  different phases (label  writing, cepstral
+mean computation,  model  training (``train''),   polyphone  training/
+clustering, testing (``test''), ...). Each directory then contains the
+data resulting from this step and log-files.
+
+The   scripts   who   perform   the  operations   can   be left  under
+\texttt{janus/scripts}, only \texttt{desc.tcl} is a configuration file
+specific to  this project  and  is therefore copied into  the  project
+directory along with the other description files.
+
+\subsection{Available Scripts}
+
+The following scripts are available in the Janus Scripts Collection
+(in the order in which they are usually called):
+
+\begin{description}
+
+\Jitem{genDBase.tcl} \label{janus:genDBase.tcl}
+
+  This script can be used to create a database, which is necessary for
+  all further steps.  Look at the resulting  database files (they  are
+  called \texttt{db-\{spk|utt\}.\{idx|dat\}} to see what   information
+  can and needs to be defined in the database.
+
+  Depending on your needs  and   the format, in   which you  have  the
+  information  available, you will need  to modify this script to suit
+  your needs.
+
+\Jitem{makeCI.tcl}    \label{janus:makeCI.tcl}
+
+  Creates the following description files for a context-independent
+  (CI) system:
+
+  \begin{itemize}
+    \item codebookSet
+    \item distribSet
+    \item distribTree
+  \end{itemize}
+  
+  You'll need to have all the other description files in place, namely
+  the phonesSet. If you want to use a different architecture
+  (i.e. semi-tied, or non-tri-state architectures), you can edit this
+  file according to your needs.
+
+\Jitem{means.tcl}     \label{janus:means.tcl}
+
+  This script will create the cepstral means needed for the standard
+  pre-processing of the Janus-based recognizers.
+
+\Jitem{lda.tcl}       \label{janus:lda.tcl}
+
+  This script computes an LDA matrix, used for the standard
+  pre-processing.
+
+\Jitem{samples.tcl}   \label{janus:samples.tcl}
+
+  This script extracts samples for further clustering with \Jref{janus}{kmeans.tcl}.
+
+\Jitem{kmeans.tcl}    \label{janus:kmeans.tcl}
+
+  Performs KMeans clustering on data extracted with \Jref{janus}{samples.tcl}.
+
+\Jitem{train.tcl}     \label{janus:train.tcl}
+
+  Performs EM-training on initial codebooks from \Jref{janus}{kmeans.tcl}.
+  Can be used for training of a context-independent (CI),
+  a context-dependent (CD), or a polyphone (PT) system.
+  Normally, we do label training although it is also possible
+  to do viterbi- or forward-backward-training by replacing
+  \Jref{proc}{viterbiUtterance} by for example \Jref{proc}{viterbiUtterance}.
+
+\Jitem{makePT.tcl}    \label{janus:makePT.tcl}
+
+  Creates a polyphone (PT) system from the CI description files.
+
+\Jitem{cluster.tcl}   \label{janus:cluster.tcl}
+
+  Clusters the contexts from PT training.
+
+\Jitem{split.tcl}     \label{janus:split.tcl}
+
+  Creates the context-dependent (CD) models after PT training, creates
+  the following CD description files (with $N > 0$):
+
+  \begin{itemize}
+    \item codebookSet.N.gz
+    \item distribSet.Np.gz
+    \item distribTree.Np.gz
+  \end{itemize}
+
+\Jitem{createBBI.tcl} \label{janus:createBBI.tcl}
+
+  Creates a BBI (bucket-box intersection) tree for a codebook.
+
+\Jitem{test.tcl}      \label{janus:test.tcl}
+
+  Tests a system.
+
+\Jitem{score.tcl}     \label{janus:score.tcl}
+  
+  Scores a system, i.e. computes word error rates.
+
+\Jitem{ana\_time.tcl}  \label{janus:anatime.tcl}
+
+  Allows to  measure the CPU-time  spent in  pre-defined sections of a
+  script. You can find more details about timing analysis and how to use
+  this script in section \ref{ibis:timing}.
+
+\Jitem{labels.tcl}    \label{janus:labels.tcl}
+
+  Writes new labels with an existing system. Can also be used to
+  bootstrap a new system using the acoustic models from another system.
+
+\end{description}
+
+An example  \texttt{desc.tcl}  file  is also  included in  the  script
+collection.  All  ``working'' scripts source \texttt{../desc/desc.tcl}
+and load the settings (paths, ...)  from there,  although these can be
+overridden   at       the   command line        or   in   the   script
+themself. \texttt{janusrc} is an example configuration file for janus,
+which  is  best  adapted   and copied   into your home    directory as
+\texttt{.janusrc}.
+
+\subsection{Working with master.tcl} \label{janus:master.tcl}
+
+We  assume  you have  a  system directory   setup correctly, including
+pre-computed   time-alignments   (``labels''). When  working with  the
+example system ``IslSystem'', you have a \texttt{desc} directory which
+contains  an appropriate  \Jref{file}{desc.tcl}  file. In the ``system
+home directory'' (``M1'' in the above example), you can now enter
+
+\begin{verbatim}
+janus <janus>/scripts/master.tcl -do init means lda samples kmeans train
+\end{verbatim} 
+
+and the master script will create a context-independent (CI) system in
+the \texttt{M1/train}  directory.  \texttt{$<$janus$>$} refers to your
+Janus  installation     directory.\footnote{Usually   this   will   be
+\texttt{\~{ }/janus}.}   You'll find    logfiles  in   your system's
+\texttt{Log}   subdirectory.    The following  steps  were  performed,
+calling the following scripts:
+
+\begin{enumerate}
+\item[init] (\Jref{janus}{makeCI.tcl})
+  to create the codebookSet, distribSet, distribTree definition files
+  for the CI system
+
+\item[means] (\Jref{janus}{means.tcl})
+  to compute the cepstral means for this preprocessing. This can be
+  re-used for a CD-system
+
+\item[lda] (\Jref{janus}{lda.tcl})
+  to compute the LDA (Linear Discriminant Analysis) matrix for this
+  system.
+
+\item[samples] (\Jref{janus}{samples.tcl})
+  to extract samples for the CI models
+
+\item[kmeans] (\Jref{janus}{kmeans.tcl})
+  to create initial codebooks from the samples, written into {\tt Weights/0}.
+  Once this step is completed, you can remove the {\tt data} subdirectory.
+
+\item[train] (\Jref{janus}{train.tcl})
+  to perform several iterations of EM-training on the initial codebooks.
+  At the end of this step, you can remove the contents of the {\tt Accus}
+  subdirectory as well as intermediate codebooks in {\tt Weights}, to save
+  space.
+
+\end{enumerate}
+
+\Jref{janus}{master.tcl} will show you the  command lines it executes,
+if you want   to parallelize your  training, you  can copy  the output
+lines   {\tt exec  janus lda.tcl   ...} (omitting  the  {\tt exec} and
+changing the   log  file name) and  run   the same  script  on several
+machines.
+
+To run the polyphone training, enter
+
+\begin{verbatim}
+janus <janus>/scripts/master.tcl -do makePT trainPT cluster split
+\end{verbatim}
+
+This will create the description files for a context-dependent system.
+
+To run the training for the context-dependent system, enter
+
+\begin{verbatim}
+janus <janus>/scripts/master.tcl -do lda samples kmeans train test score
+\end{verbatim}
+
+assuming  that you have created  a new directory  and set up the paths
+for codebookSetParam and distribSetParam accordingly. To create initial
+time alignments for a new system, edit the description file (probably
+you'll have to change most of the files usually in the ``desc'' directory
+to match your old system and your desired new setup) and execute:
+
+\begin{verbatim}
+janus <janus>/scripts/master.tcl -do labels
+\end{verbatim}
+
+If you type
+
+\begin{verbatim}
+janus <janus>/scripts/master.tcl -h
+\end{verbatim}
+
+you'll get a list of all command line options for \texttt{master.tcl}.
+
+\subsection{Extra scripts} \label{janus:extrascripts}
+
+The   \texttt{scripts} directory  also  contains a  number of scripts,
+which    can       not     (currently)    be       called      through
+\Jref{janus}{master.tcl}. They  can however  serve as  example scripts,
+which can be adapted to specific problems.
+
+\begin{description}
+
+\Jitem{map.tcl} \label{janus:map.tcl}
+
+An example script to perform \Jgloss{MAP} adaptation.
+
+\Jitem{mllr.tcl} \label{janus:mllr.tcl}
+
+An example script to perform \Jgloss{MLLR} adaptation.
+
+\end{description}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

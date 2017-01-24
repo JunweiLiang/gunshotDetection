@@ -1,0 +1,48 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{PathItemList}}
+
+This section describes the '\Jgloss{PathItemList}': \textsl{PathItemList}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{PathItemList} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{Path}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{pathitemlist configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{PathItemList}{-beam} & = 0.000000 \\
+      \Jlabel{PathItemList}{-best} & = 0.000000 \\
+      \Jlabel{PathItemList}{-itemN} & = 1 \\
+      \Jlabel{PathItemList}{-logScale} & = 0.000000 \\
+      \Jlabel{PathItemList}{-score} & = 0.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{pathitemlist}
+
+    \begin{description}
+      \Jitem{\Jlabel{PathItemList}{add}} \texttt{ $<$n$>$ \Jsb{-stateX statex} \Jsb{-senoneX senonex} \Jsb{-phoneX phonex} \Jsb{-wordX wordx}} \
+
+        add items to the path list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{n}} &       number of pathItems to add  \\
+ \texttt{\textbf{statex}} &   state index  \\
+ \texttt{\textbf{senonex}} &  relative senone index  \\
+ \texttt{\textbf{phonex}} &   relative phone index  \\
+ \texttt{\textbf{wordx}} &    relative word index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{PathItemList}{clear}} \texttt{} \
+
+        remove all items from the path list
+
+    \end{description}
+
+  \item[Elements:] are of type \Jref{module}{PathItem}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,171 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SignalAdapt}}
+
+This section describes the '\Jgloss{SignalAdapt}': \textsl{Signal Adaption}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SignalAdapt  $<$name$>$ $<$SenoneSet$>$ \Jsb{-stream stream} \Jsb{-maxAccu maxaccu} \Jsb{-maxTran maxtran}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of SignalAdapt object  \\
+ \texttt{\textbf{SenoneSet}} &  name of the senone set (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{stream}} &      stream to use  \\
+ \texttt{\textbf{maxaccu}} &     max number of accus  \\
+ \texttt{\textbf{maxtran}} &     max number of transformations  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{signaladapt configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SignalAdapt}{-beta(0..5)} & =  \\
+      \Jlabel{SignalAdapt}{-name} & = signalAdaptISLci \\
+      \Jlabel{SignalAdapt}{-shift} & = 1.000000 \\
+      \Jlabel{SignalAdapt}{-stream} & = 0 \\
+      \Jlabel{SignalAdapt}{-topN} & = 1 \\
+      \Jlabel{SignalAdapt}{-useN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{signaladapt}
+
+    \begin{description}
+      \Jitem{\Jlabel{SignalAdapt}{accu}} \texttt{ $<$path$>$ $<$accuX$>$ \Jsb{-match match} \Jsb{-from from} \Jsb{-to to} \Jsb{-stream stream} \Jsb{-gamma gamma} \Jsb{-conf conf}} \
+
+        accu path for signal adaption
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{accuX}} &  accu to be used  \\
+ \texttt{\textbf{match}} &   only accu senones that match this string  \\
+ \texttt{\textbf{from}} &    start frame  \\
+ \texttt{\textbf{to}} &      end frame (-1 = last frame)  \\
+ \texttt{\textbf{stream}} &  stream to accumulate  \\
+ \texttt{\textbf{gamma}} &   scaling factor  \\
+ \texttt{\textbf{conf}} &    Confidence values (FVector) (\Jref{module}{FVector}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{adapt}} \texttt{ $<$src$>$ $<$dst$>$ $<$tranX$>$} \
+
+        adapt feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{src}} &    source feature, FMatrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{dst}} &    dst feature, FMatrix (\Jref{module}{FMatrix}) \\
+ \texttt{\textbf{tranX}} &  transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{add}} \texttt{ $<$Distribution$>$} \
+
+        add distribution for signal adaption
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{Distribution}} &  distribution \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{addAccu}} \texttt{ $<$accuX$>$ $<$accuY$>$ \Jsb{-factor factor}} \
+
+        accuX += factor *accuY
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{accuX}} &  accuX  \\
+ \texttt{\textbf{accuY}} &  accuY  \\
+ \texttt{\textbf{factor}} &  weighting factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{clear}} \texttt{ $<$tranX$>$} \
+
+        clear parameter matrix (will not be done automatically!)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tranX}} &  transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{clearAccu}} \texttt{ $<$accuX$>$} \
+
+        clear accu's
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{accuX}} &  accu index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{combine}} \texttt{ $<$tranX1$>$ $<$tranX2$>$} \
+
+        combine two transforms
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tranX1}} &  transformation 1  \\
+ \texttt{\textbf{tranX2}} &  transformation 2  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{compare}} \texttt{ $<$tranX$>$ $<$tranY$>$} \
+
+        compare two transforms (sum of squares)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tranX}} &  transformation index  \\
+ \texttt{\textbf{tranY}} &  transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{compute}} \texttt{ $<$iter$>$ $<$accuX$>$ $<$tranX$>$} \
+
+        compute adaption matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{iter}} &   Number of iterations  \\
+ \texttt{\textbf{accuX}} &  accu index  \\
+ \texttt{\textbf{tranX}} &  transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{load}} \texttt{ $<$filename$>$ $<$tranX$>$} \
+
+        load parameter matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+ \texttt{\textbf{tranX}} &     transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{puts}} \texttt{} \
+
+        puts distributons
+
+      \Jitem{\Jlabel{SignalAdapt}{readAccu}} \texttt{ $<$filename$>$ $<$accuX$>$ \Jsb{-factor factor}} \
+
+        read accu's
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+ \texttt{\textbf{accuX}} &     accu index  \\
+ \texttt{\textbf{factor}} &     weighting factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{save}} \texttt{ $<$filename$>$ $<$tranX$>$} \
+
+        save parameter matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+ \texttt{\textbf{tranX}} &     transformation index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{scaleAccu}} \texttt{ $<$factor$>$ $<$accuX$>$} \
+
+        scale accu's
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{factor}} &  scaling factor for accu's  \\
+ \texttt{\textbf{accuX}} &   accu index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SignalAdapt}{writeAccu}} \texttt{ $<$filename$>$ $<$accuX$>$} \
+
+        write accu's
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  filename  \\
+ \texttt{\textbf{accuX}} &     accu index  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{g(0..4,0..3)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{w(0..0)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{z(0..4)}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

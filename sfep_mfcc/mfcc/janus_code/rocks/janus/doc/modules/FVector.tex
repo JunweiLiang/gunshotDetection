@@ -1,0 +1,90 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{FVector}}
+
+This section describes the '\Jgloss{FVector}': \textsl{Vector of float values}
+
+\begin{description}
+
+  \item[Creation:] \texttt{FVector  $<$name$>$ $<$vector$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{vector}} & @filename or name or definition \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{fvector configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{FVector}{-count} & = 0.000000 \\
+      \Jlabel{FVector}{-n} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{fvector}
+
+    \begin{description}
+      \Jitem{\Jlabel{FVector}{:=}} \texttt{ $<$fvector$>$} \
+
+        assign vector (equiv. to 'copy')
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fvector}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{add}} \texttt{ $<$a$>$ $<$fvectorA$>$ $<$b$>$ $<$fvectorB$>$ \Jsb{-mode mode}} \
+
+        add two vectors
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{a}} &           \\
+ \texttt{\textbf{fvectorA}} &  \\
+ \texttt{\textbf{b}} &           \\
+ \texttt{\textbf{fvectorB}} &  \\
+ \texttt{\textbf{mode}} &       mode 0, 1 or -1 for dimension(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{bload}} \texttt{ $<$filename$>$} \
+
+        load vector from binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{bsave}} \texttt{ $<$filename$>$} \
+
+        save vector to binary file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &    \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{copy}} \texttt{ $<$fvector$>$} \
+
+        copy vector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fvector}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{norm}} \texttt{} \
+
+        norm of the vector
+
+      \Jitem{\Jlabel{FVector}{puts}} \texttt{ \Jsb{-format format} \Jsb{-middle middle}} \
+
+        print vector as TCL list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  format string  \\
+ \texttt{\textbf{middle}} &  between coefficients  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FVector}{resize}} \texttt{ $<$dimension$>$} \
+
+        resize vector
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{dimension}} &    \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

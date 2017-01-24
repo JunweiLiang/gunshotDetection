@@ -1,0 +1,78 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CBNewStream}}
+
+This section describes the '\Jgloss{CBNewStream}': \textsl{Stream based on extended codebooks (CBNew)}
+
+\begin{description}
+
+  \item[Creation:] \texttt{CBNewStream  $<$name$>$ $<$cbnewSet$>$ $<$tree$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+ \texttt{\textbf{cbnewSet}} &  codebook set (\Jref{module}{CBNewSet}) \\
+ \texttt{\textbf{tree}} &      model tree (\Jref{module}{Tree}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{cbnewstream configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CBNewStream}{-cbnewSet} & = cbnewset \\
+      \Jlabel{CBNewStream}{-name} & = cbnewstream \\
+      \Jlabel{CBNewStream}{-tree} & = cbsdt \\
+      \Jlabel{CBNewStream}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{cbnewstream}
+
+    \begin{description}
+      \Jitem{\Jlabel{CBNewStream}{accu}} \texttt{} \
+
+        accumulate sufficient statistic
+
+      \Jitem{\Jlabel{CBNewStream}{get}} \texttt{ $<$node$>$ $<$tagged phones$>$ $<$leftContext$>$ $<$rightContext$>$ \Jsb{-node node}} \
+
+        returns a codebook given a tagged phone sequence
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{node}} &           root node \\
+ \texttt{\textbf{tagged phones}} &  list of tagged phones \\
+ \texttt{\textbf{leftContext}} &    left  context  \\
+ \texttt{\textbf{rightContext}} &   right context  \\
+ \texttt{\textbf{node}} &            want node name (0/1)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewStream}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewStream}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed codebooks
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{CBNewStream}{update}} \texttt{} \
+
+        update parameters
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cbnewSet}} & (\Jref{module}{CBNewSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{CBNew}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,46 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{WordGraph}}
+
+This section describes the '\Jgloss{WordGraph}': \textsl{WordGraph}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{WordGraph} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{HMM}!
+
+\vspace{3mm} \item[Methods:] \texttt{wordgraph}
+
+    \begin{description}
+      \Jitem{\Jlabel{WordGraph}{lattice}} \texttt{ $<$lattice$>$} \
+
+        create WordGraph from lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lattice}} &  Verbmobil style lattice  \\
+      \end{tabular}
+      \Jitem{\Jlabel{WordGraph}{make}} \texttt{ $<$words$>$ \Jsb{-trans trans} \Jsb{-init init} \Jsb{-optWord optword} \Jsb{-variants variants}} \
+
+        create WordGraph
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{words}} &    list of word nodes \\
+ \texttt{\textbf{trans}} &     transition model  \\
+ \texttt{\textbf{init}} &      initial states \\
+ \texttt{\textbf{optword}} &   optional word \\
+ \texttt{\textbf{variants}} &  pronunciation variants  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{amodelSet}} & (\Jref{module}{AModelSet}) \\
+      \texttt{\textbf{dictionary}} & (\Jref{module}{Dictionary}) \\
+      \texttt{\textbf{phoneGraph(0..2)}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,93 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{LingKS}}
+
+This section describes the '\Jgloss{LingKS}': \textsl{Generic Linguistic Knowledge Source:}
+
+\begin{description}
+
+  \item[Creation:] \texttt{LingKS  $<$name$>$ $<$type$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &  name of the linguistic knowledge source  \\
+ \texttt{\textbf{type}} &  Kind of LingKS: NGramLM|PhraseLM|MetaLM|CFG|CFGSet  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{lingks configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{LingKS}{-dirty} & = 1 \\
+      \Jlabel{LingKS}{-gInterpol} & = 0 \\
+      \Jlabel{LingKS}{-name} & = c \\
+      \Jlabel{LingKS}{-type} & = CFGSet \\
+      \Jlabel{LingKS}{-useN} & = 1 \\
+      \Jlabel{LingKS}{-weight} & = 0.000000 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{lingks}
+
+    \begin{description}
+      \Jitem{\Jlabel{LingKS}{index}} \texttt{ $<$word$>$} \
+
+        return the internal index of an LingKSItem
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word you want the index for  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LingKS}{load}} \texttt{ $<$fileName$>$} \
+
+        loads an LM-file (dump and generic files)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LingKS}{name}} \texttt{ $<$index$>$} \
+
+        return the name of an LingKSItem
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &  index of element to print  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LingKS}{puts}} \texttt{ \Jsb{-format format}} \
+
+        display the contents of an LingKS
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{format}} &  output format (short, long)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LingKS}{save}} \texttt{ $<$fileName$>$ \Jsb{-pt pt}} \
+
+        create binary dump of LM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{fileName}} &  file name  \\
+ \texttt{\textbf{pt}} &         dump also parse tree and rule stack  \\
+      \end{tabular}
+      \Jitem{\Jlabel{LingKS}{score}} \texttt{ $<$word sequence$>$ \Jsb{-idx idx} \Jsb{-array array} \Jsb{-usehistory usehistory} \Jsb{-map map} \Jsb{-startString startstring} \Jsb{-ignoreS ignores}} \
+
+        return the score of a text string
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word sequence}} &  sequence of words  \\
+ \texttt{\textbf{idx}} &             start index for conditional probabilities  \\
+ \texttt{\textbf{array}} &           use ScoreArray, implies idx == n-1  \\
+ \texttt{\textbf{usehistory}} &      use the stored reduced history  \\
+ \texttt{\textbf{map}} &             use vocab mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{startstring}} &     different start string than $<$s$>$  \\
+ \texttt{\textbf{ignores}} &         ignore initial start string in scoring  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{CFGSet}} & (\Jref{module}{CFGSet}) \\
+      \texttt{\textbf{data}} & (\Jref{module}{CFGSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,113 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{SampleSet}}
+
+This section describes the '\Jgloss{SampleSet}': \textsl{containers for samples}
+
+\begin{description}
+
+  \item[Creation:] \texttt{SampleSet  $<$name$>$ $<$featureSet$>$ $<$feature$>$ $<$dimN$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the SampleSet object  \\
+ \texttt{\textbf{featureSet}} &  name of the feature set (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{feature}} &     feature name  \\
+ \texttt{\textbf{dimN}} &        input dimension  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{sampleset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{SampleSet}{-blkSize} & = 100 \\
+      \Jlabel{SampleSet}{-dimN} & = 4 \\
+      \Jlabel{SampleSet}{-featX} & = 0 \\
+      \Jlabel{SampleSet}{-featureSet} & = featureSetISLci \\
+      \Jlabel{SampleSet}{-indexN} & = 0 \\
+      \Jlabel{SampleSet}{-itemN} & = 0 \\
+      \Jlabel{SampleSet}{-name} & = sampleSetISLci \\
+      \Jlabel{SampleSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{sampleset}
+
+    \begin{description}
+      \Jitem{\Jlabel{SampleSet}{accu}} \texttt{ $<$path$>$ \Jsb{-factor factor} \Jsb{-lh lh} \Jsb{-from from} \Jsb{-to to}} \
+
+        accumulate samples from a path object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &   name of the path object (\Jref{module}{Path}) \\
+ \texttt{\textbf{factor}} &  training factor  \\
+ \texttt{\textbf{lh}} &      distribSet for lh accumulation (\Jref{module}{DistribSet}) \\
+ \texttt{\textbf{from}} &    start frame  \\
+ \texttt{\textbf{to}} &      end   frame  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{add}} \texttt{ $<$name$>$ \Jsb{-filename filename} \Jsb{-featX featx} \Jsb{-dimN dimn} \Jsb{-size size} \Jsb{-mod mod} \Jsb{-lhdss lhdss}} \
+
+        add a new SampleSet class to the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &     name of the class  \\
+ \texttt{\textbf{filename}} &  name of the dump file  \\
+ \texttt{\textbf{featx}} &     index of the feature to use  \\
+ \texttt{\textbf{dimn}} &      this feature's number of dimensions  \\
+ \texttt{\textbf{size}} &      use buffer of the given size  \\
+ \texttt{\textbf{mod}} &       use only every -mod-th vector  \\
+ \texttt{\textbf{lhdss}} &     distrib set for likelihood accumulation (\Jref{module}{DistribSet}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{clear}} \texttt{} \
+
+        clear accumulation buffers
+
+      \Jitem{\Jlabel{SampleSet}{delete}} \texttt{ $<$item$>$} \
+
+        remove SampleSet class from the set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{flush}} \texttt{} \
+
+        flush accumulation buffers to file
+
+      \Jitem{\Jlabel{SampleSet}{index}} \texttt{ $<$names*$>$} \
+
+        returns indices of named SampleSet classes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{map}} \texttt{ $<$index$>$ \Jsb{-class class}} \
+
+        add/get index to class mapping information
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{index}} &  index to map  \\
+ \texttt{\textbf{class}} &   name of the class \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{name}} \texttt{ $<$idx*$>$} \
+
+        returns names of indexed SampleSet classes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{SampleSet}{showmap}} \texttt{} \
+
+        display class mapping information
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{featureSet}} & (\Jref{module}{FeatureSet}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

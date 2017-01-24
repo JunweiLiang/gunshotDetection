@@ -1,0 +1,97 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{TopoSet}}
+
+This section describes the '\Jgloss{TopoSet}': \textsl{A 'TopoSet' object is a set of different topologies.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{TopoSet  $<$name$>$ $<$SenoneSet$>$ $<$TmSet$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &       name of the topo set  \\
+ \texttt{\textbf{SenoneSet}} &  senone set (\Jref{module}{SenoneSet}) \\
+ \texttt{\textbf{TmSet}} &      set of transition models (\Jref{module}{TmSet}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{toposet configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{TopoSet}{-blkSize} & = 20 \\
+      \Jlabel{TopoSet}{-commentChar} & = ; \\
+      \Jlabel{TopoSet}{-itemN} & = 1 \\
+      \Jlabel{TopoSet}{-senoneSet} & = senoneSetISLci \\
+      \Jlabel{TopoSet}{-tmSet} & = tmSetISLci \\
+      \Jlabel{TopoSet}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{toposet}
+
+    \begin{description}
+      \Jitem{\Jlabel{TopoSet}{add}} \texttt{ $<$name$>$ $<$senoneTag*$>$ $<$tmSet*$>$} \
+
+        add a new topo to a TopoSet object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of topology  \\
+ \texttt{\textbf{senoneTag*}} & sequence to senonic tree nodes \\
+ \texttt{\textbf{tmSet*}} & sequence to transitions \\
+      \end{tabular}
+      \Jitem{\Jlabel{TopoSet}{delete}} \texttt{ $<$item$>$} \
+
+        remove a topo from a TopoSet object
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{item}} &  name of item in list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{TopoSet}{index}} \texttt{ $<$names*$>$} \
+
+        return the index of a named topo
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{TopoSet}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of an indexed topo
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{TopoSet}{puts}} \texttt{} \
+
+        displays the contents of a TopoSet object
+
+      \Jitem{\Jlabel{TopoSet}{read}} \texttt{ $<$filename$>$} \
+
+        read TopoSet from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of topo set file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{TopoSet}{write}} \texttt{ $<$filename$>$} \
+
+        write TopoSet into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of topoSet file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{senoneSet}} & (\Jref{module}{SenoneSet}) \\
+      \texttt{\textbf{tmSet}} & (\Jref{module}{TmSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Topo}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

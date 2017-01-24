@@ -1,0 +1,86 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Tags}}
+
+This section describes the '\Jgloss{Tags}': \textsl{A 'Tags' object is an array of strings.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Tags  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{tags configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Tags}{-blkSize} & = 10 \\
+      \Jlabel{Tags}{-commentChar} & = ; \\
+      \Jlabel{Tags}{-itemN} & = 1 \\
+      \Jlabel{Tags}{-modMask} & = 1 \\
+      \Jlabel{Tags}{-useN} & = 11 \\
+      \Jlabel{Tags}{-wordBeginTag} & = WB \\
+      \Jlabel{Tags}{-wordEndTag} & = WE \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{tags}
+
+    \begin{description}
+      \Jitem{\Jlabel{Tags}{add}} \texttt{ $<$tag*$>$} \
+
+        add new tag(s) to a tags-set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tag*}} & list of tags \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tags}{delete}} \texttt{ $<$tag*$>$} \
+
+        delete tag(s) from a tags-set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{tag*}} & list of tags \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tags}{index}} \texttt{} \
+
+        return index of named tag(s)
+
+      \Jitem{\Jlabel{Tags}{name}} \texttt{} \
+
+        return the name of indexed tag(s)
+
+      \Jitem{\Jlabel{Tags}{puts}} \texttt{} \
+
+        displays the contents of a tags-set
+
+      \Jitem{\Jlabel{Tags}{read}} \texttt{ $<$filename$>$} \
+
+        read a tag-set from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of tags file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Tags}{write}} \texttt{ $<$filename$>$} \
+
+        write a tag-set into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of tags file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{Tag}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

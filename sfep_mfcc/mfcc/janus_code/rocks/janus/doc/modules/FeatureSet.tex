@@ -1,0 +1,1324 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{FeatureSet}}
+
+This section describes the '\Jgloss{FeatureSet}': \textsl{set of features}
+
+\begin{description}
+
+  \item[Creation:] \texttt{FeatureSet  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{featureset configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{FeatureSet}{-adcByteOrder} & = auto \\
+      \Jlabel{FeatureSet}{-adcHeader} & = auto \\
+      \Jlabel{FeatureSet}{-byteModeIn} & = 1 \\
+      \Jlabel{FeatureSet}{-byteModeOut} & = 1 \\
+      \Jlabel{FeatureSet}{-fadeIn} & = 0 \\
+      \Jlabel{FeatureSet}{-frameShift} & = 10.000000 \\
+      \Jlabel{FeatureSet}{-from} & = 0 \\
+      \Jlabel{FeatureSet}{-name} & = featureSetISLci \\
+      \Jlabel{FeatureSet}{-offset} & = 0 \\
+      \Jlabel{FeatureSet}{-ready} & = 1 \\
+      \Jlabel{FeatureSet}{-runon} & = 0 \\
+      \Jlabel{FeatureSet}{-samplingRate} & = 16.000000 \\
+      \Jlabel{FeatureSet}{-to} & = -1 \\
+      \Jlabel{FeatureSet}{-trans} & = 0 \\
+      \Jlabel{FeatureSet}{-useN} & = 6 \\
+      \Jlabel{FeatureSet}{-verbosity} & = 0 \\
+      \Jlabel{FeatureSet}{-writeHeader} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{featureset}
+
+    \begin{description}
+      \Jitem{\Jlabel{FeatureSet}{CholeskyDecomp}} \texttt{ $<$feature$>$ $<$source$>$} \
+
+        calculates the Cholesky Decomposition
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   adjust this feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{EFVR}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$threshold$>$ \Jsb{-weight weight} \Jsb{-boost boost} \Jsb{-decrease decrease} \Jsb{-shrink shrink} \Jsb{-maxboost maxboost} \Jsb{-thresweight thresweight}} \
+
+        Early Feature Vector Reduction
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{threshold}} &       threshold level for feature reduction  \\
+ \texttt{\textbf{weight}} &           weight feature to be written \\
+ \texttt{\textbf{boost}} &            boost factor for the weights  \\
+ \texttt{\textbf{decrease}} &         decrease of influence of each dimension of feature vector (0=all equal,1= 1/n)  \\
+ \texttt{\textbf{shrink}} &           !=0 means no shrinking of the feature vector, merged fv are duplicated  \\
+ \texttt{\textbf{maxboost}} &         maximum boost factor  \\
+ \texttt{\textbf{thresweight}} &      vector of factors for dynamic threshold level \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{FMatrix}} \texttt{} \
+
+        insert FMatrix type object into feature set
+
+      \Jitem{\Jlabel{FeatureSet}{MVN}} \texttt{ $<$feature$>$ $<$source$>$ $<$mean$>$ $<$smean$>$ $<$alpha$>$ \Jsb{-a a} \Jsb{-weight weight}} \
+
+        mean and variance normalisation with exponential weighting (by FF)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   name of the source feature \\
+ \texttt{\textbf{mean}} &     update mean in FVector object  \\
+ \texttt{\textbf{smean}} &    update mean of squares in FVector object  \\
+ \texttt{\textbf{alpha}} &    exponential weighting factor  \\
+ \texttt{\textbf{a}} &         if (a $>$ 0) a * standard deviation is normalised to 1.0  \\
+ \texttt{\textbf{weight}} &    feature that weights each frame when mean is calculated \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{QWarp}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-WinSize winsize}} \
+
+        feature warping based on CDF matching
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{winsize}} &          window size  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{SVector}} \texttt{} \
+
+        insert SVector type object into feature set
+
+      \Jitem{\Jlabel{FeatureSet}{VTLN}} \texttt{ $<$feature$>$ $<$source$>$ $<$ratio$>$ \Jsb{-min min} \Jsb{-max max} \Jsb{-edge edge} \Jsb{-mod mod}} \
+
+        Vocal Tract Length Normalization (VTLN)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   name of the source feature \\
+ \texttt{\textbf{ratio}} &    warping factor  \\
+ \texttt{\textbf{min}} &       max warping factor  \\
+ \texttt{\textbf{max}} &       min warping factor  \\
+ \texttt{\textbf{edge}} &      edge point for piecewise warping  \\
+ \texttt{\textbf{mod}} &       warping modus: lin, nonlin  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{access}} \texttt{} \
+
+        preprocess feature evaluation parameters (featureSetAccess)
+
+      \Jitem{\Jlabel{FeatureSet}{accumulatematrix}} \texttt{ $<$feature$>$ $<$feature$>$ $<$source$>$ \Jsb{-silence silence}} \
+
+        accumulate matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   adjust this feature \\
+ \texttt{\textbf{silence}} &   silence frames marked with 1, otherwise 0 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{adc2mel}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        16 framebased melscale coefficients, 8 and 16 kHz only
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{adc2pow}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased power
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{adc2spec}} \texttt{ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift} \Jsb{-win win} \Jsb{-rea rea} \Jsb{-ima ima} \Jsb{-mag mag} \Jsb{-pha pha} \Jsb{-pow pow} \Jsb{-adc adc} \Jsb{-D d}} \
+
+        framebased spectral analysis
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+ \texttt{\textbf{win}} &              window type [hamming|hanning|tukey|rect]  \\
+ \texttt{\textbf{rea}} &              feature with real part spectrum \\
+ \texttt{\textbf{ima}} &              feature with complex part spectrum \\
+ \texttt{\textbf{mag}} &              feature with magnitude \\
+ \texttt{\textbf{pha}} &              feature with phase \\
+ \texttt{\textbf{pow}} &              feature with power spectrum \\
+ \texttt{\textbf{adc}} &              feature with windowed audio signal \\
+ \texttt{\textbf{d}} &                  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{add}} \texttt{ $<$new\_feature$>$ $<$a$>$ $<$featureA$>$ $<$b$>$ $<$featureB$>$ \Jsb{-mode mode}} \
+
+        add two features: a * featureA + b * featureB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  $<$a$>$ * $<$featureA$>$ + $<$b$>$ * $<$featureB$>$ \\
+ \texttt{\textbf{a}} &              \\
+ \texttt{\textbf{featureA}} &     name of source feature 1 \\
+ \texttt{\textbf{b}} &              \\
+ \texttt{\textbf{featureB}} &     name of source feature 2 \\
+ \texttt{\textbf{mode}} &          mode 0, 1 or -1 for dimension(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{adjacent}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-delta delta}} \
+
+        put adjacent frames together: x(t-delta), x(t+1-delta), ..., x(t+delta)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{delta}} &            delta (in time format)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{alog}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$m$>$ $<$a$>$} \
+
+        m * log(source\_feature + b) with b=max/10\^a
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{m}} &                 \\
+ \texttt{\textbf{a}} &                 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{append}} \texttt{ $<$feature$>$ $<$feature$>$ $<$mode$>$} \
+
+        append frames/ coefficients to the source feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of feature to which the new data is appended \\
+ \texttt{\textbf{feature}} &  name of appending feature \\
+ \texttt{\textbf{mode}} &     append frames/ coeffs (i.e. rows/ columns)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{appendAESVM}} \texttt{ $<$feature$>$ $<$msg$>$ $<$header$>$ $<$trailer$>$} \
+
+        append an ASCII encoded short vector message to an SVector feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of an SVector feature  \\
+ \texttt{\textbf{msg}} &      ascii encoded short vector messgage  \\
+ \texttt{\textbf{header}} &   message header  \\
+ \texttt{\textbf{trailer}} &  message trailer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{aspike}} \texttt{ $<$destin$>$ $<$source$>$ \Jsb{-window window} \Jsb{-width width} \Jsb{-maxslope maxslope} \Jsb{-meanslope meanslope} \Jsb{-thresh thresh} \Jsb{-alpha alpha} \Jsb{-v v}} \
+
+        remove spikes from signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{destin}} &    name of the new feature \\
+ \texttt{\textbf{source}} &    name of the source feature \\
+ \texttt{\textbf{window}} &     window width of median filter ($<$3 = off)  \\
+ \texttt{\textbf{width}} &      max spike width of slope filter ($<$1 = off)  \\
+ \texttt{\textbf{maxslope}} &   max slope of slope filter  \\
+ \texttt{\textbf{meanslope}} &  start mean value of slope filter  \\
+ \texttt{\textbf{thresh}} &     thresh of slope filter  \\
+ \texttt{\textbf{alpha}} &      adaption factor of slope filter  \\
+ \texttt{\textbf{v}} &          verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{audioInit}} \texttt{ \Jsb{-sr sr} \Jsb{-gain gain}} \
+
+        init audio device
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{sr}} &    sampling rate  \\
+ \texttt{\textbf{gain}} &  microphon gain  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{auditory}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-nf nf}} \
+
+        auditory filterbank
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of new feature \\
+ \texttt{\textbf{source\_feature}} &  name of source feature \\
+ \texttt{\textbf{nf}} &               number of filters  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{autocorr}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$coeffN$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        auto correlation
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{coeffN}} &          coeffN  \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{avMagnitude}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift} \Jsb{-mean mean} \Jsb{-log log} \Jsb{-abs abs}} \
+
+        frame based average magnitude
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+ \texttt{\textbf{mean}} &             mean of source feature  \\
+ \texttt{\textbf{log}} &              compute log magnitude  \\
+ \texttt{\textbf{abs}} &              compute absolute value (useful before taking log)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{beepSeg}} \texttt{ $<$feature$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-band band} \Jsb{-thresh thresh} \Jsb{-minDur mindur} \Jsb{-maxInt maxint}} \
+
+        segment (spectral) feature at beeper positions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  (spectral) source feature \\
+ \texttt{\textbf{from}} &      starting frame  \\
+ \texttt{\textbf{to}} &        final frame  \\
+ \texttt{\textbf{band}} &      index of frequency band  \\
+ \texttt{\textbf{thresh}} &    energy threshold value  \\
+ \texttt{\textbf{mindur}} &    minimum duration  \\
+ \texttt{\textbf{maxint}} &    maximum interruption  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{changesub}} \texttt{ $<$feature$>$ $<$adjustto$>$ $<$adjustfrom$>$} \
+
+        change scale of noise for spectral subtraction
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &     name of the new feature \\
+ \texttt{\textbf{adjustto}} &    adjust this feature \\
+ \texttt{\textbf{adjustfrom}} &  adjust from this feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{compress}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$codebookSet$>$ \Jsb{-verbose verbose} \Jsb{-trainMode trainmode}} \
+
+        compress float features to 8bit values
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{codebookSet}} & will need a cbs after a couple of beers (\Jref{module}{CodebookSet}) \\
+ \texttt{\textbf{verbose}} &          verbose  \\
+ \texttt{\textbf{trainmode}} &        store compressed values in orginal feature  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{concat}} \texttt{} \
+
+        concat frames (or samples) of features
+
+      \Jitem{\Jlabel{FeatureSet}{conv}} \texttt{ $<$source\_feature$>$ $<$fmatrix$>$ \Jsb{-gain gain}} \
+
+        convolution with an impulse response
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{fmatrix}} &         impulse resp \\
+ \texttt{\textbf{gain}} &             gain  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{corr}} \texttt{ $<$new\_feature$>$ $<$featureA$>$ $<$featureB$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-step step} \Jsb{-samplestep samplestep} \Jsb{-pad pad}} \
+
+        correlation of two features
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  correlation of $<$featureA$>$ and $<$featureB$>$ \\
+ \texttt{\textbf{featureA}} &     name of source feature 1 \\
+ \texttt{\textbf{featureB}} &     name of source feature 2 \\
+ \texttt{\textbf{from}} &            \\
+ \texttt{\textbf{to}} &              \\
+ \texttt{\textbf{step}} &            \\
+ \texttt{\textbf{samplestep}} &      \\
+ \texttt{\textbf{pad}} &           pad with 0  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{corrMatrix}} \texttt{ $<$feature$>$ $<$source$>$ \Jsb{-normalize normalize}} \
+
+        correlation matrix of features
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &   name of the new feature \\
+ \texttt{\textbf{source}} &    adjust this feature \\
+ \texttt{\textbf{normalize}} &  normalize correlation \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{cut}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$from$>$ $<$to$>$ \Jsb{-select select}} \
+
+        take frames $<$from$>$ .. $<$to$>$ of source feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{from}} &            start  \\
+ \texttt{\textbf{to}} &              end  \\
+ \texttt{\textbf{select}} &           1-dimensional FMatrix feature that selects the parts to be taken \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{delete}} \texttt{} \
+
+        delete a feature
+
+      \Jitem{\Jlabel{FeatureSet}{delta}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-delta delta}} \
+
+        symmetrical delta coefficients: x(t+delta) - x(t-delta)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{delta}} &            delta (in time format)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{display}} \texttt{} \
+
+        displays a feature
+
+      \Jitem{\Jlabel{FeatureSet}{distance}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        frame based distance
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{downsample}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        downsample from 16kHz to 8kHz telephone quality
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{dtcwt}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$filter0a$>$ $<$filter0b$>$ $<$filter1a$>$ $<$filter1b$>$ $<$level$>$ \Jsb{-useLowpass uselowpass}} \
+
+        perform the dual-tree complex wavelet transform according to Kingsbury
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{filter0a}} &        \ the lowpass filters for the first stage of the \\
+ \texttt{\textbf{filter0b}} &        / transform in trees a,b \\
+ \texttt{\textbf{filter1a}} &        \ the lowpass filters for all subsequent stages of the \\
+ \texttt{\textbf{filter1b}} &        / transform, trees a,b \\
+ \texttt{\textbf{level}} &           decomposition level  \\
+ \texttt{\textbf{uselowpass}} &       number of low-pass coefficients to use (0 .. $<$level$>$)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{eval}} \texttt{} \
+
+        run feature description script (featureSetEval)
+
+      \Jitem{\Jlabel{FeatureSet}{exp}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$m$>$ $<$a$>$} \
+
+        m * exp(a * source\_feature)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{m}} &                 \\
+ \texttt{\textbf{a}} &                 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{fft2}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased complex spectrum
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{filter}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$filter$>$ \Jsb{-pad pad}} \
+
+        filter a feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{filter}} &          @filename, name or definition of a filter \\
+ \texttt{\textbf{pad}} &              =0 pad with 0.0, !=0 pad with first \& last value  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{filterbank}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$bmatrix$>$} \
+
+        multiply band matrix A with each frame x of feature: A * x
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{bmatrix}} &         float band matrix \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{findpeaks}} \texttt{ $<$new\_feature$>$ $<$feature$>$ \Jsb{-hz\_min hz\_min} \Jsb{-hz\_max hz\_max} \Jsb{-sr sr}} \
+
+        framebased peak tracker
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  peaks of $<$feature$>$ \\
+ \texttt{\textbf{feature}} &      name of the source feature \\
+ \texttt{\textbf{hz\_min}} &          \\
+ \texttt{\textbf{hz\_max}} &          \\
+ \texttt{\textbf{sr}} &              \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{flip}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        take last frames first
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{formants}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-N n} \Jsb{-fMin fmin} \Jsb{-fMax fmax} \Jsb{-bMax bmax}} \
+
+        extract fromants from lpc
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{n}} &                max. number of formants  \\
+ \texttt{\textbf{fmin}} &             min. formant frequency  \\
+ \texttt{\textbf{fmax}} &             max. formant frequency  \\
+ \texttt{\textbf{bmax}} &             max. formant bandwidth  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{frame}} \texttt{ $<$source\_feature$>$ $<$frame$>$ \Jsb{-format format}} \
+
+        return frame of a feature given a featureSet frame index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{frame}} &           featureSet frame index  \\
+ \texttt{\textbf{format}} &           format string  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{frameN}} \texttt{ $<$feature*$>$} \
+
+        return featureSet frame number given a list of features
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature*}} & list of features \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{fwt}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$filter$>$ $<$level$>$ \Jsb{-useLowpass uselowpass}} \
+
+        perform the fast wavelet tranformation, real decimated case
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{filter}} &          the filter (i.e. the scaling function's coefficients) tho be used \\
+ \texttt{\textbf{level}} &           decomposition level  \\
+ \texttt{\textbf{uselowpass}} &       number of low-pass coefficients to use (0 .. $<$level$>$)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{getdeltasamples}} \texttt{ $<$feature$>$ $<$source$>$ $<$matrix$>$} \
+
+        get delta of samples 4 correlated random variables
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   adjust this feature \\
+ \texttt{\textbf{matrix}} &   LP-COEFF-Matrix \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{getgaussian}} \texttt{ $<$feature\_out$>$ $<$feature\_in$>$ $<$distribSet$>$ \Jsb{-gmm gmm}} \
+
+        return the gaussian with the highest likelihood
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature\_out}} &  name of the new feature \\
+ \texttt{\textbf{feature\_in}} &   feature to be cleaned \\
+ \texttt{\textbf{distribSet}} & enter the DistribSet here (CodebookSet is also loaded) (\Jref{module}{DistribSet}) \\
+ \texttt{\textbf{gmm}} &           name of gmm to be used  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{gradient}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-win win}} \
+
+        compute gradients for a given window length
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &              number of Frames in window  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{impulse}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased impulse reponse
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{index}} \texttt{ $<$names*$>$} \
+
+        get feature index for a given name
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of feature names \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{lin}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$m$>$ $<$a$>$} \
+
+        m * source\_feature + a
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{m}} &                 \\
+ \texttt{\textbf{a}} &                 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{log}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$m$>$ $<$a$>$} \
+
+        m * log(source\_feature + a)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{m}} &                 \\
+ \texttt{\textbf{a}} &                 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{lpc}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$order$>$ \Jsb{-a0 a0}} \
+
+        linear predictive coding
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{order}} &           order  \\
+ \texttt{\textbf{a0}} &               include a0  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{map}} \texttt{ $<$new feature$>$ $<$featureA$>$ $<$featureB$>$ $<$matrix$>$} \
+
+        acoustic mapping
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new feature}} &  estimate for environment 2 \\
+ \texttt{\textbf{featureA}} &     features from environment 1 \\
+ \texttt{\textbf{featureB}} &     probs for each class \\
+ \texttt{\textbf{matrix}} &       FMatrix with shift vectors \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{matmul}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$matrix$>$ \Jsb{-cut cut}} \
+
+        multiply matrix A with each frame x of feature: A * x
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{matrix}} &          FMatrix \\
+ \texttt{\textbf{cut}} &              take first n coefficients  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{maxarg}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-abs abs}} \
+
+        index of maximum value per frame
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{abs}} &              1 for absolute value or 0 for signed values  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{maxpeak}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased maximum of peak to peak
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{mean}} \texttt{ $<$matrix$>$ $<$source$>$ \Jsb{-weight weight} \Jsb{-dev dev} \Jsb{-smean smean} \Jsb{-count count} \Jsb{-update update}} \
+
+        calculate mean and variance
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  mean vector(s) of type FMatrix \\
+ \texttt{\textbf{source}} &  name of the source feature \\
+ \texttt{\textbf{weight}} &   weight frames when calculate mean vector \\
+ \texttt{\textbf{dev}} &      deviation vector(s) of type FMatrix \\
+ \texttt{\textbf{smean}} &    mean of squares vector(s) of type FMatrix \\
+ \texttt{\textbf{count}} &    counts \\
+ \texttt{\textbf{update}} &   update mean and smean with using counts  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{meanarg}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        mean index per frame
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{meansub}} \texttt{ $<$feature$>$ $<$source$>$ \Jsb{-a a} \Jsb{-mean mean} \Jsb{-dev dev} \Jsb{-smean smean} \Jsb{-upMean upmean} \Jsb{-upSMean upsmean} \Jsb{-useup useup} \Jsb{-weight weight} \Jsb{-factor factor} \Jsb{-alpha alpha}} \
+
+        meansubtraction and variance normalisation
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   name of the source feature \\
+ \texttt{\textbf{a}} &         if (a $>$ 0) a * standard deviation is normalised to 1.0  \\
+ \texttt{\textbf{mean}} &      mean vector of type FVector \\
+ \texttt{\textbf{dev}} &       deviation vector of type FVector \\
+ \texttt{\textbf{smean}} &     mean of squares vector of type FVector \\
+ \texttt{\textbf{upmean}} &    update mean in FVector object  \\
+ \texttt{\textbf{upsmean}} &   update mean of squares  in FVector object  \\
+ \texttt{\textbf{useup}} &     1 for: "use updated vectors" or 0 for: "current"  \\
+ \texttt{\textbf{weight}} &    feature that weights each frame when mean is calculated \\
+ \texttt{\textbf{factor}} &    feature that weights each frame when mean is subtracted, a:=0! \\
+ \texttt{\textbf{alpha}} &     adaptation factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{melscale}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        melscale from power spectrum
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{merge}} \texttt{ $<$new\_feature$>$ $<$names*$>$} \
+
+        merge coefficients (interleave samples) of features
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  name of the new feature \\
+ \texttt{\textbf{names*}} & list of source features \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{mix}} \texttt{ $<$source\_feature$>$ $<$source\_feature$>$ \Jsb{-shift shift} \Jsb{-gain gain}} \
+
+        mix with a new signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{shift}} &            shift between features  \\
+ \texttt{\textbf{gain}} &             gain  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{mixn}} \texttt{ $<$feature$>$ $<$source\_features$>$ \Jsb{-filters filters} \Jsb{-ignoreN ignoren} \Jsb{-normalize normalize} \Jsb{-gain gain}} \
+
+        mix n signals
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &          name of the new feature \\
+ \texttt{\textbf{source\_features}} &  list of source features  \\
+ \texttt{\textbf{filters}} &           filters (objects) to apply to signals  \\
+ \texttt{\textbf{ignoren}} &           samples to ignore left/ right  \\
+ \texttt{\textbf{normalize}} &         normalize with number of features  \\
+ \texttt{\textbf{gain}} &              gain  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{mul}} \texttt{ $<$new\_feature$>$ $<$featureA$>$ $<$featureB$>$ \Jsb{-a a} \Jsb{-div div} \Jsb{-mode mode}} \
+
+        multiply two features: a * featureA * featureB
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  $<$a$>$ * $<$featureA$>$ * $<$featureB$>$ \\
+ \texttt{\textbf{featureA}} &     name of source feature 1 \\
+ \texttt{\textbf{featureB}} &     name of source feature 2 \\
+ \texttt{\textbf{a}} &             factor a  \\
+ \texttt{\textbf{div}} &           division instead multiplication  \\
+ \texttt{\textbf{mode}} &          mode 0, 1 or -1 for dimesion(result) =, max or min of input  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{multisteplp}} \texttt{ $<$feature$>$ $<$source$>$ \Jsb{-delay delay} \Jsb{-order order}} \
+
+        calculate multi step linear prediction coefficients
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   adjust this feature \\
+ \texttt{\textbf{delay}} &     delay of linear prediction  \\
+ \texttt{\textbf{order}} &     model order  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{name}} \texttt{ $<$idx*$>$} \
+
+        get feature name for a given index
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of feature indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{noise}} \texttt{ $<$feature$>$ $<$length$>$ \Jsb{-type type} \Jsb{-sr sr} \Jsb{-mean mean} \Jsb{-dev dev} \Jsb{-dim dim}} \
+
+        create noise signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{length}} &   length in time format  \\
+ \texttt{\textbf{type}} &      "uniform" or "normal" distribution  \\
+ \texttt{\textbf{sr}} &        sampling rate in kHz  \\
+ \texttt{\textbf{mean}} &      mean value  \\
+ \texttt{\textbf{dev}} &       deviation value  \\
+ \texttt{\textbf{dim}} &       0 to create a SVector noise feature, $>$0 to create a FMatrix noise feature with $<$dim$>$ channels, (in this case length must be in frames!)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{noiseest}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-method method} \Jsb{-time time} \Jsb{-nrOfBestMins nrofbestmins} \Jsb{-alpha alpha} \Jsb{-overEstimation overestimation} \Jsb{-debug debug}} \
+
+        estimate the noise in a given signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{method}} &           method for noise estimation  \\
+ \texttt{\textbf{time}} &             time length of the window in seconds  \\
+ \texttt{\textbf{nrofbestmins}} &     number of mini-windows  \\
+ \texttt{\textbf{alpha}} &            memory factor for minimum statistic  \\
+ \texttt{\textbf{overestimation}} &   over-estimation factor for minimum statistic  \\
+ \texttt{\textbf{debug}} &            0: no debugging output, 1: print debugging output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{noisered}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$noise\_feature$>$ \Jsb{-alpha alpha} \Jsb{-Rprio\_min rprio\_min} \Jsb{-rprio rprio} \Jsb{-rpost rpost} \Jsb{-debug debug}} \
+
+        Ephraim and Malah Noise Reduction (additive noise reduction)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{noise\_feature}} &   estimated noise \\
+ \texttt{\textbf{alpha}} &            weight for calculation of  the a priori SNR  \\
+ \texttt{\textbf{rprio\_min}} &        min. value for Rprio to adjust residual noise level  \\
+ \texttt{\textbf{rprio}} &            feature with Rprio (in dB) \\
+ \texttt{\textbf{rpost}} &            feature with Rpost (in dB) \\
+ \texttt{\textbf{debug}} &            0: no debugging output, 1: print debugging output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{normalize}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-min min} \Jsb{-max max}} \
+
+        normalize coefficients to range $<$min$>$ .. $<$max$>$
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{min}} &                \\
+ \texttt{\textbf{max}} &                \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{normframe}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-L l} \Jsb{-n n} \Jsb{-add add}} \
+
+        normalize each frame
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{l}} &                Lp norm = (SUM |x[i]|\^p)\^1/p  \\
+ \texttt{\textbf{n}} &                feature to hold norm \\
+ \texttt{\textbf{add}} &              1: take norm as additional coefficient to new feature  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{offset}} \texttt{ $<$destin$>$ $<$source$>$ \Jsb{-alpha alpha} \Jsb{-count count} \Jsb{-offset offset} \Jsb{-mean mean} \Jsb{-smean smean} \Jsb{-a a} \Jsb{-mindev mindev} \Jsb{-delta delta} \Jsb{-upMean upmean} \Jsb{-upSMean upsmean}} \
+
+        remove offset adaptively from signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{destin}} &  name of the new feature \\
+ \texttt{\textbf{source}} &  name of the source feature \\
+ \texttt{\textbf{alpha}} &    adaption factor of offset filter  \\
+ \texttt{\textbf{count}} &    if not 0 then calculate alpha using count of the mean vectors  \\
+ \texttt{\textbf{offset}} &   see -mean (old flag!)  \\
+ \texttt{\textbf{mean}} &     start value for mean  \\
+ \texttt{\textbf{smean}} &    start value for smean  \\
+ \texttt{\textbf{a}} &        a * standard deviation is normalised to 1.0 (if a $>$ 0 and smean given)  \\
+ \texttt{\textbf{mindev}} &   minimal deviation  \\
+ \texttt{\textbf{delta}} &    calculate mean $<$delta$>$ frames/samples ahead  \\
+ \texttt{\textbf{upmean}} &   update mean in FVector object  \\
+ \texttt{\textbf{upsmean}} &  update mean of squares  in FVector object  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{paGetRecorded}} \texttt{} \
+
+        get recorded PortAudio data
+
+      \Jitem{\Jlabel{FeatureSet}{paInfo}} \texttt{ $<$option$>$} \
+
+        info on status, devices, ...
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{option}} &  one of {"devicesIn/Out", "defaultIn/Out", "status", "?"}  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{paPlay}} \texttt{ $<$feature$>$ \Jsb{-device device} \Jsb{-from from} \Jsb{-to to}} \
+
+        start PortAudio playing
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the feature  \\
+ \texttt{\textbf{device}} &    audio device number  \\
+ \texttt{\textbf{from}} &      from (sample no.)  \\
+ \texttt{\textbf{to}} &        to (sample no.)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{paStartRecording}} \texttt{ \Jsb{-device device} \Jsb{-sr sr} \Jsb{-chN chn} \Jsb{-buf buf} \Jsb{-feature feature} \Jsb{-file file}} \
+
+        start PortAudio recording
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{device}} &   audio device number  \\
+ \texttt{\textbf{sr}} &       sampling rate in kHz  \\
+ \texttt{\textbf{chn}} &      number of channels  \\
+ \texttt{\textbf{buf}} &      buffer length (in seconds)  \\
+ \texttt{\textbf{feature}} &  name of the feature(s)  \\
+ \texttt{\textbf{file}} &     name of the file to write (Windows and WAV only)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{paStop}} \texttt{} \
+
+        stop PortAudio playing
+
+      \Jitem{\Jlabel{FeatureSet}{particlefilter}} \texttt{ $<$feature\_out$>$ $<$feature\_in$>$ $<$distribSet$>$ \Jsb{-number number} \Jsb{-fast fast} \Jsb{-variance variance} \Jsb{-refresh refresh} \Jsb{-nio nio} \Jsb{-ARsmoothing arsmoothing} \Jsb{-transcription transcription} \Jsb{-type type} \Jsb{-speech speech} \Jsb{-init init} \Jsb{-delayspec delayspec}} \
+
+        partilce filter spectral enhancement
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature\_out}} &   cleaned feature \\
+ \texttt{\textbf{feature\_in}} &    feature to be cleaned \\
+ \texttt{\textbf{distribSet}} & enter the DistribSet here (CodebookSet is also loaded) (\Jref{module}{DistribSet}) \\
+ \texttt{\textbf{number}} &         number of particles  \\
+ \texttt{\textbf{fast}} &           fast version (skipping every second frame)  \\
+ \texttt{\textbf{variance}} &       variance of the noise propagation \\
+ \texttt{\textbf{refresh}} &        cut of the likelihood  \\
+ \texttt{\textbf{nio}} &            noise intensity offset  \\
+ \texttt{\textbf{arsmoothing}} &    determines smoothing over frames for the dynamic AR matrix  \\
+ \texttt{\textbf{transcription}} &  acoustic model trancription  \\
+ \texttt{\textbf{type}} &           "sia" or "vts"   \\
+ \texttt{\textbf{speech}} &         speech frames marked with 1, otherwise 0 \\
+ \texttt{\textbf{init}} &           initialize particle filter  \\
+ \texttt{\textbf{delayspec}} &      list of delay spectra \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{peak}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased peak distance
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{play}} \texttt{ $<$src\_feature$>$ \Jsb{-sr sr}} \
+
+        play audio
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{src\_feature}} &  feature to play \\
+ \texttt{\textbf{sr}} &            sampling rate in kHz  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{plp}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-o o} \Jsb{-n n}} \
+
+        perceptual linear prediction
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of new feature \\
+ \texttt{\textbf{source\_feature}} &  name of source feature \\
+ \texttt{\textbf{o}} &                filter order  \\
+ \texttt{\textbf{n}} &                number of output coefficients, 0 means order+1  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{postaud}} \texttt{ $<$feature$>$ $<$source\_feature$>$} \
+
+        post processing for auditory filterbank
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of new feature \\
+ \texttt{\textbf{source\_feature}} &  name of source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{pow}} \texttt{ $<$new\_feature$>$ $<$source\_feature$>$ $<$m$>$ $<$a$>$} \
+
+        m * (source\_feature \^ a)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &     name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{m}} &                 \\
+ \texttt{\textbf{a}} &                 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{power}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift} \Jsb{-mean mean}} \
+
+        frame based power
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+ \texttt{\textbf{mean}} &             mean of source feature  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{predictionmatrix}} \texttt{ $<$feature$>$ $<$source$>$ \Jsb{-weight weight}} \
+
+        linear prediction matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   name of the source feature \\
+ \texttt{\textbf{weight}} &    feature that weights each frame when mean is calculated \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{predictionvariance}} \texttt{ $<$feature$>$ $<$source$>$ \Jsb{-silence silence}} \
+
+        calculate variance
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{source}} &   adjust this feature \\
+ \texttt{\textbf{silence}} &   silence frames marked with 1, otherwise 0 \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{puls}} \texttt{ $<$feature$>$ $<$from$>$ $<$to$>$ \Jsb{-value value}} \
+
+        create puls in signals
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{from}} &     start in time format  \\
+ \texttt{\textbf{to}} &       length in time format  \\
+ \texttt{\textbf{value}} &     value of puls  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{rdwt}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$filter$>$ $<$level$>$ \Jsb{-useLowpass uselowpass}} \
+
+        perform the redundant discrete wavelet transform
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{filter}} &          the filter (i.e. the scaling function's coefficients) tho be used \\
+ \texttt{\textbf{level}} &           decomposition level  \\
+ \texttt{\textbf{uselowpass}} &       number of low-pass coefficients to use (0 .. $<$level$>$)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{read}} \texttt{} \
+
+        read feature file
+
+      \Jitem{\Jlabel{FeatureSet}{readADC}} \texttt{ $<$feature$>$ $<$filename$>$ \Jsb{-hm hm} \Jsb{-bm bm} \Jsb{-f f} \Jsb{-chX chx} \Jsb{-chN chn} \Jsb{-from from} \Jsb{-to to} \Jsb{-sr sr} \Jsb{-offset offset} \Jsb{-fadeIn fadein} \Jsb{-v v} \Jsb{-startFile startfile} \Jsb{-readyFile readyfile} \Jsb{-sleep sleep} \Jsb{-rmFiles rmfiles}} \
+
+        read ADC file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &   name of the new feature \\
+ \texttt{\textbf{filename}} &  name of ADC file  \\
+ \texttt{\textbf{hm}} &         header mode, kind or size in byte  \\
+ \texttt{\textbf{bm}} &         byte mode  \\
+ \texttt{\textbf{f}} &          1 =$>$ skip unnecessary bytes when reading  \\
+ \texttt{\textbf{chx}} &        selected channel: 1..chN  \\
+ \texttt{\textbf{chn}} &        number of channels  \\
+ \texttt{\textbf{from}} &       from  \\
+ \texttt{\textbf{to}} &         to  \\
+ \texttt{\textbf{sr}} &         sampling rate in kHz  \\
+ \texttt{\textbf{offset}} &     subtract offset  \\
+ \texttt{\textbf{fadein}} &     fade in  \\
+ \texttt{\textbf{v}} &          verbosity  \\
+ \texttt{\textbf{startfile}} &  runon: name of start file  \\
+ \texttt{\textbf{readyfile}} &  runon: name of ready file  \\
+ \texttt{\textbf{sleep}} &      runon: time to wait before next try  \\
+ \texttt{\textbf{rmfiles}} &    runon: remove files  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{readhtk}} \texttt{} \
+
+        read HTK feature file
+
+      \Jitem{\Jlabel{FeatureSet}{recordGet}} \texttt{ $<$feature$>$ \Jsb{-stop stop} \Jsb{-device device}} \
+
+        get new audio data after starting with 'recordStart'
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new (recorded) feature \\
+ \texttt{\textbf{stop}} &      stop recording  \\
+ \texttt{\textbf{device}} &    audio device  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{recordStart}} \texttt{ $<$feature$>$ \Jsb{-sr sr}} \
+
+        start audio recording (see also 'recordGet')
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new (recorded) feature \\
+ \texttt{\textbf{sr}} &        sampling rate in HZ  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{reorder}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-nextDestin nextdestin} \Jsb{-nextSource nextsource}} \
+
+        reorder entries in feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{nextdestin}} &       name of the new feature \\
+ \texttt{\textbf{nextsource}} &       name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{replace}} \texttt{ $<$feature$>$ $<$feature$>$ $<$from$>$} \
+
+        replace frames starting at $<$from$>$ of source feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of feature to replace \\
+ \texttt{\textbf{feature}} &  name of replacing feature \\
+ \texttt{\textbf{from}} &     start  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{resample}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$rate/shift$>$ \Jsb{-style style} \Jsb{-order order}} \
+
+        resample audiosignal changing sampling rate
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{rate/shift}} & new sampling rate in kHz for SVector or new shift in ms for FMatrix  \\
+ \texttt{\textbf{style}} &            'lin' or 'si' (short only!)  \\
+ \texttt{\textbf{order}} &            order for 'si'  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{setAccess}} \texttt{ @$<$filename$>$|$<$command$>$} \
+
+        read a 'File Access Description'
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{@filename|command}} & @ and name of 'Feature Description File' or Tcl command  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{setDesc}} \texttt{ @$<$filename$>$|$<$command$>$} \
+
+        read a 'Feature Description'
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{@filename|command}} & @ and name of 'Feature Description' or Tcl command  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{shift}} \texttt{ $<$feature$>$ $<$source\_feature$>$ \Jsb{-delta delta}} \
+
+        shift frames: x(t+delta)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{delta}} &            delta (in time format)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{show}} \texttt{ $<$FeatureSet$>$ $<$Feature$>$ \Jsb{-width width} \Jsb{-height height}} \
+
+        show feature set (featshow)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{FeatureSet}} & FeatureSet to use (\Jref{module}{FeatureSet}) \\
+ \texttt{\textbf{Feature}} &    name of feature to display  \\
+ \texttt{\textbf{width}} &       width of window  \\
+ \texttt{\textbf{height}} &      height of window  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{silDetCF}} \texttt{ $<$feature$>$ $<$magnitude$>$ $<$zeroX$>$ \Jsb{-magnitudeFactor magnitudefactor} \Jsb{-zeroFactor zerofactor} \Jsb{-smoothPasses smoothpasses} \Jsb{-smoothLength smoothlength} \Jsb{-minSilLength minsillength} \Jsb{-minZeroLength minzerolength}} \
+
+        Christian Fuegen's Silence Detection
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{magnitude}} &       log magnitude (magnitude or power see -feType) \\
+ \texttt{\textbf{zeroX}} &           zero crossing feature \\
+ \texttt{\textbf{magnitudefactor}} &  factor to multiply the magnitude threshold  \\
+ \texttt{\textbf{zerofactor}} &       factor to multiply the zeroX threshold  \\
+ \texttt{\textbf{smoothpasses}} &     passes to smooth  \\
+ \texttt{\textbf{smoothlength}} &     smooth length (odd number)  \\
+ \texttt{\textbf{minsillength}} &     minimum number of frames for a silence  \\
+ \texttt{\textbf{minzerolength}} &    minimum number of frames for which the zeroX must exceed the threshold  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{silSeg}} \texttt{ $<$feature$>$ \Jsb{-from from} \Jsb{-to to} \Jsb{-band band} \Jsb{-thresh thresh} \Jsb{-minDur mindur} \Jsb{-maxInt maxint}} \
+
+        segment (spectral) feature at silence positions
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  (spectral) source feature \\
+ \texttt{\textbf{from}} &      starting frame  \\
+ \texttt{\textbf{to}} &        final frame  \\
+ \texttt{\textbf{band}} &      index of frequency band  \\
+ \texttt{\textbf{thresh}} &    energy threshold value  \\
+ \texttt{\textbf{mindur}} &    minimum duration  \\
+ \texttt{\textbf{maxint}} &    maximum interruption  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{silTK}} \texttt{ $<$feature$>$ $<$power$>$ $<$ptp$>$ \Jsb{-minPower minpower} \Jsb{-maxPower maxpower}} \
+
+        T.Kemp's silence feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{power}} &    name of power feature \\
+ \texttt{\textbf{ptp}} &      name of ptp feature \\
+ \texttt{\textbf{minpower}} &  mean of the most silent frames  \\
+ \texttt{\textbf{maxpower}} &  mean of loudest frames  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{snr}} \texttt{ $<$source\_feature$>$ $<$silence\_feature$>$ \Jsb{-silSub silsub} \Jsb{-mean mean}} \
+
+        signal to noise ratio of feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &   name of the source feature \\
+ \texttt{\textbf{silence\_feature}} &  silence feature (1/0) \\
+ \texttt{\textbf{silsub}} &            subtract the silence from speech Energy  \\
+ \texttt{\textbf{mean}} &              mean of source feature  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{snrK}} \texttt{ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift} \Jsb{-mean mean} \Jsb{-kmeansIterN kmeansitern}} \
+
+        signal to noise ratio of feature (kmeans)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+ \texttt{\textbf{mean}} &             mean of source feature  \\
+ \texttt{\textbf{kmeansitern}} &      number of iterations of kmeans  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{spec2adc}} \texttt{ $<$feature$>$ $<$source\_feature1$>$ $<$source\_feature2$>$ \Jsb{-win win} \Jsb{-sr sr} \Jsb{-D d}} \
+
+        audio signal reconstruction from spectrum
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &          name of the new feature \\
+ \texttt{\textbf{source\_feature1}} &  magnitude \\
+ \texttt{\textbf{source\_feature2}} &  phase \\
+ \texttt{\textbf{win}} &               window type [tukey|none]  \\
+ \texttt{\textbf{sr}} &                sampling rate in kHz  \\
+ \texttt{\textbf{d}} &                   \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{specadj}} \texttt{ $<$feature$>$ $<$adjustto$>$ $<$adjustfrom$>$ \Jsb{-smooth smooth} \Jsb{-show show}} \
+
+        adjust first spectrum to max of second spectrum
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &     name of the new feature \\
+ \texttt{\textbf{adjustto}} &    adjust this feature \\
+ \texttt{\textbf{adjustfrom}} &  adjust from this feature \\
+ \texttt{\textbf{smooth}} &       smooth the adjust from feature (0,1,2,3,4)  \\
+ \texttt{\textbf{show}} &         "on" or "off"   \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{specest}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$order$>$ \Jsb{-type type} \Jsb{-warp warp} \Jsb{-sensibility sensibility} \Jsb{-lpmethod lpmethod} \Jsb{-correlate correlate} \Jsb{-compensate compensate}} \
+
+        spectral estimation: lp wlp, mvdr or wmvdr
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{order}} &           order  \\
+ \texttt{\textbf{type}} &             "LP" or "MVDR" or "MVDR.rewarp"   \\
+ \texttt{\textbf{warp}} &             warp  \\
+ \texttt{\textbf{sensibility}} &      sensibility  \\
+ \texttt{\textbf{lpmethod}} &         "autocorrelation" or "modcovarianz" or "burg" or "warp"   \\
+ \texttt{\textbf{correlate}} &        needed for burg and modcovariance  \\
+ \texttt{\textbf{compensate}} &       compensate for the amplitute change in rewarp  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{specsub}} \texttt{ $<$new feature$>$ $<$featureA$>$ $<$featureB$>$ \Jsb{-a a} \Jsb{-b b}} \
+
+        Spectral Subtraction after Boll (additive noise reduction)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new feature}} &  spectral subtraction after Boll with estimated noise \\
+ \texttt{\textbf{featureA}} &     spectral feature \\
+ \texttt{\textbf{featureB}} &     estimated noise \\
+ \texttt{\textbf{a}} &             overestimation factor alpha  \\
+ \texttt{\textbf{b}} &             spectral floor beta  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{specsublog}} \texttt{ $<$feature$>$ $<$adjustto$>$ $<$adjustfrom$>$} \
+
+        logarithmic spectral subtraction (log10)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &     name of the new feature \\
+ \texttt{\textbf{adjustto}} &    adjust this feature \\
+ \texttt{\textbf{adjustfrom}} &  adjust from this feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{specsublog1}} \texttt{ $<$feature$>$ $<$adjustto$>$ $<$adjustfrom$>$} \
+
+        logarithmic spectral subtraction (log1)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &     name of the new feature \\
+ \texttt{\textbf{adjustto}} &    adjust this feature \\
+ \texttt{\textbf{adjustfrom}} &  adjust from this feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{spectrum}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased power spectrum
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{speechDetect}} \texttt{} \
+
+        speech detector based on gaussian mixture (speechDetect)
+
+      \Jitem{\Jlabel{FeatureSet}{split}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$from$>$ $<$to$>$} \
+
+        take coefficients $<$from$>$ .. $<$to$>$ of source feature
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{from}} &              \\
+ \texttt{\textbf{to}} &                \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{thresh}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$value$>$ $<$thresh$>$ $<$mode$>$} \
+
+        set coefficients to a specified value if they exceed a threshold
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{value}} &             \\
+ \texttt{\textbf{thresh}} &            \\
+ \texttt{\textbf{mode}} &              \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{tone}} \texttt{ $<$feature$>$ $<$vector$>$ \Jsb{-g g} \Jsb{-sr sr} \Jsb{-attack attack} \Jsb{-peak peak} \Jsb{-decay decay} \Jsb{-release release} \Jsb{-amA ama} \Jsb{-amF amf} \Jsb{-fmA fma} \Jsb{-fmF fmf} \Jsb{-sound sound}} \
+
+        create audio signals
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &  name of the new feature \\
+ \texttt{\textbf{vector}} &   vector with "$<$length\_ms$>$ $<$pitch\_Hz$>$ ..." \\
+ \texttt{\textbf{g}} &         gain  \\
+ \texttt{\textbf{sr}} &        sampling rate in kHz  \\
+ \texttt{\textbf{attack}} &    attack time in ms  \\
+ \texttt{\textbf{peak}} &      relative peak  \\
+ \texttt{\textbf{decay}} &     decay time in ms  \\
+ \texttt{\textbf{release}} &   release time in ms  \\
+ \texttt{\textbf{ama}} &       AM amplitude in \%\%  \\
+ \texttt{\textbf{amf}} &       AM frequency in Hz  \\
+ \texttt{\textbf{fma}} &       FM frequency shift in 0.01\%\%  \\
+ \texttt{\textbf{fmf}} &       FM frequency in Hz  \\
+ \texttt{\textbf{sound}} &     sound \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{traceScatter}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$class$>$ \Jsb{-numberofclasses numberofclasses}} \
+
+        return the trace of the scatter matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{class}} &           frame belongs to class \\
+ \texttt{\textbf{numberofclasses}} &  define number of classes  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{varss}} \texttt{ $<$source\_feature$>$} \
+
+        variance of the speech signal
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{write}} \texttt{} \
+
+        write feature file
+
+      \Jitem{\Jlabel{FeatureSet}{writeADC}} \texttt{ $<$source\_feature$>$ $<$filename$>$ \Jsb{-hm hm} \Jsb{-bm bm} \Jsb{-from from} \Jsb{-to to} \Jsb{-append append} \Jsb{-v v}} \
+
+        write ADC file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{filename}} &        file to write  \\
+ \texttt{\textbf{hm}} &               header kind or "" for no header  \\
+ \texttt{\textbf{bm}} &               byte mode  \\
+ \texttt{\textbf{from}} &             from  \\
+ \texttt{\textbf{to}} &               to  \\
+ \texttt{\textbf{append}} &           append to file  \\
+ \texttt{\textbf{v}} &                verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{xtalk}} \texttt{ $<$new\_feature$>$ $<$channelA$>$ $<$channelB$>$ \Jsb{-L l} \Jsb{-shift shift} \Jsb{-u u} \Jsb{-sf sf} \Jsb{-alpha alpha} \Jsb{-thr1 thr1} \Jsb{-thr2 thr2} \Jsb{-xpow1 xpow1} \Jsb{-xpow2 xpow2} \Jsb{-pshift pshift} \Jsb{-forget forget} \Jsb{-min min} \Jsb{-ac ac} \Jsb{-adap adap} \Jsb{-infA infa} \Jsb{-infF inff}} \
+
+        remove crosstalk with an adaptive filter
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{new\_feature}} &  name of filtered channel A \\
+ \texttt{\textbf{channelA}} &     channel with xtalk \\
+ \texttt{\textbf{channelB}} &     channel causing xtalk \\
+ \texttt{\textbf{l}} &             number of filter weights  \\
+ \texttt{\textbf{shift}} &         shift of the input samples  \\
+ \texttt{\textbf{u}} &             filter convergence factor  \\
+ \texttt{\textbf{sf}} &            adaptiv shift factor  \\
+ \texttt{\textbf{alpha}} &         power estimate factor  \\
+ \texttt{\textbf{thr1}} &          power ratio activating the adaptation  \\
+ \texttt{\textbf{thr2}} &          power ratio deactivating the adaptation  \\
+ \texttt{\textbf{xpow1}} &         xtalk power threshold activating the adaptation  \\
+ \texttt{\textbf{xpow2}} &         xtalk power threshold deactivating the adaptation  \\
+ \texttt{\textbf{pshift}} &        shift of the power window  \\
+ \texttt{\textbf{forget}} &        forget weights with (1.0 - forget) when not adapted  \\
+ \texttt{\textbf{min}} &           take minimum(original,filter) as output, boolean  \\
+ \texttt{\textbf{ac}} &            adaption counter  \\
+ \texttt{\textbf{adap}} &          feature telling when to do adaptation \\
+ \texttt{\textbf{infa}} &          feature showing when was adapted \\
+ \texttt{\textbf{inff}} &          feature showing filter coefficients \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{zero}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift}} \
+
+        framebased zero crossing rate / sec
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+      \end{tabular}
+      \Jitem{\Jlabel{FeatureSet}{zeroX}} \texttt{ $<$feature$>$ $<$source\_feature$>$ $<$win$>$ \Jsb{-shift shift} \Jsb{-mean mean} \Jsb{-log log}} \
+
+        frame based zero crossing
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{feature}} &         name of the new feature \\
+ \texttt{\textbf{source\_feature}} &  name of the source feature \\
+ \texttt{\textbf{win}} &             window size  \\
+ \texttt{\textbf{shift}} &            shift  \\
+ \texttt{\textbf{mean}} &             mean of source feature  \\
+ \texttt{\textbf{log}} &              compute log magnitude  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

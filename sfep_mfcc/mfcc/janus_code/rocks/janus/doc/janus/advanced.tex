@@ -1,0 +1,640 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of advanced training
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Hagen Soltau & many others
+%%  Module  :  advanced.tex
+%%  Date    :  $Id: advanced.tex 2484 2004-08-16 16:12:32Z metze $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.4  2004/08/16 16:12:02  metze
+%%   Additions for P014 by Florian
+%%
+%%   Revision 1.3  2003/12/17 12:59:48  metze
+%%   Spelling
+%%
+%%   Revision 1.2  2003/08/14 11:19:03  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.6  2002/11/21 16:16:40  metze
+%%   Pre-P012
+%%
+%%   Revision 1.1.2.5  2002/11/05 12:21:10  metze
+%%   Reorganization of basic and advanced training
+%%
+%%   Revision 1.1.2.4  2002/10/11 07:37:48  metze
+%%   Changeds labels for lib2tex.tcl
+%%
+%%   Revision 1.1.2.3  2002/10/04 13:31:27  metze
+%%   More docu
+%%
+%%   Revision 1.1.2.2  2002/08/29 16:56:53  soltau
+%%   Added VTLN,SAT,FSA,STC,merge&split
+%%
+%%   Revision 1.1.2.1  2002/08/27 17:29:42  soltau
+%%   Initial version
+%%
+%%
+%% ========================================================================
+
+\section{Advanced Training} \label{janus:advanced}
+
+In this section, we assume that you  already have some experience with
+the JANUS  object interface  and the   Tcl-Library. To run   some more
+advanced  experiments you will probably  use funtions from the library
+directly without making  use of the  script collection  as it  was the
+case in the previous section.
+
+\subsection{Flexible Transcriptions}
+
+Given a transcription for a utterance, a corresponding \Jref{module}{HMM} can be build, e.g.
+
+\begin{verbatim}
+% hmmX3 make "OH I SEE UH-HUH"
+% hmmX3.phoneGraph puts
+% OW AY S IY AH HH AH
+\end{verbatim}
+
+However, if you have to deal with conversational speech, your training
+transcriptions might  be not accurate, or  background noises occur. To
+deal  with such effects, you can  insert optional words  into the HMM,
+skip   certain      words,  or even      allow alternative    words or
+pronunciations. By  running the Viterbi algorithm,  the best path will
+be computed according  to the flexible transcription network. Flexible
+transcriptions  can  be   computed  via  the  \Jref{module}{TextGraph}
+object. The  following lines will create a  HMM with  an optional {\em
+NOISE} between each regular word, allowing  alternative words {\em SEE
+/ SAW}, skipping  {\em UH-HUH} optionally,  and allowing pronunciation
+variants.
+
+\begin{verbatim}
+% Textgraph textGraphX3
+% textGraphX3 make "OH I {SEE/SAW} {UH-HUH/@}" -optWord NOISE
+% array set  HMM [textGraphX3]
+% set words $HMM(STATES)
+% set trans $HMM(TRANS)
+% set init  $HMM(INIT)
+% hmmX3 make $words -trans $trans -init $init -variants 1
+\end{verbatim}
+
+\subsection{Vocal Tract Length Normalization}
+
+VTLN  is a known technique  to compensate variations across speaker by
+warping the frequencies. There are  several ways to train VTLN  models
+in JANUS. In  the  following, we  describe a Maximum-Likelihood  based
+variant.  The object \Jref{module}{FeatureSet} has a method {\em VTLN}
+to transform the short-term  power-spectrum features. Given a  certain
+{\em warpfactor},  the function call  in  your feature description may
+look like:
+
+\begin{verbatim}
+$fes VTLN  WFFT  FFT $warpfactor -mod lin -edge 0.8
+\end{verbatim}
+
+To train VTLN  acoustic models, the  Tcl-Library provides functions to
+estimate  warpfactors based on  viterbi alignents. Assuming you have a
+basic system  with a VTLN-capable front-end,  the following lines will
+estimate a warpfactor for each training speaker.
+
+\begin{verbatim}
+vtlnInit X3
+while {[fgets $convLst spk] >= 0} {
+  set w [findViterbiWarp X3 $spk -warp 1.0 -window 8 -delta 0.02]
+  puts "VTLN-Estimation for speaker $spk: $w"
+}
+\end{verbatim}
+
+It's   straightforward to  integrate  the  VTLN   estimation  with the
+standard        training    procedure.       Instead       of    using
+\Jref{proc}{findViterbiWarp}, there   is also  a label   based variant
+\Jref{proc}{findLabelWarp}. If there are warpfactors already available
+and you don't want to reestimate the factors, you can simply just load
+these  warpfactors   from   the   file   by  given  an   argument   to
+\Jref{proc}{vtlnInit}  and  train  with  fixed warpfactors.   The file
+should contain  two words per line, the  first one being a speaker-id,
+the second one being the  warp-factor.  To avoid common problems  with
+training VTLN models, please note the following points:
+
+\begin{enumerate}
+
+\item voiced phones\\
+The VTLN estimation in the functions \Jref{proc}{findViterbiWarp} and 
+\Jref{proc}{findLabelWarp} rely only a certain class of phones. The
+default configuration use  {\em voiced} phones. To provide this
+information, you need to specify a class {\em voiced} in your 
+\Jref{module}{PhonesSet}.
+
+\item Cepstral Mean Substraction\\
+If you use speaker based cepstral mean and variance normalization, 
+the means and variances depend on the warpfactor should therefore
+be jointly estimated.
+
+\end{enumerate}
+
+\subsection{Model space based Speaker Adaptive Training}
+
+Similar to VTLN, the  goal of SAT  is to compensate speaker variations
+during training. SAT uses linear  transforms of the acoustic models to
+explicitely model variations  across speakers. Since the computational
+and memory resources  needed to train SAT model  are much  higher than
+during standard training, we start with initial models and refine them
+by SAT.   First, we need  to create a \Jref{module}{MLAdapt} object to
+estimate MLLR transforms.
+
+\begin{verbatim}
+set mode      2     ; # use full transforms
+set minCount  2500  ; # minimum threshold to update regresion class
+set depth     7     ; # depth of regression tree
+
+codebookSetX3 createAccus
+distribSetX3  createAccus
+
+MLAdapt mlaX3 codebookSetX3 -mode $mode -bmem 1
+foreach cb [codebookSetX3:] { mlaX3 add $cb }
+mlaX3 cluster : [mlaX3 cluster -depth $depth]"
+\end{verbatim}
+% $ keeps emacs happy
+
+Now, the next step is to accumulate  the SAT statistics. The following
+procedure   will     do       this   for      one    speaker       via
+\Jref{proc}{labelUtterance}.  First,  the speaker  independent  models
+will be reset, and the  speaker independent statistics are accumulated
+to estimate MLLR transforms.  Since  only transforms for the means are
+computed,  statistics  for the  distributions are   not needed at this
+point. In  a second  loop  over  all  segments, the speaker  dependent
+statistics  will be accumulated,  followed the accumulation of the SAT
+statistics.
+
+\begin{verbatim}
+
+proc doAccu {spk labelPath cbsfile minCount} {
+
+  # load SI models and clear accus
+  codebookSetX3 load $cbsfile
+  codebookSetX3 clearAccus
+  distribSetX3  clearAccus
+  mlaX3         clearSAT
+
+  # accumulate SI statistics
+  Dscfg configure -accu n
+  foreachSegment utt uttDB $spk {
+    eval set label $labelPath
+    labelUtterance X3 $spk $utt $label
+    senoneSetX3 accu pathX3
+  }
+
+  # compute MLLR transforms
+  mlaX3 update -minCount $minCount
+
+  # accumulate SD statistics
+  codebookSetX3 clearAccus
+  Dscfg configure -accu y
+  foreachSegment utt uttDB $spk {
+    eval set label $labelPath
+    labelUtterance X3 $spk $utt $label
+    senoneSetX3 accu pathX3
+  }
+
+  # accumulate SAT statistics
+  mlaX3 accuSAT 
+}
+
+\end{verbatim}
+% $ keeps emacs happy
+
+Now, we  have  to build  the loop   over all speakers   and do  the ML
+estimation of  the  SAT models.   The  loop over  the speaker  can  be
+parallelized as usual.  To write the SAT accumulators for each client,
+you need  to store a full matrix  for each component. For  example, if
+you have  $150k$ Gaussians with a  feature dimension of $24$, you need
+to store $691$ MB. To reduce the computional  and memory load, you can
+use diagonal transforms instead of full transforms. If you have enough
+memory, you can store and restore the SI models to avoid the reloading
+of the  SI  models from   disc.  Additionally, we recommend that   you
+organize your database to group all conversations for the same speaker
+together. By doing  this, you get  more robust estimates for  the MLLR
+transforms and speed up the training drastically.
+
+\begin{verbatim}
+
+doParallel {
+  while {[fgets $convLst spk] >= 0} { 
+    doAccu $spk $labelPath $cbsfile $minCount 
+   }
+   mlaX3        saveSAT   Accus/clientID.sat.gz
+   distribSetX3 saveAccus Accus/clientID.dsa.gz
+} {
+  codebookSetX3 clearAccus
+  distribSetX3  clearAccus
+  mlaX3         clearSAT 
+  foreach file [glob Accus/*saa.gz] {mlaX3        readSAT   $file}
+  foreach file [glob Accus/*dsa.gz] {distribSetX3 readAccus $file}
+  mlaX3        updateSAT 
+  distribSetX3 update
+  codebookSetX3 save Weights/new.cbs.gz
+  distribSetX3  save Weights/new.dss.gz 
+} {} {} {}
+
+\end{verbatim}
+% $ keeps emacs happy
+
+The decoding  of  SAT models should rely   on {\em adapted}  models of
+course, otherwise  you  will observe   poor recognition  rate due   to
+unmatched model and test data  conditions.  The Adaptation to the test
+data is done analogous to  the first part  of the {\em doAccu} routine
+and can be refined using confidence measures.
+
+\subsection{Feature space based Speaker Adaptive Training} \label{sec:fsat}
+
+Instead of transforming the  models, the features might be transformed
+using  linear transforms during training.  The  advantage is, that the
+statistics to accumulate rely on the  same models and the SAT training
+becomes much more efficient.  Feature space adaptation (FSA)  might be
+viewed   as  a  constrained model   based   transform, where the  same
+transform is used to transform  means and covariances. However, the ML
+estimatation  process of  the  transforms  uses  an integrated  Jacobi
+normalization  which results in a true  feature space transform. Since
+feature  space adaptation is much  faster  than model based transforms
+and can be combined with  Gaussians selection methods (e.g. Bucket Box
+Intersection  BBI), incremental FSA is  very well suited to real-time
+systems.
+
+\begin{verbatim}
+SignalAdapt SignalAdaptX3 senoneSetX3
+SignalAdaptX3 configure -topN 1 -shift 1.0
+foreach ds [distribSetX3] { SignalAdaptX3 add $ds }
+\end{verbatim}
+% $ keeps emacs happy
+
+The Creation of a \Jref{module}{SignalAdapt}  object is based directly
+on the  set  of  senones.   To   apply the transforms,   your  feature
+desciption files needs a line like  this, where {\em transIndex} is an
+index of transform:
+
+\begin{verbatim}
+SignalAdaptX3 adapt $fes:LDA.data $fes:LDA.data $transIndex
+\end{verbatim}
+% $ keeps emacs happy
+
+The estimation process consists of  an accumulation and update  phase.
+The  accumulation for one speaker  using  a forced alignment procedure
+can be written as follows:
+
+\begin{verbatim}
+proc doAccu {spk labelPath accuIndex} {
+  foreachSegment utt uttDB $spk {
+    eval set label $labelPath
+    labelUtterance X3 $spk $utt $label
+    SignalAdaptX3 accu pathX3 $accuIndex
+  }
+}
+\end{verbatim}
+
+Given sufficient statistics stored in the accumulator {\em accuIndex},
+you can now find   an iterative solution  for  the ML estimate of  the
+transform.   Usually,   $10$   iterations    are  enough     to  reach
+convergence. The transform is then stored in {\em transIndex}.
+
+\begin{verbatim}
+SignalAdaptX3 compute $iterations $accuIndex $transIndex
+\end{verbatim}
+% $ keeps emacs happy
+
+These routines can be integrated in the standard training procedure to
+simultaneously update the model and adaptation parameters. Furthermore,
+you can  combine FSA and MLLR to  adapt to test data.  In that case, a
+feature space transform can be estimated at first, and the model based
+transforms then rely on the adapted feature space.
+
+In  an incremental adaptation  scheme, you  might  like to enhance the
+robustness  by combining  the   adaptation data  with   preaccumulated
+statistics. This  can  be achieved  by  using the {\em  addAccu}, {\em
+readAccu},   {\em   writeAccu}, and  {\em   scaleAccu}  methods of the
+\Jref{module}{SignalAdapt}  object.   For example,   you can  generate
+gender and channel  dependent statistics from  the training data which
+are then combined on the fly with the test speaker statistics. To find
+the right modality,  a ML criterium  using a forced aligment procedure
+can be applied.
+
+\subsection{Incremental growing of Gaussians}
+
+In  the previous sections, we   discussed training schemes which start
+with some   initial  models   (typically  generated  by  the   k-means
+algorithm). An alternative approach is to start with one component only, and
+incrementally add parameters  by  splitting  components  according along the
+largest   covariances. As a   result of  this  training procedure, the
+gaussians are  more evenly  distributed and  the parameters  cover the
+acoustic  space  more efficiently. However,   the  convergence of that
+procedure is  slower  and more   training iterations are  needed.  The
+training can be optimized if fixed forced aligments  are used. In that
+case, a full  sample extraction dumps all  data for each state and the
+data has to be loaded only once during the training, which reduces the
+disc  I/O drastically.  The  sample  extraction can  be done using {\em
+samples.tcl} from the script collection and setting the {\em maxCount}
+variable approriate.
+
+\begin{verbatim}
+phonesSetInit   X3
+tagsInit        X3
+featureSetInit  X3 -desc ""
+codebookSetInit X3 -desc ""
+distribSetInit  X3 -desc ""
+
+featureSetX3 FMatrix LDA
+featureSetX3:LDA.data resize 1 42
+\end{verbatim}
+
+The module initialization  now becomes much   simpler, since we  don't
+have to load any description files for the codebooks and distributions
+anymore.  To add new codebooks  in \Jref{module}{CodebookSet}, we have
+to provide an  underlying feature in \Jref{module}{FeatureSet}, in the
+example we use a  feature {\em LDA} with  a dimension of $42$. Instead
+of parallelizing the training over the speaker, we can  now run a loop
+over all {\em codebooks}.
+
+\begin{verbatim}
+proc estimateState {cb samplePath} {
+  # codebook to distrib mapping
+  set ds $cb 
+
+  # load training samples
+  set smp  featureSet$SID:LDA.data
+  $smp bload $samplePath/$cb.smp
+  $smp resize [$smp configure -m] [expr [$smp configure -n] -1]
+
+  # create codebook and distrib
+  codebookSetX3 add $cb LDA 1 42 DIAGONAL
+  distribSetX3  add $ds $cb
+
+  # max. nr. of components
+  codebookSetX3:$cb     configure -refMax 24
+
+  # mincount per component
+  codebookSetX3:$cb.cfg configure -mergeThresh 50
+
+  # step size for spliting components
+  codebookSetX3:$cb.cfg configure -splitStep 0.001
+
+  codebookSetX3:$cb createAccu
+  distribSetX3:$ds  createAccu
+
+  # main iterations with increasing components
+  for {set i 0} {$i < 7} { incr i} { 
+    # accumulate data
+    codebookSetX3:$cb.accu clear
+    distribSetX3:$ds.accu  clear
+    for {set frX 0} {$frX <  [$smp configure -m]} {incr frX} {
+       distribSetX3 accuFrame $cb $frX
+    }
+
+    # update, split and merge
+    distribSetX3 update
+    distribSetX3 split
+    distribSetX3 merge
+
+    # small iterations without increasing components
+    for {set j 0} {$j < 3} { incr j} { 
+      codebookSetX3:$cb.accu clear
+      distribSetX3:$ds.accu  clear
+      for {set frX 0} {$frX <  [$smp configure -m]} {incr frX} {
+        distribSet$X3 accuFrame $ds $frX
+      }
+      distribSetX3 update
+    }
+  }
+  codebookSetX3:$cb freeAccu
+  distribSetX3:$ds  freeAccu
+}
+\end{verbatim}
+% $ keeps emacs happy
+
+The remaining part synchronizes the clients  and saves acoustic models
+and description files.  To match   the new description files with  the
+original distribution tree, missing distributions will be added in the
+final  phase.  Untrained  distributions  occur due  to  the backoff to
+context independent nodes in the tree.
+
+\begin{verbatim}
+doParallel { 
+    while { [fgets $stateLst cb] >= 0} { estimateState $cb $samplePath} 
+    codebookSet$SID write Weights/clientID.cbsDesc
+    codebookSet$SID save  Weights/clientID.cbs.gz
+    distribSet$SID  write Weights/clientID.dssDesc
+    distribSet$SID  save  Weights/clientID.dss.gz
+} {
+    CodebookSet cbs featureSetX3
+    DistribSet  dss cbs
+    foreach f [glob Weights/*.*.cbsDesc] { cbs read $f }
+    foreach f [glob Weights/*.*.dssDesc] { dss read $f }
+    foreach f [glob Weights/*.*.cbs.gz]  { cbs load $f }
+    foreach f [glob Weights/*.*.dss.gz]  { dss load $f }
+
+    # read missing distribs
+    set fp [open distribSet.org] 
+    while { [gets $fp line] >= 0} {
+        set ds [lindex $line 0]
+        set cb [lindex $line 1]
+        if {[dss index $ds] < 0} { dss add $ds $cb }
+    }
+    close $fp
+    cbs write Weights/final.cbsDesc.gz
+    cbs save  Weights/final.cbs.gz
+    dss write Weights/final.dssDesc.gz
+    dss save  Weights/final.dss.gz
+} { } { }    
+\end{verbatim}
+
+The training  procedure described here  is well  suited to  train fully
+continuous  systems.   If you'd like to    train semi continous systems,
+where  you have  more  than  one distribution  for  each codebook,  we
+recommend to start the training with the  full continous setup and use
+the   trained codebooks as  seed models  to start the  training of the
+distributions.
+
+\subsection{Semi-tied full Covariances}
+
+Although JANUS supports Gaussian  densities with radial, diagonal  or
+even full covariances, normally only  models with diagonal covariances
+are  trained  due  to   lack of  training   data  or cpu   and  memory
+restrictions. On the other hand, a  linear transform of the covariance
+corresponds to an inverse transform of the means and features. However,
+LDA or PCA  transforms aren't optimized according  to the ML criterium
+as is the case for all other model parameters. The concept of semi-tied full
+covariances  (STC)   introduces   full  transforms  for the    diagonal
+covariances. These transforms might  be shared for several  components
+and trained  in a ML fashion. During  decoding, the inverse transforms
+are   applied  to the   features,  which results  in  multiple feature
+spaces. Therefore, this technique  is also called {\em Optimal Feature
+Space, OFS}. To train semi-tied covariance, we start with some initial
+models as usual and refine them. There are basically 4 steps:
+
+\begin{enumerate}
+\item create description files for the covariance classes
+\item convert acoustic models to OFS format
+\item train OFS models
+\item convert OFS models back to standard codebooks/distributions
+\end{enumerate}
+
+\subsubsection{Create description files}
+
+We    need        to     create     description         files      for
+\Jref{module}{CBNewParMatrixSet}      and     \Jref{module}{CBNewSet}.
+CBNewParMatrixSet describe  the  linear transforms associated  to  the
+covariances, while CBNewSet describe the densities itself.  Assuming a
+feature  $LDA$ with a dimension of  $42$ and  full transforms for each
+basephone, the following lines will create description files, given an
+appropriate    definition   of      the      helper   function    {\em
+map\_distrib\_to\_basephone} to map the model names.
+
+\begin{verbatim}
+parmatSetInit X3 -desc "" -dimN 42
+cbnewSetInit  X3 -desc ""
+
+foreach phone [phonesSetX3:PHONES] { 
+  parmatSetX3 add $phone 1 {42} 
+}
+foreach ds [distribSetX3] {
+  set phone [map_distrib_to_basephone $ds]
+  cbnewSetX3 add  $ds LDA [distribSetX3:$ds configure -valN]
+  cbnewSetX3 link $phone  [cbnewSetX3 index $ds] all
+}
+parmatSetX3 save        desc/paramSet
+parmatSetX3 saveWeights Weights/0.pms.gz
+cbnewSetX3  save        desc/cbnewSet
+\end{verbatim}
+
+\subsubsection{Convert acoustic models to OFS format}
+
+The means, covariances, and mixture weights will now be converted into
+a  format suitable for  the   CBNew  objects. Please  note, that   the
+covariances stored  in \Jref{module}{Codebook} are {\em inverse} while
+\Jref{module}{CBNewParMatrixSet} store them directly.
+
+\begin{verbatim}
+foreach ds [distribSetX3] {
+  set cbX  [distribSetX3:$ds configure -cbX]
+  set refN [distribSetX3:$ds configure -valN]
+  # means
+  cbnewSetX3:$ds set mean codebookSetX3.item($cbX).mat
+
+  # covariances
+  FMatrix m1 $refN $dimN
+  for {set i 0} {$i < $refN} {incr i} {
+    set cvL [lindex [codebookSetX3.item($cbX).cov($i)] 0]
+    for {set j 0} {$j < $dimN} {incr j} {
+      m1 set $i $j [expr 1.0 / [lindex $cvL $j]]
+    }
+  }
+  cbnewSetX3:$ds set diag m1
+  m1 destroy
+
+  # mixture weights
+  FMatrix m2 1 $refN
+  m2 := [distribSetX3:$ds configure -val]
+  cbnewSetX3:$ds set distrib m2
+  m2 destroy
+}
+cbnewSetX3 saveWeights Weights/0.cbns.gz
+\end{verbatim}
+
+\subsubsection{Train OFS models}
+
+The  training of the models can  be done using  the already known {\em
+labelUtterance} (or  other  forced aligment procedures).  We  describe
+here an  approach   using a full sample    extraction, similar to  the
+procedure    used  in   the  section  {\em    Incremental  Growing  of
+Gaussians}. You can reuse the samples extracted from there.
+
+\begin{verbatim}
+set protPath prot
+
+cbnewSetX3 phase work
+doParallel {
+  FMatrix smp
+  while {[fgets $stateLst cb] >= 0} {
+    smp bload $samplePath/$cb.smp
+    smp resize [smp configure -m] [expr [smp configure -n] -1]
+    cbnewSetX3 accuMatrix [cbnewSetX3 index $cb] smp
+  }
+  cbnewSetX3 saveAccusDep Accus/clientID.cbna
+  storeLH Accus/clientID.lha
+} {
+  set sum 0
+  foreach f [glob Accus/*.*.lha] {set sum [expr $sum + [loadLH $f]]}
+  storeLHProt $sum
+  foreach f [glob Accus/*.*.lha] {rm $f }
+
+  cbnewSetX3  clearAccus
+  foreach f [glob Accus/*.*.cbna] {cbnewSetX3 loadAccusDep $f}
+
+  senoneSetX3 update
+  parmatSetX3 update -stepN 100 -smallSteps 20 -firstSmall 40 -deltaThres 0.05
+
+  calcProts
+  parmatSetX3 saveWeights Weights/new.pms.gz
+  cbnewSetX3  saveWeights Weights/new.cbns.gz
+}
+\end{verbatim}
+% $ keeps emacs happy
+
+This excerpt  shows   the general  procedure to train   semi-tied full
+covariances.  Similar to the   standard training procedure,  you  will
+probably repeat the  training several iterations to reach convergence.
+Please note, that the server process needs enough memory to store full
+covariances during the update of the covariance transforms.
+
+\subsubsection{Convert OFS models back to standard codebooks/distributions}
+
+Before we  can  start the  decoding, we  have to  convert the acoustic
+models back to  the standard format.  The following  lines will create
+new description and parameter files.
+
+\begin{verbatim}
+parmatSetInit X3 -desc desc/paramSet -param Weights/new.pms.gz
+cbnewSetInit  X3 -desc desc/cbnewSet -param Weights/new.cbns.gz
+[CodebookSet cbs featureSetX3] read cbs.orig.desc
+[DistribSet  dss cbs]          read dss.orig.desc
+foreach cb [cbs] { cbs:$cb alloc } 
+cbnewSetX3 convert cbs dss
+cbs write desc/cbs.new.desc
+dss write desc/dss.new.desc
+cbs save  Weights/new.cbs.gz
+dss save  Weights/new.dss.gz
+\end{verbatim}
+% $ keeps emacs happy
+
+The  last thing to  do is to modify our  feature description to apply
+the OFS  transform  to the features.  You  can  combine this technique
+together  with MLLR  or   FSA. In the  latter   case, the feature   space
+adaptation  should rely  on the  transformed OFS  features. If you use
+MLLR,  the  same  regression    tree should  be  used for    MLLR  and
+STC.   Otherwise,  the adaptation   transforms will  be  computed over
+different feature spaces, resulting  in inconsistent ML estimates  for
+the transforms.
+
+\begin{verbatim}
+foreach p [parmatSetX3] { $fes matmul OFS-$p LDA $pms:$p.item(0) }
+\end{verbatim}
+\newpage
+
+%% \subsection{Dynamic Modalities}
+
+\subsection{MMIE-Training}
+
+\JaddGloss{MMIE}{Maximum Mutual Information Estimation}
+
+Janus can be used to  perform \Jgloss{MMIE} training. Example  scripts
+can be found in \texttt{/project/ears4/D2} at UKA. Be warned that this
+type of training is computationally very expensive.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-master: t
+%%% End: 

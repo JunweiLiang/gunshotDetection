@@ -1,0 +1,56 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Distrib}}
+
+This section describes the '\Jgloss{Distrib}': \textsl{A single distribution}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{Distrib} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{DistribSet}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{distrib configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Distrib}{-cbX} & = 0 \\
+      \Jlabel{Distrib}{-cfg} & = default \\
+      \Jlabel{Distrib}{-count} & = 0.000000 \\
+      \Jlabel{Distrib}{-name} & = SIL-b \\
+      \Jlabel{Distrib}{-val} & =   2.5000e-01  2.5000e-01  2.5000e-01  2.5000e-01 \\
+      \Jlabel{Distrib}{-valN} & = 4 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{distrib}
+
+    \begin{description}
+      \Jitem{\Jlabel{Distrib}{:=}} \texttt{ $<$source$>$} \
+
+        copies distribution weights
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  name of the source distribution (\Jref{module}{Distrib}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{Distrib}{createAccu}} \texttt{ \Jsb{-subN subn}} \
+
+        create a single distribution's accumulator
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subn}} &  number of subaccumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Distrib}{freeAccu}} \texttt{} \
+
+        remove a single distribution's accumulator
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cfg}} & (\Jref{module}{Dscfg}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

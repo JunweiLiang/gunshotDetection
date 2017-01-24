@@ -1,0 +1,358 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{GLat}}
+
+This section describes the '\Jgloss{GLat}': \textsl{Generic Lattice (pronounced 'Gillette, everything a man ...')}
+
+\begin{description}
+
+  \item[Creation:] \texttt{GLat  $<$name$>$ $<$SVMap$>$ \Jsb{-spass spass}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &   name of the lattice  \\
+ \texttt{\textbf{SVMap}} &  Search Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{spass}} &   Search Pass Decoder (\Jref{module}{SPass}) \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{glat configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{GLat}{-alphaBeam} & = 150.000000 \\
+      \Jlabel{GLat}{-expert} & = 0 \\
+      \Jlabel{GLat}{-frameShift} & = 0.010000 \\
+      \Jlabel{GLat}{-linkN} & = 0 \\
+      \Jlabel{GLat}{-name} & = glatISLci \\
+      \Jlabel{GLat}{-nodeN} & = 0 \\
+      \Jlabel{GLat}{-singularLCT} & = 0 \\
+      \Jlabel{GLat}{-status} & = INIT \\
+      \Jlabel{GLat}{-topN} & = 0 \\
+      \Jlabel{GLat}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{glat}
+
+    \begin{description}
+      \Jitem{\Jlabel{GLat}{addLink}} \texttt{ $<$start$>$ $<$end$>$ \Jsb{-score score}} \
+
+        add a link to a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{start}} &  start node  \\
+ \texttt{\textbf{end}} &    end node  \\
+ \texttt{\textbf{score}} &   acoustic (delta) score  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{addNode}} \texttt{ $<$word$>$ $<$start$>$ $<$end$>$ \Jsb{-nodeX nodex} \Jsb{-score score} \Jsb{-alpha alpha} \Jsb{-beta beta} \Jsb{-gamma gamma} \Jsb{-beam beam}} \
+
+        add a node to a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &   search word \\
+ \texttt{\textbf{start}} &  start frame  \\
+ \texttt{\textbf{end}} &    end frame  \\
+ \texttt{\textbf{nodex}} &   don't add, but configure nodeX  \\
+ \texttt{\textbf{score}} &   acoustic score  \\
+ \texttt{\textbf{alpha}} &   forward probability  \\
+ \texttt{\textbf{beta}} &    backward probability  \\
+ \texttt{\textbf{gamma}} &   a posteriori probability  \\
+ \texttt{\textbf{beam}} &    beam to re-use existing node  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{addPath}} \texttt{ $<$path$>$} \
+
+        add a path to a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{path}} &  the path to add  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{align}} \texttt{ $<$ref$>$ \Jsb{-ignoreFtag ignoreftag} \Jsb{-v v}} \
+
+        align lattice with reference
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ref}} &        sequence of words  \\
+ \texttt{\textbf{ignoreftag}} &  treat filler words as regular words  \\
+ \texttt{\textbf{v}} &           verbose  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{clear}} \texttt{} \
+
+        clear lattice
+
+      \Jitem{\Jlabel{GLat}{clearAddon}} \texttt{} \
+
+        clear glat addon vars
+
+      \Jitem{\Jlabel{GLat}{compress}} \texttt{ \Jsb{-iter iter} \Jsb{-delFil delfil} \Jsb{-ignoreLCT ignorelct} \Jsb{-adjustTime adjusttime}} \
+
+        compress lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{iter}} &        nr. of iterations  \\
+ \texttt{\textbf{delfil}} &      delete filler words  \\
+ \texttt{\textbf{ignorelct}} &   ignore linguistic context  \\
+ \texttt{\textbf{adjusttime}} &  adjust start and end points  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{confidence}} \texttt{ $<$ref$>$ \Jsb{-map map} \Jsb{-sum sum} \Jsb{-tie tie} \Jsb{-scale scale} \Jsb{-norm norm} \Jsb{-v v}} \
+
+        compute confidence measure
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{ref}} &   sequence of words  \\
+ \texttt{\textbf{map}} &    Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{sum}} &    sum or max over prob's  \\
+ \texttt{\textbf{tie}} &    node tying: none, svX, lvX  \\
+ \texttt{\textbf{scale}} &  mystic scaling factor  \\
+ \texttt{\textbf{norm}} &   puts real probabilities instead of negative log  \\
+ \texttt{\textbf{v}} &      puts time information  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{connect}} \texttt{ \Jsb{-map map} \Jsb{-beam beam} \Jsb{-factor factor} \Jsb{-filler filler} \Jsb{-sum sum}} \
+
+        connect matching nodes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &     Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{beam}} &    lattice beam  \\
+ \texttt{\textbf{factor}} &  multiplication factor for beam to make beam settings in old scripts compatible with bugfixes  \\
+ \texttt{\textbf{filler}} &  connect filler words  \\
+ \texttt{\textbf{sum}} &     sum the probabilities  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{consensus}} \texttt{ \Jsb{-lats lats} \Jsb{-map map} \Jsb{-beam beam} \Jsb{-scale scale} \Jsb{-silScale silscale} \Jsb{-cutoff cutoff} \Jsb{-silWord silword} \Jsb{-intra intra} \Jsb{-inter inter} \Jsb{-verbose verbose} \Jsb{-dictWords dictwords}} \
+
+        find consensus in lattice(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lats}} &       extra list of lattices \\
+ \texttt{\textbf{map}} &        Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{beam}} &       pruning beam  \\
+ \texttt{\textbf{scale}} &      score scaling factor  \\
+ \texttt{\textbf{silscale}} &   silence prob scaling factor  \\
+ \texttt{\textbf{cutoff}} &     cutoff probability for output  \\
+ \texttt{\textbf{silword}} &    word to use for missed words  \\
+ \texttt{\textbf{intra}} &      intra-class merging method (max or avg)  \\
+ \texttt{\textbf{inter}} &      inter-class merging method (max, avg, old, or time)  \\
+ \texttt{\textbf{verbose}} &    verbosity  \\
+ \texttt{\textbf{dictwords}} &  output dictionary words instead of lm words  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{createCN}} \texttt{ $<$GLat$>$ \Jsb{-optWord optword} \Jsb{-factor factor} \Jsb{-beam beam}} \
+
+        convert lattice into confusion network (createCNet)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{GLat}} &        (\Jref{module}{GLat}) \\
+ \texttt{\textbf{optword}} &     optional word  \\
+ \texttt{\textbf{factor}} &      mystic scaling factor  \\
+ \texttt{\textbf{beam}} &        posteriori beam  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{delLink}} \texttt{ $<$start$>$ $<$end$>$} \
+
+        delete a link from a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{start}} &  start node  \\
+ \texttt{\textbf{end}} &    end node  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{delNode}} \texttt{ $<$nodeX$>$} \
+
+        delete a node from a lattice
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{nodeX}} & node index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{initAddon}} \texttt{ $<$hmm$>$ $<$pathTmp$>$ \Jsb{-variants variants} \Jsb{-modtags modtags} \Jsb{-mode mode} \Jsb{-verbose verbose}} \
+
+        initialize glat addon vars
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{hmm}} &      Hidden Markov Model (\Jref{module}{HMM}) \\
+ \texttt{\textbf{pathTmp}} &  Temporary path variable (\Jref{module}{Path}) \\
+ \texttt{\textbf{variants}} &  pronunciation variants  \\
+ \texttt{\textbf{modtags}} &   modality tags  \\
+ \texttt{\textbf{mode}} &      alignment mode, 0=viterbi, 1=fwdbwd  \\
+ \texttt{\textbf{verbose}} &   verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{map}} \texttt{ \Jsb{-map map}} \
+
+        map vocabulary words in lattice nodes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &  Vocabulary Mapper (\Jref{module}{SVMap}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{posteriori}} \texttt{ \Jsb{-map map} \Jsb{-scale scale} \Jsb{-sum sum} \Jsb{-tie tie} \Jsb{-tieFiller tiefiller} \Jsb{-mmie mmie}} \
+
+        compute a-posteriori probabilities
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &        Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{scale}} &      mystic scaling factor  \\
+ \texttt{\textbf{sum}} &        sum or max over prob's  \\
+ \texttt{\textbf{tie}} &        node tying: none, svX, lvX  \\
+ \texttt{\textbf{tiefiller}} &  include filler words for clustering  \\
+ \texttt{\textbf{mmie}} &       use functions for MMIE training  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{prune}} \texttt{ \Jsb{-beam beam} \Jsb{-factor factor} \Jsb{-scale scale} \Jsb{-sum sum} \Jsb{-nodeN noden} \Jsb{-link link} \Jsb{-map map}} \
+
+        prune lattice nodes
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{beam}} &    lattice beam  \\
+ \texttt{\textbf{factor}} &  multiplication factor for beam to make beam settings in old scripts compatible with bugfixes  \\
+ \texttt{\textbf{scale}} &   scaling factor  \\
+ \texttt{\textbf{sum}} &     sum the probabilities  \\
+ \texttt{\textbf{noden}} &   prune to absolute nr. of nodes  \\
+ \texttt{\textbf{link}} &    prune lattice links  \\
+ \texttt{\textbf{map}} &     Vocabulary Mapper (\Jref{module}{SVMap}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{purify}} \texttt{} \
+
+        delete non-terminating nodes and links
+
+      \Jitem{\Jlabel{GLat}{puts}} \texttt{} \
+
+        displays the contents of a lattice
+
+      \Jitem{\Jlabel{GLat}{read}} \texttt{ $<$file$>$ \Jsb{-garbageWord garbageword}} \
+
+        read a lattice from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &        file to read from  \\
+ \texttt{\textbf{garbageword}} &  garbage word  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{recombine}} \texttt{ \Jsb{-map map} \Jsb{-connect connect} \Jsb{-verbose verbose}} \
+
+        recombine lattice nodes with equal LCT
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &      mapper object (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{connect}} &  connect nodes  \\
+ \texttt{\textbf{verbose}} &  verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{rescore}} \texttt{ \Jsb{-map map} \Jsb{-conf conf} \Jsb{-topN topn} \Jsb{-maxN maxn} \Jsb{-beam beam} \Jsb{-v v}} \
+
+        rescore a lattice using svMap
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &   mapper object between svocab and language model (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{conf}} &  do posteriori rescoring  \\
+ \texttt{\textbf{topn}} &  how many hypotheses do we want  \\
+ \texttt{\textbf{maxn}} &  size of hypotheses stack  \\
+ \texttt{\textbf{beam}} &  beam threshold to prune hypotheses stack  \\
+ \texttt{\textbf{v}} &     verbose output (-1 = index only, 0 = name only, 1 = name, pos, and score, 2 = gamma)  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{singularLCT}} \texttt{ $<$lattice$>$ \Jsb{-map map} \Jsb{-verbose verbose}} \
+
+        expand the lattice with respect to LCT
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lattice}} &  Lattice to process (\Jref{module}{GLat}) \\
+ \texttt{\textbf{map}} &       Vocabulary Mapper to use (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{verbose}} &   verbosity  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{splitMW}} \texttt{ \Jsb{-map map}} \
+
+        split nodes which contain multiwords
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{map}} &  Vocabulary Mapper (\Jref{module}{SVMap}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{warp}} \texttt{ \Jsb{-shift shift} \Jsb{-factor factor} \Jsb{-frameN framen} \Jsb{-scores scores}} \
+
+        warp (scale) time axis
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{shift}} &   frame shift after warping  \\
+ \texttt{\textbf{factor}} &  relative scaling factor  \\
+ \texttt{\textbf{framen}} &  number of frames after warping  \\
+ \texttt{\textbf{scores}} &  scale scores  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{write}} \texttt{ $<$file$>$ \Jsb{-format format} \Jsb{-utt utt} \Jsb{-mode mode} \Jsb{-map map} \Jsb{-from from}} \
+
+        write a lattice to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &   file to write to  \\
+ \texttt{\textbf{format}} &  file format (njd or slf)  \\
+ \texttt{\textbf{utt}} &     utterance ID (optional)  \\
+ \texttt{\textbf{mode}} &    mode   \\
+ \texttt{\textbf{map}} &     Vocabulary Mapper (for SLF) (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{from}} &    Start time of this utterance  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{writeCTM}} \texttt{ $<$speaker$>$ $<$uttID$>$ \Jsb{-field field} \Jsb{-conv conv} \Jsb{-channel channel} \Jsb{-from from} \Jsb{-file file} \Jsb{-result result} \Jsb{-map map} \Jsb{-topX topx} \Jsb{-topN topn} \Jsb{-maxN maxn} \Jsb{-beam beam} \Jsb{-rate rate} \Jsb{-warpA warpa} \Jsb{-conf conf} \Jsb{-lz lz} \Jsb{-silsmb silsmb} \Jsb{-v v}} \
+
+        write hypo in CTM format (glatWriteHypo)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{speaker}} &    speaker   ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+ \texttt{\textbf{field}} &       conversation field in DB  \\
+ \texttt{\textbf{conv}} &        conversation or episode  \\
+ \texttt{\textbf{channel}} &     channel  \\
+ \texttt{\textbf{from}} &        start point  \\
+ \texttt{\textbf{file}} &        filename  \\
+ \texttt{\textbf{result}} &      result from rescoring  \\
+ \texttt{\textbf{map}} &         SVMap (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{topx}} &        topX  \\
+ \texttt{\textbf{topn}} &        topN  \\
+ \texttt{\textbf{maxn}} &        maxN  \\
+ \texttt{\textbf{beam}} &        beam  \\
+ \texttt{\textbf{rate}} &        rate  \\
+ \texttt{\textbf{warpa}} &       warpA  \\
+ \texttt{\textbf{conf}} &        write confidences instead of scores  \\
+ \texttt{\textbf{lz}} &          lz for confidences  \\
+ \texttt{\textbf{silsmb}} &      symbol for opt sil  \\
+ \texttt{\textbf{v}} &           verbose  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{writeSRT}} \texttt{ $<$speaker$>$ $<$uttID$>$ \Jsb{-from from} \Jsb{-file file} \Jsb{-result result} \Jsb{-map map} \Jsb{-topX topx} \Jsb{-topN topn} \Jsb{-maxN maxn} \Jsb{-beam beam} \Jsb{-rate rate} \Jsb{-warpA warpa} $<$$>$} \
+
+        write hypo in SRT format (glatWriteSRT)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{speaker}} &    speaker   ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+ \texttt{\textbf{from}} &        start point  \\
+ \texttt{\textbf{file}} &        filename  \\
+ \texttt{\textbf{result}} &      result from rescoring  \\
+ \texttt{\textbf{map}} &         SVMap (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{topx}} &        topX  \\
+ \texttt{\textbf{topn}} &        topN  \\
+ \texttt{\textbf{maxn}} &        maxN  \\
+ \texttt{\textbf{beam}} &        beam  \\
+ \texttt{\textbf{rate}} &        rate  \\
+ \texttt{\textbf{warpa}} &       warpA  \\
+ \texttt{\textbf{}} &  \\
+      \end{tabular}
+      \Jitem{\Jlabel{GLat}{writeTRN}} \texttt{ $<$speaker$>$ $<$uttID$>$ \Jsb{-from from} \Jsb{-file file} \Jsb{-result result} \Jsb{-map map} \Jsb{-topX topx} \Jsb{-topN topn} \Jsb{-maxN maxn} \Jsb{-beam beam} \Jsb{-rate rate} \Jsb{-warpA warpa} \Jsb{-time time}} \
+
+        write hypo in TRN format (glatWriteTRN)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{speaker}} &    speaker   ID  \\
+ \texttt{\textbf{uttID}} &      utterance ID  \\
+ \texttt{\textbf{from}} &        start point  \\
+ \texttt{\textbf{file}} &        filename  \\
+ \texttt{\textbf{result}} &      result from rescoring  \\
+ \texttt{\textbf{map}} &         SVMap (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{topx}} &        topX  \\
+ \texttt{\textbf{topn}} &        topN  \\
+ \texttt{\textbf{maxn}} &        maxN  \\
+ \texttt{\textbf{beam}} &        beam  \\
+ \texttt{\textbf{rate}} &        rate  \\
+ \texttt{\textbf{warpa}} &       warpA  \\
+ \texttt{\textbf{time}} &        include time information  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{lctMem}} & (\Jref{module}{BMem}) \\
+      \texttt{\textbf{linkMem}} & (\Jref{module}{BMem}) \\
+      \texttt{\textbf{nodeMem}} & (\Jref{module}{BMem}) \\
+      \texttt{\textbf{pathMem}} & (\Jref{module}{BMem}) \\
+      \texttt{\textbf{rcmMem}} & (\Jref{module}{BMem}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

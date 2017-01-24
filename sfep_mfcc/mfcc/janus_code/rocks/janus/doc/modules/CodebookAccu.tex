@@ -1,0 +1,85 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{CodebookAccu}}
+
+This section describes the '\Jgloss{CodebookAccu}': \textsl{a single codebook's accumulator}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{CodebookAccu} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{Codebook}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{codebookaccu configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{CodebookAccu}{-count} & = 0.0000e+00 \\
+      \Jlabel{CodebookAccu}{-distortion} & = 0.000000 \\
+      \Jlabel{CodebookAccu}{-maxDistance} & = 0.000000 \\
+      \Jlabel{CodebookAccu}{-minDistance} & = 0.000000 \\
+      \Jlabel{CodebookAccu}{-score} & = 0.000000 \\
+      \Jlabel{CodebookAccu}{-subN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{codebookaccu}
+
+    \begin{description}
+      \Jitem{\Jlabel{CodebookAccu}{*=}} \texttt{ $<$factor$>$} \
+
+        multiplies an accumulator with a factor
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{factor}} &  multiplication factor  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookAccu}{+=}} \texttt{ $<$source$>$ \Jsb{-factor factor} \Jsb{-refX refx}} \
+
+        adds one accumulator to another
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source accumulator (\Jref{module}{CodebookAccu}) \\
+ \texttt{\textbf{factor}} &   scaling factor  \\
+ \texttt{\textbf{refx}} &     add accus to reference refX  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookAccu}{:=}} \texttt{ $<$source$>$} \
+
+        copies one accumulator into another
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{source}} &  source accumulator (\Jref{module}{CodebookAccu}) \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookAccu}{clear}} \texttt{ \Jsb{-subX subx}} \
+
+        reset a single codebook's accumulator to zero
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{subx}} &  sub-accumulator, -1 to clear all  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookAccu}{set}} \texttt{ $<$matrix$>$ \Jsb{-subX subx} \Jsb{-refX refx} \Jsb{-dimX dimx}} \
+
+        set reference vectors in the accumulator
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrix}} &  matrix of reference vectors \\
+ \texttt{\textbf{subx}} &     index of the subaccu  \\
+ \texttt{\textbf{refx}} &     index of the reference vector  \\
+ \texttt{\textbf{dimx}} &     index of the dimension  \\
+      \end{tabular}
+      \Jitem{\Jlabel{CodebookAccu}{subspace}} \texttt{} \
+
+        define the accumulator subspacing
+
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{cov(0..0,0..3)}} & (\Jref{module}{}) \\
+      \texttt{\textbf{mat(0..0)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{priorCV}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{priorRV}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

@@ -1,0 +1,70 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{NGramLM}}
+
+This section describes the '\Jgloss{NGramLM}': \textsl{N-gram Language Model}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{NGramLM} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{LingKS}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{ngramlm configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{NGramLM}{-blkSize} & = 1000 \\
+      \Jlabel{NGramLM}{-hashLCT} & = 0 \\
+      \Jlabel{NGramLM}{-history} & = 0 \\
+      \Jlabel{NGramLM}{-itemN} & = 3 \\
+      \Jlabel{NGramLM}{-log0} & = -99.000000 \\
+      \Jlabel{NGramLM}{-log0Val} & = -5.000000 \\
+      \Jlabel{NGramLM}{-order} & = 1 \\
+      \Jlabel{NGramLM}{-segSize} & = 6 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{ngramlm}
+
+    \begin{description}
+      \Jitem{\Jlabel{NGramLM}{connectSriServer}} \texttt{ $<$host$>$ $<$port$>$ $<$order$>$ \Jsb{-vocabFile vocabfile}} \
+
+        Connect to a running SRI LM Server
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{host}} &      host that the server runs on  \\
+ \texttt{\textbf{port}} &      port that the server runs on  \\
+ \texttt{\textbf{order}} &     port that the server runs on  \\
+ \texttt{\textbf{vocabfile}} &  file to read vocab from  \\
+      \end{tabular}
+      \Jitem{\Jlabel{NGramLM}{disconnectSriServer}} \texttt{} \
+
+        disconnect from the SRI LM Server
+
+      \Jitem{\Jlabel{NGramLM}{readVocab}} \texttt{ $<$filename$>$} \
+
+        fill NGram item list from vocab file, e.g. for SRI LM usage
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to read the vocab from  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{backOffA(1..0,0..N)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{idA(2..1,0..N)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{linkA(1..0,0..N)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{mgramN(1..1)}} & (\Jref{module}{3}) \\
+      \texttt{\textbf{probA(1..1,0..N)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{subslist}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{NGramLMItem}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

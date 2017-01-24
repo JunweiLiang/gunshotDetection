@@ -1,0 +1,156 @@
+# ========================================================================
+#  JanusRTK   Janus Speech Recognition Toolkit
+#             ------------------------------------------------------------
+#             Object: System description
+#             ------------------------------------------------------------
+#
+#  Author  :  Florian Metze
+#  Module  :  desc.tcl
+#  Date    :  $Id: desc.tcl 2390 2003-08-14 11:20:32Z fuegen $
+#
+#  Remarks :  This is the description file for the ISLci system
+#
+# ========================================================================
+# 
+#  $Log$
+#  Revision 1.2  2003/08/14 11:19:43  fuegen
+#  Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+#
+#  Revision 1.1.2.7  2003/08/13 14:27:19  fuegen
+#  formattings
+#
+#  Revision 1.1.2.6  2003/08/13 14:13:46  fuegen
+#  readded definitions for CFGs
+#
+#  Revision 1.1.2.5  2003/08/11 12:41:08  soltau
+#  windows support
+#
+# ========================================================================
+
+# to make some scripts happy
+set host [info hostname]
+set pid  [pid]
+
+# ------------------------------------------------------------------------
+#  System and Path Definitions
+# ------------------------------------------------------------------------
+
+set SID                     ISLci
+
+set projectHome             /home/njd/IslData
+set ${SID}(path)            /home/njd/IslSystem/${SID}
+set ${SID}(descPath)        [file join [set ${SID}(path)] desc]
+set ${SID}(dictPath)        $projectHome
+set ${SID}(lmPath)          $projectHome
+set ${SID}(cfgPath)         $projectHome
+
+
+# ------------------------------------------------------------------------
+#  Welcome
+# ------------------------------------------------------------------------
+
+writeLog stderr "      ------ System $SID -----"
+writeLog stderr "${argv0} reads desc.tcl: on $env(HOST).[pid], [exec date]"
+writeLog stderr "using lib: $auto_path"
+
+
+# ------------------------------------------------------------------------
+#  Database
+# ------------------------------------------------------------------------
+
+set ${SID}(dbaseName)       db
+set ${SID}(dbasePath)       $projectHome
+
+
+# ------------------------------------------------------------------------
+#  Phones & Tags
+# ------------------------------------------------------------------------
+
+set ${SID}(phonesSetDesc)    [set ${SID}(descPath)]/phonesSet
+set ${SID}(tagsDesc)         [set ${SID}(descPath)]/tags
+
+
+# ------------------------------------------------------------------------
+#  Feature Set
+# ------------------------------------------------------------------------
+
+set ${SID}(testFeatureSetDesc)   @[file join [set ${SID}(descPath)] featDesc.test]
+set ${SID}(meanFeatureSetDesc)   @[file join [set ${SID}(descPath)] featDesc.mean]
+set ${SID}(featureSetDesc)       @[file join [set ${SID}(descPath)] featDesc]
+set ${SID}(featureSetAccess)     @[file join [set ${SID}(descPath)] featAccess]
+set ${SID}(featureSetLDAMatrix)   [file join [set ${SID}(path)] train lda${SID}.bmat]
+set ${SID}(warpFile)             ""
+set ${SID}(warpPhones)           "STIMMHAFT"
+set ${SID}(meanPath)              [file join [set ${SID}(path)] train means]
+
+
+# ------------------------------------------------------------------------
+#  Stream: Codebook, Distribution, Tree
+# ------------------------------------------------------------------------
+
+set ${SID}(codebookSetDesc)  [file join [set ${SID}(descPath)] codebookSet]
+set ${SID}(codebookSetParam) [set ${SID}(path)]/train/Weights/4.cbs.gz
+set ${SID}(distribSetDesc)   [file join [set ${SID}(descPath)] distribSet]
+set ${SID}(distribSetParam)  [set ${SID}(path)]/train/Weights/4.dss.gz
+set ${SID}(padPhone)         @
+set ${SID}(ptreeSetDesc)     ""
+set ${SID}(distribTreeDesc)  [file join [set ${SID}(descPath)] distribTree]
+
+
+# ------------------------------------------------------------------------
+#  Transition models, topology and duration modelling
+# ------------------------------------------------------------------------
+
+set ${SID}(durSetDesc)       ""
+set ${SID}(durPTreeDesc)     ""
+set ${SID}(durTreeDesc)      ""
+
+set ${SID}(tmDesc)           [set ${SID}(descPath)]/tmSet
+set ${SID}(topoSetDesc)      [set ${SID}(descPath)]/topoSet
+set ${SID}(ttreeDesc)        [set ${SID}(descPath)]/topoTree
+
+
+# ------------------------------------------------------------------------
+#  LM, Dictionary and Vocabulary
+# ------------------------------------------------------------------------
+
+set ${SID}(dictDesc)         [set ${SID}(dictPath)]/dict.50phones
+set ${SID}(useXwt)           1
+set ${SID}(optWord)          \$
+set ${SID}(variants)         1
+
+# -------------------------------------------------------
+# Context Free Grammars
+# -------------------------------------------------------
+
+set cfgPath                  [set ${SID}(cfgPath)]
+set ${SID}(cfg,grammars)     [list [list NAV \
+                                        $cfgPath/cfg.ka.nav \
+                                        $cfgPath/cfg.base.nav] \
+                                   [list SHARED \
+                                        $cfgPath/cfg.shared]]
+
+# ------------------------------------------------------------------------
+#  Testing 
+# ------------------------------------------------------------------------
+
+set ${SID}(testDictDesc)     [set ${SID}(dictDesc)]
+set ${SID}(vocabDesc)        [set ${SID}(lmPath)]/vocab.germNews
+set ${SID}(lmDesc)           [set ${SID}(lmPath)]/sz.ibis.gz
+set ${SID}(ngramLMsegSize)   6
+set ${SID}(lmWeight)         32
+set ${SID}(lmPenalty)        3
+set ${SID}(bbiSetDesc)       ""
+set ${SID}(bbiSetParam)      ""
+
+
+# ------------------------------------------------------------------------
+#  Label Path
+# ------------------------------------------------------------------------
+ 
+set ${SID}(labelPath)     {/home/njd/IslSystem/ISLinit/labels/$spk/$utt.lbl}
+
+
+set ${SID}(SPK)                  SPK     ; # speaker key
+set ${SID}(UTT)                  UTTS    ; # utt     key
+set ${SID}(TRL)                  TEXT    ; # trl     key

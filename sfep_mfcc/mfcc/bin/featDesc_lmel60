@@ -1,0 +1,49 @@
+if {[catch {
+
+    $fes   readADC ADC44 $arg(ADCFILE)
+    $fes   resample ADC16 ADC44 8
+    $fes   cut ADC ADC16 $arg(FROM)s $arg(TO)s
+   
+#----------------- speech detection ---------------------------------------
+  $fes   adc2pow         POWER   ADC    32ms -shift 10ms
+  $fes   alog            POWER   POWER  1 4
+  $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+  $fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+  $fes   normalize       POWER   POWER  -min -0.1 -max 0.5
+  $fes   thresh          SPEECH  POWER  1.0 0 upper
+  $fes   thresh          SPEECH  SPEECH 0   0 lower
+
+$fes   spectrum         FFT             ADC             32ms -shift 10ms
+
+#----------------- init mel filter  -------------------------------------------
+if { [llength [objects FBMatrix matrixMEL]] != 1} {
+    set melN 30
+    set points [$fes:FFT configure -coeffN]
+    set rate   [expr 1000 * [$fes:FFT configure -samplingRate]]
+    [FBMatrix matrixMEL] mel -N $melN -p $points -rate $rate
+}
+
+$fes   filterbank       MEL             FFT            matrixMEL
+$fes   log              lMEL            MEL            1.0 1.0
+
+#----------------- cepstrum ----------------------------------------
+set cepN 20
+
+if { [llength [objects FMatrix matrixCOS]] != 1} {
+    set n [$fes:lMEL configure -coeffN]
+    [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+$fes    matmul          MCEP            lMEL            matrixCOS
+$fes    filter          DELTA           lMEL           {-2 {-2 -1 0 1 2}}
+$fes    merge           MDFEAT          lMEL DELTA
+
+$fes   meansub          FEAT            MDFEAT
+
+
+#$fes   meansub          FEATm           MDFEAT           -a 2 -weight SPEECH
+#$fes   cut	FEAT	ALLFEAT 0 last -select SPEECH
+#$fes   split    FEAT FEAT1 1 12
+} msg]} {
+puts $msg
+error
+}

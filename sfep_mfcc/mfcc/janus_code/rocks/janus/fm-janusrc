@@ -1,0 +1,50 @@
+# ========================================================================
+#  JanusRTK   Janus Speech Recognition Toolkit
+#             ------------------------------------------------------------
+#             Object: .janusrc - Resources file
+#             ------------------------------------------------------------
+#             Time-stamp: <07 Jul 00 08:17:38 metze>
+#
+#  Author  :  Florian Metze
+#  Module  :  ~/.janusrc
+#  Date    :  2000-08-07
+#
+#  Remarks :  This file is read in by janus on startup
+#
+#	      It contains a few settings and redefines some functions fore
+#	      compatibility with Linux
+#
+#	      Original by Martin Westphal, Dec. 4, 1996 for Janus3.2
+#
+# ========================================================================
+#  RCS info:  $Id: .janusrc,v 1.1 2000/07/18 06:36:51 metze Exp metze $
+# 
+#  $Log: .janusrc,v $
+# ========================================================================
+
+
+proc janusSendMail { address subject body } {
+    # This can be called in an error handler function
+    catch { exec echo $body | mailx -s $subject $address }
+}
+
+if {[info exists env(C_CLUSTER)]} {
+proc sigTermScript { } {
+    # This gets executed when we receive an interrupt request (from CONDOR)
+    global spk utt MostRecentlyReceivedSignal
+
+    #if {$tcl_interactive} { exit }
+
+    catch { writeLog stderr "<<<< Received TERM on [date] >>>>" }
+    #catch { writeLog stderr "<<<< Received TERM at $spk $utt >>>>" }
+
+    set MostRecentlyReceivedSignal "TERM"
+}
+}
+
+if {[catch { source $env(HOME)/janus/scripts/janusrc }]} {
+    puts stderr "WARNING: default janusrc could not be sourced."
+}
+
+# Hack for snack
+set auto_path [linsert $auto_path 0 $env(HOME)/tools/snack2.2.10/unix]

@@ -1,0 +1,59 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of phonesSet
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  phonesSet.tex
+%%  Date    :  $Id: phonesSet.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:19:00  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.4  2002/11/19 13:23:17  metze
+%%   Beautification
+%%
+%%   Revision 1.1.2.3  2002/11/19 09:17:44  fuegen
+%%   minor changes for overfull hboxes
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:12  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/07/30 13:57:39  metze
+%%   *** empty log message ***
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{phonesSet}}
+
+The phones that can be used. An example looks like:
+% I IR IE IHR J K L M N NG O OR OE OEH ANG OH OHR P R S SCH T TS TSCH U UR UE UEH UEHR UH UHR V Z SIL +QK +hBR +hEH +hEM +hGH +hHM +hLG +hSM +nGN +nKL +nMK
+
+\begin{verbatim}
+PHONES    @ A AR AEH AEHR AH AHR AI AU B CH X D E E2 EH EHR ER ER2 EU F G
+          I IR IE IHR J K L M N NG O OR OE OEH ANG OH OHR P R S SCH T TS 
+          TSCH U UR UE UEH UEHR UH UHR V Z SIL +QK +hBR +hEH +hEM +hGH 
+          +hHM +hLG +hSM +nGN +nKL +nMK
+SILENCES  SIL
+NOISES    +QK +hBR +hEH +hEM +hGH +hHM +hLG +hSM +nGN +nKL +nMK
+AFFRIKATE TS TSCH
+VOICED    M N NG L R A AEH AH E E2 EH ER2 I IE O OE OEH ANG OH U UE UEH UH
+\end{verbatim}
+
+The first item in  each line is the name  of a ``group'' of phones  in
+the  set, while the remaining    items are phones. ``PHONES''   should
+contain all phones.  Here, ``VOICED'' is  used for VTLN. ``AFFRIKATE''
+and  ``VOICED'', ``NOISES'' and  ``SILENCES'' can be used as questions
+during  context  clustering. ``@''  is  the  pad-phone, which is  used
+whenever there is no context available.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,75 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Modality}}
+
+This section describes the '\Jgloss{Modality}': \textsl{A 'Modality' object answers a question about the modality of a recording.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Modality  $<$name$>$ $<$updateProc$>$ $<$tagName$>$ \Jsb{-mode mode} \Jsb{-limit limit}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &        name of the modality  \\
+ \texttt{\textbf{updateProc}} &  TCL modality update proc  \\
+ \texttt{\textbf{tagName}} &     Name for tag  \\
+ \texttt{\textbf{mode}} &         update mode (ALL, GIVEN, RUNON, NOT)  \\
+ \texttt{\textbf{limit}} &        update only if intervall greater limit  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{modality configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Modality}{-endFrameX} & = -1 \\
+      \Jlabel{Modality}{-name} & = modality \\
+      \Jlabel{Modality}{-startFrameX} & = -1 \\
+      \Jlabel{Modality}{-tagName} & = WB \\
+      \Jlabel{Modality}{-timeInfo} & = 0 \\
+      \Jlabel{Modality}{-updateLimit} & = -1 \\
+      \Jlabel{Modality}{-updateMode} & = GIVEN \\
+      \Jlabel{Modality}{-updateProc} & = putsInfo \\
+      \Jlabel{Modality}{-useN} & = 1 \\
+      \Jlabel{Modality}{-yesN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{modality}
+
+    \begin{description}
+      \Jitem{\Jlabel{Modality}{answer}} \texttt{ $<$startFrameX$>$ $<$endFrameX$>$} \
+
+        get anser for modality
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startFrameX}} &  start frame for answer  \\
+ \texttt{\textbf{endFrameX}} &    end frame for answer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Modality}{majorityAnswer}} \texttt{ \Jsb{-startFrameX startframex} \Jsb{-endFrameX endframex}} \
+
+        get the majority of the answers
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startframex}} &  start frame for answer  \\
+ \texttt{\textbf{endframex}} &    end frame for answer  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Modality}{puts}} \texttt{} \
+
+        display the contents of the modality
+
+      \Jitem{\Jlabel{Modality}{reset}} \texttt{} \
+
+        reset modality
+
+      \Jitem{\Jlabel{Modality}{update}} \texttt{ $<$startFrameX$>$ $<$endFrameX$>$} \
+
+        update modality
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{startFrameX}} &  start frame for update  \\
+ \texttt{\textbf{endFrameX}} &    end frame for update  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

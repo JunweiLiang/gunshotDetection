@@ -1,0 +1,5 @@
+sfepdir=/usr0/home/iyu/sfep
+outputdir=/usr0/home/iyu/mfcc_out
+videopaths=/usr0/home/iyu/sfep/gencmds/vids_aladdin1
+machine=rocks
+python27=/opt/python27/bin/python

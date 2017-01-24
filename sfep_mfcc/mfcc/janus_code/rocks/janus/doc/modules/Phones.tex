@@ -1,0 +1,86 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{Phones}}
+
+This section describes the '\Jgloss{Phones}': \textsl{A 'Phones' object is an array of strings, each of which is a phoneme.}
+
+\begin{description}
+
+  \item[Creation:] \texttt{Phones  $<$name$>$}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &    name of the object \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{phones configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{Phones}{-blkSize} & = 10 \\
+      \Jlabel{Phones}{-commentChar} & = ; \\
+      \Jlabel{Phones}{-itemN} & = 0 \\
+      \Jlabel{Phones}{-useN} & = 1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{phones}
+
+    \begin{description}
+      \Jitem{\Jlabel{Phones}{add}} \texttt{ $<$phone*$>$} \
+
+        add new phone(s) to a phone-set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{phone*}} & list of phones \\
+      \end{tabular}
+      \Jitem{\Jlabel{Phones}{delete}} \texttt{ $<$phone*$>$} \
+
+        delete phone(s) from a phone-set
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{phone*}} & list of phones \\
+      \end{tabular}
+      \Jitem{\Jlabel{Phones}{index}} \texttt{ $<$names*$>$} \
+
+        return index of named phone(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{Phones}{name}} \texttt{ $<$idx*$>$} \
+
+        return the name of indexed phone(s)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{Phones}{puts}} \texttt{} \
+
+        displays the contents of a phone-set
+
+      \Jitem{\Jlabel{Phones}{read}} \texttt{ $<$filename$>$} \
+
+        read a phone-set from a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of phones file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{Phones}{write}} \texttt{ $<$filename$>$} \
+
+        write a phone-set into a file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  name of phones file  \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

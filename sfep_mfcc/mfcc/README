@@ -1,0 +1,29 @@
+Please copy dot_janus.rc to ~/.janus_rc, otherwise your janus won't work!
+
+MFCC Feature Extraction pipeline:
+@author Shourabh Rawat (srawat@cs.cmu.edu)
+
+1. Extract MFCC features
+	Execute bin/runExtraction.sh <VIDEO_ROOT_DIR> <MFCC_OUTPUT_DIR> <FeatureType> <FORMAT>
+	Searches in the root directory containing mp4 videos and invokes janus to 
+	extract MFCC to the specified output directory in bz2 format
+	FeatureType could be either "lmel60" [Log Mel Features] or "mfcc40" [MFCC features]
+	FORMAT: Looks for all the ".FORMAT" files in the VIDEO_ROOT_DIR. Possible values: wav, mp4
+
+2. Manual Step: (make sure the extraction is complete and no files were missed)
+	Decompress the mfcc features using bzip2
+	/bin/bash decompress.sh <MFCC_OUTPUT_DIR>
+	Above command decompresses the mfcc40.bz2 files into mfcc40 files that can be 
+	input to next step [In future mfcc2bof.py could directly read bz2]
+
+3. Perform bof generation
+	python mfcc2bof.py <MFCC_ROOT_PATH> <kmeans-centroids> <OUTPUT_BOFPATH> <TopK>
+	Control Envs: (Defaults specified)
+		SPLIT='40' #How many splits of the data one wants
+		QUEUE='standard' #Which queue to submit jobs to
+		FORMAT='mfcc40'	#What is the extension of the files to search for in the MFCC_ROOT_PATH
+	
+	The script first looks over all the possible files with extension <FORMAT>, splits the data
+	into <SPLIT> files per chunks and then spawns a separate bof generation process for each 
+	chunk on rocks.
+

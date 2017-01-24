@@ -1,0 +1,130 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{MetaLM}}
+
+This section describes the '\Jgloss{MetaLM}': \textsl{Meta language model: flexible LM using sub-LMs.}
+
+\begin{description}
+\vspace{3mm}  \item[Creation:] \texttt{MetaLM} cannot be created directly.\
+
+It is accessible as a sub-object of \Jref{module}{LingKS}!
+
+\vspace{3mm}  \item[Configuration:] \texttt{metalm configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{MetaLM}{-blkSize} & = 1000 \\
+      \Jlabel{MetaLM}{-elemN} & = 2 \\
+      \Jlabel{MetaLM}{-itemN} & = 1 \\
+      \Jlabel{MetaLM}{-lvxCache} & = 0 \\
+      \Jlabel{MetaLM}{-lvxCacheN} & = 0 \\
+      \Jlabel{MetaLM}{-mlctMax} & = 200000 \\
+      \Jlabel{MetaLM}{-mlctN} & = 0 \\
+      \Jlabel{MetaLM}{-order} & = -1 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{metalm}
+
+    \begin{description}
+      \Jitem{\Jlabel{MetaLM}{LMadd}} \texttt{ $<$LingKS$>$ \Jsb{-weight weight}} \
+
+        add a language model for usage with metaLM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{LingKS}} &  Linguistic Knowledge Source (\Jref{module}{LingKS}) \\
+ \texttt{\textbf{weight}} &   weight  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{LMindex}} \texttt{ $<$names*$>$} \
+
+        return the internal index of an atomic LM
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{names*}} & list of names \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{LMname}} \texttt{ $<$idx*$>$} \
+
+        return the name of an element (atomic LM)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{idx*}} & list of indices \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{add}} \texttt{ $<$LM word$>$ \Jsb{-lksA lksa} \Jsb{-lksB lksb} \Jsb{-nameA namea} \Jsb{-nameB nameb} \Jsb{-prob prob}} \
+
+        add an item (using atomic LMs)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{LM word}} &  LM word in this model  \\
+ \texttt{\textbf{lksa}} &      Language Model A  \\
+ \texttt{\textbf{lksb}} &      Language Model B  \\
+ \texttt{\textbf{namea}} &     corresponding word in LM A  \\
+ \texttt{\textbf{nameb}} &     corresponding word in LM B  \\
+ \texttt{\textbf{prob}} &      probability  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{cover}} \texttt{ \Jsb{-lksA lksa} \Jsb{-lksB lksb} \Jsb{-prob prob}} \
+
+        cover an element (read all words from it)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{lksa}} &  index of atomic LM to read words from  \\
+ \texttt{\textbf{lksb}} &  index of atomic LM to connect with  \\
+ \texttt{\textbf{prob}} &  probability  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{get}} \texttt{ $<$word$>$} \
+
+        get the parameters for one item
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  item  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{isStopWord}} \texttt{ $<$word$>$} \
+
+        check if a word is a stopword
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  a word  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{list}} \texttt{} \
+
+        list the currently available LMs
+
+      \Jitem{\Jlabel{MetaLM}{loadStopList}} \texttt{ $<$filename$>$} \
+
+        loads a list of stopwords (must be called after LM is loaded)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  path to the stopword list  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{loadWeights}} \texttt{ $<$file$>$} \
+
+        load interpolation weights (metaLMloadWeights)
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &       weight file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MetaLM}{puts}} \texttt{} \
+
+        display the contents of a MetaLM
+
+      \Jitem{\Jlabel{MetaLM}{scoreFct}} \texttt{ $<$function$>$} \
+
+        change the score function
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{function}} &  score function   \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{list}} & (\Jref{module}{List}) \\
+      \texttt{\textbf{lm(0..1)}} & (\Jref{module}{???}) \\
+    \end{tabular}
+\vspace{3mm}
+
+  \item[Elements:] are of type \Jref{module}{MetaLMItem}.
+
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

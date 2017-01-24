@@ -1,0 +1,169 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{MLAdapt}}
+
+This section describes the '\Jgloss{MLAdapt}': \textsl{Maximum Likelihood Adaptation}
+
+\begin{description}
+
+  \item[Creation:] \texttt{MLAdapt  $<$name$>$ $<$CodebookSet$>$ \Jsb{-mode mode} \Jsb{-bmem bmem} \Jsb{-thread thread}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &         name of MLAdapt object  \\
+ \texttt{\textbf{CodebookSet}} &  name of the codebook set (\Jref{module}{CodebookSet}) \\
+ \texttt{\textbf{mode}} &          0=mean 1=diagonal 2=full  \\
+ \texttt{\textbf{bmem}} &          use block memory management for SAT  \\
+ \texttt{\textbf{thread}} &        use multiple threads for MLLR/SAT  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{mladapt configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{MLAdapt}{-dimN} & = 0 \\
+      \Jlabel{MLAdapt}{-featX} & = -1 \\
+      \Jlabel{MLAdapt}{-itemN} & = 0 \\
+      \Jlabel{MLAdapt}{-name} & = mlAdaptISLci \\
+      \Jlabel{MLAdapt}{-useN} & = 0 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{mladapt}
+
+    \begin{description}
+      \Jitem{\Jlabel{MLAdapt}{accuSAT}} \texttt{ \Jsb{-file file}} \
+
+        SAT accu means
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &  SAT accu file  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{accuTree}} \texttt{} \
+
+        accu MLAdapt information for optimizing tree
+
+      \Jitem{\Jlabel{MLAdapt}{add}} \texttt{ $<$Codebook$>$} \
+
+        add items to the adaptation
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{Codebook}} &  codebook \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{clear}} \texttt{} \
+
+        remove all items from the adaptation list
+
+      \Jitem{\Jlabel{MLAdapt}{clearSAT}} \texttt{} \
+
+        clear SAT accus
+
+      \Jitem{\Jlabel{MLAdapt}{clearTree}} \texttt{} \
+
+        clear MLAdapt tree accus
+
+      \Jitem{\Jlabel{MLAdapt}{cluster}} \texttt{ \Jsb{-depth depth} \Jsb{-maxIter maxiter} \Jsb{-tempS temps} \Jsb{-tempF tempf}} \
+
+        cluster items in the list
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{depth}} &    maximum depth of tree  \\
+ \texttt{\textbf{maxiter}} &  number of iterations  \\
+ \texttt{\textbf{temps}} &    start temperature (0=k-means)  \\
+ \texttt{\textbf{tempf}} &    temperature decay  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{load}} \texttt{ $<$filename$>$} \
+
+        load MLAdapt tree/accus from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save accumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{loadSAT}} \texttt{ $<$filename$>$} \
+
+        load SAT accus from file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file accumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{optTree}} \texttt{} \
+
+        optimize tree based on accus
+
+      \Jitem{\Jlabel{MLAdapt}{restore}} \texttt{ \Jsb{-covar covar}} \
+
+        restore means from MLAdapt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{covar}} &  restore (diagonal) covariances  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{restoreAccu}} \texttt{ \Jsb{-covar covar}} \
+
+        restore accumulators from MLAdapt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{covar}} &  restore (diagonal) covariances  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{save}} \texttt{ $<$filename$>$} \
+
+        save MLAdapt tree/accus to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save accumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{saveSAT}} \texttt{ $<$filename$>$} \
+
+        save SAT accus to file
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to save accumulators  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{store}} \texttt{ \Jsb{-covar covar}} \
+
+        save current means to MLAdapt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{covar}} &  store (diagonal) covariances  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{storeAccu}} \texttt{ \Jsb{-covar covar}} \
+
+        save accumulators of the gaussians to MLAdapt
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{covar}} &  store (diagonal) covariances  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{transform}} \texttt{ $<$matrixX$>$} \
+
+        print transformation matrix
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{matrixX}} &  print which transformation matrix  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{update}} \texttt{ \Jsb{-minCount mincount}} \
+
+        update codebook means
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mincount}} &  minimal splitting count  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{updateSAT}} \texttt{ \Jsb{-file file} \Jsb{-updateMean updatemean} \Jsb{-updateCV updatecv}} \
+
+        SAT update codebook means
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{file}} &        SAT accu file  \\
+ \texttt{\textbf{updatemean}} &  update means  \\
+ \texttt{\textbf{updatecv}} &    update covariances  \\
+      \end{tabular}
+      \Jitem{\Jlabel{MLAdapt}{variance}} \texttt{ \Jsb{-minCount mincount} \Jsb{-minAdapt minadapt}} \
+
+        update codebook variances
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{mincount}} &  minimal splitting count  \\
+ \texttt{\textbf{minadapt}} &  minimal total count for adaptation  \\
+      \end{tabular}
+    \end{description}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

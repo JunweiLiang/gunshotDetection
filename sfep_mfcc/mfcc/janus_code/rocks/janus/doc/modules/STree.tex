@@ -1,0 +1,99 @@
+%% <<< Skeleton generated automatically by tcl2tex.tcl
+
+\subsection{\Jlabel{module}{STree}}
+
+This section describes the '\Jgloss{STree}': \textsl{Search Tree}
+
+\begin{description}
+
+  \item[Creation:] \texttt{STree  $<$name$>$ $<$SVMap$>$ $<$LCMSet$>$ $<$RCMSet$>$ \Jsb{-XCMSet xcmset} \Jsb{-dump dump} \Jsb{-level level} \Jsb{-morphBlk morphblk} \Jsb{-smemFree smemfree} \Jsb{-v v}}
+
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{name}} &     name of the search tree  \\
+ \texttt{\textbf{SVMap}} &    Vocabulary Mapper (\Jref{module}{SVMap}) \\
+ \texttt{\textbf{LCMSet}} &   Set of left context models (\Jref{module}{LCMSet}) \\
+ \texttt{\textbf{RCMSet}} &   Set of right context models (\Jref{module}{RCMSet}) \\
+ \texttt{\textbf{xcmset}} &    Set of left and right context models (\Jref{module}{XCMSet}) \\
+ \texttt{\textbf{dump}} &      Search Tree dump file  \\
+ \texttt{\textbf{level}} &     tree level for memory management  \\
+ \texttt{\textbf{morphblk}} &  block size for memory management  \\
+ \texttt{\textbf{smemfree}} &  memory management mode  \\
+ \texttt{\textbf{v}} &         verbose tree dump  \\
+      \end{tabular}
+
+\vspace{3mm}  \item[Configuration:] \texttt{stree configure}
+
+
+    \begin{tabular}{ll}
+      \Jlabel{STree}{-compress} & = 0 \\
+      \Jlabel{STree}{-leafN} & = 0 \\
+      \Jlabel{STree}{-name} & = streeISLci \\
+      \Jlabel{STree}{-nodeN} & = 0 \\
+      \Jlabel{STree}{-rootN} & = 0 \\
+      \Jlabel{STree}{-sdpN} & = 0 \\
+      \Jlabel{STree}{-sipN} & = 3 \\
+      \Jlabel{STree}{-useN} & = 3 \\
+    \end{tabular}
+
+\vspace{3mm} \item[Methods:] \texttt{stree}
+
+    \begin{description}
+      \Jitem{\Jlabel{STree}{add}} \texttt{ $<$word$>$ \Jsb{-phmmX phmmx}} \
+
+        add word to search tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word \\
+ \texttt{\textbf{phmmx}} &  PHMM index  \\
+      \end{tabular}
+      \Jitem{\Jlabel{STree}{compress}} \texttt{ \Jsb{-v v}} \
+
+        compress search tree, convert tree into generalized graph structure
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{v}} &    verbose output  \\
+      \end{tabular}
+      \Jitem{\Jlabel{STree}{delete}} \texttt{ $<$word$>$} \
+
+        delete word from search tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word \\
+      \end{tabular}
+      \Jitem{\Jlabel{STree}{dump}} \texttt{ $<$filename$>$ \Jsb{-dumpLM dumplm}} \
+
+        dump search tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{filename}} &  file to dump  \\
+ \texttt{\textbf{dumplm}} &     dump lm  \\
+      \end{tabular}
+      \Jitem{\Jlabel{STree}{puts}} \texttt{} \
+
+        puts information
+
+      \Jitem{\Jlabel{STree}{trace}} \texttt{ $<$word$>$} \
+
+        trace search tree
+
+      \begin{tabular}{ll}
+ \texttt{\textbf{word}} &  word \\
+      \end{tabular}
+    \end{description}
+
+  \item[Subobjects:] \hfill \\
+\ 
+    \begin{tabular}{ll}
+      \texttt{\textbf{lcmSet}} & (\Jref{module}{LCMSet}) \\
+      \texttt{\textbf{rcmSet}} & (\Jref{module}{RCMSet}) \\
+      \texttt{\textbf{root(0..-1)}} & (\Jref{module}{???}) \\
+      \texttt{\textbf{smem}} & (\Jref{module}{SMem}) \\
+      \texttt{\textbf{svMap}} & (\Jref{module}{SVMap}) \\
+      \texttt{\textbf{xcmSet}} & (\Jref{module}{XCMSet}) \\
+    \end{tabular}
+\vspace{3mm}
+
+\end{description}
+
+%% Skeleton generated automatically by tcl2tex.tcl >>>

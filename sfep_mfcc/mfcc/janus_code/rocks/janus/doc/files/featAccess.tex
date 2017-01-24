@@ -1,0 +1,41 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of featAccess
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Florian Metze & many others
+%%  Module  :  featAccess.tex
+%%  Date    :  $Id: featAccess.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:18:59  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.2  2002/07/31 13:10:12  metze
+%%   *** empty log message ***
+%%
+%%   Revision 1.1.2.1  2002/07/30 13:57:39  metze
+%%   *** empty log message ***
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{featAccess}}
+
+This tells the \Jref{file}{featDesc} where to find the data. An
+example looks like this:
+
+\begin{verbatim}
+set      adcfile      [file join /project/florian/isldata/adcs $arg(ADC)]
+set      accessList   $sampleList
+lappend  accessList  "ADCFILE $adcfile"
+\end{verbatim}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

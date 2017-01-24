@@ -1,0 +1,142 @@
+%% ========================================================================
+%%  JANUS-SR   Janus Speech Recognition Toolkit
+%%             ------------------------------------------------------------
+%%             Object: Description of a context free grammar
+%%             ------------------------------------------------------------
+%%
+%%  Author  :  Christian Fuegen & many others
+%%  Module  :  cfg.tex
+%%  Date    :  $Id: cfg.tex 2390 2003-08-14 11:20:32Z fuegen $
+%%
+%%  Remarks :  
+%%
+%% ========================================================================
+%%
+%%   $Log$
+%%   Revision 1.2  2003/08/14 11:18:57  fuegen
+%%   Merged changes on branch jtk-01-01-15-fms (jaguar -> ibis-013)
+%%
+%%   Revision 1.1.2.2  2003/04/30 15:44:01  metze
+%%   Changes before the new repository
+%%
+%%   Revision 1.1.2.1  2002/11/19 08:38:38  fuegen
+%%   initial version
+%%
+%%
+%% ========================================================================
+
+\section{\Jlabel{file}{ContextFreeGrammars}}
+
+This section describes our internal context free grammar format,
+called SOUP-Format. We are usually using semantic instead of syntactic
+context free grammars. They are read by \Jref{module}{CFGSet}. A not
+completely specified example looks like:
+
+\begin{verbatim}
+# ======================================================================
+# example grammar
+# ======================================================================
+
+# ----------------------------------------
+# request path description
+#       how do i
+#       i want to find the way
+#       can you take me
+# ----------------------------------------
+s[request-path-description]
+        ( *PLEASE [_NT_how-to-go]    [obj_desc]     *PLEASE )
+        ( *PLEASE [_NT_find-the-way] [obj_desc]     *PLEASE )
+        ( *PLEASE [_NT_take-me]      [obj_desc]     *PLEASE )
+        ( *PLEASE [_NT_how-about]    [obj_desc]     *PLEASE )
+        ( *PLEASE [_NT_how-to-find]  [_NT_obj_desc] *PLEASE )
+
+[_NT_how-to-go]
+        ( how do i                           GO )
+        ( [_NT_can-you-show|tell] *me how to GO )
+        ( i WANT                          to GO )
+        ( i NEED                          to GO )
+
+[_NT_can-you-show|tell]
+        ( *CAN_YOU SHOW )
+        ( *CAN_YOU TELL )
+
+
+[obj_desc]
+        (                     to [_NT_obj_desc] )
+        ( from [_NT_obj_desc] to [_NT_obj_desc] )
+
+[_NT_obj_desc]
+        ( *the          [objnm] )
+        (  the *NEAREST [objcl] )
+        (  A            [objcl] *NEARBY )
+
+[objcl]
+        ( [objcl_bakery] )
+        ( [objcl_bank] )
+
+[objcl_bakery]
+        ( bakery )
+
+CAN
+        ( can )
+        ( could )
+
+CAN_YOU
+        ( CAN you )
+
+SHOW
+        ( show )
+        ( display )
+
+TELL
+        ( tell )
+        ( explain *to )
+
+GO
+        ( get )
+        ( go )
+
+# ----------------------------------------
+# greeting / farewell
+#       hello
+#       good bye
+#       bye bye
+# ----------------------------------------
+s[greeting]
+        ( [_NT_greeting] )
+
+[_NT_greeting]
+        ( hello )
+        ( hi )
+
+s[farewell]
+        ( [_NT_farewell] )
+
+[_NT_farewell]
+        ( *good +bye )
+\end{verbatim}
+
+Non terminal symbols could either be surrounded by \texttt{[]} or could be
+started with a capital letter. Terminal symbols have to be started
+with a lower case letter. If you start a non terminal with a capital
+our with the modifier \texttt{\_NT\_}, it is classified as an auxilliary non
+terminal and will per default not occur in the parse tree. To express
+optionality of a terminal or non terminal you have to use \texttt{*} and to
+express repeatability you have to use \texttt{+} in front of a symbol. It is
+also posible to combine optionality and repeatability by using \texttt{*+}.
+
+Rules consist of a left hand side (LHS, the head of the rule) and a
+right hand side (RHS, the body of the rule). If you want to use a rule
+also as top level rule, i.e. a rule where you can start to parse from,
+you have to put the modifier \texttt{s} in front of the rule. As you
+can see above there are three top level rules:
+\texttt{[request-path-description]}, \texttt{[greeting]} and
+\texttt{[farewell]}. The lines in a RHS of a rule are interpreted as a
+disjunction, the terminals and non terminals in one line as a
+conjunction. It is not neccessary to define the rules in a special
+order.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,80 @@
+# ========================================================================
+#  JanusRTk     Janus Recognition Toolkit
+#               ----------------------------------------------------------
+#               Object: Feature Description
+#               ----------------------------------------------------------
+#
+#  Author    :  Hagen Soltau
+#  Module    :  featDesc to extract CMS/CVN over the speech frames
+#  Remarks   :  
+#  $Log$
+#  Revision 1.2  2003/12/17 13:04:54  metze
+#  P013
+#
+#  Revision 1.2  2002/03/05 18:28:39  soltau
+#  to speech detection from aspike
+#
+#  Revision 1.1  2002/03/05 18:28:02  soltau
+#  Initial revision
+#
+# ========================================================================
+
+global meanPath
+
+
+# ------------------------------------------------------------------------
+#  Check ADC segment...
+# ------------------------------------------------------------------------
+
+set mm [$fes:ADC.data minmax]
+if {[lindex $mm 0] == 0 && [lindex $mm 1] == 0} {
+    puts "WARN: detected wrong segment at $arg(spk) $arg(utt)"
+    return
+}	
+
+
+# ------------------------------------------------------------------------
+#  Speech Detection
+# ------------------------------------------------------------------------
+
+$fes   adc2pow         POWER   ADC      20ms
+$fes   alog            POWER   POWER  1 4
+$fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+$fes   filter          POWER   POWER  {-2 {1 2 3 2 1}}
+$fes   normalize       POWER   POWER  -min -0.1 -max 0.5
+$fes   thresh          SPEECH  POWER  1.0 0 upper
+$fes   thresh          SPEECH  SPEECH 0   0 lower
+
+
+# ------------------------------------------------------------------------
+#  Vocal Tract Length Normalization + MCEP
+# ------------------------------------------------------------------------
+
+$fes VTLN     WFFT      FFT  $arg(WARP) -mod lin -edge 0.8
+
+if {[llength [objects FBMatrix matrixMEL]] != 1} {
+    set melN 30
+    set points [$fes:FFT configure -coeffN]
+    set rate   [expr 1000 * [$fes:FFT configure -samplingRate]]
+    [FBMatrix matrixMEL] mel -N $melN -p $points -rate $rate
+}
+
+$fes   filterbank       MEL             WFFT           matrixMEL
+$fes   log              lMEL            MEL            1.0 1.0
+
+set cepN 13
+
+if {[llength [objects FMatrix matrixCOS]] != 1} {
+    set n [$fes:lMEL configure -coeffN]
+    [FMatrix matrixCOS] cosine $cepN $n -type 1
+}
+
+$fes   matmul           MCEP            lMEL            matrixCOS
+
+
+# ------------------------------------------------------------------------
+#  Mean Subtraction
+# ------------------------------------------------------------------------
+
+$fes meansub  FEAT  MCEP -a 2 -weight SPEECH \
+    -upMean ${fes}UpMean -upSMean ${fes}UpSMean
